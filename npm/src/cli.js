@@ -6,7 +6,7 @@ import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 import { Almacen, SinDatos, AVISO_GENERAL } from "./almacen.js";
 import { Indice } from "./indice.js";
-import { citaArticulo } from "./respuestas.js";
+import { citaArticulo, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
 import { VERSION } from "./version.js";
 import * as clientes from "./clientes.js";
 import * as datos from "./datos.js";
@@ -32,6 +32,7 @@ Servidor
 
 Consulta directa (sin MCP)
   obtener LEY ARTICULO [--anio N] [--incluir-proyectos] [--json]
+  tarifa [ID|APARTADO] [--anio N] [--json]   Tarifas de ISR del Anexo 8 de la RMF (sin argumento: las lista)
   buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--json]
   listar [--incluir-proyectos] [--json]
   reforma [--anio N]     estado de la reforma en trámite (proyecto, no es ley vigente)
@@ -272,7 +273,7 @@ async function cmdDoctor() {
 
   out("\nServidor MCP");
   if (d) {
-    try { const r = await autoprueba(); r.tools.length === 5 && r.ok ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
+    try { const r = await autoprueba(); r.tools.length === 6 && r.ok ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
     catch (e) { fallo(`el servidor no responde: ${e.message}`); }
   } else aviso("omitido (no hay datos)");
 
@@ -334,6 +335,24 @@ async function cmdBuscar({ pos, op }) {
   return 0;
 }
 
+function cmdTarifa({ pos, op }) {
+  const a = Almacen.abrir();
+  const anio = entero(op, "anio") ?? null;
+  const clave = pos[1];
+  if (!clave) {
+    const lista = a.listarTarifas(anio);
+    if (op.json) { out(JSON.stringify(lista, null, 2)); return lista.length ? 0 : 1; }
+    if (!lista.length) { err("NO VERIFICADO: no hay Anexo 8 de la RMF en la base local.\n"); return 1; }
+    out(respuestaTarifas(lista));
+    return 0;
+  }
+  const t = a.obtenerTarifa(clave, anio);
+  if (!t) { err(`NO VERIFICADO: la tarifa ${clave} del Anexo 8 no está en la base local. No se inventan cifras.\n`); return 1; }
+  if (t.ambiguo) { err(`La clave ${clave} corresponde a varias tarifas; usa el id exacto:\n${t.ambiguo.map((x) => `  ${x.id}  ${x.titulo}`).join("\n")}\n`); return 2; }
+  out(op.json ? JSON.stringify(t, null, 2) : respuestaTarifa(t));
+  return 0;
+}
+
 function cmdListar({ op }) {
   const r = Almacen.abrir().listarLeyes({ incluirProyectos: !!op["incluir-proyectos"] });
   if (op.json) { out(JSON.stringify(r, null, 2)); return 0; }
@@ -358,6 +377,7 @@ export async function main(argv) {
       case "estado": return await cmdEstado();
       case "doctor": return await cmdDoctor();
       case "obtener": return await cmdObtener({ pos, op });
+      case "tarifa": return cmdTarifa({ pos, op });
       case "buscar": return await cmdBuscar({ pos, op });
       case "listar": return cmdListar({ op });
       case "reforma": out(JSON.stringify(Almacen.abrir().estadoReforma(entero(op, "anio") ?? null), null, 2)); return 0;

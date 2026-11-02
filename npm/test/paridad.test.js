@@ -61,3 +61,19 @@ test("listar_leyes coincide con Python", () => {
   const py = pythonJson("import json\nfrom leyes_mx import store\nprint(json.dumps(store.listar_leyes()))", null);
   assert.deepEqual(JSON.parse(JSON.stringify(alm.listarLeyes().map(({ tipo, ...r }) => r))), py);
 });
+
+test("paridad de tarifas del Anexo 8 contra Python (31 tarifas)", () => {
+  const lista = alm.listarTarifas(2026);
+  assert.equal(lista.length, 31);
+  const py = pythonJson(
+    "import json, sys\nfrom leyes_mx import anexos\nids = json.load(sys.stdin)\nprint(json.dumps({i: anexos.obtener_anexo(8, i, 2026) for i in ids}))",
+    lista.map((x) => x.id));
+  for (const x of lista) {
+    const js = alm.obtenerTarifa(x.id, 2026);
+    const p = py[x.id];
+    for (const k of ["documento", "apartado", "id", "titulo", "vigencia_anio", "publicado_dof", "fecha_firma", "fuente_url", "sha256_fuente", "estatus", "ruta"]) {
+      assert.deepEqual(js[k], p[k], `${x.id}.${k}`);
+    }
+    assert.equal(js.texto, p.texto, `${x.id}.texto`);
+  }
+});

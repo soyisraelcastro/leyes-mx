@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Empaqueta los datos (leyes/, proyectos/ sin PDF, tablas/ y fuentes.json) para el Release de datos.
+"""Empaqueta los datos (leyes/, proyectos/ sin PDF, tablas/, rmf/ y fuentes.json) para el Release de datos.
 
 Genera en --salida:
   leyes-mx-datos.tar.gz   tarball determinista (mismo contenido -> mismos bytes -> mismo sha256)
@@ -28,7 +28,9 @@ def sha256_bytes(b):
 
 def archivos_a_empaquetar(raiz):
     res = []
-    for base in ("leyes", "proyectos", "tablas"):
+    for base in ("leyes", "proyectos", "tablas", "rmf"):
+        if not (raiz / base).is_dir():
+            continue
         for p in sorted((raiz / base).rglob("*")):
             if not p.is_file() or p.name == ".DS_Store":
                 continue
@@ -59,6 +61,15 @@ def resumen_proyectos(raiz):
         e = json.loads(est.read_text(encoding="utf-8"))
         res.append({"anio": e.get("anio"), "actualizado": e.get("actualizado"),
                     "es_ley_vigente": e.get("es_ley_vigente", False), "resumen": e.get("resumen")})
+    return res
+
+
+def resumen_anexos(raiz):
+    res = []
+    for meta in sorted((raiz / "rmf").glob("*/*/_meta.json")) if (raiz / "rmf").is_dir() else []:
+        m = json.loads(meta.read_text(encoding="utf-8"))
+        res.append({"documento": m.get("documento"), "anio_vigencia": m.get("vigencia_anio"), "publicado_dof": m.get("publicado_dof"),
+                    "tarifas": m.get("tarifas"), "sha256_pdf": m.get("sha256_pdf")})
     return res
 
 
@@ -93,6 +104,7 @@ def construir(raiz, salida, version, fecha):
         "anios": sorted({l["anio_vigencia"] for l in leyes}),
         "leyes": leyes,
         "proyectos": resumen_proyectos(raiz),
+        "anexos": resumen_anexos(raiz),
     }
     (salida / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return manifest

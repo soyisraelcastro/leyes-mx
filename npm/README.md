@@ -30,6 +30,7 @@ Requiere Node 20 o superior. Opciones de `instalar`: `--anio 2026` (año por def
 | `listar_leyes(anio?)` | Qué hay en la base. |
 | `estado_reforma(anio?)` | Seguimiento de la reforma en trámite y última reforma por ley. |
 | `obtener_transitorios(ley, anio?, pagina?)` | Transitorios por decreto. |
+| `obtener_tarifa(tarifa?, anio?)` | Tarifas de ISR vigentes del Anexo 8 de la RMF (mensual `B-V`, anual `C-II`, por 7/10/15 días, bimestrales...). Sin parámetro, las lista. Son las que se aplican en el ejercicio; las tablas de los arts. 96 y 152 de la LISR son las de la ley. |
 
 Si no existe lo pedido, la respuesta dice "NO VERIFICADO" y no se inventa texto. Un proyecto de reforma nunca se presenta como ley vigente. Los textos muy extensos (por ejemplo el artículo 513 de la LFT) se entregan por páginas de hasta 40 000 caracteres, con aviso y parámetro `pagina`.
 

@@ -101,3 +101,20 @@ export function respuestaEstado(e, leyes, version) {
   l.push("", AVISO_GENERAL);
   return l.join("\n");
 }
+
+export function respuestaTarifa(t) {
+  return [
+    `${t.documento}, apartado ${t.apartado} | vigencia ${t.vigencia_anio} | publicado en el DOF ${t.publicado_dof} (firma ${t.fecha_firma}) | estatus: ${t.estatus}`,
+    `Aplicable a: ${(t.aplicable_a || []).join("; ")}`,
+    `fuente: ${t.fuente_url}`,
+    "",
+    t.texto,
+  ].join("\n");
+}
+
+export function respuestaTarifas(lista) {
+  if (!lista.length) return "NO VERIFICADO: no hay Anexo 8 de la RMF en la base local.";
+  const filas = lista.map((x) => `${String(x.apartado).padEnd(7)} ${String(x.id).padEnd(38)} ${x.titulo}`);
+  return [`${lista[0].documento} | DOF ${lista[0].publicado_dof} | vigencia ${lista[0].anio_vigencia} | ${lista.length} tarifas`, "", ...filas,
+    "", "Para una tarifa concreta usa obtener_tarifa con el id exacto (o el apartado cuando es único, p. ej. B-V mensual, C-II anual)."].join("\n");
+}

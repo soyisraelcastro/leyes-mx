@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 fuentes/*/*.pdf
 proyectos/*/documentos/*.pdf
+.claude/

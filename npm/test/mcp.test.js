@@ -19,7 +19,7 @@ test("initialize y tools/list", async () => {
   assert.equal(info.name, "leyes-mx");
   assert.match(c.getInstructions(), /no verificado/);
   const { tools } = await c.listTools();
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["buscar", "estado_reforma", "listar_leyes", "obtener_articulo", "obtener_transitorios"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["buscar", "estado_reforma", "listar_leyes", "obtener_articulo", "obtener_tarifa", "obtener_transitorios"]);
   for (const t of tools) assert.equal(t.annotations.readOnlyHint, true);
 });
 
@@ -106,4 +106,32 @@ test("listar_leyes, estado_reforma y obtener_transitorios", async () => {
 test("un proyecto nunca sale como vigente en obtener_articulo por defecto", async () => {
   const r = await c.callTool({ name: "obtener_articulo", arguments: { ley: "LISR", articulo: "78-E", anio: 2027 } });
   assert.match(txt(r), /NO VERIFICADO/);
+});
+
+test("obtener_tarifa: la mensual 2026 sale del Anexo 8 con las cifras del PDF", async () => {
+  const r = await c.callTool({ name: "obtener_tarifa", arguments: { tarifa: "B-V" } });
+  const t = txt(r);
+  assert.match(t, /Anexo 8 de la RMF 2026, apartado B\.V \| vigencia 2026 \| publicado en el DOF 2025-12-28/);
+  assert.match(t, /\| 0\.01 \| 844\.59 \| 0\.00 \| 1\.92 \|/);
+  assert.match(t, /\| 844\.60 \| 7,168\.51 \| 16\.22 \| 6\.40 \|/);
+  assert.match(t, /\| 425,642\.00 \| En adelante \| 133,488\.54 \| 35\.00 \|/);
+  const anual = txt(await c.callTool({ name: "obtener_tarifa", arguments: { tarifa: "c.ii" } }));
+  assert.match(anual, /\| 10,135\.12 \| 86,022\.11 \| 194\.59 \| 6\.40 \|/);
+});
+
+test("obtener_tarifa: lista, apartado ambiguo y tarifa inexistente", async () => {
+  const lista = await c.callTool({ name: "obtener_tarifa", arguments: {} });
+  assert.equal(lista.structuredContent.tarifas.length, 31);
+  const amb = await c.callTool({ name: "obtener_tarifa", arguments: { tarifa: "B-VI" } });
+  assert.match(txt(amb), /varias tarifas; usa el id exacto/);
+  const no = await c.callTool({ name: "obtener_tarifa", arguments: { tarifa: "Z-9" } });
+  assert.match(txt(no), /NO VERIFICADO/);
+  assert.equal(no.structuredContent.encontrado, false);
+});
+
+test("los artículos 96 y 152 de la LISR remiten al Anexo 8", async () => {
+  for (const art of ["96", "152"]) {
+    const t = txt(await c.callTool({ name: "obtener_articulo", arguments: { ley: "LISR", articulo: art } }));
+    assert.match(t, /Anexo 8 de la RMF 2026/);
+  }
 });

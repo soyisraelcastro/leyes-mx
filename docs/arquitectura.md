@@ -60,7 +60,7 @@ Identificador canónico ("113-E", "28-bis").
 
 ## Herramientas MCP
 
-Implementadas en `npm/` (Node, sin Python), con la misma lógica de ids y los mismos campos; ver [npx.md](npx.md). Además de las cuatro de abajo hay `obtener_transitorios`, y `obtener_articulo`/`obtener_transitorios` admiten `pagina` para textos muy extensos. `buscar` acepta `incluir_proyectos` como parámetro explícito y marca todo proyecto. Tabla original de diseño:
+Implementadas en `npm/` (Node, sin Python), con la misma lógica de ids y los mismos campos; ver [npx.md](npx.md). Además de las cuatro de abajo hay `obtener_transitorios` y `obtener_tarifa` (tarifas de ISR del Anexo 8 de la RMF; en el CLI, `npx leyes-mx tarifa B-V`), y `obtener_articulo`/`obtener_transitorios` admiten `pagina` para textos muy extensos. `buscar` acepta `incluir_proyectos` como parámetro explícito y marca todo proyecto. Tabla original de diseño:
 
 | Herramienta | Mapea a | Notas |
 |---|---|---|

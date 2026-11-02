@@ -4,11 +4,12 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import * as z from "zod";
 import { Almacen, SinDatos } from "./almacen.js";
 import { Indice } from "./indice.js";
-import { respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaTransitorios } from "./respuestas.js";
+import { respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaTarifa, respuestaTarifas, respuestaTransitorios } from "./respuestas.js";
 import { VERSION } from "./version.js";
 
 const INSTRUCCIONES = [
-  "Base local de leyes fiscales y laborales de México (LISR, LIVA, CFF, LFT y reglamentos), un artículo por archivo.",
+  "Base local de leyes fiscales y laborales de México (LISR, LIVA, CFF, LFT y reglamentos), un artículo por archivo, más las tarifas de ISR vigentes del Anexo 8 de la RMF.",
+  "Los artículos 96 y 152 de la LISR traen la tarifa de la ley; para calcular retenciones o el anual del ejercicio usa obtener_tarifa (Anexo 8), que es la actualizada.",
   "Consúltala ANTES de buscar en internet. Para un artículo conocido usa obtener_articulo; para un tema usa buscar.",
   "Cita siempre ley, artículo, año de vigencia y fecha de última reforma que devuelve la herramienta.",
   "Si la herramienta dice que no existe, responde \"no verificado\"; no completes artículos de memoria.",
@@ -102,6 +103,26 @@ export function crearServidor(almacen = null) {
     const e = a.estadoReforma(anio ?? null);
     const leyes = a.listarLeyes().map((x) => ({ sigla: x.sigla, anio_vigencia: x.anio_vigencia, ultima_reforma_dof: x.ultima_reforma_dof }));
     return texto(respuestaEstado(e, leyes, a.version), { structuredContent: { reforma: e, leyes } });
+  }));
+
+  server.registerTool("obtener_tarifa", {
+    title: "Obtener tarifa de ISR (Anexo 8 de la RMF)",
+    description: "Tarifas de ISR vigentes del Anexo 8 de la Resolución Miscelánea Fiscal (mensual, anual, por 7/10/15 días, bimestrales, etc.), con límites, cuota fija y porcentaje. Son las que se aplican en el ejercicio, no la tabla histórica de la ley. Sin parámetro `tarifa` lista las disponibles. Ejemplos: B-V (mensual 2026), C-II (anual 2026).",
+    inputSchema: {
+      tarifa: z.string().optional().describe("Id exacto o apartado, por ejemplo \"B-V\", \"C-II\", \"B-IV-15-dias\". Omitir para listar."),
+      anio: z.number().int().optional().describe("Año de vigencia del anexo (por omisión, el más reciente)"),
+    },
+    annotations: RO,
+  }, envolver(({ tarifa, anio }) => {
+    const a = obtenerAlmacen();
+    if (!tarifa) {
+      const lista = a.listarTarifas(anio ?? null);
+      return texto(respuestaTarifas(lista), { structuredContent: { tarifas: lista } });
+    }
+    const t = a.obtenerTarifa(tarifa, anio ?? null);
+    if (!t) return texto(`NO VERIFICADO: la tarifa ${tarifa} del Anexo 8 no está en la base local. No se inventan cifras: consultar el DOF o sat.gob.mx.`, { structuredContent: { encontrado: false } });
+    if (t.ambiguo) return texto(`La clave ${tarifa} corresponde a varias tarifas; usa el id exacto:\n` + t.ambiguo.map((x) => `- ${x.id}: ${x.titulo}`).join("\n"), { structuredContent: { encontrado: false, ambiguo: t.ambiguo } });
+    return texto(respuestaTarifa(t), { structuredContent: { encontrado: true, id: t.id, apartado: t.apartado, anio_vigencia: t.vigencia_anio, publicado_dof: t.publicado_dof } });
   }));
 
   server.registerTool("obtener_transitorios", {

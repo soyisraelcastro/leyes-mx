@@ -111,7 +111,7 @@ test("estado y doctor", () => {
   assert.match(r.stdout, /LISR\s+2026\s+2024-04-01/);
   r = run(["doctor"]);
   assert.equal(r.status, 0, salida(r));
-  assert.match(r.stdout, /integridad: 2582 archivos/);
+  assert.match(r.stdout, /integridad: \d+ archivos con sha256 correcto/);
   assert.match(r.stdout, /initialize y tools\/list correctos/);
   assert.match(r.stdout, /claude-desktop: registrado/);
   assert.match(r.stdout, /codex: registrado/);

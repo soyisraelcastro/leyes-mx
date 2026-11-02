@@ -128,6 +128,46 @@ export class Almacen {
     return d;
   }
 
+  // ---- Anexo 8 de la RMF (tarifas de ISR vigentes del año): rmf/<anio>/anexo-8/<id>.md
+  aniosAnexo() {
+    const base = path.join(this.raiz, "rmf");
+    if (!esDir(base)) return [];
+    return fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && esDir(path.join(base, n, "anexo-8"))).map(Number).sort((a, b) => a - b);
+  }
+
+  listarTarifas(anio = null) {
+    const anios = this.aniosAnexo();
+    const a = anio ?? (anios.length ? Math.max(...anios) : null);
+    if (a === null || !anios.includes(Number(a))) return [];
+    const dir = path.join(this.raiz, "rmf", String(a), "anexo-8");
+    let orden = [];
+    try { orden = JSON.parse(fs.readFileSync(path.join(dir, "_meta.json"), "utf8")).tarifas_detalle.map((t) => t.id); } catch { /* sin meta: orden alfabético */ }
+    const res = [];
+    for (const n of fs.readdirSync(dir).filter((x) => x.endsWith(".md") && !x.startsWith("_")).sort()) {
+      const [fm] = parseFrontMatter(fs.readFileSync(path.join(dir, n), "utf8"));
+      res.push({ id: fm.id, apartado: fm.apartado, titulo: fm.titulo, documento: fm.documento, anio_vigencia: fm.vigencia_anio,
+        publicado_dof: fm.publicado_dof, fuente_url: fm.fuente_url, filas: fm.filas, ruta: `rmf/${a}/anexo-8/${n}` });
+    }
+    const pos = (id) => { const i = orden.indexOf(id); return i < 0 ? orden.length : i; };
+    return res.sort((x, y) => pos(x.id) - pos(y.id) || x.ruta.localeCompare(y.ruta));
+  }
+
+  /** Por id exacto, apartado ("B-V", "B.V") o prefijo de id. null si no existe; {ambiguo:[...]} si varias. Nunca inventa. */
+  obtenerTarifa(clave, anio = null) {
+    const todas = this.listarTarifas(anio);
+    const c = String(clave).trim().replace(/\./g, "-").replace(/\s+/g, "-").toLowerCase();
+    let m = todas.filter((t) => String(t.id).toLowerCase() === c);
+    if (!m.length) m = todas.filter((t) => String(t.apartado).replace(/\./g, "-").toLowerCase() === c);
+    if (!m.length) m = todas.filter((t) => String(t.id).toLowerCase().startsWith(`${c}-`));
+    if (!m.length) return null;
+    if (m.length > 1) return { ambiguo: m.map((t) => ({ id: t.id, titulo: t.titulo })) };
+    const t = m[0];
+    const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(path.join(this.raiz, t.ruta), "utf8"));
+    return { documento: fm.documento, apartado: fm.apartado, id: fm.id, titulo: fm.titulo, aplicable_a: fm.aplicable_a ?? [],
+      vigencia_anio: fm.vigencia_anio, publicado_dof: fm.publicado_dof, fecha_firma: fm.fecha_firma, fuente_url: fm.fuente_url,
+      fecha_descarga: fm.fecha_descarga, sha256_fuente: fm.sha256_fuente, estatus: fm.estatus, texto: strip(cuerpo), ruta: t.ruta };
+  }
+
   ficha(fm, cuerpo, ruta) {
     const d = {
       ley: fm.ley ?? null, nombre_ley: fm.nombre_ley ?? null, articulo: fm.articulo ?? null,
