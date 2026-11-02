@@ -1,0 +1,34 @@
+{
+  "name": "leyes-mx",
+  "version": "0.1.0",
+  "description": "Leyes fiscales y laborales de México en local para tu asistente: servidor MCP (Claude Desktop, Claude Code, Codex, Cursor) y consulta por línea de comandos.",
+  "type": "module",
+  "bin": {
+    "leyes-mx": "bin/leyes-mx.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.0.0"
+  },
+  "keywords": ["mcp", "leyes", "mexico", "lisr", "liva", "cff", "lft", "sat", "fiscal"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soyisraelcastro/leyes-mx.git",
+    "directory": "npm"
+  },
+  "homepage": "https://github.com/soyisraelcastro/leyes-mx#readme",
+  "bugs": "https://github.com/soyisraelcastro/leyes-mx/issues"
+}
