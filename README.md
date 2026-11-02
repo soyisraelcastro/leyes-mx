@@ -8,6 +8,26 @@ El texto sale de los PDF oficiales de la Cámara de Diputados, sin editar. Lo qu
 
 > **Aviso.** Los textos son informativos y se copian de la Cámara de Diputados del H. Congreso de la Unión; pueden tener diferencias o errores de extracción y no sustituyen al Diario Oficial de la Federación. **La fuente oficial (Cámara de Diputados / DOF) prevalece.** Esto no es asesoría legal ni fiscal.
 
+## Instalar con npx
+
+Para usar estas leyes desde Claude Desktop, Claude Code, Codex, Cursor o cualquier cliente que hable MCP, en tu propio equipo y sin internet para consultar:
+
+```bash
+npx leyes-mx instalar
+```
+
+Descarga los datos (unos 3 MB, con verificación sha256), detecta tus clientes y registra el servidor. Con `--cliente claude-desktop|claude-code|codex|cursor|todos` eliges uno y con `--dry-run` ves qué haría sin escribir nada.
+
+```bash
+npx leyes-mx actualizar     # cuando salga una ley o reforma nueva
+npx leyes-mx doctor         # verificar que quedó bien
+npx leyes-mx obtener LISR 28
+npx leyes-mx buscar "recargos deducibles" --ley LISR
+npx leyes-mx desinstalar
+```
+
+Requiere Node 20 o superior. Detalle, arquitectura de datos y cómo publicar: [docs/npx.md](docs/npx.md) y [npm/README.md](npm/README.md). La landing con instrucciones por cliente está en `sitio/` (Astro, para Vercel).
+
 ## Qué contiene
 
 Año de vigencia 2026 (texto vigente al 2026-11-02, descargado ese día):
@@ -34,6 +54,8 @@ leyes/<año>/<SIGLA>/_meta.json           sigla, nombre oficial, URL, última re
 proyectos/<año>/                         proyectos de reforma (estatus "proyecto"), línea de tiempo y documentos
 fuentes.json                             lista de leyes configuradas
 leyes_mx/  scripts/  docs/               biblioteca, CLI y scripts, documentación
+npm/                                     paquete npm "leyes-mx" (instalador y servidor MCP)
+sitio/                                   landing en Astro
 ```
 
 `<año>` es el **año de vigencia** del texto, no la fecha de descarga. Lo de 2026 queda congelado cuando se publique lo de 2027 (ver [docs/criterio-anios.md](docs/criterio-anios.md)). Convención de nombres: [docs/convencion-nombres.md](docs/convencion-nombres.md).
@@ -55,7 +77,7 @@ ubicacion: "TÍTULO IV ... > CAPÍTULO II ... > SECCIÓN IV ..."
 ---
 ```
 
-## Consultar con el CLI
+## Consultar con el CLI de Python
 
 Solo requiere Python 3.9+ (biblioteca estándar) y SQLite con FTS5.
 
@@ -145,7 +167,7 @@ Ver [CONTRIBUTING.md](CONTRIBUTING.md). Resumen: el texto legal siempre sale del
 - Más ordenamientos: LSS, Ley del INFONAVIT, LIEPS, Ley de Ingresos, Ley Federal de Derechos y otros (solo configuración en `fuentes.json`).
 - Resolución Miscelánea Fiscal y sus anexos.
 - Jurisprudencia y criterios.
-- API y servidor MCP sobre las mismas funciones (diseño en [docs/arquitectura.md](docs/arquitectura.md)).
+- API HTTP sobre las mismas funciones. El servidor MCP ya existe: ver [docs/npx.md](docs/npx.md).
 - Año 2027 cuando se publique la reforma.
 
 ## Licencia

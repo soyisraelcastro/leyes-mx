@@ -10,7 +10,8 @@ leyes_mx/store.py              biblioteca importable (sin dependencias)
         |
 leyes_mx/cli.py                CLI (leyes-mx / scripts/buscar.py)
         |
-(futuro) servidor MCP / API    envuelve las mismas funciones
+npm/ (leyes-mx)                servidor MCP en Node (ya existe), mismo contrato; ver docs/npx.md
+(futuro) API HTTP              envuelve las mismas funciones
 build/indice.sqlite            índice FTS5, se regenera solo; ignorado por git
 ```
 
@@ -48,7 +49,9 @@ Lee `proyectos/<año>/estado.json`: resumen, línea de tiempo con `confirmado` y
 
 Identificador canónico ("113-E", "28-bis").
 
-## Herramientas MCP propuestas
+## Herramientas MCP
+
+Implementadas en `npm/` (Node, sin Python), con la misma lógica de ids y los mismos campos; ver [npx.md](npx.md). Además de las cuatro de abajo hay `obtener_transitorios`, y `obtener_articulo`/`obtener_transitorios` admiten `pagina` para textos muy extensos. `buscar` acepta `incluir_proyectos` como parámetro explícito y marca todo proyecto. Tabla original de diseño:
 
 | Herramienta | Mapea a | Notas |
 |---|---|---|
