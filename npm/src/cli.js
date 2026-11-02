@@ -196,6 +196,13 @@ async function cmdInstalar(op) {
     }
   }
 
+  const gui = lista.filter((c) => c === "claude-desktop" || c === "cursor");
+  if (gui.length && process.platform !== "win32") {
+    const cmd = clientes.entradaPara(gui[0]).command;
+    if (path.isAbsolute(cmd) && clientes.esRutaVersionada(cmd)) {
+      out(`\nAviso: las apps de escritorio (${gui.join(" y ")}) no heredan el PATH de tu terminal, así que ${dry ? "se registraría" : "se registró"} la ruta completa de npx, que incluye la versión de Node:\n  ${cmd}\nSi cambias o borras esa versión de Node, la app dejará de encontrar el servidor. Cuando pase, repite: npx leyes-mx instalar --cliente ${gui[0]}\n(\"npx leyes-mx doctor\" también lo detecta).`);
+    }
+  }
   if (!dry && lista.includes("claude-desktop")) out("\nReinicia Claude Desktop por completo (salir y volver a abrir) para que cargue el servidor.");
   if (!dry && lista.some((c) => c !== "claude-desktop")) out("Reinicia también las sesiones abiertas de los demás clientes.");
   out("Verifica con: npx leyes-mx doctor");
@@ -283,6 +290,11 @@ async function cmdDoctor() {
     const ruta = clientes.rutaConfig(c);
     const txt = { registrado: `registrado en ${ruta}`, ausente: clientes.detectar(c) ? `detectado pero sin registrar (npx leyes-mx instalar --cliente ${c})` : "no detectado", manual: `hay una entrada manual en ${ruta}`, distinto: `en ${ruta} existe un "${clientes.NOMBRE}" que no es de este paquete`, ilegible: `no se pudo leer ${ruta}` }[e];
     e === "registrado" ? ok(`${c}: ${txt}`) : e === "ilegible" || e === "distinto" ? fallo(`${c}: ${txt}`) : out(`  --     ${c}: ${txt}`);
+    if (e === "registrado") {
+      const cmd = clientes.comandoRegistrado(c);
+      if (cmd && path.isAbsolute(cmd) && !fs.existsSync(cmd)) fallo(`${c}: la ruta de npx registrada ya no existe (${cmd}). Suele pasar al cambiar o borrar la versión de Node. Corrige con: npx leyes-mx instalar --cliente ${c}`);
+      else if (cmd && path.isAbsolute(cmd) && clientes.esRutaVersionada(cmd)) aviso(`${c}: la ruta de npx registrada incluye la versión de Node (${cmd}). Si cambias de versión, repite: npx leyes-mx instalar --cliente ${c}`);
+    }
   }
 
   out("\nRed (solo para actualizar)");

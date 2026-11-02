@@ -257,6 +257,26 @@ export function estadoCliente(cliente) {
   } catch { return "ilegible"; }
 }
 
+/** Rutas de Node que incluyen la versión (nvm, fnm, asdf, nodenv, n): dejan de existir al cambiar o borrar esa versión. */
+export function esRutaVersionada(p) {
+  return /[\\/]\.nvm[\\/]versions[\\/]|[\\/]nvm[\\/]v?\d|fnm_multishells|[\\/]\.fnm[\\/]|[\\/]fnm[\\/]node-versions|[\\/]\.asdf[\\/]installs[\\/]|[\\/]\.nodenv[\\/]versions[\\/]|[\\/]n[\\/]versions[\\/]node/.test(String(p || ""));
+}
+
+/** Comando que quedó registrado para leyes-mx en ese cliente (null si no hay). Para doctor. */
+export function comandoRegistrado(cliente) {
+  try {
+    if (cliente === "codex") {
+      const r = rutaConfig(cliente);
+      const t = fs.existsSync(r) ? fs.readFileSync(r, "utf8") : "";
+      const bloque = t.split(TOML_INI)[1] ?? "";
+      const m = bloque.match(/^\s*command\s*=\s*"((?:[^"\\]|\\.)*)"/m);
+      return m ? JSON.parse(`"${m[1]}"`) : null;
+    }
+    const { entrada } = estadoJson(cliente);
+    return entrada && esNuestra(entrada) ? entrada.command ?? null : null;
+  } catch { return null; }
+}
+
 export function bloqueJsonGenerico() {
   return JSON.stringify({ mcpServers: { [NOMBRE]: { command: "npx", args: ARGS } } }, null, 2);
 }
