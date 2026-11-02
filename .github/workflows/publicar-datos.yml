@@ -1,0 +1,83 @@
+name: Publicar datos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "leyes/**"
+      - "proyectos/**"
+      - "tablas/**"
+      - "scripts/empaquetar_datos.py"
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: "Publicar aunque el contenido no haya cambiado"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-datos
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar el árbol
+        run: python3 scripts/validar.py
+
+      - name: Calcular la versión (datos-AAAA.MM.DD, con sufijo si hay más de una el mismo día)
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          dia="$(date -u +%Y.%m.%d)"
+          version="$dia"
+          n=1
+          while gh release view "datos-$version" >/dev/null 2>&1; do
+            n=$((n + 1))
+            version="$dia.$n"
+          done
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=datos-$version" >> "$GITHUB_OUTPUT"
+
+      - name: Construir tarball y manifest
+        run: python3 scripts/empaquetar_datos.py --salida salida --version "${{ steps.ver.outputs.version }}"
+
+      - name: Comparar con el último Release
+        id: cmp
+        env:
+          FORZAR: ${{ github.event_name == 'workflow_dispatch' && inputs.forzar }}
+        run: |
+          nuevo="$(python3 -c "import json;print(json.load(open('salida/manifest.json'))['contenido_sha256'])")"
+          previo=""
+          if curl -fsSL "https://github.com/${{ github.repository }}/releases/latest/download/manifest.json" -o previo.json; then
+            previo="$(python3 -c "import json;print(json.load(open('previo.json')).get('contenido_sha256',''))")"
+          fi
+          if [ "$nuevo" = "$previo" ] && [ "$FORZAR" != "true" ]; then
+            echo "Contenido idéntico al último Release; no se publica otro."
+            echo "publicar=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publicar=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publicar Release
+        if: steps.cmp.outputs.publicar == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.ver.outputs.tag }}" \
+            salida/leyes-mx-datos.tar.gz salida/manifest.json \
+            --title "Datos ${{ steps.ver.outputs.version }}" \
+            --notes "Datos de leyes-mx versión ${{ steps.ver.outputs.version }}. Los instala y actualiza el paquete npm: npx leyes-mx actualizar" \
+            --target "${{ github.sha }}" \
+            --latest
