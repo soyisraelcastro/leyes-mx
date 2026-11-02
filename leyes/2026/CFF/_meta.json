@@ -1,0 +1,15 @@
+{
+  "sigla": "CFF",
+  "nombre_oficial": "Código Fiscal de la Federación",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/CFF.pdf",
+  "ultima_reforma_dof": "2026-04-09",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "be7427b20d3552775ab42018f8f87578078770095bf8cf46322c25e36ee3aa7d",
+  "articulos_extraidos": 421,
+  "ultimo_articulo_numerico": 263,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 41,
+  "advertencias": []
+}

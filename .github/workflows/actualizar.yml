@@ -1,0 +1,75 @@
+name: Actualizar leyes
+
+on:
+  schedule:
+    - cron: "0 14 1 * *"   # día 1 de cada mes, 14:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Solo reportar, sin abrir PR ni issues"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar pdftotext
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Revisar reformas
+        id: rev
+        env:
+          DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          set +e
+          if [ "$DRY" = "true" ]; then FLAG="--dry-run"; else FLAG="--aplicar"; fi
+          python3 scripts/revisar_reformas.py $FLAG --json --resumen-md resumen.md > informe.json
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+          cat resumen.md || true
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          d = json.load(open("informe.json"))
+          print("promover=" + str(any(f.get("promover_2027") for f in d["informe"])).lower())
+          PY
+      - name: Validar el árbol
+        if: steps.rev.outputs.rc == '1' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
+        run: python3 scripts/validar.py
+      - name: Abrir PR con los cambios
+        if: steps.rev.outputs.rc == '1' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RAMA="actualizacion/$(date -u +%Y-%m-%d)"
+          git config user.name "leyes-mx-bot"
+          git config user.email "leyes-mx-bot@users.noreply.github.com"
+          git checkout -b "$RAMA"
+          git add leyes
+          if git diff --cached --quiet; then echo "Sin cambios en leyes/"; exit 0; fi
+          git commit -m "Actualiza leyes por reforma publicada en el DOF"
+          git push origin "$RAMA"
+          gh pr create --title "Actualiza leyes por reforma publicada en el DOF" --body-file resumen.md
+      - name: Abrir issue si falló la descarga o la validación
+        if: steps.rev.outputs.rc == '2' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          { echo "La revisión mensual falló (descarga o validación). Detalle:"; echo; cat resumen.md; echo; echo '```json'; cat informe.json; echo '```'; } > issue.md
+          gh issue create --title "Falló la revisión mensual de reformas" --body-file issue.md
+      - name: Abrir issue de promoción de la reforma 2027
+        if: steps.rev.outputs.promover == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "Reforma publicada, promover a leyes/2027" \
+            --body "Una ley vigilada cambió de fecha de última reforma en el PDF de la Cámara. Seguir docs/publicar-reforma.md. Resumen:
+
+$(cat resumen.md)"

@@ -1,0 +1,23 @@
+name: Revisar mensajes de commit
+
+on:
+  pull_request:
+
+jobs:
+  sin-coautoria:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Rechazar co-autoria y firmas de herramientas
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          patron='co-authored-by|generated with|generado con|claude|anthropic|codex|copilot|chatgpt|openai'
+          if git log "$BASE..$HEAD" --format=%B | grep -E -i -n "$patron"; then
+            echo "Hay commits con co-autoria o firma de herramienta. Reescribe esos mensajes (ver CONTRIBUTING.md)." >&2
+            exit 1
+          fi
+          echo "Mensajes de commit limpios."

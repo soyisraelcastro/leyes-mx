@@ -1,0 +1,23 @@
+name: Validar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pruebas
+        run: python3 -I tests/test_ids.py
+      - name: Validar el árbol de leyes y proyectos
+        run: python3 scripts/validar.py
+      - name: Prueba de humo del buscador
+        run: |
+          python3 scripts/buscar.py obtener LISR 113-E > /dev/null
+          python3 scripts/buscar.py buscar "recargos" --ley LISR > /dev/null

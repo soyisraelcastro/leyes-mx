@@ -1,0 +1,73 @@
+{
+  "_comentario": "Lista de ordenamientos. Para agregar uno (LSS, LINFONAVIT, LIEPS, LIF...) basta una entrada nueva aqui; no se toca codigo. 'ultimo_articulo_esperado' es un control independiente (numero del ultimo articulo de la parte numerada del cuerpo, verificado a mano contra el PDF).",
+  "anio_vigencia_actual": 2026,
+  "fuente_indice": "https://www.diputados.gob.mx/LeyesBiblio/index.htm",
+  "leyes": [
+    {
+      "sigla": "LISR",
+      "nombre": "Ley del Impuesto sobre la Renta",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
+      "ultimo_articulo_esperado": 215
+    },
+    {
+      "sigla": "LIVA",
+      "nombre": "Ley del Impuesto al Valor Agregado",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf",
+      "ultimo_articulo_esperado": 43
+    },
+    {
+      "sigla": "CFF",
+      "nombre": "Código Fiscal de la Federación",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/CFF.pdf",
+      "ultimo_articulo_esperado": 263
+    },
+    {
+      "sigla": "LFT",
+      "nombre": "Ley Federal del Trabajo",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf",
+      "ultimo_articulo_esperado": 1010,
+      "advertencias": [
+        {
+          "articulos": [
+            "58",
+            "59",
+            "61",
+            "66",
+            "67",
+            "68",
+            "69",
+            "71",
+            "132",
+            "994"
+          ],
+          "texto": "Reforma de jornada laboral (decreto publicado en el DOF el 1 de mayo de 2026, en vigor desde esa fecha). El texto del artículo 59 dice cuarenta horas semanales, pero por los transitorios Segundo y Cuarto la reducción es GRADUAL a partir del 1 de enero de cada año: jornada semanal 48 h en 2026, 46 en 2027, 44 en 2028, 42 en 2029 y 40 en 2030; horas extra 9 en 2026 y 2027, 10 en 2028, 11 en 2029 y 12 en 2030. Leer leyes/<año>/LFT/transitorios.md antes de citar la jornada aplicable."
+        }
+      ]
+    },
+    {
+      "sigla": "RLISR",
+      "nombre": "Reglamento de la Ley del Impuesto sobre la Renta",
+      "tipo": "reglamento",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LISR_060516.pdf",
+      "ultimo_articulo_esperado": 313
+    },
+    {
+      "sigla": "RLIVA",
+      "nombre": "Reglamento de la Ley del Impuesto al Valor Agregado",
+      "tipo": "reglamento",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LIVA_250914.pdf",
+      "ultimo_articulo_esperado": 79
+    },
+    {
+      "sigla": "RCFF",
+      "nombre": "Reglamento del Código Fiscal de la Federación",
+      "tipo": "reglamento",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_CFF.pdf",
+      "ultimo_articulo_esperado": 113
+    }
+  ]
+}

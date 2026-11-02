@@ -1,0 +1,11 @@
+#!/bin/sh
+# Rechaza mensajes de commit con co-autoria o firmas de herramientas (ver CONTRIBUTING.md).
+msg="$1"
+patron='co-authored-by|generated with|generado con|claude|anthropic|codex|copilot|chatgpt|openai'
+if grep -v '^#' "$msg" | grep -E -i -q "$patron"; then
+  echo "Commit rechazado: el mensaje contiene co-autoria o firma de herramienta (Co-Authored-By, Generated with, Claude, etc.)." >&2
+  echo "Quita esas lineas. Regla en CONTRIBUTING.md." >&2
+  grep -v '^#' "$msg" | grep -E -i -n "$patron" >&2
+  exit 1
+fi
+exit 0

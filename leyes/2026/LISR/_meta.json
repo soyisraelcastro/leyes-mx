@@ -1,0 +1,15 @@
+{
+  "sigla": "LISR",
+  "nombre_oficial": "Ley del Impuesto sobre la Renta",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
+  "ultima_reforma_dof": "2024-04-01",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "803c2875c09c751c1966b8eb4dca99f460b237da4ef67ee04b4fa325d8c2f786",
+  "articulos_extraidos": 236,
+  "ultimo_articulo_numerico": 215,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 9,
+  "advertencias": []
+}

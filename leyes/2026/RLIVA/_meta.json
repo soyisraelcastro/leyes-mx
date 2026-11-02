@@ -1,0 +1,15 @@
+{
+  "sigla": "RLIVA",
+  "nombre_oficial": "Reglamento de la Ley del Impuesto al Valor Agregado",
+  "tipo": "reglamento",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LIVA_250914.pdf",
+  "ultima_reforma_dof": "2014-09-25",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "4f46c1f92fb5682281a7679836e517de95975786fa5326848a331c9eb946cc5f",
+  "articulos_extraidos": 84,
+  "ultimo_articulo_numerico": 79,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 2,
+  "advertencias": []
+}

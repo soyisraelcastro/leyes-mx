@@ -1,0 +1,189 @@
+{
+ "ley": "LISR",
+ "vigencia_anio": 2026,
+ "nota": "Tablas que el PDF de la Cámara publica como IMAGEN y que pdftotext no ve. Transcritas a mano desde la imagen y verificadas con aritmética (ver verificacion). Las 'solo_imagen' no están transcritas: solo se enlaza la imagen.",
+ "tablas": [
+  {
+   "id": "tarifa-mensual",
+   "articulo": "96",
+   "pagina_pdf": 130,
+   "titulo": "Tarifa mensual",
+   "ancla": "en un mes de calendario, la siguiente:",
+   "imagen": "art-0096-tarifa-mensual.png",
+   "columnas": [
+    "Límite inferior ($)",
+    "Límite superior ($)",
+    "Cuota fija ($)",
+    "% sobre el excedente del límite inferior"
+   ],
+   "filas": [
+    [
+     "0.01",
+     "496.07",
+     "0.00",
+     "1.92"
+    ],
+    [
+     "496.08",
+     "4,210.41",
+     "9.52",
+     "6.40"
+    ],
+    [
+     "4,210.42",
+     "7,399.42",
+     "247.24",
+     "10.88"
+    ],
+    [
+     "7,399.43",
+     "8,601.50",
+     "594.21",
+     "16.00"
+    ],
+    [
+     "8,601.51",
+     "10,298.35",
+     "786.54",
+     "17.92"
+    ],
+    [
+     "10,298.36",
+     "20,770.29",
+     "1,090.61",
+     "21.36"
+    ],
+    [
+     "20,770.30",
+     "32,736.83",
+     "3,327.42",
+     "23.52"
+    ],
+    [
+     "32,736.84",
+     "62,500.00",
+     "6,141.95",
+     "30.00"
+    ],
+    [
+     "62,500.01",
+     "83,333.33",
+     "15,070.90",
+     "32.00"
+    ],
+    [
+     "83,333.34",
+     "250,000.00",
+     "21,737.57",
+     "34.00"
+    ],
+    [
+     "250,000.01",
+     "En adelante",
+     "78,404.23",
+     "35.00"
+    ]
+   ],
+   "verificacion": "rangos contiguos (inferior = superior previo + 0.01) y cuota fija recalculada de la fila previa (tolerancia 0.02)"
+  },
+  {
+   "id": "tarifa-anual",
+   "articulo": "152",
+   "pagina_pdf": 185,
+   "titulo": "Tarifa anual",
+   "ancla": "se le aplicará la siguiente:",
+   "imagen": "art-0152-tarifa-anual.png",
+   "columnas": [
+    "Límite inferior ($)",
+    "Límite superior ($)",
+    "Cuota fija ($)",
+    "% sobre el excedente del límite inferior"
+   ],
+   "filas": [
+    [
+     "0.01",
+     "5,952.84",
+     "0.00",
+     "1.92"
+    ],
+    [
+     "5,952.85",
+     "50,524.92",
+     "114.29",
+     "6.40"
+    ],
+    [
+     "50,524.93",
+     "88,793.04",
+     "2,966.91",
+     "10.88"
+    ],
+    [
+     "88,793.05",
+     "103,218.00",
+     "7,130.48",
+     "16.00"
+    ],
+    [
+     "103,218.01",
+     "123,580.20",
+     "9,438.47",
+     "17.92"
+    ],
+    [
+     "123,580.21",
+     "249,243.48",
+     "13,087.37",
+     "21.36"
+    ],
+    [
+     "249,243.49",
+     "392,841.96",
+     "39,929.05",
+     "23.52"
+    ],
+    [
+     "392,841.97",
+     "750,000.00",
+     "73,703.41",
+     "30.00"
+    ],
+    [
+     "750,000.01",
+     "1,000,000.00",
+     "180,850.82",
+     "32.00"
+    ],
+    [
+     "1,000,000.01",
+     "3,000,000.00",
+     "260,850.81",
+     "34.00"
+    ],
+    [
+     "3,000,000.01",
+     "En adelante",
+     "940,850.81",
+     "35.00"
+    ]
+   ],
+   "verificacion": "rangos contiguos (inferior = superior previo + 0.01) y cuota fija recalculada de la fila previa (tolerancia 0.02)"
+  },
+  {
+   "id": "transitorio-tablas-2016-2017-a",
+   "articulo": "transitorios",
+   "pagina_pdf": 295,
+   "solo_imagen": true,
+   "titulo": "Tablas de deducción de inversiones (transitorio, 2016 y 2017), imagen 1",
+   "imagen": "transitorios-p295-tabla-1.png"
+  },
+  {
+   "id": "transitorio-tablas-2016-2017-b",
+   "articulo": "transitorios",
+   "pagina_pdf": 295,
+   "solo_imagen": true,
+   "titulo": "Tablas de deducción de inversiones (transitorio, 2016 y 2017), imagen 2",
+   "imagen": "transitorios-p295-tabla-2.png"
+  }
+ ]
+}

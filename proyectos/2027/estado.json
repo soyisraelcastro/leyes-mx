@@ -1,0 +1,85 @@
+{
+  "anio": 2027,
+  "actualizado": "2026-11-02",
+  "resumen": "El Paquete Económico 2027 NO está publicado en el DOF al 2026-11-02. La reforma a la LISR fue aprobada por la Cámara de Diputados, el Senado la aprobó con una modificación y la devolvió a la Cámara (oficio del 27-oct-2026), que debe votar el cambio. La Ley de Ingresos 2027 y la Ley Federal de Derechos pasaron el Senado (por prensa) y esperan publicación. Nada de esto es ley vigente hasta su publicación en el DOF.",
+  "es_ley_vigente": false,
+  "estado_proyecto_lisr": "aprobado_camara",
+  "entrada_en_vigor_prevista": "2027-01-01 (transitorio de la iniciativa; sujeto a publicación en el DOF)",
+  "hitos": [
+    {
+      "hito": "iniciativa",
+      "fecha": "2026-09-08",
+      "confirmado": true,
+      "nivel": "oficial",
+      "detalle": "Iniciativa del Ejecutivo federal: LIF 2027 (anexo A), PEF (B), CGPE (C), Ley Federal de Derechos (D), LISR (E), Ley Aduanera (F), Ley de Economía Digital para Pagos Digitales y Electrónicos (G), Ley General Catastral y Registral (H). No hay anexo para CFF, LIVA ni LIEPS.",
+      "fuente": "https://gaceta.diputados.gob.mx/Gaceta/66/2026/sep/pef2027.html"
+    },
+    {
+      "hito": "dictamen_comision_camara",
+      "fecha": "2026-10-13",
+      "confirmado": true,
+      "nivel": "oficial",
+      "detalle": "Dictámenes de la Comisión de Hacienda (LISR, LIF, LFD) publicados en la Gaceta 7145 (anexos IV, IV-1, IV-2).",
+      "fuente": "https://gaceta.diputados.gob.mx/Gaceta/66/2026/oct/20261013.html"
+    },
+    {
+      "hito": "aprobado_camara",
+      "fecha": "2026-10-14",
+      "confirmado": false,
+      "nivel": "prensa",
+      "detalle": "Aprobación en el pleno de la Cámara el 13 o 14 de octubre. Las notas de prensa discrepan en fecha y votos (por ejemplo 349-118 y 322-115 para el ISR). No se encontró el acta oficial de la votación. Indicio oficial indirecto: el Senado devolvió el expediente el 27-oct (hito siguiente).",
+      "fuente": "https://www.poresto.com/mexico/2026/10/14/diputados-aprueban-reforma-ley-isr-votos-favor.html"
+    },
+    {
+      "hito": "aprobado_senado_con_modificaciones",
+      "fecha": "2026-10-27",
+      "confirmado": true,
+      "nivel": "oficial",
+      "detalle": "Oficio DGPL-1P3A.-3160 de la Mesa Directiva del Senado (27-oct-2026, recibido por la Cámara a las 21:24 h) que devuelve el expediente de la LISR para los efectos de la fracción E del artículo 72 constitucional, es decir, con modificaciones. El oficio no dice cuáles; la prensa las ubica en el artículo 78-E (excepción de armadoras y gasolineras al mecanismo de control de deducciones). El texto está en la minuta escaneada.",
+      "fuente": "https://gaceta.diputados.gob.mx/PDF/66/2026/oct/20261028-I-2.pdf"
+    },
+    {
+      "hito": "senado_lif_lfd",
+      "fecha": "2026-10-27",
+      "confirmado": false,
+      "nivel": "prensa",
+      "detalle": "El Senado aprobó la Ley de Ingresos 2027 y la Ley Federal de Derechos sin cambios y las envió al Ejecutivo (votos reportados 79-34 o 74-33; un medio da el 31-oct). No se verificó en fuente oficial del Senado.",
+      "fuente": "https://www.poresto.com/mexico/2026/10/27/senado-aprueba-ley-ingresos-ley-federal-derechos-ejercicio-fiscal.html"
+    },
+    {
+      "hito": "camara_vota_cambios_senado",
+      "fecha": "2026-11-03",
+      "confirmado": false,
+      "nivel": "oficial_convocatoria",
+      "detalle": "Pendiente. La Gaceta 7158 (30-oct-2026) convoca a la Comisión de Hacienda a su segunda reunión extraordinaria el martes 3 de noviembre a las 9:00 h. La prensa mencionó el 4 de noviembre; prevalece la Gaceta, verificar. Después del dictamen falta el pleno de la Cámara.",
+      "fuente": "https://gaceta.diputados.gob.mx/gp_hoy.html"
+    },
+    {
+      "hito": "publicado_dof",
+      "fecha": null,
+      "confirmado": false,
+      "nivel": "no_publicado",
+      "detalle": "No se encontró publicación en el DOF de ninguno de los decretos del Paquete Económico 2027 al 2026-11-02. El sitio del DOF no respondió a la consulta automática; verificar en dof.gob.mx.",
+      "fuente": "https://www.dof.gob.mx"
+    }
+  ],
+  "laboral": {
+    "jornada_40_horas": {
+      "es_ley": true,
+      "detalle": "Ya está publicada: decreto que reforma la LFT publicado en el DOF el 2026-05-01 (consta en el PDF de la Cámara, transitorios de ese decreto), vigente desde esa fecha, con reducción GRADUAL: jornada semanal 48 h en 2026, 46 en 2027, 44 en 2028, 42 en 2029, 40 en 2030, a partir del 1 de enero de cada año. Horas extra: 9 (2026 y 2027), 10, 11, 12. Ver leyes/2026/LFT/transitorios.md. La reforma constitucional al artículo 123 se publicó el 2026-03-03 según prensa (no verificado en el DOF).",
+      "fuente": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf"
+    }
+  },
+  "articulos_proyecto": {
+    "LISR": {
+      "estado_proyecto": "iniciativa",
+      "nota": "Los archivos por artículo en proyectos/2027/LISR/ son el texto de la INICIATIVA. La minuta vigente en el trámite es un PDF escaneado y no se trocea; ver README."
+    }
+  },
+  "documentos": "proyectos/2027/documentos.json",
+  "leyes_vigiladas": [
+    "LISR",
+    "LIVA",
+    "CFF"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "_comentario": "PDF oficiales (Gaceta Parlamentaria). No se versionan en git por su tamano (~110 MB); se bajan con scripts/descargar_proyectos.py y se verifican por sha256.",
+  "documentos": [
+    {
+      "archivo": "iniciativa-LISR-anexo-E-gaceta-7121-E.pdf",
+      "descripcion": "Iniciativa LISR (Ejecutivo, 8-sep-2026), 228 pp., con texto",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/sep/20260908-E.pdf",
+      "sha256": "5e8afc6ced347842e01016e608222b406a183f61a9293c501a04edcb3e944acc"
+    },
+    {
+      "archivo": "iniciativa-LIF-2027-anexo-A-gaceta-7121-A.pdf",
+      "descripcion": "Iniciativa Ley de Ingresos 2027",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/sep/20260908-A.pdf",
+      "sha256": "55d8436ec681a6815d82bee32a94509324d18bfc91e7bba16ae5f7c65ecd160d"
+    },
+    {
+      "archivo": "iniciativa-LFD-anexo-D-gaceta-7121-D.pdf",
+      "descripcion": "Iniciativa Ley Federal de Derechos",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/sep/20260908-D.pdf",
+      "sha256": "3208c63f58bfad609d2fa2c10fbe00871818901dcace1b06a25340da01b3b8f7"
+    },
+    {
+      "archivo": "iniciativa-CGPE-2027-anexo-C-gaceta-7121-C.pdf",
+      "descripcion": "Criterios Generales de Política Económica 2027",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/sep/20260908-C.pdf",
+      "sha256": "5978f0631d2c88165b54bfce9c3fed2b8cca45eb44b3f267f3025c88f3c6d66a"
+    },
+    {
+      "archivo": "dictamen-Hacienda-LISR-gaceta-7145-IV-1.pdf",
+      "descripcion": "Dictamen Comisión de Hacienda LISR (13-oct-2026), 270 pp., ESCANEADO",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/oct/20261013-IV-1.pdf",
+      "sha256": "3532bb0c1e11f598295d2fbf30d6e1fddd7a9a129a2a106eaa3b1a5f8cc07a23"
+    },
+    {
+      "archivo": "dictamen-Hacienda-LIF-gaceta-7145-IV-2.pdf",
+      "descripcion": "Dictamen Comisión de Hacienda Ley de Ingresos 2027, 254 pp., ESCANEADO",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/oct/20261013-IV-2.pdf",
+      "sha256": "ffb6b66d309a78e61d88e56b6da76b0729be6ead10dd2f23f340e0df5a08fe93"
+    },
+    {
+      "archivo": "dictamen-Hacienda-LFD-gaceta-7145-IV.pdf",
+      "descripcion": "Dictamen Comisión de Hacienda Ley Federal de Derechos, 168 pp., ESCANEADO",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/oct/20261013-IV.pdf",
+      "sha256": "68bdd8eaaa441fbee13ca8a91f01d8fa6b3f3e7674011e2a038fc8cd3c74e428"
+    },
+    {
+      "archivo": "minuta-Senado-LISR-devuelta-gaceta-7156-I-2.pdf",
+      "descripcion": "Minuta del Senado de la LISR devuelta a la Cámara (27/28-oct-2026), 74 pp., ESCANEADO",
+      "url": "https://gaceta.diputados.gob.mx/PDF/66/2026/oct/20261028-I-2.pdf",
+      "sha256": "5a9f66c4fbb99bbe8b585d715fbb82a7110c184278bcc03d23ddbc9f45e0c301"
+    }
+  ]
+}

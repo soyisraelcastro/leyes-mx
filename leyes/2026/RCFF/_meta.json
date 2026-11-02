@@ -1,0 +1,15 @@
+{
+  "sigla": "RCFF",
+  "nombre_oficial": "Reglamento del Código Fiscal de la Federación",
+  "tipo": "reglamento",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_CFF.pdf",
+  "ultima_reforma_dof": "2014-04-02",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "649a06c9d35578dcf2626ce7961b8eca08e62c7fe97424ab97fce2c92cde4248",
+  "articulos_extraidos": 113,
+  "ultimo_articulo_numerico": 113,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 1,
+  "advertencias": []
+}

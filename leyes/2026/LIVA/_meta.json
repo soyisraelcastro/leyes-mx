@@ -1,0 +1,15 @@
+{
+  "sigla": "LIVA",
+  "nombre_oficial": "Ley del Impuesto al Valor Agregado",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf",
+  "ultima_reforma_dof": "2021-11-12",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "f2b5b1770441a6a4e48f3ade408f9ff7a3e9c81bd5d529e52484f49e4a8e91a6",
+  "articulos_extraidos": 80,
+  "ultimo_articulo_numerico": 43,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 28,
+  "advertencias": []
+}

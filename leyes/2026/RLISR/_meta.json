@@ -1,0 +1,15 @@
+{
+  "sigla": "RLISR",
+  "nombre_oficial": "Reglamento de la Ley del Impuesto sobre la Renta",
+  "tipo": "reglamento",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LISR_060516.pdf",
+  "ultima_reforma_dof": "2016-05-06",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "0538fd2fa3da9705370350b1e25a1656cc681d2c489545334079e1b35360d6e3",
+  "articulos_extraidos": 313,
+  "ultimo_articulo_numerico": 313,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 2,
+  "advertencias": []
+}

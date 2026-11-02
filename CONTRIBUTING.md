@@ -1,0 +1,29 @@
+# Cómo contribuir
+
+## Regla de commits y PRs: sin co-autoría ni firmas
+
+Ningún commit ni PR lleva:
+
+- líneas `Co-Authored-By` (de ninguna persona ni herramienta);
+- pies tipo "Generated with ..." / "Generado con ...";
+- menciones de herramientas de IA en trailers o pies.
+
+Aplica también a PRs colaborativos de terceros: se pide reescribir el mensaje antes de integrar.
+
+Se hace cumplir en tres puntos:
+
+1. Hook local `.githooks/commit-msg`. Se activa con `sh scripts/instalar-hooks.sh`.
+2. Plantilla de PR con casilla de confirmación.
+3. CI (`.github/workflows/commits.yml`) que falla si algún commit del PR trae esos patrones.
+
+## Mensajes de commit
+
+En español, cortos y claros. Ejemplos: "Agrega LSS 2026", "Corrige corte del artículo 113-E", "Actualiza LISR por reforma DOF 2027-01-05".
+
+## Reglas de contenido
+
+- El texto legal sale siempre del texto oficial descargado (Cámara de Diputados / DOF). Nunca se escribe ni se corrige a mano un artículo.
+- Un artículo con estatus distinto de "vigente" va en `proyectos/`, nunca en `leyes/`.
+- Antes de abrir PR: `python3 scripts/validar.py`.
+- Para agregar una ley: nueva entrada en `fuentes.json` y `python3 scripts/extraer.py SIGLA`. No hace falta tocar código.
+- Texto plano en español, comillas dobles rectas, sin raya larga.
