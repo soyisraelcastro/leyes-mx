@@ -1,9 +1,9 @@
-"""CLI: leyes-mx obtener|buscar|listar|estado  (tambien: python3 scripts/buscar.py ...)"""
+"""CLI: leyes-mx obtener|buscar|listar|estado|obtener-anexo  (tambien: python3 scripts/buscar.py ...)"""
 import argparse
 import json
 import sys
 
-from . import store
+from . import store, anexos
 
 
 def _imprimir_ficha(f, texto=True):
@@ -13,13 +13,53 @@ def _imprimir_ficha(f, texto=True):
         if f.get("entrada_en_vigor"):
             print(f">>> Entraría en vigor: {f['entrada_en_vigor']}")
     for adv in f.get("advertencias", []):
-        print(f">>> ADVERTENCIA: {adv}")
+        if adv not in f.get("texto", ""):  # las "en_archivo" ya vienen dentro del texto
+            print(f">>> ADVERTENCIA: {adv}")
     print(f"fuente: {f['fuente_url']} (descargado {f['fecha_descarga']})")
     if texto:
         print()
         print(f["texto"])
         print()
         print(store.AVISO_GENERAL)
+
+
+def _imprimir_tarifa(t, texto=True):
+    print(f"{t['documento']} | apartado {t['apartado']} | vigencia {t['vigencia_anio']} | DOF {t['publicado_dof']} (firmado {t['fecha_firma']}) | estatus: {t['estatus']}")
+    print(f"{t['titulo']}")
+    print(f"aplicable a: {'; '.join(t['aplicable_a'])}")
+    print(f"fuente: {t['fuente_url']} (descargado {t['fecha_descarga']}, sha256 {t['sha256_fuente'][:12]}...)")
+    if texto:
+        print()
+        print(t["texto"])
+
+
+def _cmd_anexo(a):
+    try:
+        if not a.tarifa:
+            lista = anexos.listar_anexo(a.anexo, a.anio)
+            if a.json:
+                print(json.dumps(lista, ensure_ascii=False, indent=2)); return 0 if lista else 1
+            if not lista:
+                print(f"NO VERIFICADO: el Anexo {a.anexo} no está en la base (año {a.anio or 'más reciente'}).", file=sys.stderr); return 1
+            for x in lista:
+                print(f"{x['apartado']:7} {x['id']:38} {x['titulo']}")
+            print(f"\n{len(lista)} tarifas | {lista[0]['documento']} | DOF {lista[0]['publicado_dof']} | vigencia {lista[0]['anio_vigencia']}")
+            return 0
+        t = anexos.obtener_anexo(a.anexo, a.tarifa, a.anio)
+    except ValueError as ex:
+        print(f"error: {ex}", file=sys.stderr); return 2
+    if not t:
+        print(f"NO VERIFICADO: la tarifa {a.tarifa} del Anexo {a.anexo} no está en la base. No se inventa texto: consultar el DOF / sat.gob.mx.", file=sys.stderr)
+        return 1
+    if "ambiguo" in t:
+        print(f"La clave {a.tarifa} corresponde a varias tarifas; usar el id exacto:", file=sys.stderr)
+        for x in t["ambiguo"]:
+            print(f"  {x['id']}  {x['titulo']}", file=sys.stderr)
+        return 2
+    if a.json:
+        print(json.dumps(t, ensure_ascii=False, indent=2)); return 0
+    _imprimir_tarifa(t)
+    return 0
 
 
 def main(argv=None):
@@ -33,7 +73,13 @@ def main(argv=None):
     b.add_argument("--incluir-proyectos", action="store_true"); b.add_argument("--limite", type=int, default=10); b.add_argument("--json", action="store_true")
     l = sub.add_parser("listar", help="leyes disponibles"); l.add_argument("--incluir-proyectos", action="store_true"); l.add_argument("--json", action="store_true")
     e = sub.add_parser("estado", help="estado de la reforma (proyectos/<año>)"); e.add_argument("--anio", type=int, default=2027); e.add_argument("--json", action="store_true")
+    x = sub.add_parser("obtener-anexo", help="tarifas del Anexo 8 de la RMF: obtener-anexo 8 B-V (sin tarifa: las lista)")
+    x.add_argument("anexo", type=int); x.add_argument("tarifa", nargs="?")
+    x.add_argument("--anio", type=int); x.add_argument("--json", action="store_true")
     a = ap.parse_args(argv)
+
+    if a.cmd == "obtener-anexo":
+        return _cmd_anexo(a)
 
     if a.cmd == "obtener":
         art = " ".join(a.articulo)
