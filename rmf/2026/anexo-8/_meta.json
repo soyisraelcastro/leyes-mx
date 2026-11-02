@@ -1,0 +1,224 @@
+{
+  "documento": "Anexo 8 de la RMF 2026",
+  "nombre_oficial": "Anexo 8 de la Resolución Miscelánea Fiscal para 2026: Tarifas aplicables a pagos provisionales, retenciones y cálculo del ISR",
+  "tipo": "anexo_rmf",
+  "fuente_url": "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/anexos/Anexo-8-RMF-2026_DOF-28122025.pdf",
+  "publicado_dof": "2025-12-28",
+  "fecha_firma": "2025-12-17",
+  "fecha_descarga": "2026-11-02",
+  "sha256_pdf": "69ebaf8a78a3bde5d631ad2a994e81ec6d07e2d4e39085c8c948d138f782c1f4",
+  "tamano_bytes": 308287,
+  "paginas_pdf": 19,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "tarifas": 31,
+  "tarifas_por_apartado": {
+    "A.I": 1,
+    "B.I": 1,
+    "B.II": 1,
+    "B.III": 1,
+    "B.IV": 1,
+    "B.V": 1,
+    "B.VI": 16,
+    "B.VII": 1,
+    "B.VIII": 6,
+    "C.I": 1,
+    "C.II": 1
+  },
+  "tarifas_detalle": [
+    {
+      "id": "A-I-enajenacion-inmuebles",
+      "apartado": "A.I",
+      "archivo": "A-I-enajenacion-inmuebles.md",
+      "filas": 11
+    },
+    {
+      "id": "B-I-trabajo-realizado",
+      "apartado": "B.I",
+      "archivo": "B-I-trabajo-realizado.md",
+      "filas": 11
+    },
+    {
+      "id": "B-II-7-dias",
+      "apartado": "B.II",
+      "archivo": "B-II-7-dias.md",
+      "filas": 11
+    },
+    {
+      "id": "B-III-10-dias",
+      "apartado": "B.III",
+      "archivo": "B-III-10-dias.md",
+      "filas": 11
+    },
+    {
+      "id": "B-IV-15-dias",
+      "apartado": "B.IV",
+      "archivo": "B-IV-15-dias.md",
+      "filas": 11
+    },
+    {
+      "id": "B-V-tarifa-mensual-2026",
+      "apartado": "B.V",
+      "archivo": "B-V-tarifa-mensual-2026.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-enero",
+      "apartado": "B.VI",
+      "archivo": "B-VI-enero.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-febrero",
+      "apartado": "B.VI",
+      "archivo": "B-VI-febrero.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-marzo",
+      "apartado": "B.VI",
+      "archivo": "B-VI-marzo.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-abril",
+      "apartado": "B.VI",
+      "archivo": "B-VI-abril.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-mayo",
+      "apartado": "B.VI",
+      "archivo": "B-VI-mayo.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-junio",
+      "apartado": "B.VI",
+      "archivo": "B-VI-junio.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-julio",
+      "apartado": "B.VI",
+      "archivo": "B-VI-julio.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-agosto",
+      "apartado": "B.VI",
+      "archivo": "B-VI-agosto.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-septiembre",
+      "apartado": "B.VI",
+      "archivo": "B-VI-septiembre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-octubre",
+      "apartado": "B.VI",
+      "archivo": "B-VI-octubre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-noviembre",
+      "apartado": "B.VI",
+      "archivo": "B-VI-noviembre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-diciembre",
+      "apartado": "B.VI",
+      "archivo": "B-VI-diciembre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-arrendamiento-mensual",
+      "apartado": "B.VI",
+      "archivo": "B-VI-arrendamiento-mensual.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-arrendamiento-trimestral",
+      "apartado": "B.VI",
+      "archivo": "B-VI-arrendamiento-trimestral.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-art-74-primer-semestre",
+      "apartado": "B.VI",
+      "archivo": "B-VI-art-74-primer-semestre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VI-art-74-segundo-semestre",
+      "apartado": "B.VI",
+      "archivo": "B-VI-art-74-segundo-semestre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VII-rif-bimestral-definitivo",
+      "apartado": "B.VII",
+      "archivo": "B-VII-rif-bimestral-definitivo.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VIII-bimestre-enero-febrero",
+      "apartado": "B.VIII",
+      "archivo": "B-VIII-bimestre-enero-febrero.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VIII-bimestre-marzo-abril",
+      "apartado": "B.VIII",
+      "archivo": "B-VIII-bimestre-marzo-abril.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VIII-bimestre-mayo-junio",
+      "apartado": "B.VIII",
+      "archivo": "B-VIII-bimestre-mayo-junio.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VIII-bimestre-julio-agosto",
+      "apartado": "B.VIII",
+      "archivo": "B-VIII-bimestre-julio-agosto.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VIII-bimestre-septiembre-octubre",
+      "apartado": "B.VIII",
+      "archivo": "B-VIII-bimestre-septiembre-octubre.md",
+      "filas": 11
+    },
+    {
+      "id": "B-VIII-bimestre-noviembre-diciembre",
+      "apartado": "B.VIII",
+      "archivo": "B-VIII-bimestre-noviembre-diciembre.md",
+      "filas": 11
+    },
+    {
+      "id": "C-I-tarifa-anual-2025",
+      "apartado": "C.I",
+      "archivo": "C-I-tarifa-anual-2025.md",
+      "filas": 11
+    },
+    {
+      "id": "C-II-tarifa-anual-2026",
+      "apartado": "C.II",
+      "archivo": "C-II-tarifa-anual-2026.md",
+      "filas": 11
+    }
+  ],
+  "introduccion": [
+    "Tarifas aplicables a pagos provisionales, retenciones y cálculo del ISR",
+    "Para los efectos del artículo 96 de la Ley del ISR, en relación con las reglas 1.4., fracción VIII y 3.12.2., se dan a conocer las tarifas aplicables a pagos provisionales, retenciones y cálculo del ISR."
+  ],
+  "subsidio_para_el_empleo": "No está en este anexo (verificado: el PDF no contiene las palabras subsidio ni empleo).",
+  "advertencias": [
+    "Texto informativo copiado del PDF del Anexo 8 publicado en el DOF; no sustituye al DOF ni al sitio del SAT. La fuente oficial prevalece."
+  ]
+}

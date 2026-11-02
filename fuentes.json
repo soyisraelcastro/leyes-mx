@@ -8,7 +8,21 @@
       "nombre": "Ley del Impuesto sobre la Renta",
       "tipo": "ley",
       "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
-      "ultimo_articulo_esperado": 215
+      "ultimo_articulo_esperado": 215,
+      "advertencias": [
+        {
+          "articulos": [
+            "96",
+            "152"
+          ],
+          "en_archivo": true,
+          "texto": "La tabla de este artículo es la de la ley. Para 2026 se aplica la tarifa actualizada del Anexo 8 de la RMF 2026: rmf/2026/anexo-8/B-V-tarifa-mensual-2026.md (mensual) y C-II-tarifa-anual-2026.md (anual)",
+          "rutas": [
+            "rmf/2026/anexo-8/B-V-tarifa-mensual-2026.md",
+            "rmf/2026/anexo-8/C-II-tarifa-anual-2026.md"
+          ]
+        }
+      ]
     },
     {
       "sigla": "LIVA",

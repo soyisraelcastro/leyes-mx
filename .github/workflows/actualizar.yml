@@ -39,6 +39,7 @@ jobs:
           import json
           d = json.load(open("informe.json"))
           print("promover=" + str(any(f.get("promover_2027") for f in d["informe"])).lower())
+          print("anexo=" + str(any(f.get("estado") == "anexo_modificado" for f in d["informe"])).lower())
           PY
       - name: Validar el árbol
         if: steps.rev.outputs.rc == '1' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
@@ -75,3 +76,14 @@ jobs:
             cat resumen.md
           } > promover.md
           gh issue create --title "Reforma publicada, promover a leyes/2027" --body-file promover.md
+      - name: Abrir issue si cambió el PDF del Anexo 8 de la RMF
+        if: steps.rev.outputs.anexo == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "El PDF del Anexo 8 de la RMF que vigila rmf/2026/anexo-8/ cambió en el SAT. Revisar y correr scripts/extraer_anexo8.py (no se regenera solo). Resumen:"
+            echo
+            cat resumen.md
+          } > anexo.md
+          gh issue create --title "Cambió el Anexo 8 de la RMF" --body-file anexo.md

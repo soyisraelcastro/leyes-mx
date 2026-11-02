@@ -91,7 +91,10 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
             fm["ubicacion"] = a.ubicacion
         if tablas_puestas:
             fm["tablas_transcritas"] = tablas_puestas
-        md = front_matter(fm) + f"\n# Artículo {a.id}\n\n{cuerpo}\n"
+        # advertencias con "en_archivo": true se escriben también dentro del artículo (visibles para un RAG que lee el .md)
+        avisos = "".join(f"> ADVERTENCIA: {adv['texto']}\n\n" for adv in ley.get("advertencias", [])
+                         if adv.get("en_archivo") and a.id in adv.get("articulos", []))
+        md = front_matter(fm) + f"\n# Artículo {a.id}\n\n{avisos}{cuerpo}\n"
         if a.notas:
             md += "\n## Notas de reforma (margen del PDF)\n\n" + "\n".join(f"- {n}" for n in a.notas) + "\n"
         nombre = nombre_archivo(a.id)

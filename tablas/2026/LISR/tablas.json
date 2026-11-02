@@ -10,6 +10,8 @@
    "titulo": "Tarifa mensual",
    "ancla": "en un mes de calendario, la siguiente:",
    "imagen": "art-0096-tarifa-mensual.png",
+   "anexo_8": "rmf/2026/anexo-8/B-V-tarifa-mensual-2026.md",
+   "nota_anexo_8": "La tabla es la de la ley. Para 2026 se aplica la tarifa actualizada del Anexo 8 de la RMF 2026.",
    "columnas": [
     "Límite inferior ($)",
     "Límite superior ($)",
@@ -93,6 +95,8 @@
    "titulo": "Tarifa anual",
    "ancla": "se le aplicará la siguiente:",
    "imagen": "art-0152-tarifa-anual.png",
+   "anexo_8": "rmf/2026/anexo-8/C-II-tarifa-anual-2026.md",
+   "nota_anexo_8": "La tabla es la de la ley. Para 2026 se aplica la tarifa actualizada del Anexo 8 de la RMF 2026.",
    "columnas": [
     "Límite inferior ($)",
     "Límite superior ($)",

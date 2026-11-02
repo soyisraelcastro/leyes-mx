@@ -115,6 +115,18 @@ print(a["texto"])
 
 El contrato de las funciones está en [docs/arquitectura.md](docs/arquitectura.md).
 
+## Anexo 8 de la RMF 2026 (tarifas de ISR)
+
+`rmf/2026/anexo-8/` trae las tarifas del Anexo 8 de la Resolución Miscelánea Fiscal para 2026 (DOF 2025-12-28, firmado 2025-12-17): 31 tarifas, una por archivo, copiadas del PDF del SAT y verificadas con aritmética. Las tarifas de los arts. 96 y 152 de la LISR son las **de la ley**; para 2026 se aplican las del anexo (mensual 2026: `B-V-tarifa-mensual-2026.md`; anual 2026: `C-II-tarifa-anual-2026.md`). Los arts. 96 y 152 de `leyes/` traen un aviso que lo dice.
+
+```bash
+python3 scripts/buscar.py obtener-anexo 8            # lista las 31 tarifas
+python3 scripts/buscar.py obtener-anexo 8 B-V        # tarifa mensual 2026
+python3 scripts/buscar.py obtener-anexo 8 C-II --json
+```
+
+Detalle, verificación y el pendiente del subsidio para el empleo: [docs/anexo-8.md](docs/anexo-8.md).
+
 ## Conectarlo a un asistente
 
 La idea es una regla simple en las instrucciones del asistente (`AGENTS.md`, `CLAUDE.md` o el prompt del sistema):
@@ -151,9 +163,9 @@ python3 -I tests/test_ids.py
 ## Limitaciones
 
 - Los textos son tan buenos como el PDF de la Cámara y la extracción. Las tablas que el PDF publica como TEXTO se conservan como bloque de texto; las que publica como IMAGEN (hoy solo en la LISR: tarifa mensual del art. 96, tarifa anual del art. 152 y dos tablas de un transitorio) no las ve la extracción, así que se transcriben aparte en `tablas/<año>/<LEY>/tablas.json`, se verifican con aritmética (rangos contiguos y cuota fija recalculada) y conservan la imagen original. `python3 scripts/detectar_imagenes.py` avisa si aparece otra imagen sin cubrir. Las dos tablas del transitorio (deducción de inversiones 2016 y 2017) solo tienen la imagen, sin transcribir.
-- Las tarifas de los arts. 96 y 152 son las de la ley. Cada año se actualizan por inflación y se publican en el Anexo 8 de la RMF (art. 152, último párrafo); ese anexo todavía no está en este repo, así que para calcular retenciones de un ejercicio concreto hay que usar la tarifa del anexo.
+- Las tarifas de los arts. 96 y 152 de `leyes/` son las de la ley. Cada año se actualizan por inflación y se publican en el Anexo 8 de la RMF (art. 152, último párrafo). El Anexo 8 de la RMF 2026 sí está en el repo (`rmf/2026/anexo-8/`, ver sección "Anexo 8 de la RMF"): para calcular retenciones o el anual 2026 se usa esa tarifa. Los demás anexos y las reglas de la RMF no están.
 - La Cámara puede tardar en reflejar una reforma; la fecha "última reforma" es la que imprime su PDF, no una verificación contra el DOF.
-- Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014); verificar si existen versiones posteriores en el DOF. Lo que dicen las reglas de miscelánea (RMF) y sus anexos **no** están en la base.
+- Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014); verificar si existen versiones posteriores en el DOF. Las reglas de miscelánea (RMF) y sus anexos, salvo el Anexo 8, **no** están en la base.
 - El artículo 513 de la LFT (tabla de enfermedades) es un archivo de ~360 mil caracteres.
 - Búsqueda léxica sencilla (no semántica). Para un artículo conocido usar `obtener`.
 - Los dictámenes y minutas de la reforma 2027 están escaneados; los archivos por artículo de `proyectos/2027/` reflejan la iniciativa, no el texto final del trámite. Detalle en su README.
