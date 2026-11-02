@@ -32,3 +32,7 @@ pdftotext no ve las imágenes del PDF. En el art. 96 de la LISR la frase "la sig
 4. `validar.py` además avisa si un párrafo termina en "la siguiente:" sin tabla ni lista debajo.
 5. Las tablas sin verificación aritmética posible se dejan como imagen enlazada (`solo_imagen`), sin transcribir.
 
+
+## Anexo 8 de la RMF
+
+Las tarifas actualizadas de ISR (Anexo 8 de la RMF 2026) se extraen aparte con `scripts/extraer_anexo8.py` a `rmf/<año>/anexo-8/`. Ver [anexo-8.md](anexo-8.md).

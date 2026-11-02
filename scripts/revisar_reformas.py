@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Revisa si cambiaron las leyes configuradas (y si hay señal de que se publicó la reforma 2027).
 
+Además compara el PDF del Anexo 8 de la RMF (rmf/<año>/anexo-8/) por sha256 y tamaño y avisa si cambia (el SAT
+publica modificaciones de anexos durante el año); eso nunca se regenera solo.
 Para cada ley de fuentes.json baja el PDF a un directorio temporal, compara "Última Reforma DOF" y sha256 con el
 _meta.json guardado del año vigente, y reporta. Con --aplicar regenera el árbol afectado (solo si pasa la validación).
 
@@ -11,7 +13,7 @@ Uso:
   python3 scripts/revisar_reformas.py --dry-run          # solo reporta; no toca el árbol
   python3 scripts/revisar_reformas.py --aplicar          # regenera lo que cambió (para el workflow)
   python3 scripts/revisar_reformas.py --dry-run --offline  # compara contra los PDF locales de fuentes/ (prueba sin red)
-  Opciones: --solo LISR CFF   --anio 2026   --resumen-md salida.md   --json
+  Opciones: --solo LISR CFF   --anio 2026   (el Anexo 8 de la RMF se vigila siempre; con --solo, incluir ANEXO8)   --resumen-md salida.md   --json
 """
 import argparse
 import importlib.util
@@ -23,7 +25,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from leyes_mx import extraer, pipeline  # noqa: E402
+from leyes_mx import anexos, extraer, pipeline  # noqa: E402
 
 RAIZ = pipeline.RAIZ
 
@@ -115,10 +117,52 @@ def revisar(args):
     return anio, informe, errores
 
 
+def revisar_anexos(args):
+    """Vigila el PDF de cada Anexo 8 guardado en rmf/<anio>/anexo-8/: compara sha256 y tamaño con su _meta.json.
+    El SAT publica modificaciones de anexos durante el año; si el PDF cambia, se avisa y se revisa a mano
+    (python3 scripts/extraer_anexo8.py --verificar): nunca se regenera solo. Devuelve (filas, errores)."""
+    filas, errores = [], []
+    if args.solo and "ANEXO8" not in [s.upper().replace("-", "") for s in args.solo]:
+        return filas, errores
+    tmp = Path(tempfile.mkdtemp(prefix="leyes-mx-anexo-"))
+    try:
+        for anio in anexos.anios_disponibles(RAIZ):
+            meta = json.loads((anexos.carpeta(anio, RAIZ) / "_meta.json").read_text(encoding="utf-8"))
+            nombre = f"ANEXO-8-RMF-{anio}"
+            pdf = tmp / f"{anio}.pdf"
+            try:
+                if args.offline:
+                    shutil.copy(RAIZ / "fuentes" / str(anio) / anexos.NOMBRE_PDF, pdf)
+                else:
+                    pipeline.descargar(meta["fuente_url"], pdf)
+            except Exception as ex:  # noqa: BLE001
+                errores.append(f"{nombre}: no se pudo descargar ({ex})")
+                filas.append({"sigla": nombre, "estado": "error", "detalle": str(ex)})
+                continue
+            sha, tam = pipeline.sha256_archivo(pdf), pdf.stat().st_size
+            cambio = sha != meta["sha256_pdf"] or tam != meta.get("tamano_bytes", tam)
+            fila = {"sigla": nombre, "estado": "anexo_modificado" if cambio else "sin_cambios", "sha_cambio": cambio,
+                    "sha256_guardado": meta["sha256_pdf"], "sha256_nuevo": sha,
+                    "tamano_guardado": meta.get("tamano_bytes"), "tamano_nuevo": tam, "publicado_dof": meta["publicado_dof"]}
+            if cambio:
+                fila["detalle_corto"] = (f"{nombre} PDF distinto al de DOF {meta['publicado_dof']} "
+                                         f"({meta.get('tamano_bytes')} -> {tam} bytes"
+                                         + (f", sha256 {meta['sha256_pdf'][:8]} -> {sha[:8]}" if sha != meta["sha256_pdf"] else "") + "); "
+                                         "revisar y correr scripts/extraer_anexo8.py")
+            filas.append(fila)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return filas, errores
+
+
 def resumen_md(anio, informe):
     L = [f"# Revisión de reformas ({date.today().isoformat()}, año de vigencia {anio})\n"]
     for f in informe:
         if f["estado"] in ("sin_cambios", "sin_datos_previos"):
+            continue
+        if f["estado"] == "anexo_modificado":
+            L.append(f"## {f['sigla']}: PDF modificado\n")
+            L.append(f"- {f['detalle_corto']}\n")
             continue
         L.append(f"## {f['sigla']}: {f['estado']}\n")
         L.append(f"- Última reforma DOF guardada: {f.get('fecha_guardada')}; en el PDF de la Cámara ahora: {f.get('fecha_nueva')}")
@@ -144,6 +188,9 @@ def main():
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     anio, informe, errores = revisar(a)
+    fa, ea = revisar_anexos(a)
+    informe += fa
+    errores += ea
     cambios = [f for f in informe if f["estado"] not in ("sin_cambios", "sin_datos_previos", "error")]
     if a.resumen_md:
         Path(a.resumen_md).write_text(resumen_md(anio, informe), encoding="utf-8")
@@ -153,7 +200,7 @@ def main():
         if errores:
             print("ERROR: " + " | ".join(errores))
         if cambios:
-            print("leyes-mx: " + "; ".join(f"{f['sigla']} {f['estado']} ({f.get('fecha_guardada')} -> {f.get('fecha_nueva')})" for f in cambios))
+            print("leyes-mx: " + "; ".join(f.get("detalle_corto") or f"{f['sigla']} {f['estado']} ({f.get('fecha_guardada')} -> {f.get('fecha_nueva')})" for f in cambios))
             if any(f.get("promover_2027") for f in cambios):
                 print("Reforma publicada en una ley vigilada: promover proyectos/2027 a leyes/2027 (docs/publicar-reforma.md)")
         elif not errores:

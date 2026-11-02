@@ -44,6 +44,15 @@ Una fila por ley y año: `sigla`, `nombre`, `anio_vigencia`, `ultima_reforma_dof
 
 Lee `proyectos/<año>/estado.json`: resumen, línea de tiempo con `confirmado` y `nivel` (oficial, prensa, pendiente) y fuente de cada hito; siempre trae `es_ley_vigente: false` mientras no se publique.
 
+### `listar_anexo(anexo=8, anio=None) -> list[dict]` y `obtener_anexo(anexo, tarifa, anio=None) -> dict | None`
+
+Anexo 8 de la RMF (`rmf/<año>/anexo-8/`). Solo existe el anexo 8 (otro número da `ValueError`).
+
+- `listar_anexo`: una fila por tarifa (en el orden del PDF): `id`, `apartado`, `titulo`, `documento`, `anio_vigencia`, `publicado_dof`, `fuente_url`, `filas`, `ruta`. Lista vacía si no hay anexo.
+- `obtener_anexo(8, "B-V")`: `tarifa` es un id exacto (`B-V-tarifa-mensual-2026`) o un apartado (`B-V`, `B.V`, `C-II`). Devuelve `documento`, `apartado`, `id`, `titulo`, `aplicable_a`, `vigencia_anio`, `publicado_dof`, `fecha_firma`, `fuente_url`, `fecha_descarga`, `sha256_fuente`, `estatus`, `columnas`, `filas` (lista de 4 cadenas tal cual el PDF), `texto`, `ruta`, `aviso`. `None` si no existe (nunca inventa). Si el apartado tiene varias tarifas (B.VI, B.VIII) devuelve `{"ambiguo": [{"id", "titulo"}, ...]}`.
+- CLI: `obtener-anexo 8 [tarifa] [--anio N] [--json]`; sin tarifa lista. Código de salida 0 ok, 1 no verificado, 2 clave ambigua o anexo no soportado.
+- Recurso futuro: `/v1/rmf/{año}/anexo-8/{tarifa}`.
+
 ### `normalizar_articulo(texto) -> str | None`
 
 Identificador canónico ("113-E", "28-bis").
