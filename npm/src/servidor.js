@@ -73,13 +73,16 @@ export function crearServidor(almacen = null) {
       anio: z.number().int().optional().describe(anioDesc),
       incluir_proyectos: z.boolean().optional().describe("Incluir proyectos de reforma, marcados como NO vigentes (false por omisión)"),
       limite: z.number().int().min(1).max(50).optional().describe("Máximo de resultados (10 por omisión)"),
+      glosario: z.boolean().optional().describe("Ampliar la consulta con el glosario de sinónimos contables (true por omisión). La respuesta declara qué se agregó; false busca solo con las palabras dadas."),
     },
     annotations: RO,
-  }, envolver(({ consulta, ley, anio, incluir_proyectos, limite }) => {
+  }, envolver(({ consulta, ley, anio, incluir_proyectos, limite, glosario }) => {
     const a = obtenerAlmacen();
     const proy = !!incluir_proyectos;
-    const res = indice(proy).buscar(consulta, { ley: ley ?? null, anio: anio ?? null, incluirProyectos: proy, limite: limite ?? 10, anioDefecto: a.anioPorDefecto(ley ?? null) });
-    return texto(respuestaBusqueda(consulta, res, { incluirProyectos: proy }), { structuredContent: { resultados: res } });
+    const { resultados, ampliacion } = indice(proy).buscarConDetalle(consulta, { ley: ley ?? null, anio: anio ?? null, incluirProyectos: proy, limite: limite ?? 10,
+      anioDefecto: a.anioPorDefecto(ley ?? null), glosario: glosario === false ? null : a.glosario() });
+    return texto(respuestaBusqueda(consulta, resultados, { incluirProyectos: proy, ampliacion }), { structuredContent: { resultados, ampliacion: ampliacion
+      ? { agregados: ampliacion.agregados, sustituidos: ampliacion.quitar, entradas: ampliacion.entradas.map((e) => ({ id: e.id, articulos: e.articulos })) } : null } });
   }));
 
   server.registerTool("listar_leyes", {

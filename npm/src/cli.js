@@ -6,7 +6,8 @@ import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 import { Almacen, SinDatos, AVISO_GENERAL } from "./almacen.js";
 import { Indice } from "./indice.js";
-import { citaArticulo, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
+import { Glosario } from "./glosario.js";
+import { citaArticulo, lineasAmpliacion, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
 import { VERSION } from "./version.js";
 import * as clientes from "./clientes.js";
 import * as datos from "./datos.js";
@@ -33,7 +34,7 @@ Servidor
 Consulta directa (sin MCP)
   obtener LEY ARTICULO [--anio N] [--incluir-proyectos] [--json]
   tarifa [ID|APARTADO] [--anio N] [--json]   Tarifas de ISR del Anexo 8 de la RMF (sin argumento: las lista)
-  buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--json]
+  buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--sin-glosario] [--json]
   listar [--incluir-proyectos] [--json]
   reforma [--anio N]     estado de la reforma en trámite (proyecto, no es ley vigente)
 
@@ -44,7 +45,7 @@ ${AVISO_GENERAL}
 
 // ------------------------------------------------------------------ argumentos
 
-const BOOLEANAS = new Set(["dry-run", "json", "incluir-proyectos", "instrucciones", "si", "ruta-absoluta", "sin-binario", "sin-datos", "forzar", "borrar-datos", "ayuda", "version"]);
+const BOOLEANAS = new Set(["dry-run", "json", "incluir-proyectos", "instrucciones", "si", "sin-glosario", "ruta-absoluta", "sin-binario", "sin-datos", "forzar", "borrar-datos", "ayuda", "version"]);
 
 export function parsear(argv) {
   const pos = [], op = {};
@@ -108,6 +109,9 @@ async function cmdEstado() {
   let alm = null;
   try { alm = Almacen.abrir(); } catch { /* sin datos */ }
   if (alm) {
+    const g = Glosario.diagnosticar(alm.raiz);
+    const gp = ult?.glosario;
+    out(`Glosario de sinónimos: ${!g.existe ? "no incluido en estos datos (la búsqueda funciona igual)" : !g.valido ? `INVÁLIDO (${g.problemas[0]})` : `${g.entradas} entradas, versión ${g.version}`}${gp && g.valido && gp.version !== g.version ? `  |  publicado: versión ${gp.version} (npx leyes-mx actualizar)` : ""}`);
     const pub = new Map((ult?.leyes || []).map((l) => [`${l.sigla}:${l.anio_vigencia}`, l]));
     out("");
     out("Última reforma DOF por ley (instalada" + (ult ? " | publicada" : "") + "):");
@@ -275,6 +279,13 @@ async function cmdDoctor() {
       const t0 = Date.now();
       const res = new Indice(alm).buscar("impuesto", { limite: 1, anioDefecto: alm.anioPorDefecto() });
       res.length ? ok(`búsqueda de prueba correcta (índice en ${Date.now() - t0} ms)`) : fallo("la búsqueda de prueba no devolvió resultados");
+      const g = Glosario.diagnosticar(d.raiz);
+      if (!g.existe) aviso("sin glosario.json: la búsqueda funciona, pero no amplía consultas con sinónimos (npx leyes-mx actualizar)");
+      else if (!g.valido) fallo(`glosario.json inválido: ${g.problemas.slice(0, 3).join("; ")}`);
+      else {
+        const amp = alm.glosario().expandir("actualizaciones");
+        amp.entradas.length ? ok(`glosario de sinónimos: ${g.entradas} entradas (versión ${g.version})`) : fallo("el glosario cargó pero no amplió la consulta de prueba");
+      }
     } catch (e) { fallo(`lectura/búsqueda: ${e.message}`); }
   }
 
@@ -336,11 +347,14 @@ async function cmdBuscar({ pos, op }) {
   const a = Almacen.abrir();
   const proy = !!op["incluir-proyectos"];
   const ley = uno(op, "ley") ?? null;
-  const r = new Indice(a, { proyectos: proy }).buscar(consulta, { ley, anio: entero(op, "anio") ?? null, incluirProyectos: proy, limite: entero(op, "limite") ?? 10, anioDefecto: a.anioPorDefecto(ley) });
-  if (op.json) { out(JSON.stringify(r, null, 2)); return r.length ? 0 : 1; }
+  const { resultados: r, ampliacion } = new Indice(a, { proyectos: proy }).buscarConDetalle(consulta, { ley, anio: entero(op, "anio") ?? null, incluirProyectos: proy,
+    limite: entero(op, "limite") ?? 10, anioDefecto: a.anioPorDefecto(ley), glosario: op["sin-glosario"] ? null : a.glosario() });
+  const amp = lineasAmpliacion(ampliacion);
+  if (op.json) { if (amp.length) err(amp.join("\n")); out(JSON.stringify(r, null, 2)); return r.length ? 0 : 1; }
+  if (amp.length) { out(amp.join("\n")); out(); }
   if (!r.length) { out("Sin resultados (no verificado)."); return 1; }
   for (const x of r) {
-    const marca = x.estatus !== "vigente" && x.estatus !== "derogado" ? "  [PROYECTO, NO ES LEY VIGENTE]" : x.estatus === "derogado" ? "  [derogado]" : "";
+    const marca = (x.estatus !== "vigente" && x.estatus !== "derogado" ? "  [PROYECTO, NO ES LEY VIGENTE]" : x.estatus === "derogado" ? "  [derogado]" : "") + (x.relacionado_por_glosario ? "  [glosario]" : "");
     out(`${x.ley} art. ${x.articulo} | vigencia ${x.anio_vigencia} | última reforma DOF ${x.ultima_reforma_dof}${marca}`);
     out(`   ${x.fragmento}`);
   }

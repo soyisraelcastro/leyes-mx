@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Empaqueta los datos (leyes/, proyectos/ sin PDF, tablas/, rmf/ y fuentes.json) para el Release de datos.
+"""Empaqueta los datos (leyes/, proyectos/ sin PDF, tablas/, rmf/, fuentes.json y glosario.json) para el Release de datos.
 
 Genera en --salida:
   leyes-mx-datos.tar.gz   tarball determinista (mismo contenido -> mismos bytes -> mismo sha256)
@@ -38,8 +38,9 @@ def archivos_a_empaquetar(raiz):
             if p.suffix.lower() == ".pdf" or "documentos" in rel.parts:
                 continue
             res.append(rel.as_posix())
-    if (raiz / "fuentes.json").is_file():
-        res.append("fuentes.json")
+    for suelto in ("fuentes.json", "glosario.json"):
+        if (raiz / suelto).is_file():
+            res.append(suelto)
     return sorted(res)
 
 
@@ -71,6 +72,15 @@ def resumen_anexos(raiz):
         res.append({"documento": m.get("documento"), "anio_vigencia": m.get("vigencia_anio"), "publicado_dof": m.get("publicado_dof"),
                     "tarifas": m.get("tarifas"), "sha256_pdf": m.get("sha256_pdf")})
     return res
+
+
+def resumen_glosario(raiz, hashes):
+    """Versión y tamaño del glosario de sinónimos, para que `estado` y `doctor` lo reporten sin abrir el tarball."""
+    ruta = raiz / "glosario.json"
+    if not ruta.is_file():
+        return None
+    g = json.loads(ruta.read_text(encoding="utf-8"))
+    return {"version": g.get("version"), "entradas": len(g.get("entradas", [])), "sha256": hashes.get("glosario.json")}
 
 
 def construir(raiz, salida, version, fecha):
@@ -105,6 +115,7 @@ def construir(raiz, salida, version, fecha):
         "leyes": leyes,
         "proyectos": resumen_proyectos(raiz),
         "anexos": resumen_anexos(raiz),
+        "glosario": resumen_glosario(raiz, hashes),
     }
     (salida / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return manifest
