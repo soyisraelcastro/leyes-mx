@@ -17,6 +17,8 @@ jobs:
         run: python3 -I tests/test_ids.py
       - name: Pruebas del Anexo 8
         run: python3 -I tests/test_anexo8.py
+      - name: Pruebas del glosario
+        run: python3 -I tests/test_glosario.py
       - name: Validar el árbol de leyes y proyectos
         run: python3 scripts/validar.py
       - name: Prueba de humo del buscador

@@ -17,22 +17,30 @@ npx leyes-mx desinstalar                       # quita solo lo que puso este paq
 
 npx leyes-mx obtener LISR 28                   # consulta directa, sin MCP
 npx leyes-mx buscar "recargos deducibles" --ley LISR
+npx leyes-mx tarifa B-V                        # tarifa mensual de ISR del Anexo 8
+npx leyes-mx skill --zip                       # skill leyes-mx para cargar a mano en Claude Desktop (opcional)
 ```
 
-Requiere Node 20 o superior. Opciones de `instalar`: `--anio 2026` (año por defecto), `--instrucciones` (agrega un bloque a CLAUDE.md / AGENTS.md, con confirmación o `--si`), `--ruta-absoluta` (escribe la ruta completa de npx), `--sin-binario` (no usa `claude mcp add`), `--sin-datos`.
+Requiere Node 20 o superior. Opciones de `instalar`: `--anio 2026` (año por defecto), `--instrucciones` (agrega un bloque a CLAUDE.md / AGENTS.md, con confirmación o `--si`), `--ruta-absoluta` (escribe la ruta completa de npx), `--sin-binario` (no usa `claude mcp add`), `--sin-datos`, `--sin-skill` (no copia la skill). `buscar` acepta `--sin-glosario`.
 
 ## Herramientas MCP
 
 | Herramienta | Qué hace |
 |---|---|
 | `obtener_articulo(ley, articulo, anio?, pagina?)` | Texto íntegro con ley, artículo, año de vigencia, última reforma DOF, estatus y advertencias. |
-| `buscar(consulta, ley?, anio?, incluir_proyectos?, limite?)` | Búsqueda por palabras clave. Por defecto excluye proyectos. |
+| `buscar(consulta, ley?, anio?, incluir_proyectos?, limite?, glosario?)` | Búsqueda por palabras clave, ampliada con un glosario de sinónimos contables (la respuesta dice qué agregó; `glosario=false` lo apaga). Por defecto excluye proyectos. |
 | `listar_leyes(anio?)` | Qué hay en la base. |
 | `estado_reforma(anio?)` | Seguimiento de la reforma en trámite y última reforma por ley. |
 | `obtener_transitorios(ley, anio?, pagina?)` | Transitorios por decreto. |
 | `obtener_tarifa(tarifa?, anio?)` | Tarifas de ISR vigentes del Anexo 8 de la RMF (mensual `B-V`, anual `C-II`, por 7/10/15 días, bimestrales...). Sin parámetro, las lista. Son las que se aplican en el ejercicio; las tablas de los arts. 96 y 152 de la LISR son las de la ley. |
 
-Si no existe lo pedido, la respuesta dice "NO VERIFICADO" y no se inventa texto. Un proyecto de reforma nunca se presenta como ley vigente. Los textos muy extensos (por ejemplo el artículo 513 de la LFT) se entregan por páginas de hasta 40 000 caracteres, con aviso y parámetro `pagina`.
+Si no existe lo pedido, el resultado dice "NO VERIFICADO: No encontré esto en la base local de leyes-mx", manda preguntar al usuario si desea buscar en internet (nunca sin su permiso; solo fuentes oficiales y aclarando que no viene de la base verificada) y no se inventa texto. Un proyecto de reforma nunca se presenta como ley vigente. Los textos muy extensos (por ejemplo el artículo 513 de la LFT) se entregan por páginas de hasta 40 000 caracteres, con aviso y parámetro `pagina`.
+
+## Skill y glosario
+
+- **Skill `leyes-mx`** (`skills/leyes-mx/SKILL.md`, viaja en el paquete): `instalar` la copia en `~/.claude/skills/leyes-mx` (Claude Code) y `~/.agents/skills/leyes-mx` (Codex); `actualizar` la refresca, `desinstalar` la quita (con respaldo), `doctor` y `estado` la reportan. Claude Desktop no tiene carpeta documentada: `npx leyes-mx skill --zip` escribe el `.zip` para cargarlo a mano (opcional). Detalle y fuentes: [docs/skill.md](../docs/skill.md).
+- **Glosario** (`glosario.json`, viaja en los datos, no en el paquete): se actualiza con `npx leyes-mx actualizar`. Formato y cómo aportar: [docs/glosario.md](../docs/glosario.md).
+- Qué clientes funcionan y cuáles no (Claude web, ChatGPT web), y la extensión `.mcpb`: [docs/clientes.md](../docs/clientes.md).
 
 ## Variables de entorno
 

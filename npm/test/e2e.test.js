@@ -82,7 +82,7 @@ test("idempotencia: segunda corrida no cambia nada ni duplica", () => {
   const bakAntes = fs.readdirSync(path.dirname(desktop)).length;
   const r = run(["instalar", "--cliente", "todos", "--sin-binario"]);
   assert.equal(r.status, 0, salida(r));
-  assert.equal((r.stdout.match(/: sin cambios/g) || []).length, 4, r.stdout);
+  assert.equal((r.stdout.match(/^ {2}[a-z-]+: sin cambios/gm) || []).length, 4, r.stdout);
   assert.deepEqual([desktop, cursor, codex, claudeJson].map(leer), antes);
   assert.equal(fs.readdirSync(path.dirname(desktop)).length, bakAntes, "no genera más respaldos si no cambia");
   assert.equal((leer(codex).match(/\[mcp_servers\.leyes-mx\]/g) || []).length, 1);

@@ -7,21 +7,22 @@ Cómo funciona el paquete npm, cómo se actualizan los datos y qué le toca a qu
 ```
 npm/                         paquete npm "leyes-mx" (solo código, ESM, Node >= 20)
   bin/leyes-mx.js            punto de entrada
-  src/                       ids, almacén, índice de búsqueda, servidor MCP, datos, clientes, CLI
-  test/                      pruebas (node --test)
+  src/                       ids, almacén, índice de búsqueda, glosario, servidor MCP, datos, clientes, skill, CLI
+  skills/leyes-mx/SKILL.md   la skill (viaja en el paquete)
+  test/                      pruebas (node --test); consultas.json: preguntas reales y artículos esperados
 scripts/empaquetar_datos.py  construye leyes-mx-datos.tar.gz + manifest.json (determinista)
 .github/workflows/publicar-datos.yml   publica el Release de datos
 sitio/                       landing en Astro (Vercel)
 ```
 
-El paquete npm **no lleva datos**: `npm pack --dry-run` lista 14 archivos de código (~25 kB). Los datos viajan por un Release de GitHub, de modo que una reforma nueva no obliga a publicar otra versión del paquete.
+El paquete npm **no lleva datos**: `npm pack --dry-run` lista 18 archivos (código, la skill, README y LICENSE; ~42 kB). Los datos viajan por un Release de GitHub, de modo que una reforma nueva no obliga a publicar otra versión del paquete.
 
 ## Datos y versiones
 
 Cada Release `datos-AAAA.MM.DD` (con sufijo `.2`, `.3` si hay más de uno el mismo día) adjunta:
 
-- `leyes-mx-datos.tar.gz`: `leyes/`, `proyectos/` sin PDF, `tablas/` (con imágenes), `fuentes.json` e `INTEGRIDAD.json` (sha256 de cada archivo y hash del contenido). El tarball es determinista: mismo contenido, mismos bytes, mismo sha256.
-- `manifest.json`: `version`, `publicado`, `contenido_sha256`, `tarball` (nombre, sha256, bytes), `anios`, y por ley sigla, año, última reforma DOF y número de artículos.
+- `leyes-mx-datos.tar.gz`: `leyes/`, `proyectos/` sin PDF, `tablas/` (con imágenes), `rmf/`, `fuentes.json`, `glosario.json` e `INTEGRIDAD.json` (sha256 de cada archivo y hash del contenido). El tarball es determinista: mismo contenido, mismos bytes, mismo sha256.
+- `manifest.json`: `version`, `publicado`, `contenido_sha256`, `tarball` (nombre, sha256, bytes), `anios`, `glosario` (versión, entradas y sha256) y por ley sigla, año, última reforma DOF y número de artículos.
 
 La CLI consulta `https://github.com/soyisraelcastro/leyes-mx/releases/latest/download/manifest.json` (una URL de descarga, sin la API de GitHub y sin su límite de peticiones), compara la versión y baja el tarball que el manifest nombra, relativo a la misma URL.
 
@@ -43,7 +44,7 @@ Modo "desde este repo", sin Release: `LEYES_MX_DATOS=/ruta/al/repo npx leyes-mx 
 
 ## Servidor MCP
 
-Node, sin Python ni módulos nativos. Usa `@modelcontextprotocol/sdk` (1.x) y `zod`. La búsqueda es un índice invertido en memoria con BM25 (se arma en unos 300 ms al primer uso); no se usa minisearch porque son ~2500 documentos y así no hay otra dependencia. La normalización de artículos es un port de `leyes_mx/ids.py` con las mismas pruebas de paridad. Detalle de las herramientas en [npm/README.md](../npm/README.md).
+Node, sin Python ni módulos nativos. Usa `@modelcontextprotocol/sdk` (1.x) y `zod`. La búsqueda es un índice invertido en memoria con BM25 (se arma en unos 300 ms al primer uso); no se usa minisearch porque son ~2500 documentos y así no hay otra dependencia. Antes de puntuar, la consulta pierde las palabras vacías, reduce plurales a su raíz y se amplía con el glosario de sinónimos ([glosario.md](glosario.md)); la respuesta declara la ampliación. Las instrucciones del servidor y las descripciones de las herramientas están escritas para que el modelo consulte la base antes de responder cualquier consulta fiscal o laboral, y el resultado "no encontrado" manda preguntar al usuario antes de buscar en internet. La normalización de artículos es un port de `leyes_mx/ids.py` con las mismas pruebas de paridad. Detalle de las herramientas en [npm/README.md](../npm/README.md).
 
 ## Qué escribe `instalar` en cada cliente
 
@@ -56,6 +57,8 @@ Node, sin Python ni módulos nativos. Usa `@modelcontextprotocol/sdk` (1.x) y `z
 | Otro | (ninguno) | `instalar` imprime el bloque JSON genérico cuando no detecta ningún cliente. |
 
 Siempre idempotente (si ya está igual, "sin cambios", sin respaldos nuevos), con `--dry-run` que muestra lo que escribiría, y `desinstalar` solo quita entradas llamadas `leyes-mx` cuyos argumentos son los de este paquete. Si ya existe una entrada `leyes-mx` ajena, no se toca. Un JSON inválido no se sobrescribe.
+
+**Skill**: además del registro, `instalar` copia la skill `leyes-mx` donde el cliente la lee (Claude Code `~/.claude/skills/`, Codex `~/.agents/skills/`), con la misma disciplina: marca propia, respaldo (en `~/.leyes-mx/respaldos/`, fuera de la carpeta de skills), idempotencia y `--dry-run`. Claude Desktop no tiene carpeta documentada: `npx leyes-mx skill --zip`. Ver [skill.md](skill.md).
 
 `--instrucciones` agrega un bloque (entre `<!-- leyes-mx:inicio -->` y `<!-- leyes-mx:fin -->`) a `~/.claude/CLAUDE.md` y `~/.codex/AGENTS.md`, solo con esa bandera y con confirmación (`--si` para no preguntar). `desinstalar` lo quita.
 
@@ -70,6 +73,8 @@ Claude Desktop y Cursor se lanzan desde el sistema, no desde una terminal, y her
 3. Añadirlo a `instalarCliente`, `desinstalarCliente` y `estadoCliente`.
 4. Pruebas en `npm/test/e2e.test.js` (archivo de config falso en un HOME temporal) y, si aplica, una pestaña en `sitio/src/pages/index.astro`.
 5. Verificar la sintaxis en la documentación oficial del cliente y anotar la fuente aquí.
+
+Skills por cliente, fuentes y lo no verificado: [skill.md](skill.md). Qué cliente sí y cuál no: [clientes.md](clientes.md).
 
 Fuentes consultadas el 2026-11-02: modelcontextprotocol.io (conectar servidores locales: rutas y JSON de Claude Desktop), code.claude.com/docs/en/mcp (`claude mcp add`, alcance de usuario, `~/.claude.json`), la documentación de Codex sobre MCP (`[mcp_servers.<nombre>]`, `codex mcp add`), cursor.com/docs (`~/.cursor/mcp.json`). No confirmado en documentación: la ruta de Linux de Claude Desktop viene de la guía de MCP, no de la app; y la variable `CODEX_HOME` no aparece en la página de MCP de Codex.
 
@@ -110,7 +115,10 @@ Probar en local: `cd sitio && npm install && npm run build && npm run preview`.
 
 - `ids.test.js`: más de 30 variantes de ids contra `leyes_mx.ids` de Python, ids y nombres de archivo.
 - `paridad.test.js`: los 2513 artículos de `leyes/2026` contra el archivo y contra `python3 scripts/buscar.py obtener ... --json`.
-- `mcp.test.js`: servidor real por stdio con el cliente del SDK (initialize, tools/list, las cinco herramientas, inexistente, derogado, LFT 513 paginado, proyectos).
+- `mcp.test.js`: servidor real por stdio con el cliente del SDK (initialize, tools/list, las seis herramientas, inexistente con la indicación de preguntar antes de ir a internet, derogado, LFT 513 paginado, proyectos, glosario, textos para el modelo).
+- `consultas.test.js` y `consultas.json`: preguntas reales (con la frase de la ley que las respalda) y los artículos que deben quedar en el top N, con y sin glosario.
+- `glosario.test.js`: estructura, evidencia literal contra el texto de cada artículo citado, funcionamiento sin glosario y actualización del glosario por `actualizar`.
+- `skill.test.js`: formato de la skill, `npm pack`, instalación por cliente, respaldo, ajena, desinstalación, `.zip` y mensajes del instalador.
 - `e2e.test.js`: HOME temporal con configs falsas: dry-run, instalar en los cuatro clientes sin pisar nada, idempotencia, instrucciones, estado, doctor, actualizar con versión nueva, tarball alterado rechazado (dos formas), revertir, desinstalar.
 - `sitio.test.js` (requiere `sitio/dist`): los comandos de la landing existen y coinciden con los del instalador.
 

@@ -23,6 +23,39 @@ test("initialize y tools/list", async () => {
   for (const t of tools) assert.equal(t.annotations.readOnlyHint, true);
 });
 
+test("las instrucciones y descripciones guían al modelo con términos de contador: cuándo consultar, reformular, artículo completo, cita, tarifas, proyectos y permiso para internet", async () => {
+  const i = c.getInstructions();
+  for (const re of [/antes de responder cualquier consulta fiscal o laboral de México/, /ISR, IVA, deducciones, retenciones, CFDI, aguinaldo/, /qué dice el artículo/, /fundamento legal/, /palabras de la ley/,
+    /obtener_articulo/, /fracción/, /vigencia/, /última reforma/, /obtener_tarifa/, /NO es ley vigente/, /no verificado/, /PREGUNTA al usuario si desea que lo busques en internet/, /sin su permiso/, /fuentes oficiales \(DOF, SAT, Cámara de Diputados\)/]) assert.match(i, re);
+  const { tools } = await c.listTools();
+  const d = Object.fromEntries(tools.map((t) => [t.name, t.description]));
+  assert.match(d.buscar, /ISR, IVA, deducciones/);
+  assert.match(d.buscar, /ANTES de responder cualquier consulta fiscal o laboral de México/);
+  assert.match(d.buscar, /NO cites a partir de ellos/);
+  assert.match(d.buscar, /pregunta al usuario si desea buscar en internet/);
+  assert.match(d.obtener_articulo, /qué dice el artículo 28 de la LISR/);
+  assert.match(d.obtener_articulo, /fuente para CITAR/);
+  assert.match(d.obtener_tarifa, /SIEMPRE/);
+  assert.match(d.obtener_tarifa, /tarifa mensual de retención de sueldos/);
+  assert.ok(!/[\u2014\u00ab\u00bb]/.test(i + Object.values(d).join("")));
+});
+
+test("lo que no está en la base: el RESULTADO de cada herramienta manda preguntar al usuario antes de buscar en internet", async () => {
+  const pregunta = /No encontré .* en la base local de leyes-mx\. .*Pregunta al usuario si desea que lo busques en internet; no busques sin su permiso\. .*fuentes oficiales \(DOF, SAT, Cámara de Diputados\).*no proviene de la base verificada/s;
+  const llamadas = [
+    ["obtener_articulo", { ley: "LISR", articulo: "9999" }],
+    ["obtener_articulo", { ley: "LSS", articulo: "1" }],
+    ["buscar", { consulta: "zzzqqqxxx wwwvvvyyy" }],
+    ["obtener_tarifa", { tarifa: "Z-9" }],
+    ["obtener_transitorios", { ley: "XXX" }],
+  ];
+  for (const [name, args] of llamadas) {
+    const t = txt(await c.callTool({ name, arguments: args }));
+    assert.match(t, /^NO VERIFICADO/, name);
+    assert.match(t, pregunta, name);
+  }
+});
+
 test("obtener_articulo: cita, variantes y advertencia de la LFT", async () => {
   const r = await c.callTool({ name: "obtener_articulo", arguments: { ley: "lisr", articulo: "113 e" } });
   const t = txt(r);
@@ -88,6 +121,19 @@ test("buscar: vigente por defecto, proyectos solo si se piden y marcados", async
   assert.match(txt(p), /PROYECTO, NO ES LEY VIGENTE/);
   const sin = await c.callTool({ name: "buscar", arguments: { consulta: "zzzqqqxxx wwwvvvyyy" } });
   assert.match(txt(sin), /NO VERIFICADO/);
+});
+
+test("buscar con glosario: declara qué se agregó; glosario=false busca solo con las palabras dadas", async () => {
+  const q = "fundamento para no deducir actualizaciones";
+  const con = await c.callTool({ name: "buscar", arguments: { consulta: q, limite: 10 } });
+  assert.match(txt(con), /Se amplió la consulta con: accesorios; recargos/);
+  assert.match(txt(con), /\[glosario\]/);
+  assert.deepEqual(con.structuredContent.ampliacion.entradas.map((e) => e.id).sort(), ["actualizacion", "gastos-no-deducibles"]);
+  const top = con.structuredContent.resultados.slice(0, 3).map((r) => `${r.ley} ${r.articulo}`);
+  assert.ok(top.includes("LISR 28"), top.join(", "));
+  const sin = await c.callTool({ name: "buscar", arguments: { consulta: q, glosario: false } });
+  assert.doesNotMatch(txt(sin), /Se amplió/);
+  assert.equal(sin.structuredContent.ampliacion, null);
 });
 
 test("listar_leyes, estado_reforma y obtener_transitorios", async () => {

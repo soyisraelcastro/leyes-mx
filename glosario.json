@@ -1,0 +1,450 @@
+{
+  "esquema": 1,
+  "version": "2026-11-02",
+  "entradas": [
+    {
+      "id": "actualizacion",
+      "disparadores": ["actualizacion", "actualizar", "actualizado"],
+      "agregar": ["accesorios", "recargos", "no será deducible ni acreditable"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "17-A", "evidencia": "no será deducible ni acreditable" },
+        { "ley": "CFF", "articulo": "21", "evidencia": "su monto se actualizará desde el mes en que debió hacerse el pago" },
+        { "ley": "LISR", "articulo": "28", "evidencia": "los accesorios de las contribuciones, a excepción de los recargos" },
+        { "ley": "LISR", "articulo": "148", "evidencia": "los accesorios de las contribuciones, a excepción de los recargos" }
+      ],
+      "nota": "La actualización por inflación de las contribuciones no es deducible ni acreditable (CFF 17-A, cuarto párrafo). La LISR 28 fr. I (personas morales) y la 148 (personas físicas) no dicen \"actualización\": dicen \"accesorios de las contribuciones, a excepción de los recargos\", y por eso la búsqueda literal no las encuentra."
+    },
+    {
+      "id": "recargos",
+      "disparadores": ["recargos", "recargo", "intereses moratorios", "pago extemporaneo", "pagar tarde", "pago tardio"],
+      "agregar": ["actualización", "accesorios", "indemnización al fisco federal"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "21", "evidencia": "recargos por concepto de indemnización al fisco federal por la falta de pago oportuno" },
+        { "ley": "CFF", "articulo": "2", "evidencia": "son accesorios de las contribuciones y participan de la naturaleza de éstas" },
+        { "ley": "LISR", "articulo": "28", "evidencia": "a excepción de los recargos" }
+      ],
+      "nota": "Los recargos y la actualización por pago extemporáneo se regulan en el CFF 21; el CFF 2 los define como accesorios. En la LISR los recargos efectivamente pagados sí son deducibles (art. 28 fr. I), a diferencia de los demás accesorios y de la actualización."
+    },
+    {
+      "id": "gastos-no-deducibles",
+      "disparadores": ["no deducible", "no deducir", "no deduce", "no deducibilidad", "no se deduce", "no se puede deducir", "no se pueden deducir", "no es deducible", "no son deducibles"],
+      "agregar": ["no serán deducibles"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "28", "evidencia": "no serán deducibles" },
+        { "ley": "LISR", "articulo": "148", "evidencia": "no serán deducibles" },
+        { "ley": "LISR", "articulo": "27", "evidencia": "Ser estrictamente indispensables para los fines de la actividad del contribuyente" }
+      ],
+      "nota": "Las partidas no deducibles están en el art. 28 de la LISR (personas morales) y en el 148 (personas físicas con actividad empresarial o profesional); los requisitos que debe cumplir un gasto para poder deducirse, en el 27 y el 147."
+    },
+    {
+      "id": "requisitos-deduccion",
+      "disparadores": ["requisitos + deduc", "gasto deducible", "gastos deducibles", "deducir + gasto", "estrictamente indispensable", "deduccion autorizada", "deducciones autorizadas"],
+      "agregar": ["estrictamente indispensables", "requisitos", "comprobante fiscal"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "27", "evidencia": "Ser estrictamente indispensables para los fines de la actividad del contribuyente" },
+        { "ley": "LISR", "articulo": "147", "evidencia": "deberán reunir los siguientes requisitos" },
+        { "ley": "LISR", "articulo": "25", "evidencia": "Los contribuyentes podrán efectuar las deducciones siguientes" }
+      ],
+      "nota": "Los requisitos de toda deducción de personas morales están en el art. 27 de la LISR (el 147 para personas físicas con actividad empresarial o profesional) y el catálogo de deducciones permitidas en el 25."
+    },
+    {
+      "id": "pagos-en-efectivo",
+      "disparadores": ["pago en efectivo", "pagos en efectivo", "pagar en efectivo", "efectivo + deduc", "efectivo + gasto"],
+      "agregar": ["transferencia electrónica de fondos", "cheque nominativo", "comprobante fiscal"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "27", "evidencia": "transferencia electrónica de fondos desde cuentas abiertas a nombre del contribuyente" }
+      ],
+      "nota": "Para deducir, los pagos de más de $2,000.00 deben hacerse por transferencia, cheque, tarjeta u otros medios que señala el art. 27 fr. III de la LISR; el pago en efectivo no da deducción por encima de ese monto."
+    },
+    {
+      "id": "tarifas-isr",
+      "disparadores": ["tarifa mensual", "tabla mensual", "tarifa + 96", "retencion de isr", "isr de sueldos", "isr de salarios", "tabla de isr", "tabla isr", "tarifa de isr", "tarifa isr", "tarifa anual", "tabla anual", "tarifa + 152", "isr anual"],
+      "agregar": ["Anexo 8", "tarifa actualizada", "Resolución Miscelánea Fiscal"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "96", "evidencia": "tarifa actualizada del Anexo 8 de la RMF" },
+        { "ley": "LISR", "articulo": "152", "evidencia": "tarifa actualizada del Anexo 8 de la RMF" },
+        { "ley": "LISR", "articulo": "150", "evidencia": "están obligadas a pagar su impuesto anual mediante declaración" }
+      ],
+      "nota": "La tarifa mensual está en el art. 96 de la LISR y la anual en el 152 (la obligación de declarar, en el 150), pero las cifras que se aplican cada año se actualizan en el Anexo 8 de la RMF. Para los importes usar obtener_tarifa (B-V mensual, C-II anual), no la tabla de la ley."
+    },
+    {
+      "id": "declaracion-anual-personas-fisicas",
+      "disparadores": ["declaracion anual + fisica", "declaracion del ejercicio + fisica", "declaracion anual + persona fisica"],
+      "agregar": ["mes de abril del año siguiente", "impuesto anual", "ingresos exentos"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "150", "evidencia": "presentarán en el mes de abril del año siguiente" },
+        { "ley": "LISR", "articulo": "151", "evidencia": "las siguientes deducciones personales" },
+        { "ley": "LISR", "articulo": "152", "evidencia": "tarifa actualizada del Anexo 8 de la RMF" }
+      ],
+      "nota": "La declaración anual de personas físicas se presenta en abril del año siguiente (LISR 150); las deducciones personales están en el 151 y la tarifa en el 152. La ley no usa la expresión \"plazo para presentar\": dice \"en el mes de abril\"."
+    },
+    {
+      "id": "declaracion-anual-personas-morales",
+      "disparadores": ["declaracion anual + moral", "declaracion anual + morales", "declaracion del ejercicio + moral", "declaracion del ejercicio + morales"],
+      "agregar": ["tres meses siguientes", "termine el ejercicio fiscal"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "9", "evidencia": "dentro de los tres meses siguientes a la fecha en la que termine el ejercicio fiscal" },
+        { "ley": "LISR", "articulo": "76", "evidencia": "Presentar declaración en la que se determine el resultado fiscal del ejercicio" }
+      ],
+      "nota": "Las personas morales presentan la declaración anual dentro de los tres meses siguientes al cierre del ejercicio fiscal (LISR 9); sus obligaciones generales están en el art. 76."
+    },
+    {
+      "id": "pagos-provisionales",
+      "disparadores": ["pago provisional", "pagos provisionales"],
+      "agregar": ["pagos provisionales mensuales", "a más tardar el día 17"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "14", "evidencia": "a más tardar el día 17 del mes inmediato posterior" },
+        { "ley": "LISR", "articulo": "106", "evidencia": "a más tardar el día 17 del mes inmediato posterior" }
+      ],
+      "nota": "Los pagos provisionales mensuales de personas morales están en el art. 14 de la LISR y los de personas físicas con actividad empresarial o profesional en el 106; ambos vencen a más tardar el día 17 del mes siguiente."
+    },
+    {
+      "id": "resico",
+      "disparadores": ["resico", "regimen simplificado de confianza", "simplificado de confianza"],
+      "sustituir": ["resico"],
+      "agregar": ["optar por pagar el impuesto sobre la renta", "actividades empresariales, profesionales", "uso o goce temporal de bienes"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "113-E", "evidencia": "podrán optar por pagar el impuesto sobre la renta en los términos establecidos en esta Sección" },
+        { "ley": "LISR", "articulo": "113-F", "evidencia": "están obligados a presentar su declaración anual en el mes de abril" },
+        { "ley": "LISR", "articulo": "113-J", "evidencia": "deberán retener, como pago mensual" },
+        { "ley": "LISR", "articulo": "206", "evidencia": "personas morales residentes en México únicamente constituidas por personas físicas" }
+      ],
+      "nota": "\"RESICO\" no aparece en el texto de la ley, y la expresión \"Régimen Simplificado de Confianza\" solo está en los títulos de sección, que la búsqueda no indexa. Las personas físicas están en la LISR 113-E a 113-J (Título IV, Capítulo II, Sección IV) y las personas morales en los arts. 206 a 215 (Título VII, Capítulo XII)."
+    },
+    {
+      "id": "cfdi",
+      "disparadores": ["cfdi", "factura", "facturar", "facturacion", "comprobante fiscal", "comprobantes fiscales", "xml", "cancel + factura", "cancel + cfdi", "cancel + comprobante"],
+      "sustituir": ["cfdi", "cfdis", "xml"],
+      "agregar": ["comprobante fiscal digital por Internet", "comprobantes fiscales", "cancelar"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "29", "evidencia": "realicen pagos parciales o diferidos que liquidan saldos de comprobantes fiscales digitales por Internet" },
+        { "ley": "CFF", "articulo": "29-A", "evidencia": "Los comprobantes fiscales digitales por Internet se podrán cancelar a más tardar en el mes en el cual se deba presentar la declaración anual" },
+        { "ley": "LISR", "articulo": "27", "evidencia": "Estar amparadas con un comprobante fiscal" }
+      ],
+      "nota": "La ley no dice \"CFDI\" ni casi \"factura\": dice \"comprobante fiscal digital por Internet\". Su emisión está en el CFF 29 y sus requisitos y cancelación en el 29-A; para deducir, el gasto debe estar amparado con comprobante fiscal (LISR 27 fr. III). Los detalles del Anexo 20 y del complemento de pago están en la RMF, que no está en la base. La cancelación (hasta el mes de la declaración anual y, cuando aplica, con aceptación del receptor) está en el CFF 29-A."
+    },
+    {
+      "id": "complemento-de-pago",
+      "disparadores": ["complemento de pago", "complemento pago", "ppd", "pago diferido", "pago en parcialidades", "pagos parciales"],
+      "sustituir": ["ppd"],
+      "agregar": ["pagos parciales o diferidos", "saldos de comprobantes fiscales digitales por Internet"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "29", "evidencia": "realicen pagos parciales o diferidos que liquidan saldos de comprobantes fiscales digitales por Internet" }
+      ],
+      "nota": "El CFF 29 solo prevé que quien paga en parcialidades o diferido solicite el comprobante que liquida el saldo. El \"complemento de pago\" y la clave PPD/PUE son reglas de la RMF y del Anexo 20, que no están en la base: marcarlo como no verificado."
+    },
+    {
+      "id": "aguinaldo",
+      "disparadores": ["aguinaldo", "gratificacion anual", "gratificaciones"],
+      "agregar": ["gratificaciones", "quince días de salario", "salario mínimo general"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "87", "evidencia": "equivalente a quince días de salario, por lo menos" },
+        { "ley": "LISR", "articulo": "93", "evidencia": "Las gratificaciones que reciban los trabajadores de sus patrones, durante un año de calendario" }
+      ],
+      "nota": "El derecho al aguinaldo (15 días de salario como mínimo, pagadero antes del 20 de diciembre) está en la LFT 87. La exención para el trabajador está en la LISR 93 fr. XIV, que no usa la palabra \"aguinaldo\" sino \"gratificaciones\"."
+    },
+    {
+      "id": "vacaciones",
+      "disparadores": ["vacaciones", "dias de vacaciones", "periodo vacacional", "vacaciones dignas", "prima vacacional", "prima de vacaciones", "primas vacacionales"],
+      "agregar": ["periodo anual de vacaciones pagadas", "doce días laborables", "primas vacacionales", "veinticinco por ciento", "periodo de vacaciones"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "76", "evidencia": "disfrutarán de un periodo anual de vacaciones pagadas, que en ningún caso podrá ser inferior a doce días laborables" },
+        { "ley": "LFT", "articulo": "78", "evidencia": "disfrutará de doce días de vacaciones continuos, por lo menos" },
+        { "ley": "LFT", "articulo": "79", "evidencia": "Las vacaciones no podrán compensarse con una remuneración" },
+        { "ley": "LFT", "articulo": "80", "evidencia": "una prima no menor de veinticinco por ciento sobre los salarios que les correspondan durante el período de vacaciones" },
+        { "ley": "LISR", "articulo": "93", "evidencia": "así como las primas vacacionales que otorguen los patrones" }
+      ],
+      "nota": "Los días de vacaciones por antigüedad están en la LFT 76 (mínimo doce días con un año de servicios, que aumentan), el disfrute continuo en el 78 y la prohibición de compensarlas con dinero, salvo terminación de la relación, en el 79. La prima vacacional (mínimo 25 % del salario del periodo de vacaciones) está en la LFT 80 y su exención para el trabajador, en la LISR 93 fr. XIV."
+    },
+    {
+      "id": "ptu",
+      "disparadores": ["ptu", "reparto de utilidades", "participacion de utilidades", "participacion de los trabajadores", "utilidades de los trabajadores", "utilidad repartible"],
+      "sustituir": ["ptu"],
+      "agregar": ["participación de los trabajadores en las utilidades de las empresas", "utilidad repartible"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "117", "evidencia": "Los trabajadores participarán en las utilidades de las empresas" },
+        { "ley": "LFT", "articulo": "122", "evidencia": "dentro de los sesenta días siguientes a la fecha en que deba pagarse el impuesto anual" },
+        { "ley": "LFT", "articulo": "123", "evidencia": "La utilidad repartible se dividirá en dos partes iguales" },
+        { "ley": "LISR", "articulo": "9", "evidencia": "la participación de los trabajadores en las utilidades de las empresas pagada en el ejercicio" },
+        { "ley": "LISR", "articulo": "93", "evidencia": "la participación de los trabajadores en las utilidades de las empresas, hasta por el equivalente a 15 días de salario mínimo general" }
+      ],
+      "nota": "\"PTU\" no aparece en las leyes: se llama \"participación de los trabajadores en las utilidades de las empresas\". El derecho y el reparto están en la LFT 117 a 131 (plazo de 60 días en el 122, reparto en dos partes en el 123); su efecto en el ISR de la empresa, en la LISR 9, y su exención para el trabajador, en la LISR 93 fr. XIV."
+    },
+    {
+      "id": "terminacion-laboral",
+      "disparadores": ["despido", "despedir", "despedido", "indemnizacion + trabajador", "indemnizacion + despido", "liquidacion + trabajador", "liquidar + trabajador", "rescision", "finiquito", "renuncia", "renunciar", "terminacion de la relacion"],
+      "agregar": ["rescisión de la relación de trabajo", "indemnice con el importe de tres meses de salario", "prima de antigüedad", "parte proporcional", "terminación de las relaciones de trabajo"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "47", "evidencia": "Son causas de rescisión de la relación de trabajo, sin responsabilidad para el patrón" },
+        { "ley": "LFT", "articulo": "48", "evidencia": "que se le indemnice con el importe de tres meses de salario" },
+        { "ley": "LFT", "articulo": "50", "evidencia": "Las indemnizaciones a que se refiere el artículo anterior consistirán" },
+        { "ley": "LFT", "articulo": "162", "evidencia": "La prima de antigüedad consistirá en el importe de doce días de salario, por cada año de servicios" },
+        { "ley": "LFT", "articulo": "87", "evidencia": "la parte proporcional del mismo, conforme al tiempo que hubieren trabajado" },
+        { "ley": "LFT", "articulo": "79", "evidencia": "tendrá derecho a una remuneración proporcionada al tiempo de servicios prestados" },
+        { "ley": "LFT", "articulo": "53", "evidencia": "Son causas de terminación de las relaciones de trabajo" },
+        { "ley": "LFT", "articulo": "162", "evidencia": "La prima de antigüedad se pagará a los trabajadores que se separen voluntariamente de su empleo" }
+      ],
+      "nota": "El despido sin causa justificada y su indemnización (tres meses de salario, más lo que fija el art. 50) están en la LFT 47, 48 y 50; la prima de antigüedad, en el 162. La ley dice \"rescisión\" y \"terminación\" de la relación de trabajo, no \"liquidación\" ni \"finiquito\". Los componentes del finiquito sí son artículos: aguinaldo proporcional (87), vacaciones proporcionales (79) y causas de terminación (53)."
+    },
+    {
+      "id": "horas-extras",
+      "disparadores": ["horas extras", "hora extra", "horas extra", "tiempo extra", "sobretiempo"],
+      "agregar": ["trabajo extraordinario", "tiempo extraordinario", "cien por ciento más"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "66", "evidencia": "El trabajo extraordinario no excederá de doce horas en una semana" },
+        { "ley": "LFT", "articulo": "66", "evidencia": "un cien por ciento más de lo fijado para las horas ordinarias" },
+        { "ley": "LFT", "articulo": "68", "evidencia": "no están obligadas a prestar sus servicios por un tiempo mayor del permitido en este capítulo" }
+      ],
+      "nota": "La ley llama \"trabajo extraordinario\" a las horas extras: se paga con un cien por ciento más y tiene tope semanal (LFT 66); nadie está obligado a rebasar el tiempo permitido (68)."
+    },
+    {
+      "id": "jornada",
+      "disparadores": ["jornada laboral", "jornada de trabajo", "reduccion de jornada", "cuarenta horas", "40 horas", "semana laboral"],
+      "agregar": ["duración máxima de la jornada", "cuarenta horas semanales"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "59", "evidencia": "será de cuarenta horas semanales" },
+        { "ley": "LFT", "articulo": "61", "evidencia": "La duración de la jornada diaria será de ocho horas la diurna" }
+      ],
+      "nota": "La jornada máxima (40 horas semanales) está en la LFT 59 y la diaria en el 61, pero la reducción es gradual: leer las líneas ADVERTENCIA del artículo y los transitorios (obtener_transitorios) antes de afirmar qué jornada aplica en un año."
+    },
+    {
+      "id": "teletrabajo",
+      "disparadores": ["home office", "trabajo remoto", "trabajo en casa", "trabajo a distancia", "teletrabajo"],
+      "agregar": ["teletrabajo", "equipos necesarios", "costos de telecomunicaciones"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "330-A", "evidencia": "El teletrabajo es una forma de organización laboral subordinada" },
+        { "ley": "LFT", "articulo": "330-E", "evidencia": "Proporcionar, instalar y encargarse del mantenimiento de los equipos necesarios para el teletrabajo" }
+      ],
+      "nota": "\"Home office\" y \"trabajo remoto\" se llaman \"teletrabajo\" en la LFT (Capítulo XII Bis): definición en el 330-A y obligaciones del patrón, como los equipos, en el 330-E."
+    },
+    {
+      "id": "subcontratacion",
+      "disparadores": ["outsourcing", "subcontratacion", "subcontratar", "servicios especializados", "repse", "personal subcontratado"],
+      "sustituir": ["outsourcing", "repse"],
+      "agregar": ["subcontratación de personal", "servicios especializados o de ejecución de obras especializadas"],
+      "articulos": [
+        { "ley": "LFT", "articulo": "12", "evidencia": "Queda prohibida la subcontratación de personal" },
+        { "ley": "LFT", "articulo": "13", "evidencia": "Se permite la subcontratación de servicios especializados o de ejecución de obras especializadas" },
+        { "ley": "LFT", "articulo": "14", "evidencia": "deberá formalizarse mediante contrato por escrito" },
+        { "ley": "CFF", "articulo": "15-D", "evidencia": "por concepto de subcontratación de personal" }
+      ],
+      "nota": "\"Outsourcing\" no aparece: la LFT prohíbe la subcontratación de personal (art. 12) y solo permite la de servicios u obras especializados (13 y 14). El efecto fiscal de la subcontratación está en el CFF 15-D."
+    },
+    {
+      "id": "plataformas-digitales",
+      "disparadores": ["uber", "didi", "airbnb", "plataformas digitales", "plataformas tecnologicas", "plataforma digital", "mercado libre", "repartidor", "repartidores"],
+      "sustituir": ["uber", "didi", "airbnb"],
+      "agregar": ["plataformas tecnológicas", "aplicaciones informáticas", "servicios digitales"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "113-A", "evidencia": "que enajenen bienes o presten servicios a través de Internet, mediante plataformas tecnológicas" },
+        { "ley": "LIVA", "articulo": "18-B", "evidencia": "se consideran únicamente los servicios digitales que a continuación se mencionan" },
+        { "ley": "LFT", "articulo": "291-A", "evidencia": "Es una relación laboral subordinada que consiste en el desempeño de actividades remuneradas que requieran la presencia física de la persona trabajadora" }
+      ],
+      "nota": "Las marcas no aparecen en la ley. Los ingresos de personas físicas por plataformas están en la LISR 113-A; los servicios digitales de residentes en el extranjero, en la LIVA 18-B; y el trabajo en plataformas digitales, en la LFT 291-A y siguientes."
+    },
+    {
+      "id": "iva-acreditable",
+      "disparadores": ["iva acreditable", "acreditar iva", "acreditar el iva", "acreditamiento", "acreditable"],
+      "agregar": ["acreditamiento", "impuesto acreditable", "requisitos"],
+      "articulos": [
+        { "ley": "LIVA", "articulo": "4", "evidencia": "El acreditamiento consiste en restar el impuesto acreditable" },
+        { "ley": "LIVA", "articulo": "5", "evidencia": "Para que sea acreditable el impuesto al valor agregado deberán reunirse los siguientes requisitos" }
+      ],
+      "nota": "El acreditamiento del IVA se define en la LIVA 4 y sus requisitos (estrictamente indispensable, comprobante fiscal, pago) están en el 5."
+    },
+    {
+      "id": "retencion-iva",
+      "disparadores": ["retencion de iva", "retencion del iva", "retener iva", "retencion iva", "iva retenido"],
+      "agregar": ["retención del impuesto que se les traslade"],
+      "articulos": [
+        { "ley": "LIVA", "articulo": "1-A", "evidencia": "Están obligados a efectuar la retención del impuesto que se les traslade" }
+      ],
+      "nota": "Los supuestos en que se retiene IVA (personas morales que reciben ciertos servicios, por ejemplo) están en la LIVA 1-A; los porcentajes se leen en el propio artículo, no se citan de memoria."
+    },
+    {
+      "id": "saldo-a-favor",
+      "disparadores": ["saldo a favor", "devolucion de saldo", "devolucion de impuestos", "devolucion de iva", "devolucion de isr", "solicitar devolucion", "compensacion", "compensar"],
+      "agregar": ["cantidades pagadas indebidamente", "saldo a favor", "compensar"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "22", "evidencia": "Las autoridades fiscales devolverán las cantidades pagadas indebidamente" },
+        { "ley": "CFF", "articulo": "23", "evidencia": "podrán optar por compensar las cantidades que tengan a su favor" },
+        { "ley": "LIVA", "articulo": "6", "evidencia": "Cuando en la declaración de pago resulte saldo a favor, el contribuyente únicamente podrá acreditarlo" }
+      ],
+      "nota": "La devolución de saldos a favor se regula en el CFF 22, la compensación en el 23 y, para el IVA, la LIVA 6 (acreditar contra meses siguientes o pedir devolución)."
+    },
+    {
+      "id": "perdidas-fiscales",
+      "disparadores": ["perdida fiscal", "perdidas fiscales", "amortizar perdidas", "perdidas pendientes"],
+      "agregar": ["pérdidas fiscales", "diez ejercicios siguientes", "pendientes de disminuir"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "57", "evidencia": "podrá disminuirse de la utilidad fiscal de los diez ejercicios siguientes" },
+        { "ley": "LISR", "articulo": "57", "evidencia": "El derecho a disminuir las pérdidas fiscales es personal del contribuyente" }
+      ],
+      "nota": "La pérdida fiscal se determina y se amortiza en la LISR 57: se disminuye de la utilidad fiscal de los diez ejercicios siguientes y el derecho es personal."
+    },
+    {
+      "id": "depreciacion",
+      "disparadores": ["depreciacion", "depreciar", "deduccion de inversiones", "inversiones deducibles", "activo fijo", "maquinaria", "equipo de computo", "computadora", "computadoras", "mobiliario"],
+      "agregar": ["por cientos máximos autorizados", "inversiones", "activos fijos"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "31", "evidencia": "Las inversiones únicamente se podrán deducir mediante la aplicación, en cada ejercicio, de los por cientos máximos" },
+        { "ley": "LISR", "articulo": "32", "evidencia": "se consideran inversiones los activos fijos, los gastos y cargos diferidos" },
+        { "ley": "LISR", "articulo": "34", "evidencia": "30% para computadoras" },
+        { "ley": "LISR", "articulo": "35", "evidencia": "Para la maquinaria y equipo distintos de los señalados en el artículo anterior" }
+      ],
+      "nota": "La LISR no habla de \"depreciación\" sino de deducción de inversiones mediante \"por cientos máximos autorizados\": reglas en el art. 31, concepto de inversión en el 32, porcentajes por tipo de bien en el 34 y los de maquinaria y equipo en el 35."
+    },
+    {
+      "id": "automoviles",
+      "disparadores": ["automovil", "automoviles", "auto", "autos", "coche", "coches", "carro", "carros", "camioneta", "camionetas", "vehiculo", "vehiculos"],
+      "agregar": ["inversiones en automóviles", "monto original de la inversión"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "36", "evidencia": "Las inversiones en automóviles sólo serán deducibles hasta por un monto de $175,000.00" },
+        { "ley": "LISR", "articulo": "34", "evidencia": "25% para automóviles, autobuses, camiones de carga" },
+        { "ley": "LISR", "articulo": "28", "evidencia": "En el caso de automóviles y aviones, se podrán deducir en la proporción que represente el monto original de la inversión deducible" }
+      ],
+      "nota": "El tope de $175,000.00 para deducir la inversión en automóviles está en la LISR 36 fr. II; el porcentaje anual (25 %) en el 34; y la proporción cuando el automóvil costó más, en el 28 fr. II. Los autos eléctricos tienen un tope distinto en el mismo 36."
+    },
+    {
+      "id": "viaticos-y-consumos",
+      "disparadores": ["viaticos", "viatico", "gastos de viaje", "hospedaje", "gastos de transporte", "restaurante", "restaurantes", "comida de negocios", "comidas de negocios", "consumo de alimentos", "consumos de alimentos", "gasolina", "combustible", "combustibles", "diesel", "gasto de gasolina", "vales de gasolina", "monedero electronico"],
+      "agregar": ["viáticos o gastos de viaje", "hospedaje", "alimentación", "consumos en restaurantes", "91.5%", "adquisición de combustibles para vehículos", "monederos electrónicos"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "28", "evidencia": "Los viáticos o gastos de viaje, en el país o en el extranjero" },
+        { "ley": "LISR", "articulo": "28", "evidencia": "El 91.5% de los consumos en restaurantes" },
+        { "ley": "LISR", "articulo": "27", "evidencia": "Tratándose de la adquisición de combustibles para vehículos marítimos, aéreos y terrestres" }
+      ],
+      "nota": "Viáticos y gastos de viaje con sus topes diarios: LISR 28 fr. V. Consumos en restaurantes: se deducen al 91.5 % (fr. XX) o al 100 % si son viáticos que cumplen la fr. V. Combustible: el medio de pago y el permiso del proveedor están en la LISR 27 fr. III."
+    },
+    {
+      "id": "dividendos",
+      "disparadores": ["dividendos", "dividendo", "utilidades distribuidas", "distribuir utilidades", "repartir utilidades"],
+      "agregar": ["dividendos o utilidades distribuidos", "tasa adicional del 10%", "cuenta de utilidad fiscal neta"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "140", "evidencia": "tasa adicional del 10% sobre los dividendos o utilidades distribuidos" },
+        { "ley": "LISR", "articulo": "10", "evidencia": "Las personas morales que distribuyan dividendos o utilidades deberán calcular y enterar el impuesto" },
+        { "ley": "LISR", "articulo": "77", "evidencia": "Las personas morales llevarán una cuenta de utilidad fiscal neta" }
+      ],
+      "nota": "El impuesto de la persona moral al distribuir dividendos está en la LISR 10, el de la persona física que los recibe (tasa adicional de 10 %) en el 140 y la cuenta de utilidad fiscal neta (CUFIN) en el 77."
+    },
+    {
+      "id": "arrendamiento-de-inmuebles",
+      "disparadores": ["alquiler", "rentar", "renta de casa", "renta de local", "renta de departamento", "renta de inmueble", "renta de inmuebles", "casa en renta", "local en renta", "arrendar"],
+      "agregar": ["uso o goce temporal de bienes inmuebles", "deducir el 35%"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "114", "evidencia": "Se consideran ingresos por otorgar el uso o goce temporal de bienes inmuebles" },
+        { "ley": "LISR", "articulo": "115", "evidencia": "podrán optar por deducir el 35% de los ingresos" },
+        { "ley": "LISR", "articulo": "116", "evidencia": "El pago provisional se determinará aplicando la tarifa que corresponda" }
+      ],
+      "nota": "La renta de inmuebles de personas físicas es \"uso o goce temporal de bienes inmuebles\": ingresos en la LISR 114, deducciones (con la opción ciega del 35 %) en el 115 y pagos provisionales en el 116."
+    },
+    {
+      "id": "honorarios",
+      "disparadores": ["honorarios", "servicios profesionales", "freelance", "freelancer", "actividad profesional", "actividad empresarial"],
+      "agregar": ["actividades empresariales o de la prestación de servicios profesionales", "pagos provisionales"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "100", "evidencia": "las personas físicas que perciban ingresos derivados de la realización de actividades empresariales o de la prestación de servicios profesionales" },
+        { "ley": "LISR", "articulo": "103", "evidencia": "podrán efectuar las deducciones siguientes" },
+        { "ley": "LISR", "articulo": "106", "evidencia": "a más tardar el día 17 del mes inmediato posterior" }
+      ],
+      "nota": "Los honorarios y la actividad empresarial de personas físicas son \"actividades empresariales o servicios profesionales\" (LISR 100 y siguientes): sujetos en el 100, deducciones en el 103 y pagos provisionales en el 106."
+    },
+    {
+      "id": "casa-habitacion",
+      "disparadores": ["venta de casa", "vender casa", "vender mi casa", "venta de inmueble", "venta de departamento", "enajenar casa", "enajenacion de casa", "casa habitacion"],
+      "agregar": ["enajenación de casa habitación", "setecientas mil unidades de inversión", "ingresos por enajenación de bienes"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "93", "evidencia": "no exceda de setecientas mil unidades de inversión" },
+        { "ley": "LISR", "articulo": "119", "evidencia": "Se consideran ingresos por enajenación de bienes" },
+        { "ley": "LISR", "articulo": "121", "evidencia": "Las personas físicas que obtengan ingresos por la enajenación de bienes podrán efectuar las siguientes deducciones" }
+      ],
+      "nota": "La exención por vender la casa habitación (hasta setecientas mil unidades de inversión, con requisitos) está en la LISR 93 fr. XIX; el cálculo del impuesto por enajenación de bienes en los arts. 119 a 121."
+    },
+    {
+      "id": "isr-sueldos",
+      "disparadores": ["isr nomina", "isr de nomina", "calculo de nomina", "isr empleados", "retencion de sueldos", "subsidio al empleo", "sueldos y salarios", "sueldos"],
+      "agregar": ["servicio personal subordinado", "retenciones", "Anexo 8"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "94", "evidencia": "Se consideran ingresos por la prestación de un servicio personal subordinado, los salarios" },
+        { "ley": "LISR", "articulo": "96", "evidencia": "tarifa actualizada del Anexo 8 de la RMF" },
+        { "ley": "LISR", "articulo": "99", "evidencia": "Efectuar las retenciones señaladas en el artículo 96 de esta Ley" },
+        { "ley": "LISR", "articulo": "98", "evidencia": "Presentar declaración anual en los siguientes casos" }
+      ],
+      "nota": "Los sueldos y salarios son \"servicios personales subordinados\" (LISR 94); la retención mensual se calcula con la tarifa del 96 (cifras en el Anexo 8, con obtener_tarifa), las obligaciones del patrón están en el 99 y la declaración anual del trabajador en el 98. El subsidio para el empleo no está en la ley; es un decreto."
+    },
+    {
+      "id": "lista-negra",
+      "disparadores": ["lista negra", "efos", "edos", "factureras", "empresa fantasma", "empresas fantasma", "operaciones simuladas", "operaciones inexistentes", "69b", "69 b"],
+      "sustituir": ["efos", "edos", "69b"],
+      "agregar": ["comprobantes sin contar con los activos, personal, infraestructura o capacidad material"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "69-B", "evidencia": "emitiendo comprobantes sin contar con los activos, personal, infraestructura o capacidad material" }
+      ],
+      "nota": "Las \"EFOS\" o \"lista negra\" son el procedimiento del CFF 69-B (comprobantes sin materialidad). Los listados publicados y su efecto en el receptor se leen en el propio artículo."
+    },
+    {
+      "id": "conservar-documentos",
+      "disparadores": ["conservar + factura", "guardar + factura", "conservar + documentos", "guardar + documentos", "conservar + contabilidad", "cuanto tiempo + guardar", "contabilidad electronica"],
+      "agregar": ["conservarse durante un plazo de cinco años", "contabilidad"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "30", "evidencia": "deberán conservarse durante un plazo de cinco años" },
+        { "ley": "CFF", "articulo": "28", "evidencia": "la contabilidad se integra por" }
+      ],
+      "nota": "La contabilidad y su documentación se conservan cinco años contados desde la fecha de la declaración (CFF 30); qué integra la contabilidad y la contabilidad electrónica están en el CFF 28."
+    },
+    {
+      "id": "auditoria",
+      "disparadores": ["auditoria", "revision del sat", "visita domiciliaria", "requerimiento del sat", "carta invitacion", "facultades de comprobacion"],
+      "agregar": ["facultades de comprobación", "visita en el domicilio fiscal"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "42", "evidencia": "Las autoridades fiscales a fin de comprobar que los contribuyentes" },
+        { "ley": "CFF", "articulo": "46", "evidencia": "La visita en el domicilio fiscal se desarrollará conforme a las siguientes reglas" },
+        { "ley": "CFF", "articulo": "67", "evidencia": "se extinguen en el plazo de cinco años" }
+      ],
+      "nota": "Las auditorías del SAT son \"facultades de comprobación\" (CFF 42); las visitas domiciliarias se rigen por el 46 y las facultades de la autoridad se extinguen en cinco años (67)."
+    },
+    {
+      "id": "multas-declaraciones",
+      "disparadores": ["multa + declaracion", "multa + presentar", "sancion + declaracion", "declaracion extemporanea", "no presentar declaracion", "no presente declaracion"],
+      "agregar": ["infracciones", "presentación de declaraciones", "se impondrán las siguientes multas"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "81", "evidencia": "Son infracciones relacionadas con la obligación de pago de las contribuciones; de presentación de declaraciones" },
+        { "ley": "CFF", "articulo": "82", "evidencia": "se impondrán las siguientes multas" }
+      ],
+      "nota": "Las infracciones por no presentar declaraciones o presentarlas fuera de plazo están en el CFF 81 y sus multas en el 82; los importes se actualizan periódicamente, así que se leen en el artículo vigente."
+    },
+    {
+      "id": "sigla-iva",
+      "disparadores": ["iva"],
+      "sustituir": ["iva"],
+      "relacionar": false,
+      "agregar": ["impuesto al valor agregado"],
+      "articulos": [
+        { "ley": "LIVA", "articulo": "1", "evidencia": "Están obligadas al pago del impuesto al valor agregado" }
+      ],
+      "nota": "La sigla IVA casi no aparece en el texto (un solo artículo); la ley dice \"impuesto al valor agregado\". Sin esta entrada, la sigla literal sube un artículo sin relación."
+    },
+    {
+      "id": "sigla-sat",
+      "disparadores": ["sat"],
+      "sustituir": ["sat"],
+      "relacionar": false,
+      "agregar": ["Servicio de Administración Tributaria"],
+      "articulos": [
+        { "ley": "CFF", "articulo": "17-D", "evidencia": "expedido por el Servicio de Administración Tributaria" }
+      ],
+      "nota": "La sigla SAT se expande por prefijo a \"satelital\" y \"satisfacer\"; el texto dice \"Servicio de Administración Tributaria\"."
+    },
+    {
+      "id": "sigla-cufin",
+      "disparadores": ["cufin", "cuca"],
+      "sustituir": ["cufin", "cuca"],
+      "agregar": ["cuenta de utilidad fiscal neta", "cuenta de capital de aportación"],
+      "articulos": [
+        { "ley": "LISR", "articulo": "77", "evidencia": "Las personas morales llevarán una cuenta de utilidad fiscal neta" },
+        { "ley": "LISR", "articulo": "78", "evidencia": "cuenta de capital de aportación" }
+      ],
+      "nota": "CUFIN y CUCA no aparecen como siglas: son la cuenta de utilidad fiscal neta (LISR 77) y la cuenta de capital de aportación (LISR 78)."
+    }
+  ]
+}

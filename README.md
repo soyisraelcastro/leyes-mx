@@ -10,23 +10,33 @@ El texto sale de los PDF oficiales de la Cámara de Diputados, sin editar. Lo qu
 
 ## Instalar con npx
 
-Para usar estas leyes desde Claude Desktop, Claude Code, Codex, Cursor o cualquier cliente que hable MCP, en tu propio equipo y sin internet para consultar:
+Para usar estas leyes desde Claude Desktop, Codex (incluida la app de escritorio de ChatGPT), Claude Code, Cursor o cualquier cliente que hable MCP, en tu propio equipo y sin internet para consultar:
 
 ```bash
 npx leyes-mx instalar
 ```
 
-Descarga los datos (unos 3 MB, con verificación sha256), detecta tus clientes y registra el servidor. Con `--cliente claude-desktop|claude-code|codex|cursor|todos` eliges uno y con `--dry-run` ves qué haría sin escribir nada.
+Descarga los datos (unos 3 MB, con verificación sha256), detecta tus clientes, registra el servidor y, donde aplica, copia la skill. Al terminar explica en español qué hacer: **reiniciar Claude Desktop por completo** (cerrarlo del todo y abrirlo) y pegar una pregunta de prueba ("¿Qué dice el artículo 28 de la LISR?"); si funcionó, la respuesta cita la ley, el artículo y la vigencia. Con `--cliente claude-desktop|claude-code|codex|cursor|todos` eliges uno y con `--dry-run` ves qué haría sin escribir nada.
 
 ```bash
-npx leyes-mx actualizar     # cuando salga una ley o reforma nueva
-npx leyes-mx doctor         # verificar que quedó bien
+npx leyes-mx actualizar     # cuando salga una ley, una reforma o un cambio del glosario; refresca también la skill
+npx leyes-mx doctor         # verificar que quedó bien (y si Claude Desktop quedó listo, en una línea)
 npx leyes-mx obtener LISR 28
-npx leyes-mx buscar "recargos deducibles" --ley LISR
+npx leyes-mx buscar "fundamento para no deducir actualizaciones"
+npx leyes-mx tarifa B-V     # tarifa mensual de ISR del Anexo 8
+npx leyes-mx skill --zip    # skill para cargar a mano en Claude Desktop (opcional)
 npx leyes-mx desinstalar
 ```
 
-Requiere Node 20 o superior. Detalle, arquitectura de datos y cómo publicar: [docs/npx.md](docs/npx.md) y [npm/README.md](npm/README.md). La landing con instrucciones por cliente está en `sitio/` (Astro, para Vercel).
+Necesita Node 20 o superior; si falta, pídele a tu asistente que lo instale (mensaje listo para pegar en [docs/clientes.md](docs/clientes.md)). Qué clientes sí y cuáles no (Claude web y ChatGPT web quedan fuera por ahora; la extensión `.mcpb` para quien no tiene Node): [docs/clientes.md](docs/clientes.md). Detalle, arquitectura de datos y cómo publicar: [docs/npx.md](docs/npx.md) y [npm/README.md](npm/README.md). La landing con instrucciones por cliente está en `sitio/` (Astro, para Vercel).
+
+### Para que el asistente lo use solo
+
+Las instrucciones del servidor y la descripción de cada herramienta le piden al modelo consultar la base **antes de responder cualquier consulta fiscal o laboral de México** (ISR, IVA, deducciones, CFDI, aguinaldo, "qué dice el artículo"...) y antes de citar un artículo; leer el artículo completo, citar ley, artículo, fracción, vigencia y última reforma; sacar las tarifas de ISR de `obtener_tarifa`; y nunca presentar el proyecto de 2027 como ley vigente. Si algo no está en la base, el **resultado** de la herramienta dice "No encontré esto en la base local" y manda **preguntar al usuario** si quiere que se busque en internet (nunca buscar sin su permiso; si lo autoriza, solo fuentes oficiales y aclarando que no viene de la base verificada). Eso funciona en cualquier cliente porque va en el resultado, no solo en las instrucciones.
+
+- **Glosario de sinónimos contables** (`glosario.json`): la búsqueda es por palabras, así que "actualizaciones" no encontraba "accesorios de las contribuciones". El glosario amplía la consulta con los términos de la ley, la respuesta declara qué agregó y se actualiza con `npx leyes-mx actualizar`, sin versión nueva de npm. Formato y cómo aportar entradas: [docs/glosario.md](docs/glosario.md).
+- **Skill `leyes-mx`** (`/leyes-mx`): el método de trabajo completo, por MCP o por terminal. Se instala sola en Claude Code y Codex; en Claude Desktop es opcional y se carga a mano. Rutas, fuentes y lo no verificado: [docs/skill.md](docs/skill.md).
+- Para `AGENTS.md` o `CLAUDE.md`: `npx leyes-mx instalar --instrucciones` agrega un bloque delimitado, con confirmación.
 
 ## Qué contiene
 
@@ -167,7 +177,7 @@ python3 -I tests/test_ids.py
 - La Cámara puede tardar en reflejar una reforma; la fecha "última reforma" es la que imprime su PDF, no una verificación contra el DOF.
 - Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014); verificar si existen versiones posteriores en el DOF. Las reglas de miscelánea (RMF) y sus anexos, salvo el Anexo 8, **no** están en la base.
 - El artículo 513 de la LFT (tabla de enfermedades) es un archivo de ~360 mil caracteres.
-- Búsqueda léxica sencilla (no semántica). Para un artículo conocido usar `obtener`.
+- Búsqueda léxica (no semántica). El paquete npm la complementa con un glosario de sinónimos contables ([docs/glosario.md](docs/glosario.md)); el motor de Python (`scripts/buscar.py`) no lo usa. Para un artículo conocido usar `obtener`.
 - Los dictámenes y minutas de la reforma 2027 están escaneados; los archivos por artículo de `proyectos/2027/` reflejan la iniciativa, no el texto final del trámite. Detalle en su README.
 
 ## Contribuir
@@ -179,7 +189,8 @@ Ver [CONTRIBUTING.md](CONTRIBUTING.md). Resumen: el texto legal siempre sale del
 - Más ordenamientos: LSS, Ley del INFONAVIT, LIEPS, Ley de Ingresos, Ley Federal de Derechos y otros (solo configuración en `fuentes.json`).
 - Resolución Miscelánea Fiscal y sus anexos.
 - Jurisprudencia y criterios.
-- API HTTP sobre las mismas funciones. El servidor MCP ya existe: ver [docs/npx.md](docs/npx.md).
+- API HTTP o servidor MCP hospedado sobre las mismas funciones (habilitaría Claude web y ChatGPT web, que solo conectan servidores remotos; ver [docs/clientes.md](docs/clientes.md)). El servidor MCP local ya existe: ver [docs/npx.md](docs/npx.md).
+- Extensión de escritorio `.mcpb` para Claude Desktop (instalación de un clic, sin Node): viabilidad en [docs/clientes.md](docs/clientes.md).
 - Año 2027 cuando se publique la reforma.
 
 ## Licencia

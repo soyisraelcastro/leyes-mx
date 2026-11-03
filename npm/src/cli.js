@@ -1,4 +1,4 @@
-// Línea de comandos: instalar, actualizar, servir, estado, doctor, desinstalar, revertir, obtener, buscar, listar, reforma.
+// Línea de comandos: instalar, actualizar, servir, estado, doctor, desinstalar, revertir, skill, obtener, tarifa, buscar, listar, reforma.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -6,10 +6,12 @@ import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 import { Almacen, SinDatos, AVISO_GENERAL } from "./almacen.js";
 import { Indice } from "./indice.js";
-import { citaArticulo, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
+import { Glosario } from "./glosario.js";
+import { citaArticulo, lineasAmpliacion, noEncontrado, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
 import { VERSION } from "./version.js";
 import * as clientes from "./clientes.js";
 import * as datos from "./datos.js";
+import * as skill from "./skill.js";
 import { archivoConfig, carpetaBase, carpetaDatos, resolverDatos, versionActual, versionAnterior } from "./rutas.js";
 
 const AYUDA = `leyes-mx ${VERSION}: leyes fiscales y laborales de México en local, para tu asistente.
@@ -18,12 +20,14 @@ Uso: npx leyes-mx <comando> [opciones]
 
 Instalación
   instalar [--cliente claude-desktop|claude-code|codex|cursor|todos] [--dry-run] [--anio 2026]
-           [--instrucciones] [--si] [--ruta-absoluta] [--sin-binario] [--sin-datos]
-                         descarga los datos y registra el servidor MCP en tus clientes
-  actualizar [--forzar]  baja la última versión de los datos (verifica sha256 antes de activar)
+           [--instrucciones] [--si] [--ruta-absoluta] [--sin-binario] [--sin-datos] [--sin-skill]
+                         descarga los datos, registra el servidor MCP en tus clientes y, donde aplica, copia la skill
+  actualizar [--forzar]  baja la última versión de los datos y del glosario (verifica sha256) y refresca la skill
   revertir               vuelve a la versión anterior de los datos
   desinstalar [--borrar-datos] [--dry-run]
-                         quita solo lo que puso este paquete
+                         quita solo lo que puso este paquete (servidor, skill, instrucciones)
+  skill [--zip] [--salida CARPETA] [--dry-run]
+                         estado de la skill por cliente; con --zip escribe leyes-mx-skill.zip para cargarla a mano en Claude Desktop
   estado                 versión instalada vs la última publicada y última reforma por ley
   doctor                 diagnóstico de la instalación
 
@@ -33,7 +37,7 @@ Servidor
 Consulta directa (sin MCP)
   obtener LEY ARTICULO [--anio N] [--incluir-proyectos] [--json]
   tarifa [ID|APARTADO] [--anio N] [--json]   Tarifas de ISR del Anexo 8 de la RMF (sin argumento: las lista)
-  buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--json]
+  buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--sin-glosario] [--json]
   listar [--incluir-proyectos] [--json]
   reforma [--anio N]     estado de la reforma en trámite (proyecto, no es ley vigente)
 
@@ -44,7 +48,7 @@ ${AVISO_GENERAL}
 
 // ------------------------------------------------------------------ argumentos
 
-const BOOLEANAS = new Set(["dry-run", "json", "incluir-proyectos", "instrucciones", "si", "ruta-absoluta", "sin-binario", "sin-datos", "forzar", "borrar-datos", "ayuda", "version"]);
+const BOOLEANAS = new Set(["dry-run", "json", "incluir-proyectos", "instrucciones", "si", "sin-glosario", "sin-skill", "zip", "ruta-absoluta", "sin-binario", "sin-datos", "forzar", "borrar-datos", "ayuda", "version"]);
 
 export function parsear(argv) {
   const pos = [], op = {};
@@ -80,7 +84,20 @@ async function preguntar(texto) {
 
 // ------------------------------------------------------------------ comandos de datos
 
+/** Refresca la skill donde este paquete ya la había puesto (no la agrega donde no estaba: eso lo hace `instalar`). */
+function refrescarSkills() {
+  for (const c of skill.CLIENTES_CON_CARPETA) {
+    const r = skill.instalarSkill(c, { soloSiExiste: true });
+    if (r.estado === "actualizada" || r.estado === "omitida") out(`Skill (${c}): ${r.estado}${r.detalle ? `. ${r.detalle}` : ""}${r.respaldo ? ` (respaldo: ${r.respaldo})` : ""}`);
+  }
+}
+
 async function cmdActualizar(op) {
+  refrescarSkills();
+  return await actualizarDatos(op);
+}
+
+async function actualizarDatos(op) {
   if (process.env.LEYES_MX_DATOS) { err("LEYES_MX_DATOS está definido: se usan esos datos y no se descarga nada."); return 0; }
   const ref = datos.urlManifest();
   const m = await datos.leerManifest(ref);
@@ -93,6 +110,9 @@ async function cmdActualizar(op) {
   out(`Datos ${r.reutilizada ? "reactivados" : "instalados"}: ${r.version}${actual && actual !== r.version ? ` (antes ${actual}; se conserva para revertir con: npx leyes-mx revertir)` : ""}`);
   return 0;
 }
+
+const TXT_SKILL = { ausente: "no instalada (npx leyes-mx instalar)", "al-dia": "al día", desactualizada: "desactualizada (npx leyes-mx actualizar)",
+  modificada: "modificada a mano (npx leyes-mx actualizar la restaura, con respaldo)", ajena: "hay otra carpeta con ese nombre; no se toca", "no-aplica": "no aplica" };
 
 async function cmdEstado() {
   const v = versionActual();
@@ -108,6 +128,9 @@ async function cmdEstado() {
   let alm = null;
   try { alm = Almacen.abrir(); } catch { /* sin datos */ }
   if (alm) {
+    const g = Glosario.diagnosticar(alm.raiz);
+    const gp = ult?.glosario;
+    out(`Glosario de sinónimos: ${!g.existe ? "no incluido en estos datos (la búsqueda funciona igual)" : !g.valido ? `INVÁLIDO (${g.problemas[0]})` : `${g.entradas} entradas, versión ${g.version}`}${gp && g.valido && gp.version !== g.version ? `  |  publicado: versión ${gp.version} (npx leyes-mx actualizar)` : ""}`);
     const pub = new Map((ult?.leyes || []).map((l) => [`${l.sigla}:${l.anio_vigencia}`, l]));
     out("");
     out("Última reforma DOF por ley (instalada" + (ult ? " | publicada" : "") + "):");
@@ -118,6 +141,10 @@ async function cmdEstado() {
     }
     if (ult) for (const p of ult.leyes) if (!alm.listarLeyes().some((l) => l.sigla === p.sigla && l.anio_vigencia === p.anio_vigencia)) out(`  ${p.sigla.padEnd(6)} ${p.anio_vigencia}  (nueva en la publicada)  |  ${p.ultima_reforma_dof ?? "sin dato"}`);
   }
+  out("");
+  out("Skill leyes-mx (complemento):");
+  for (const c of skill.CLIENTES_CON_CARPETA) { const e = skill.estadoSkill(c); out(`  ${c.padEnd(15)} ${TXT_SKILL[e.estado]}${e.ruta ? `  ${e.ruta}` : ""}`); }
+  out("  claude-desktop  carga manual opcional: npx leyes-mx skill --zip");
   return 0;
 }
 
@@ -157,7 +184,7 @@ async function cmdInstalar(op) {
     catch (e) { out(`Datos: no se pudo consultar el manifest (${e.message}); se descargarían a ${carpetaDatos()}`); }
   } else {
     if (versionActual()) out(`Datos: ya instalados (${versionActual()}). Para revisar novedades: npx leyes-mx actualizar`);
-    else { await cmdActualizar({}); }
+    else { await actualizarDatos({}); }
   }
 
   // 2. año por defecto
@@ -173,7 +200,7 @@ async function cmdInstalar(op) {
 
   // 3. clientes
   if (!lista.length) {
-    out("No se detectó ningún cliente instalado. Elige uno con --cliente (claude-desktop, claude-code, codex, cursor, todos) o usa este bloque en cualquier otro cliente MCP:\n");
+    out("No encontré Claude Desktop, Claude Code, Codex ni Cursor en este equipo. Si usas Claude Desktop, ábrelo una vez y vuelve a correr este comando; o elige uno con --cliente (claude-desktop, claude-code, codex, cursor, todos). Para cualquier otro cliente MCP, usa este bloque:\n");
     out(clientes.bloqueJsonGenerico());
   } else {
     out(`\nClientes${auto ? " detectados" : ""}: ${lista.join(", ")}`);
@@ -196,6 +223,15 @@ async function cmdInstalar(op) {
     }
   }
 
+  // 4b. skill
+  if (!op["sin-skill"]) {
+    for (const c of lista.filter((x) => skill.CLIENTES_CON_CARPETA.includes(x))) {
+      const r = skill.instalarSkill(c, { dryRun: dry });
+      out(`\nSkill leyes-mx en ${c}: ${r.estado}${dry ? " (simulación)" : ""}${r.detalle ? `. ${r.detalle}` : ""}\n    carpeta: ${r.ruta}${r.respaldo ? `\n    respaldo: ${r.respaldo}` : ""}`);
+    }
+    if (lista.includes("claude-desktop")) out("\nSkill para Claude Desktop: es opcional (el servidor ya funciona sin ella) y se carga a mano desde la app. Si la quieres: npx leyes-mx skill --zip");
+  }
+
   const gui = lista.filter((c) => c === "claude-desktop" || c === "cursor");
   if (gui.length && process.platform !== "win32") {
     const cmd = clientes.entradaPara(gui[0]).command;
@@ -203,10 +239,29 @@ async function cmdInstalar(op) {
       out(`\nAviso: las apps de escritorio (${gui.join(" y ")}) no heredan el PATH de tu terminal, así que ${dry ? "se registraría" : "se registró"} la ruta completa de npx, que incluye la versión de Node:\n  ${cmd}\nSi cambias o borras esa versión de Node, la app dejará de encontrar el servidor. Cuando pase, repite: npx leyes-mx instalar --cliente ${gui[0]}\n(\"npx leyes-mx doctor\" también lo detecta).`);
     }
   }
-  if (!dry && lista.includes("claude-desktop")) out("\nReinicia Claude Desktop por completo (salir y volver a abrir) para que cargue el servidor.");
-  if (!dry && lista.some((c) => c !== "claude-desktop")) out("Reinicia también las sesiones abiertas de los demás clientes.");
-  out("Verifica con: npx leyes-mx doctor");
+  if (!dry && lista.length) out(resumenParaPersonas(lista, !resolverDatos()));
+  else if (!dry) out("Verifica con: npx leyes-mx doctor");
+  else out("\nVerifica con: npx leyes-mx doctor");
   return 0;
+}
+
+/** Cierre de `instalar` en español llano para quien no es técnico: qué quedó, qué hacer ahora y cómo saber que funcionó. */
+export const PRUEBA_SUGERIDA = "¿Qué dice el artículo 28 de la LISR?";
+function resumenParaPersonas(lista, sinDatos = false) {
+  const l = ["", "----------------------------------------------------------------------", "Listo. Esto fue lo que pasó:",
+    sinDatos ? "  - OJO: las leyes todavía no están descargadas (usaste --sin-datos). Descárgalas con: npx leyes-mx actualizar" : "  - Las leyes quedaron guardadas en tu equipo y verificadas; para consultarlas no se necesita internet."];
+  const nombres = { "claude-desktop": "Claude Desktop", "claude-code": "Claude Code", codex: "Codex (y la app de escritorio de ChatGPT, que según la documentación de OpenAI comparte su configuración)", cursor: "Cursor" };
+  l.push(`  - Quedó conectado con: ${lista.map((c) => nombres[c]).join("; ")}.`);
+  l.push("", "Qué hacer ahora:");
+  let n = 1;
+  if (lista.includes("claude-desktop")) l.push(`  ${n++}. Reinicia Claude Desktop por completo: ciérralo del todo (en Mac, menú Claude > Salir; no basta cerrar la ventana) y vuelve a abrirlo.`);
+  if (lista.some((c) => c !== "claude-desktop")) l.push(`  ${n++}. Cierra y abre de nuevo las sesiones que tengas abiertas de ${lista.filter((c) => c !== "claude-desktop").map((c) => nombres[c].split(" (")[0]).join(", ")}.`);
+  l.push(`  ${n++}. Abre una conversación nueva y pega esta pregunta de prueba:`, "", `       ${PRUEBA_SUGERIDA}`, "",
+    "Si funcionó: la respuesta cita la ley, el artículo y la vigencia (por ejemplo \"LISR art. 28, vigencia 2026, última reforma DOF 2024-04-01\") y la app muestra que usó \"leyes-mx\".",
+    "Si responde sin citar eso o no menciona leyes-mx, corre: npx leyes-mx doctor (te dice en una línea si Claude Desktop quedó listo y qué falta).",
+    "Cuando algo no esté en la base, el asistente te preguntará si quieres que lo busque en internet; no lo hará sin tu permiso.",
+    "----------------------------------------------------------------------");
+  return l.join("\n");
 }
 
 async function cmdDesinstalar(op) {
@@ -217,6 +272,10 @@ async function cmdDesinstalar(op) {
     imprimirResultado(clientes.desinstalarCliente(c, o));
     const r = clientes.desinstalarInstrucciones(c, o);
     if (r) out(`  instrucciones (${r.ruta}): ${r.estado}${r.respaldo ? ` (respaldo: ${r.respaldo})` : ""}`);
+    if (skill.CLIENTES_CON_CARPETA.includes(c)) {
+      const k = skill.quitarSkill(c, { dryRun: dry });
+      if (k.estado !== "no estaba") out(`  skill (${k.ruta}): ${k.estado}${k.detalle ? `. ${k.detalle}` : ""}${k.respaldo ? ` (respaldo: ${k.respaldo})` : ""}`);
+    }
   }
   if (op["borrar-datos"]) {
     if (dry) out(`Se borraría ${carpetaBase()}`);
@@ -224,6 +283,24 @@ async function cmdDesinstalar(op) {
   } else out(`Los datos se conservan en ${carpetaBase()} (bórralos con --borrar-datos).`);
   if (!dry) out("Reinicia los clientes abiertos.");
   return 0;
+}
+
+function cmdSkill({ op }) {
+  const dry = !!op["dry-run"];
+  if (op.zip) {
+    const ruta = skill.escribirZip(uno(op, "salida") ?? process.cwd(), { dryRun: dry });
+    out(skill.instruccionesZip(ruta));
+    if (dry) out("\n(simulación: no se escribió el archivo)");
+    return 0;
+  }
+  const fallas = skill.verificarFuente();
+  out(`Skill ${skill.SKILL_NOMBRE} (viaja en el paquete ${VERSION}): ${skill.carpetaFuente()}${fallas.length ? `\n  PROBLEMAS: ${fallas.join("; ")}` : ""}`);
+  out("");
+  for (const c of skill.CLIENTES_CON_CARPETA) { const e = skill.estadoSkill(c); out(`  ${c.padEnd(15)} ${TXT_SKILL[e.estado]}  ${e.ruta}`); }
+  out("  claude-desktop  carga manual y opcional (no hay carpeta): npx leyes-mx skill --zip");
+  out("");
+  out("Se instala con: npx leyes-mx instalar (en Claude Code y Codex). Se quita con: npx leyes-mx desinstalar.");
+  return fallas.length ? 1 : 0;
 }
 
 // ------------------------------------------------------------------ doctor
@@ -275,16 +352,25 @@ async function cmdDoctor() {
       const t0 = Date.now();
       const res = new Indice(alm).buscar("impuesto", { limite: 1, anioDefecto: alm.anioPorDefecto() });
       res.length ? ok(`búsqueda de prueba correcta (índice en ${Date.now() - t0} ms)`) : fallo("la búsqueda de prueba no devolvió resultados");
+      const g = Glosario.diagnosticar(d.raiz);
+      if (!g.existe) aviso("sin glosario.json: la búsqueda funciona, pero no amplía consultas con sinónimos (npx leyes-mx actualizar)");
+      else if (!g.valido) fallo(`glosario.json inválido: ${g.problemas.slice(0, 3).join("; ")}`);
+      else {
+        const amp = alm.glosario().expandir("actualizaciones");
+        amp.entradas.length ? ok(`glosario de sinónimos: ${g.entradas} entradas (versión ${g.version})`) : fallo("el glosario cargó pero no amplió la consulta de prueba");
+      }
     } catch (e) { fallo(`lectura/búsqueda: ${e.message}`); }
   }
 
   out("\nServidor MCP");
+  let servidorOk = false;
   if (d) {
-    try { const r = await autoprueba(); r.tools.length === 6 && r.ok ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
+    try { const r = await autoprueba(); servidorOk = r.tools.length === 6 && r.ok; servidorOk ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
     catch (e) { fallo(`el servidor no responde: ${e.message}`); }
   } else aviso("omitido (no hay datos)");
 
   out("\nClientes");
+  let desktopMotivo = null;
   for (const c of clientes.CLIENTES) {
     const e = clientes.estadoCliente(c);
     const ruta = clientes.rutaConfig(c);
@@ -292,14 +378,35 @@ async function cmdDoctor() {
     e === "registrado" ? ok(`${c}: ${txt}`) : e === "ilegible" || e === "distinto" ? fallo(`${c}: ${txt}`) : out(`  --     ${c}: ${txt}`);
     if (e === "registrado") {
       const cmd = clientes.comandoRegistrado(c);
-      if (cmd && path.isAbsolute(cmd) && !fs.existsSync(cmd)) fallo(`${c}: la ruta de npx registrada ya no existe (${cmd}). Suele pasar al cambiar o borrar la versión de Node. Corrige con: npx leyes-mx instalar --cliente ${c}`);
+      if (cmd && path.isAbsolute(cmd) && !fs.existsSync(cmd)) { if (c === "claude-desktop") desktopMotivo = "la ruta de npx que tiene registrada ya no existe (cambió la versión de Node)"; fallo(`${c}: la ruta de npx registrada ya no existe (${cmd}). Suele pasar al cambiar o borrar la versión de Node. Corrige con: npx leyes-mx instalar --cliente ${c}`); }
       else if (cmd && path.isAbsolute(cmd) && clientes.esRutaVersionada(cmd)) aviso(`${c}: la ruta de npx registrada incluye la versión de Node (${cmd}). Si cambias de versión, repite: npx leyes-mx instalar --cliente ${c}`);
     }
   }
 
+  out("\nSkill (complemento opcional)");
+  const fallasSkill = skill.verificarFuente();
+  fallasSkill.length ? fallo(`la skill del paquete tiene problemas: ${fallasSkill.join("; ")}`) : ok("la skill que trae el paquete es válida (formato Agent Skills, descripción de hasta 200 caracteres)");
+  for (const c of skill.CLIENTES_CON_CARPETA) {
+    const e = skill.estadoSkill(c);
+    if (e.estado === "al-dia") ok(`${c}: skill al día en ${e.ruta}`);
+    else if (e.estado === "ausente") out(`  --     ${c}: skill no instalada${clientes.detectar(c) ? " (npx leyes-mx instalar)" : ""}`);
+    else aviso(`${c}: skill ${TXT_SKILL[e.estado]} (${e.ruta})`);
+  }
+  out("  --     claude-desktop: la skill es opcional y se carga a mano (npx leyes-mx skill --zip); el servidor funciona sin ella");
+
   out("\nRed (solo para actualizar)");
   try { const m = await datos.leerManifest(datos.urlManifest(), { timeoutMs: 8000 }); const v = versionActual(); ok(`manifest accesible, última publicada ${m.version}${v && datos.compararVersiones(m.version, v) > 0 ? " (hay actualización: npx leyes-mx actualizar)" : ""}`); }
   catch (e) { aviso(`sin acceso al manifest (${e.message}); la consulta local funciona sin conexión`); }
+
+  // una línea para quien no es técnico: ¿quedó listo Claude Desktop?
+  out("\nResumen");
+  if (!clientes.detectar("claude-desktop")) out("  Claude Desktop: no lo encontré en este equipo. Si lo usas, ábrelo una vez y corre: npx leyes-mx instalar");
+  else {
+    const e = clientes.estadoCliente("claude-desktop");
+    const motivo = desktopMotivo ?? (e !== "registrado" ? (e === "ausente" ? "todavía no está conectado" : e === "distinto" ? "hay otro servidor con el nombre leyes-mx" : e === "ilegible" ? "no se pudo leer su configuración" : "la entrada es manual") : !d ? "no hay datos de las leyes instalados" : !servidorOk ? "el servidor no respondió" : null);
+    out(motivo ? `  Claude Desktop: NO está listo (${motivo}). Solución: npx leyes-mx instalar --cliente claude-desktop`
+      : `  Claude Desktop: LISTO. Ciérralo por completo, ábrelo de nuevo y pregunta: "${PRUEBA_SUGERIDA}" (debe citar la ley, el artículo y la vigencia).`);
+  }
 
   out(fallos ? `\n${fallos} problema(s). Corrige los FALLO y repite.` : "\nTodo en orden.");
   return fallos ? 1 : 0;
@@ -323,7 +430,7 @@ async function cmdObtener({ pos, op }) {
   const anio = entero(op, "anio");
   const f = a.obtenerArticulo(ley, articulo, { anio: anio ?? null, incluirProyectos: !!op["incluir-proyectos"] });
   if (!f) {
-    err(`NO VERIFICADO: ${ley.toUpperCase()} art. ${articulo} no está en la base (año ${anio ?? a.anioPorDefecto(ley)}). No se inventa texto: consultar la fuente oficial (DOF / diputados.gob.mx).`);
+    err(noEncontrado(`${ley.toUpperCase()} art. ${articulo} (año ${anio ?? a.anioPorDefecto(ley)})`));
     return 1;
   }
   if (op.json) out(JSON.stringify(f, null, 2)); else imprimirFicha(f);
@@ -336,11 +443,14 @@ async function cmdBuscar({ pos, op }) {
   const a = Almacen.abrir();
   const proy = !!op["incluir-proyectos"];
   const ley = uno(op, "ley") ?? null;
-  const r = new Indice(a, { proyectos: proy }).buscar(consulta, { ley, anio: entero(op, "anio") ?? null, incluirProyectos: proy, limite: entero(op, "limite") ?? 10, anioDefecto: a.anioPorDefecto(ley) });
-  if (op.json) { out(JSON.stringify(r, null, 2)); return r.length ? 0 : 1; }
-  if (!r.length) { out("Sin resultados (no verificado)."); return 1; }
+  const { resultados: r, ampliacion } = new Indice(a, { proyectos: proy }).buscarConDetalle(consulta, { ley, anio: entero(op, "anio") ?? null, incluirProyectos: proy,
+    limite: entero(op, "limite") ?? 10, anioDefecto: a.anioPorDefecto(ley), glosario: op["sin-glosario"] ? null : a.glosario() });
+  const amp = lineasAmpliacion(ampliacion);
+  if (op.json) { if (amp.length) err(amp.join("\n")); out(JSON.stringify(r, null, 2)); return r.length ? 0 : 1; }
+  if (amp.length) { out(amp.join("\n")); out(); }
+  if (!r.length) { out(noEncontrado(`resultados para ${JSON.stringify(consulta)}`)); return 1; }
   for (const x of r) {
-    const marca = x.estatus !== "vigente" && x.estatus !== "derogado" ? "  [PROYECTO, NO ES LEY VIGENTE]" : x.estatus === "derogado" ? "  [derogado]" : "";
+    const marca = (x.estatus !== "vigente" && x.estatus !== "derogado" ? "  [PROYECTO, NO ES LEY VIGENTE]" : x.estatus === "derogado" ? "  [derogado]" : "") + (x.relacionado_por_glosario ? "  [glosario]" : "");
     out(`${x.ley} art. ${x.articulo} | vigencia ${x.anio_vigencia} | última reforma DOF ${x.ultima_reforma_dof}${marca}`);
     out(`   ${x.fragmento}`);
   }
@@ -354,12 +464,12 @@ function cmdTarifa({ pos, op }) {
   if (!clave) {
     const lista = a.listarTarifas(anio);
     if (op.json) { out(JSON.stringify(lista, null, 2)); return lista.length ? 0 : 1; }
-    if (!lista.length) { err("NO VERIFICADO: no hay Anexo 8 de la RMF en la base local.\n"); return 1; }
+    if (!lista.length) { err(noEncontrado("el Anexo 8 de la RMF") + "\n"); return 1; }
     out(respuestaTarifas(lista));
     return 0;
   }
   const t = a.obtenerTarifa(clave, anio);
-  if (!t) { err(`NO VERIFICADO: la tarifa ${clave} del Anexo 8 no está en la base local. No se inventan cifras.\n`); return 1; }
+  if (!t) { err(noEncontrado(`la tarifa ${clave} del Anexo 8 de la RMF`) + "\n"); return 1; }
   if (t.ambiguo) { err(`La clave ${clave} corresponde a varias tarifas; usa el id exacto:\n${t.ambiguo.map((x) => `  ${x.id}  ${x.titulo}`).join("\n")}\n`); return 2; }
   out(op.json ? JSON.stringify(t, null, 2) : respuestaTarifa(t));
   return 0;
@@ -388,6 +498,7 @@ export async function main(argv) {
       case "desinstalar": return await cmdDesinstalar(op);
       case "estado": return await cmdEstado();
       case "doctor": return await cmdDoctor();
+      case "skill": return cmdSkill({ op });
       case "obtener": return await cmdObtener({ pos, op });
       case "tarifa": return cmdTarifa({ pos, op });
       case "buscar": return await cmdBuscar({ pos, op });

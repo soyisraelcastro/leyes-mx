@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { normalizarId, nombreArchivo, idDesdeArchivo, compararIds } from "./ids.js";
 import { leerConfig, resolverDatos } from "./rutas.js";
+import { Glosario } from "./glosario.js";
 
 export const AVISO_PROYECTO = "PROYECTO: este texto NO es ley vigente. Solo lo será si y cuando se publique en el DOF, " +
   "y a partir de la fecha que indique el decreto.";
@@ -52,6 +53,12 @@ export class Almacen {
     a.origen = d.origen;
     a.version = d.version;
     return a;
+  }
+
+  /** Glosario de sinónimos (glosario.json en la raíz de los datos). null si no existe o no es válido: la búsqueda funciona igual. */
+  glosario() {
+    if (this._glosario === undefined) this._glosario = Glosario.cargar(this.raiz);
+    return this._glosario;
   }
 
   anios() {

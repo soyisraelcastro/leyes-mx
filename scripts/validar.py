@@ -4,6 +4,7 @@
 Comprueba: front matter completo, nombres de archivo vs articulo, secuencia sin huecos ni repetidos,
 sin articulos vacios, conteo vs _meta.json y vs fuentes.json, sha256 consistente, y que nada con estatus
 distinto de vigente/derogado viva en leyes/ (ni nada vigente en proyectos/).
+Valida tambien glosario.json (cada articulo citado existe y su evidencia aparece en el texto).
 Con --pdf compara ademas el conteo contra una extraccion independiente del PDF (si esta en fuentes/).
 Uso: python3 scripts/validar.py [--anio 2026] [--ley LISR] [--json] [--pdf]
 """
@@ -17,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from leyes_mx import tablas as tablas_mod
 from leyes_mx import store  # noqa: E402
 from leyes_mx import anexos_validar  # noqa: E402
+from leyes_mx import glosario as glosario_mod  # noqa: E402
 from leyes_mx.ids import id_desde_archivo, clave_orden, partes_id, nombre_archivo, PALABRAS  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -186,10 +188,11 @@ def main():
                 informes.append(r)
     perr = validar_proyectos()
     aerr, aavisos = ([], []) if a.ley else anexos_validar.validar(RAIZ, a.pdf)
-    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr)
+    gerr, gavisos = ([], []) if a.ley else glosario_mod.validar(RAIZ)
+    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr)
     if a.json:
         print(json.dumps({"leyes": informes, "proyectos_errores": perr, "anexos_errores": aerr, "anexos_avisos": aavisos,
-                          "errores": total}, ensure_ascii=False, indent=2))
+                          "glosario_errores": gerr, "glosario_avisos": gavisos, "errores": total}, ensure_ascii=False, indent=2))
     else:
         for r in informes:
             estado = "OK" if not r["errores"] else "ERRORES"
@@ -204,6 +207,10 @@ def main():
             print("   ERROR anexos:", e)
         for w in aavisos:
             print("   aviso anexos:", w)
+        for e in gerr:
+            print("   ERROR glosario:", e)
+        for w in gavisos:
+            print("   aviso glosario:", w)
         print(f"\n{total} error(es)")
     return 1 if total else 0
 

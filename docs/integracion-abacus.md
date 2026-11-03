@@ -57,3 +57,7 @@ Requisitos en el VPS: `python3` (solo biblioteca estándar; SQLite con FTS5, que
 ```
 
 Código de salida 0 sin cambios, 1 hay cambios, 2 error; la salida es una o dos líneas de texto, aptas para mandar por Telegram. Con `--dry-run` no escribe nada.
+
+## Nota: el glosario y la skill son del paquete Node
+
+Abacus usa el motor de Python (`scripts/buscar.py`, SQLite FTS5). El **glosario de sinónimos** ([glosario.md](glosario.md)) y las mejoras de búsqueda que lo acompañan (palabras vacías, plurales) solo existen en el paquete npm; el motor de Python no los usa. En el `AGENTS.md` de Abacus conviene pedir al agente que reformule con los términos de la ley ("accesorios de las contribuciones", no "actualizaciones"), que lea el artículo completo con `obtener` antes de citar, que obtenga las tarifas de ISR con el Anexo 8, y que, si algo no está en la base, pregunte al usuario antes de buscar en internet.

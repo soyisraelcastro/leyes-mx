@@ -1,0 +1,169 @@
+{
+  "descripcion": "Preguntas como las haría una persona (o un asistente) y los artículos que deben aparecer dentro de los primeros N resultados de `buscar`, con el glosario cargado. Cada caso se verificó contra el texto de leyes/2026: en `por_que` va la frase de la ley que lo respalda. Para agregar uno: pregunta literal, artículos esperados con su top, y la frase de la ley.",
+  "casos": [
+    {
+      "pregunta": "fundamento para no deducir actualizaciones",
+      "esperados": [
+        { "ley": "LISR", "articulo": "28", "top": 3 },
+        { "ley": "CFF", "articulo": "17-A", "top": 10 },
+        { "ley": "CFF", "articulo": "21", "top": 10 }
+      ],
+      "por_que": "LISR 28 fr. I: \"los accesorios de las contribuciones, a excepción de los recargos\"; CFF 17-A: el monto de la actualización \"no será deducible ni acreditable\"; CFF 21: actualización y recargos por pago extemporáneo."
+    },
+    {
+      "pregunta": "tarifa mensual ISR",
+      "esperados": [{ "ley": "LISR", "articulo": "96", "top": 3 }],
+      "por_que": "La tarifa mensual está en el art. 96 de la LISR."
+    },
+    {
+      "pregunta": "tarifa anual de ISR para personas físicas",
+      "esperados": [{ "ley": "LISR", "articulo": "152", "top": 3 }],
+      "por_que": "La tarifa anual está en el art. 152 de la LISR."
+    },
+    {
+      "pregunta": "deducción de automóviles",
+      "esperados": [{ "ley": "LISR", "articulo": "36", "top": 3 }],
+      "por_que": "LISR 36 fr. II: \"Las inversiones en automóviles sólo serán deducibles hasta por un monto de $175,000.00\"."
+    },
+    {
+      "pregunta": "aguinaldo exento de ISR",
+      "esperados": [
+        { "ley": "LISR", "articulo": "93", "top": 5 },
+        { "ley": "LFT", "articulo": "87", "top": 3 }
+      ],
+      "por_que": "LFT 87 fija el aguinaldo (quince días de salario); LISR 93 fr. XIV exime las \"gratificaciones\" hasta 30 días de salario mínimo (la palabra aguinaldo no está en la LISR)."
+    },
+    {
+      "pregunta": "plazo para presentar declaración anual personas físicas",
+      "esperados": [{ "ley": "LISR", "articulo": "150", "top": 3 }],
+      "por_que": "LISR 150: la declaración \"presentarán en el mes de abril del año siguiente\"."
+    },
+    {
+      "pregunta": "plazo para presentar la declaración anual de personas morales",
+      "esperados": [{ "ley": "LISR", "articulo": "9", "top": 3 }],
+      "por_que": "LISR 9: \"dentro de los tres meses siguientes a la fecha en la que termine el ejercicio fiscal\"."
+    },
+    {
+      "pregunta": "PTU reparto de utilidades a trabajadores plazo",
+      "esperados": [
+        { "ley": "LFT", "articulo": "122", "top": 3 },
+        { "ley": "LFT", "articulo": "117", "top": 5 }
+      ],
+      "por_que": "LFT 122: el reparto se efectúa \"dentro de los sesenta días siguientes a la fecha en que deba pagarse el impuesto anual\"; LFT 117: el derecho a participar en las utilidades."
+    },
+    {
+      "pregunta": "RESICO personas físicas",
+      "esperados": [{ "ley": "LISR", "articulo": "113-E", "top": 5 }],
+      "por_que": "LISR 113-E: las personas físicas \"podrán optar por pagar el impuesto sobre la renta en los términos establecidos en esta Sección\" (sección del Régimen Simplificado de Confianza)."
+    },
+    {
+      "pregunta": "cómo cancelar una factura",
+      "esperados": [{ "ley": "CFF", "articulo": "29-A", "top": 5 }],
+      "por_que": "CFF 29-A: los comprobantes fiscales digitales por Internet \"se podrán cancelar a más tardar en el mes en el cual se deba presentar la declaración anual\"."
+    },
+    {
+      "pregunta": "cuántos días de vacaciones le corresponden a un trabajador",
+      "esperados": [{ "ley": "LFT", "articulo": "76", "top": 3 }],
+      "por_que": "LFT 76: \"un periodo anual de vacaciones pagadas, que en ningún caso podrá ser inferior a doce días laborables\"."
+    },
+    {
+      "pregunta": "prima vacacional",
+      "esperados": [{ "ley": "LFT", "articulo": "80", "top": 3 }],
+      "por_que": "LFT 80: \"una prima no menor de veinticinco por ciento sobre los salarios\" del periodo de vacaciones."
+    },
+    {
+      "pregunta": "horas extras cuánto se pagan",
+      "esperados": [{ "ley": "LFT", "articulo": "66", "top": 3 }],
+      "por_que": "LFT 66: el trabajo extraordinario se paga con \"un cien por ciento más de lo fijado para las horas ordinarias\" y no excede de doce horas a la semana."
+    },
+    {
+      "pregunta": "IVA acreditable requisitos",
+      "esperados": [{ "ley": "LIVA", "articulo": "5", "top": 3 }],
+      "por_que": "LIVA 5: \"Para que sea acreditable el impuesto al valor agregado deberán reunirse los siguientes requisitos\"."
+    },
+    {
+      "pregunta": "retención de IVA",
+      "esperados": [{ "ley": "LIVA", "articulo": "1-A", "top": 3 }],
+      "por_que": "LIVA 1-A: \"Están obligados a efectuar la retención del impuesto que se les traslade\"."
+    },
+    {
+      "pregunta": "devolución de saldo a favor",
+      "esperados": [{ "ley": "CFF", "articulo": "22", "top": 5 }],
+      "por_que": "CFF 22: \"Las autoridades fiscales devolverán las cantidades pagadas indebidamente y las que procedan conforme a las leyes fiscales\"."
+    },
+    {
+      "pregunta": "venta de casa habitación exenta de ISR",
+      "esperados": [{ "ley": "LISR", "articulo": "93", "top": 5 }],
+      "por_que": "LISR 93 fr. XIX: exenta la enajenación de la casa habitación si la contraprestación \"no exceda de setecientas mil unidades de inversión\"."
+    },
+    {
+      "pregunta": "dividendos tasa adicional 10%",
+      "esperados": [{ "ley": "LISR", "articulo": "140", "top": 3 }],
+      "por_que": "LISR 140: \"tasa adicional del 10% sobre los dividendos o utilidades distribuidos\"."
+    },
+    {
+      "pregunta": "pagos provisionales fecha límite día 17",
+      "esperados": [
+        { "ley": "LISR", "articulo": "14", "top": 5 },
+        { "ley": "LISR", "articulo": "106", "top": 5 }
+      ],
+      "por_que": "LISR 14 y 106: pagos provisionales mensuales \"a más tardar el día 17 del mes inmediato posterior\"."
+    },
+    {
+      "pregunta": "outsourcing subcontratación de personal",
+      "esperados": [
+        { "ley": "LFT", "articulo": "12", "top": 3 },
+        { "ley": "LFT", "articulo": "13", "top": 5 }
+      ],
+      "por_que": "LFT 12: \"Queda prohibida la subcontratación de personal\"; LFT 13 permite la de servicios especializados."
+    },
+    {
+      "pregunta": "lista negra del SAT facturas falsas EFOS",
+      "esperados": [{ "ley": "CFF", "articulo": "69-B", "top": 3 }],
+      "por_que": "CFF 69-B: contribuyentes \"emitiendo comprobantes sin contar con los activos, personal, infraestructura o capacidad material\"."
+    },
+    {
+      "pregunta": "cuánto tiempo hay que guardar las facturas y la contabilidad",
+      "esperados": [{ "ley": "CFF", "articulo": "30", "top": 3 }],
+      "por_que": "CFF 30: la documentación \"deberá conservarse durante un plazo de cinco años\"."
+    },
+    {
+      "pregunta": "gastos no deducibles",
+      "esperados": [
+        { "ley": "LISR", "articulo": "28", "top": 3 },
+        { "ley": "LISR", "articulo": "27", "top": 5 }
+      ],
+      "por_que": "LISR 28: \"no serán deducibles\" (lista); LISR 27: requisitos de las deducciones."
+    },
+    {
+      "pregunta": "home office obligaciones del patrón",
+      "esperados": [{ "ley": "LFT", "articulo": "330-E", "top": 5 }],
+      "por_que": "LFT 330-E: en teletrabajo el patrón debe \"Proporcionar, instalar y encargarse del mantenimiento de los equipos necesarios\"."
+    },
+    {
+      "pregunta": "ISR de choferes de Uber y plataformas digitales",
+      "esperados": [{ "ley": "LISR", "articulo": "113-A", "top": 5 }],
+      "por_que": "LISR 113-A: personas físicas que \"presten servicios a través de Internet, mediante plataformas tecnológicas, aplicaciones informáticas\"."
+    },
+    {
+      "pregunta": "despido injustificado indemnización",
+      "esperados": [{ "ley": "LFT", "articulo": "48", "top": 5 }],
+      "por_que": "LFT 48: el trabajador puede pedir que \"se le indemnice con el importe de tres meses de salario\"."
+    },
+    {
+      "pregunta": "pérdidas fiscales en cuántos años se pueden aplicar",
+      "esperados": [{ "ley": "LISR", "articulo": "57", "top": 3 }],
+      "por_que": "LISR 57: la pérdida fiscal \"podrá disminuirse de la utilidad fiscal de los diez ejercicios siguientes\"."
+    },
+    {
+      "pregunta": "renta de casa ISR persona física deducción ciega",
+      "esperados": [{ "ley": "LISR", "articulo": "115", "top": 5 }],
+      "por_que": "LISR 115: quienes otorguen el uso o goce temporal de inmuebles \"podrán optar por deducir el 35% de los ingresos\"."
+    },
+    {
+      "pregunta": "deducción de gasolina",
+      "esperados": [{ "ley": "LISR", "articulo": "27", "top": 5 }],
+      "por_que": "LISR 27 fr. III: requisitos de pago para \"la adquisición de combustibles para vehículos marítimos, aéreos y terrestres\"."
+    }
+  ]
+}

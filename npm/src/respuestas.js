@@ -1,6 +1,15 @@
 // Redacción de las respuestas pensadas para un modelo de lenguaje y paginado de textos grandes.
 import { AVISO_GENERAL, AVISO_PROYECTO } from "./almacen.js";
 
+/** Qué hacer cuando algo no está en la base. Va dentro del RESULTADO de las herramientas para que funcione en cualquier cliente. */
+export const PERMISO_INTERNET = "Pregunta al usuario si desea que lo busques en internet; no busques sin su permiso. Si lo autoriza, usa solo fuentes oficiales " +
+  "(DOF, SAT, Cámara de Diputados) y di claramente que ese dato no proviene de la base verificada de leyes-mx. No completes el texto, los porcentajes ni los montos de memoria.";
+
+/** `que`: lo que no apareció, por ejemplo "LISR art. 9999". `detalle`: dato útil adicional (opcional). */
+export function noEncontrado(que, detalle = "") {
+  return `NO VERIFICADO: No encontré ${que} en la base local de leyes-mx.${detalle ? ` ${detalle}` : ""} ${PERMISO_INTERNET}`;
+}
+
 export const TAM_PAGINA = 40000; // caracteres por respuesta; por debajo de los límites de salida habituales de los clientes MCP
 
 /** Parte el texto en páginas de hasta `tam` caracteres, cortando en saltos de párrafo (o duro si un párrafo es enorme). */
@@ -61,15 +70,33 @@ export function respuestaTransitorios(t, pagina = 1) {
   return conPaginas(cab, t.texto, pagina, `obtener_transitorios(ley="${t.ley}"`, "");
 }
 
-export function respuestaBusqueda(consulta, res, { incluirProyectos, anio }) {
+/** Líneas que declaran, sin esconder nada, cómo el glosario cambió la consulta. Vacío si no hubo ampliación. */
+export function lineasAmpliacion(amp) {
+  if (!amp?.entradas?.length) return [];
+  const l = [];
+  const ids = (xs) => xs.map((e) => e.id).join(", ");
+  if (amp.agregados.length) l.push(`Se amplió la consulta con: ${amp.agregados.join("; ")} (glosario: ${ids(amp.entradas.filter((e) => e.agregados.length))}).`);
+  const sust = amp.entradas.filter((e) => e.sustituye.length);
+  if (sust.length) l.push(`Se sustituyó ${[...new Set(sust.flatMap((e) => e.sustituye))].map((t) => JSON.stringify(t)).join(", ")} por su nombre en la ley (glosario: ${ids(sust)}).`);
+  const rel = [...new Set(amp.entradas.filter((e) => e.relacionar).flatMap((e) => e.articulos.map((a) => `${a.ley} ${a.articulo}`)))];
+  if (rel.length) l.push(`Artículos que el glosario relaciona con el tema (marcados [glosario]): ${rel.join(", ")}.`);
+  for (const e of amp.entradas) l.push(`Nota del glosario (${e.id}): ${e.nota}`);
+  l.push("Para buscar solo con tus palabras: glosario=false (CLI: --sin-glosario).");
+  return l;
+}
+
+export function respuestaBusqueda(consulta, res, { incluirProyectos, anio, ampliacion = null } = {}) {
+  const amp = lineasAmpliacion(ampliacion);
   if (!res.length) {
-    return `Sin resultados para ${JSON.stringify(consulta)}. NO VERIFICADO: no se encontró en la base local; no se completa de memoria. ` +
-      "Si es un artículo conocido usa obtener_articulo; si no, consulta la fuente oficial (DOF, diputados.gob.mx).";
+    return noEncontrado(`resultados para ${JSON.stringify(consulta)}`, "Antes de preguntar al usuario, prueba una vez más: si es un artículo conocido usa obtener_articulo; si no, reformula con los términos de la ley " +
+      "(por ejemplo \"accesorios de las contribuciones\" en lugar de \"actualizaciones\") o acota con el parámetro ley.") + (amp.length ? "\n\n" + amp.join("\n") : "");
   }
-  const l = [`${res.length} resultado(s) para ${JSON.stringify(consulta)} (búsqueda por palabras clave, ordenados por relevancia)${incluirProyectos ? "; incluye proyectos" : "; solo ley vigente"}:`, ""];
+  const l = [`${res.length} resultado(s) para ${JSON.stringify(consulta)} (búsqueda por palabras clave, ordenados por relevancia)${incluirProyectos ? "; incluye proyectos" : "; solo ley vigente"}:`];
+  if (amp.length) l.push("", ...amp);
+  l.push("");
   res.forEach((r, i) => {
     const marca = r.estatus === "proyecto" || (r.estatus !== "vigente" && r.estatus !== "derogado") ? " [PROYECTO, NO ES LEY VIGENTE]" : r.estatus === "derogado" ? " [derogado]" : "";
-    l.push(`${i + 1}. ${r.ley} art. ${r.articulo} | vigencia ${r.anio_vigencia} | última reforma DOF ${r.ultima_reforma_dof ?? "sin dato"}${marca}`);
+    l.push(`${i + 1}. ${r.ley} art. ${r.articulo} | vigencia ${r.anio_vigencia} | última reforma DOF ${r.ultima_reforma_dof ?? "sin dato"}${marca}${r.relacionado_por_glosario ? " [glosario]" : ""}`);
     l.push(`   ${r.fragmento}`);
   });
   l.push("", "Son fragmentos. Para citar, pide el artículo completo con obtener_articulo.", AVISO_GENERAL);
@@ -113,7 +140,7 @@ export function respuestaTarifa(t) {
 }
 
 export function respuestaTarifas(lista) {
-  if (!lista.length) return "NO VERIFICADO: no hay Anexo 8 de la RMF en la base local.";
+  if (!lista.length) return noEncontrado("el Anexo 8 de la RMF");
   const filas = lista.map((x) => `${String(x.apartado).padEnd(7)} ${String(x.id).padEnd(38)} ${x.titulo}`);
   return [`${lista[0].documento} | DOF ${lista[0].publicado_dof} | vigencia ${lista[0].anio_vigencia} | ${lista.length} tarifas`, "", ...filas,
     "", "Para una tarifa concreta usa obtener_tarifa con el id exacto (o el apartado cuando es único, p. ej. B-V mensual, C-II anual)."].join("\n");
