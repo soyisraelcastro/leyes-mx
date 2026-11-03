@@ -42,7 +42,7 @@ npx leyes-mx tarifa B-V          # mensual; C-II es la anual; sin argumento list
 npx leyes-mx reforma             # estado de la reforma en trámite
 ```
 
-Agrega `--json` para salida estructurada y `--sin-glosario` para no ampliar la consulta. Si el comando no existe o no hay datos, sugiere `npx leyes-mx instalar` (necesita Node 20 o superior) y avisa que mientras tanto el dato es "no verificado".
+Agrega `--json` para salida estructurada y `--sin-glosario` para no ampliar la consulta. Si el comando no existe o no hay datos, ofrece ejecutar `npx leyes-mx instalar` (necesita Node 20 o superior; si falta Node, instálalo tú con el método propio del sistema del usuario) y avisa que mientras tanto el dato es "no verificado".
 
 ## Tarifas de ISR
 

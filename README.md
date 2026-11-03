@@ -28,7 +28,7 @@ npx leyes-mx skill --zip    # skill para cargar a mano en Claude Desktop (opcion
 npx leyes-mx desinstalar
 ```
 
-Requiere Node 20 o superior. Qué clientes sí y cuáles no (Claude web y ChatGPT web quedan fuera por ahora; la extensión `.mcpb` para quien no tiene Node): [docs/clientes.md](docs/clientes.md). Detalle, arquitectura de datos y cómo publicar: [docs/npx.md](docs/npx.md) y [npm/README.md](npm/README.md). La landing con instrucciones por cliente está en `sitio/` (Astro, para Vercel).
+Necesita Node 20 o superior; si falta, pídele a tu asistente que lo instale (mensaje listo para pegar en [docs/clientes.md](docs/clientes.md)). Qué clientes sí y cuáles no (Claude web y ChatGPT web quedan fuera por ahora; la extensión `.mcpb` para quien no tiene Node): [docs/clientes.md](docs/clientes.md). Detalle, arquitectura de datos y cómo publicar: [docs/npx.md](docs/npx.md) y [npm/README.md](npm/README.md). La landing con instrucciones por cliente está en `sitio/` (Astro, para Vercel).
 
 ### Para que el asistente lo use solo
 

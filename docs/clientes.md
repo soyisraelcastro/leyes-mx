@@ -14,11 +14,18 @@ Pensado para quien no es técnico (contadores, abogados). Verificado en document
 
 **Claude web y ChatGPT web quedan fuera por ahora**, porque piden un servidor remoto. Lo habilitaría una futura API o servidor MCP hospedado sobre las mismas funciones (ya está en la hoja de ruta del README); implica operar un servicio y decidir autenticación y costos, y los textos siguen siendo públicos, así que el riesgo de privacidad es bajo.
 
-## Quien no tiene Node
+## Quien no tiene Node: que lo resuelva el asistente
 
-`npx leyes-mx instalar` necesita Node 20 o superior en la terminal. Sin Node, el comando ni siquiera llega a ejecutarse: el intérprete de comandos responde que no encuentra `npx` y `leyes-mx` no puede dar un mensaje propio. Comprobado en macOS con un PATH sin Node: `zsh:1: command not found: npx` (código 127). En Windows el mensaje típico es "'npx' no se reconoce como un comando interno o externo" (no se probó aquí).
+La vía principal para un usuario no técnico no es instalar Node a mano. Es pedirle a su asistente que lo haga, en una app donde el asistente pueda ejecutar comandos (por ejemplo Claude Code o Codex, o una app de escritorio con acceso a la terminal). Basta pegar este mensaje:
 
-Hoy la guía para esa persona es: instalar Node LTS desde https://nodejs.org (instalador de un clic), abrir una terminal nueva y correr el comando. Para un contador eso ya es una barrera. La salida es la extensión de escritorio de abajo.
+```text
+Instala leyes-mx ejecutando "npx leyes-mx instalar". Si falta Node 20 o superior, instálalo primero con el método propio de mi sistema y vuelve a intentarlo. Al terminar, dime qué debo reiniciar y cómo comprobar que quedó listo.
+```
+
+Node queda como una nota ligera en la web, no como un paso del usuario. Lo que sí hay que tener claro:
+
+- Sin Node el comando no llega a ejecutarse y `leyes-mx` no puede dar un mensaje propio: el intérprete responde que no encuentra `npx` (comprobado en macOS con un PATH sin Node: `zsh:1: command not found: npx`, código 127; en Windows el mensaje típico es "'npx' no se reconoce como un comando interno o externo", no se probó). Por eso el mensaje de arriba le dice al asistente qué hacer cuando eso pasa.
+- Esto solo funciona donde el asistente puede ejecutar comandos. Un chat sin acceso a la terminal no puede correr `npx`; para ese caso sirve la extensión de escritorio de abajo.
 
 ## Extensión de escritorio (.mcpb) para Claude Desktop: viabilidad
 
