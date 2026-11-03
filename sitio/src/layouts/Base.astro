@@ -8,7 +8,6 @@ const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
 const canonical = new URL(ruta === "/" ? "/" : ruta.replace(/\/+$/, ""), Astro.site).toString();
 const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const enDocs = path === "/docs" || path.startsWith("/docs/");
-const icono = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='8' fill='%23f5f6f8'/%3E%3Cpath d='M9 8h4v20H9z' fill='%2310141b'/%3E%3Cpath d='M15 6h8a5 5 0 0 1 5 5v17' fill='none' stroke='%2310141b' stroke-width='3.5'/%3E%3Cpath d='M16 15h4v6h-4z' fill='%2300b4d6'/%3E%3C/svg%3E";
 ---
 <!doctype html>
 <html lang="es">
@@ -27,7 +26,7 @@ const icono = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
     <meta name="twitter:card" content="summary" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f5f6f8" />
-    <link rel="icon" href={icono} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
@@ -41,7 +40,6 @@ const icono = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
         </a>
         <nav class="nav-links" aria-label="Principal">
           <a href="/docs" aria-current={enDocs ? "page" : undefined}>Documentación</a>
-          <a class="oculto-movil" href={ABACUS}>Abacus</a>
           <a href={REPO}>GitHub</a>
         </nav>
       </div>
