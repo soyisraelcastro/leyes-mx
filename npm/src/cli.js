@@ -239,7 +239,7 @@ async function cmdInstalar(op) {
       out(`\nAviso: las apps de escritorio (${gui.join(" y ")}) no heredan el PATH de tu terminal, así que ${dry ? "se registraría" : "se registró"} la ruta completa de npx, que incluye la versión de Node:\n  ${cmd}\nSi cambias o borras esa versión de Node, la app dejará de encontrar el servidor. Cuando pase, repite: npx leyes-mx instalar --cliente ${gui[0]}\n(\"npx leyes-mx doctor\" también lo detecta).`);
     }
   }
-  if (!dry && lista.length) out(resumenParaPersonas(lista));
+  if (!dry && lista.length) out(resumenParaPersonas(lista, !resolverDatos()));
   else if (!dry) out("Verifica con: npx leyes-mx doctor");
   else out("\nVerifica con: npx leyes-mx doctor");
   return 0;
@@ -247,8 +247,9 @@ async function cmdInstalar(op) {
 
 /** Cierre de `instalar` en español llano para quien no es técnico: qué quedó, qué hacer ahora y cómo saber que funcionó. */
 export const PRUEBA_SUGERIDA = "¿Qué dice el artículo 28 de la LISR?";
-function resumenParaPersonas(lista) {
-  const l = ["", "----------------------------------------------------------------------", "Listo. Esto fue lo que pasó:", "  - Las leyes quedaron guardadas en tu equipo y verificadas; para consultarlas no se necesita internet."];
+function resumenParaPersonas(lista, sinDatos = false) {
+  const l = ["", "----------------------------------------------------------------------", "Listo. Esto fue lo que pasó:",
+    sinDatos ? "  - OJO: las leyes todavía no están descargadas (usaste --sin-datos). Descárgalas con: npx leyes-mx actualizar" : "  - Las leyes quedaron guardadas en tu equipo y verificadas; para consultarlas no se necesita internet."];
   const nombres = { "claude-desktop": "Claude Desktop", "claude-code": "Claude Code", codex: "Codex (y la app de escritorio de ChatGPT, que según la documentación de OpenAI comparte su configuración)", cursor: "Cursor" };
   l.push(`  - Quedó conectado con: ${lista.map((c) => nombres[c]).join("; ")}.`);
   l.push("", "Qué hacer ahora:");
