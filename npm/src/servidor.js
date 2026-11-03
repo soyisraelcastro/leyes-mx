@@ -8,12 +8,13 @@ import { respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, 
 import { VERSION } from "./version.js";
 
 const INSTRUCCIONES = [
-  "Base local de leyes fiscales y laborales de México (LISR, LIVA, CFF, LFT y reglamentos), un artículo por archivo, más las tarifas de ISR vigentes del Anexo 8 de la RMF.",
-  "Los artículos 96 y 152 de la LISR traen la tarifa de la ley; para calcular retenciones o el anual del ejercicio usa obtener_tarifa (Anexo 8), que es la actualizada.",
-  "Consúltala ANTES de buscar en internet. Para un artículo conocido usa obtener_articulo; para un tema usa buscar.",
-  "Cita siempre ley, artículo, año de vigencia y fecha de última reforma que devuelve la herramienta.",
-  "Si la herramienta dice que no existe, responde \"no verificado\"; no completes artículos de memoria.",
-  "Respeta las líneas ADVERTENCIA. Un proyecto de reforma NO es ley vigente hasta su publicación en el DOF.",
+  "Base local de leyes fiscales y laborales de México (LISR, LIVA, CFF, LFT y reglamentos), un artículo por archivo, más las tarifas de ISR vigentes del Anexo 8 de la RMF. Consúltala ANTES de buscar en internet.",
+  "Flujo: (1) reformula la pregunta con los términos de la ley, no con los del uso corriente (por ejemplo \"accesorios de las contribuciones\" y no \"actualizaciones\"; \"comprobante fiscal digital por Internet\" y no \"CFDI\"); (2) usa buscar, que es léxico y solo devuelve fragmentos; (3) lee SIEMPRE el artículo completo con obtener_articulo antes de afirmar nada, porque un fragmento puede omitir la excepción o la fracción que cambia la respuesta; (4) cita.",
+  "Cita siempre ley, artículo, fracción o párrafo (léelo del texto, no de memoria), año de vigencia y fecha de última reforma DOF que devuelve la herramienta. Un artículo derogado no aplica.",
+  "Las tarifas de ISR (mensual, anual, por periodos) se obtienen con obtener_tarifa (Anexo 8 de la RMF), nunca de la tabla de los arts. 96 y 152 de la LISR ni de memoria: esas cifras se actualizan cada año.",
+  "Respeta las líneas ADVERTENCIA. Un proyecto de reforma (por ejemplo la de 2027) NO es ley vigente hasta su publicación en el DOF: no lo presentes como vigente y, si lo mencionas, dilo y da la fecha de estado_reforma.",
+  "Si la herramienta dice que no existe o no encuentras el artículo, responde \"no verificado\" y dilo antes de ir a internet; no completes artículos, porcentajes ni montos de memoria. Si buscas fuera, solo en fuentes oficiales (diputados.gob.mx, dof.gob.mx, sat.gob.mx, gob.mx) y di que ese dato no salió de la base local.",
+  "La base no incluye reglas ni anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, ni la Ley del Seguro Social: de eso no hay dato local.",
 ].join(" ");
 
 function texto(t, extra = {}) {
@@ -39,7 +40,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("obtener_articulo", {
     title: "Obtener artículo",
-    description: "Devuelve el texto íntegro de un artículo de una ley o reglamento fiscal/laboral mexicano, con año de vigencia, fecha de última reforma, estatus y advertencias. Acepta \"113 E\", \"113-e\", \"28 bis\", \"32-B-bis\". Si el texto es muy extenso se entrega por páginas (parámetro pagina).",
+    description: "Devuelve el texto íntegro de un artículo de una ley o reglamento fiscal/laboral mexicano, con año de vigencia, fecha de última reforma, estatus y advertencias. Es la fuente para CITAR: úsala siempre después de buscar y antes de afirmar algo sobre un artículo, porque buscar solo da fragmentos. Cita ley, artículo, fracción, vigencia y última reforma tal como los devuelve. Acepta \"113 E\", \"113-e\", \"28 bis\", \"32-B-bis\". Si el texto es muy extenso se entrega por páginas (parámetro pagina). Si responde NO VERIFICADO, el artículo no está en la base: dilo así.",
     inputSchema: {
       ley: z.string().describe(leyDesc),
       articulo: z.string().describe("Número de artículo, por ejemplo \"28\", \"113-E\", \"28 bis\""),
@@ -66,7 +67,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("buscar", {
     title: "Buscar en las leyes",
-    description: "Búsqueda por palabras clave (sin acentos, por relevancia) en el texto de los artículos. Devuelve fragmentos; para citar pide el artículo completo con obtener_articulo. Por omisión solo ley vigente; los proyectos de reforma nunca se incluyen salvo que se pida.",
+    description: "Búsqueda léxica (palabras de la ley, sin acentos, por relevancia) en el texto de los artículos; no entiende el sentido. Reformula antes con los términos legales (\"accesorios de las contribuciones\", \"comprobante fiscal digital por Internet\", \"participación de los trabajadores en las utilidades\") y, si no sale, prueba sinónimos o la ley concreta con el parámetro ley. Un glosario de sinónimos amplía la consulta y la respuesta declara qué agregó y qué artículos relacionó. Devuelve fragmentos: NO cites a partir de ellos; pide el artículo completo con obtener_articulo. Por omisión solo ley vigente; los proyectos de reforma nunca se incluyen salvo que se pida y salen marcados como NO vigentes.",
     inputSchema: {
       consulta: z.string().describe("Palabras clave, por ejemplo \"recargos deducibles\""),
       ley: z.string().optional().describe(leyDesc),
@@ -87,7 +88,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("listar_leyes", {
     title: "Listar ordenamientos",
-    description: "Lista las leyes y reglamentos que hay en la base local, con año de vigencia, número de artículos y fecha de última reforma DOF. Sirve para saber qué cubre la base antes de afirmar que algo no existe.",
+    description: "Lista las leyes y reglamentos que hay en la base local, con año de vigencia, número de artículos y fecha de última reforma DOF. Úsala para saber qué cubre la base antes de decir que algo \"no está\" y para citar la fecha de última reforma.",
     inputSchema: { anio: z.number().int().optional().describe("Filtrar por año de vigencia (opcional)") },
     annotations: RO,
   }, envolver(({ anio }) => {
@@ -110,7 +111,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("obtener_tarifa", {
     title: "Obtener tarifa de ISR (Anexo 8 de la RMF)",
-    description: "Tarifas de ISR vigentes del Anexo 8 de la Resolución Miscelánea Fiscal (mensual, anual, por 7/10/15 días, bimestrales, etc.), con límites, cuota fija y porcentaje. Son las que se aplican en el ejercicio, no la tabla histórica de la ley. Sin parámetro `tarifa` lista las disponibles. Ejemplos: B-V (mensual 2026), C-II (anual 2026).",
+    description: "Tarifas de ISR vigentes del Anexo 8 de la Resolución Miscelánea Fiscal (mensual, anual, por 7/10/15 días, bimestrales, etc.), con límites, cuota fija y porcentaje. Úsala SIEMPRE para cualquier cálculo o cita de tarifa de ISR: son las que se aplican en el ejercicio, no la tabla histórica de los arts. 96 y 152 de la LISR, y no se citan de memoria. Cita el apartado y la fecha de publicación en el DOF. Sin parámetro `tarifa` lista las disponibles. Ejemplos: B-V (mensual 2026), C-II (anual 2026).",
     inputSchema: {
       tarifa: z.string().optional().describe("Id exacto o apartado, por ejemplo \"B-V\", \"C-II\", \"B-IV-15-dias\". Omitir para listar."),
       anio: z.number().int().optional().describe("Año de vigencia del anexo (por omisión, el más reciente)"),
@@ -130,7 +131,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("obtener_transitorios", {
     title: "Obtener transitorios",
-    description: "Devuelve los artículos transitorios de una ley (por decreto de reforma). Necesario, por ejemplo, para la gradualidad de la jornada laboral de la LFT. Se entrega por páginas si es extenso.",
+    description: "Devuelve los artículos transitorios de una ley (por decreto de reforma). Necesarios para saber desde cuándo y cómo aplica una reforma, por ejemplo la gradualidad de la jornada laboral de la LFT: consúltalos antes de afirmar que una reforma ya aplica. Se entrega por páginas si es extenso.",
     inputSchema: {
       ley: z.string().describe(leyDesc),
       anio: z.number().int().optional().describe(anioDesc),

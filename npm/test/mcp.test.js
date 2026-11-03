@@ -23,6 +23,18 @@ test("initialize y tools/list", async () => {
   for (const t of tools) assert.equal(t.annotations.readOnlyHint, true);
 });
 
+test("las instrucciones y descripciones guían al modelo: reformular, artículo completo, cita, tarifas, proyectos, no verificado, fuentes oficiales", async () => {
+  const i = c.getInstructions();
+  for (const re of [/términos de la ley/, /obtener_articulo/, /fracción/, /vigencia/, /última reforma/, /obtener_tarifa/, /NO es ley vigente/, /no verificado/, /antes de ir a internet/, /fuentes oficiales/]) assert.match(i, re);
+  const { tools } = await c.listTools();
+  const d = Object.fromEntries(tools.map((t) => [t.name, t.description]));
+  assert.match(d.buscar, /Reformula/);
+  assert.match(d.buscar, /NO cites a partir de ellos/);
+  assert.match(d.obtener_articulo, /fuente para CITAR/);
+  assert.match(d.obtener_tarifa, /SIEMPRE/);
+  assert.ok(!/[\u2014\u00ab\u00bb]/.test(i + Object.values(d).join("")));
+});
+
 test("obtener_articulo: cita, variantes y advertencia de la LFT", async () => {
   const r = await c.callTool({ name: "obtener_articulo", arguments: { ley: "lisr", articulo: "113 e" } });
   const t = txt(r);
