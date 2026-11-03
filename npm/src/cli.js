@@ -258,7 +258,7 @@ function resumenParaPersonas(lista, sinDatos = false) {
   if (lista.some((c) => c !== "claude-desktop")) l.push(`  ${n++}. Cierra y abre de nuevo las sesiones que tengas abiertas de ${lista.filter((c) => c !== "claude-desktop").map((c) => nombres[c].split(" (")[0]).join(", ")}.`);
   l.push(`  ${n++}. Abre una conversación nueva y pega esta pregunta de prueba:`, "", `       ${PRUEBA_SUGERIDA}`, "",
     "Si funcionó: la respuesta cita la ley, el artículo y la vigencia (por ejemplo \"LISR art. 28, vigencia 2026, última reforma DOF 2024-04-01\") y la app muestra que usó \"leyes-mx\".",
-    "Si responde sin citar eso o no menciona leyes-mx, corre: npx leyes-mx doctor (te dice en una línea si Claude Desktop quedó listo y qué falta).",
+    "Si responde sin citar eso o no menciona leyes-mx, corre: npx leyes-mx doctor (te dice en una línea si quedó listo y qué falta).",
     "Cuando algo no esté en la base, el asistente te preguntará si quieres que lo busque en internet; no lo hará sin tu permiso.",
     "----------------------------------------------------------------------");
   return l.join("\n");

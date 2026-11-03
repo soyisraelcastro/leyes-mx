@@ -37,6 +37,7 @@ const clientes = [
   <h1>Instalar</h1>
   <p class="bajada">El mismo comando sirve para todo; la pestaña solo cambia el cliente. La primera vez descarga los datos (unos 3 MB) y verifica su sha256 antes de activarlos.</p>
   <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} />
+  <p class="aviso-suave"><strong>Dónde ejecutarlo.</strong> En la Terminal de tu computadora, o en el modo Code de Claude Desktop, Claude Code o Codex, donde puedes decirle a tu asistente: "Instala leyes-mx ejecutando npx leyes-mx instalar. Si falta Node, instálalo primero." En el chat normal de Claude Desktop no sirve: ahí el comando corre en un equipo temporal en la nube, no en tu computadora, y no queda instalado donde lo necesitas.</p>
   <p class="peque">Necesita Node 20 o superior. Sin <code>--cliente</code>, detecta los clientes que tienes y los registra.</p>
 
   <h2>Por cliente</h2>
