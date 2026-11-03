@@ -1,0 +1,29 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import { leyes } from "../../lib/datos.mjs";
+const lista = leyes();
+const anios = [...new Set(lista.map((l) => l.anio))];
+---
+<Docs titulo="Qué leyes y años incluye" descripcion="Ordenamientos incluidos en leyes-mx, año de vigencia, número de artículos y fecha de la última reforma.">
+  <h1>Qué leyes y años incluye</h1>
+  <p class="bajada">Año de vigencia {anios.join(", ")}. La lista sale de los datos del repositorio en cada construcción del sitio.</p>
+  <div class="tabla-envoltura">
+    <table>
+      <caption class="solo-lectores">Ordenamientos incluidos</caption>
+      <thead><tr><th scope="col">Sigla</th><th scope="col">Ordenamiento</th><th scope="col">Año</th><th scope="col" class="der">Artículos</th><th scope="col">Última reforma DOF</th></tr></thead>
+      <tbody>
+        {lista.map((l) => (
+          <tr>
+            <th scope="row"><code>{l.sigla}</code></th>
+            <td>{l.nombre}{l.advertencias > 0 && <span class="marca-adv"> (con advertencias)</span>}</td>
+            <td>{l.anio}</td>
+            <td class="der">{l.articulos}</td>
+            <td>{l.reforma}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="peque">La fecha de última reforma es la que imprime el PDF de la Cámara de Diputados, no una verificación contra el DOF. Los reglamentos son los que publica la Cámara; revisa si existen versiones posteriores.</p>
+  <p>Además de estos ordenamientos, la base trae las <a href="/docs/tarifas">tarifas de ISR del Anexo 8 de la RMF</a> y el seguimiento de la <a href="/docs/reforma-2027">reforma 2027</a>, que es un proyecto y no ley vigente.</p>
+</Docs>

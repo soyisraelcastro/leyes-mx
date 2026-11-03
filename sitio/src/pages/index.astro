@@ -1,358 +1,171 @@
 ---
-import { leyes, reforma } from "../lib/datos.mjs";
+import Base from "../layouts/Base.astro";
+import Cmd from "../components/Cmd.astro";
+import HeroOndas from "../components/HeroOndas.astro";
+import VideoExplicativo from "../components/VideoExplicativo.astro";
+import { leyes, reforma, anexo8 } from "../lib/datos.mjs";
+import { REPO, ABACUS, COMANDO } from "../lib/constantes.mjs";
 
-const REPO = "https://github.com/soyisraelcastro/leyes-mx";
-const titulo = "leyes-mx: las leyes fiscales y laborales de México, en local, para tu asistente";
-const descripcion = "Un comando instala las leyes fiscales y laborales de México en tu equipo y las conecta a Claude Desktop, Claude Code, Codex o cualquier cliente MCP. El asistente consulta el texto local y cita ley, artículo, año y fecha de reforma.";
-const canonical = new URL("/", Astro.site).toString();
+const titulo = "leyes-mx: las leyes fiscales y laborales de México, con cita exacta, en tu asistente";
+const descripcion = "Un comando instala en tu equipo el texto de la LISR, LIVA, CFF, LFT y sus reglamentos. Tu asistente de IA cita ley, artículo, año de vigencia y fecha de reforma, sin depender de buscadores. Gratis y de código abierto.";
 
+// Cifras leídas de los datos del repo en cada build; nada se escribe a mano.
 const lista = leyes();
-const anios = [...new Set(lista.map((l) => l.anio))];
+const por = (s) => lista.find((l) => l.sigla === s);
+const total = lista.reduce((n, l) => n + l.articulos, 0);
+const anioVig = [...new Set(lista.map((l) => l.anio))].join(", ");
+const anexo = anexo8();
 const ref = reforma();
+const leyesBase = ["LISR", "LIVA", "CFF", "LFT"].map(por).filter(Boolean);
+const reglamentos = ["RLISR", "RLIVA", "RCFF"].map(por).filter(Boolean);
+const nombreCorto = { LISR: "Ley del Impuesto sobre la Renta", LIVA: "Ley del Impuesto al Valor Agregado", CFF: "Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo",
+  RLISR: "Reglamento de la Ley del ISR", RLIVA: "Reglamento de la Ley del IVA", RCFF: "Reglamento del Código Fiscal" };
 
-const instalarTodo = "npx leyes-mx instalar";
-const jsonGenerico = `{
-  "mcpServers": {
-    "leyes-mx": {
-      "command": "npx",
-      "args": ["-y", "leyes-mx", "servir"]
-    }
-  }
-}`;
-const toml = `[mcp_servers.leyes-mx]
-command = "npx"
-args = ["-y", "leyes-mx", "servir"]
-startup_timeout_sec = 60`;
-const claudeCodeManual = "claude mcp add --transport stdio --scope user leyes-mx -- npx -y leyes-mx servir";
-
-const clientes = [
-  { id: "claude-desktop", nombre: "Claude Desktop", cmd: "npx leyes-mx instalar --cliente claude-desktop",
-    nota: "Escribe el servidor en claude_desktop_config.json (con respaldo del archivo y sin tocar tus otros servidores). Después sal de Claude Desktop por completo y vuelve a abrirlo.",
-    manual: { etiqueta: "A mano, en claude_desktop_config.json", codigo: jsonGenerico },
-    extra: "Las apps de escritorio heredan un PATH reducido y a veces no encuentran npx (sobre todo con nvm). El instalador escribe la ruta completa de npx para evitarlo." },
-  { id: "claude-code", nombre: "Claude Code", cmd: "npx leyes-mx instalar --cliente claude-code",
-    nota: "Registra el servidor con alcance de usuario, disponible en todos tus proyectos. Usa claude mcp add si el comando existe; si no, escribe la configuración equivalente.",
-    manual: { etiqueta: "O directamente con la CLI de Claude Code", codigo: claudeCodeManual } },
-  { id: "codex", nombre: "Codex", cmd: "npx leyes-mx instalar --cliente codex",
-    nota: "Agrega una tabla al archivo config.toml de Codex (~/.codex/config.toml), sin tocar el resto.",
-    manual: { etiqueta: "A mano, en config.toml", codigo: toml } },
-  { id: "otro", nombre: "Otro cliente MCP", cmd: "npx leyes-mx instalar --cliente cursor",
-    nota: "Para Cursor hay registro automático (comando de arriba). Para cualquier otro cliente que hable MCP por stdio, agrega este bloque en su configuración.",
-    manual: { etiqueta: "Bloque genérico", codigo: jsonGenerico } },
+const problemas = [
+  { t: "Cita completa, no “según la ley”", d: "Cada respuesta trae la ley, el artículo, el año de vigencia y la fecha de la última reforma. Puedes comprobarla contra el texto oficial." },
+  { t: "Sin depender de un buscador", d: "El asistente lee el texto instalado en tu equipo, no resultados que cambian cada vez. La misma pregunta da el mismo artículo. Si no está, responde “no verificado” en lugar de citar de memoria." },
+  { t: "2026 no se confunde con 2027", d: "Los textos van separados por año de vigencia. Un proyecto en trámite nunca se presenta como ley vigente: si se pide, sale rotulado como proyecto." },
+  { t: "Tarifas que el PDF publica como imagen", d: "Las tarifas de los arts. 96 y 152 de la LISR vienen transcritas y verificadas con aritmética, junto con las 31 tarifas del Anexo 8 de la RMF 2026 que se aplican este año." },
+  { t: "Local, gratis y abierto", d: "Se instala con un comando, funciona sin conexión una vez instalado y el código es abierto (MIT). Los datos se verifican con su sha256 antes de activarse." },
 ];
 
-const bloques = {
-  actualizar: "npx leyes-mx actualizar",
-  estado: "npx leyes-mx estado",
-  doctor: "npx leyes-mx doctor",
-  obtener: "npx leyes-mx obtener LISR 28",
-  buscar: 'npx leyes-mx buscar "recargos deducibles" --ley LISR',
-  desinstalar: "npx leyes-mx desinstalar",
-};
+const indice = [
+  { t: "Qué es leyes-mx", d: "Una biblioteca de las leyes en tu equipo, que tu asistente puede consultar." },
+  { t: "Primero la base local, luego internet", d: "Cómo el asistente busca el artículo en tu equipo antes de recurrir a la web." },
+  { t: "Qué pasa con las reformas", d: "Qué es proyecto y qué es ley vigente, y cómo se marca cada uno." },
+  { t: "Cómo se actualiza", d: "El comando que trae una reforma nueva y cómo volver a la versión anterior." },
+];
 ---
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{titulo}</title>
-    <meta name="description" content={descripcion} />
-    <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_MX" />
-    <meta property="og:title" content={titulo} />
-    <meta property="og:description" content={descripcion} />
-    <meta property="og:url" content={canonical} />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#0c0f0e" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0f0e'/%3E%3Cpath d='M7 9h18M7 16h18M7 23h12' stroke='%237fd19b' stroke-width='3'/%3E%3C/svg%3E" />
-  </head>
-  <body>
-    <a class="saltar" href="#contenido">Saltar al contenido</a>
-    <header class="barra">
-      <span class="marca"><span class="prompt" aria-hidden="true">$</span> leyes-mx</span>
-      <nav aria-label="Secciones">
-        <a href="#instalar">Instalar</a>
-        <a href="#actualizar">Actualizar</a>
-        <a href="#incluye">Qué incluye</a>
-        <a href="#reforma">Reforma 2027</a>
-        <a href={REPO}>Repositorio</a>
-      </nav>
-    </header>
+<Base titulo={titulo} descripcion={descripcion}>
+  <section class="hero" aria-labelledby="h-hero">
+    <HeroOndas />
+    <div class="wrap hero-in"><div class="hero-txt">
+      <p class="sobre">Gratis, de código abierto y en tu equipo</p>
+      <h1 id="h-hero">Las leyes de México, en tu asistente, con cita exacta.</h1>
+      <p class="lead">leyes-mx instala el texto de las leyes fiscales y laborales para que tu asistente de IA lo consulte, no lo invente. Un solo comando.</p>
+      <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} grande cursor />
+      <p class="nota">Necesita Node 20 o superior. Detecta qué asistentes tienes (Claude Desktop, Claude Code, Codex, Cursor) y los conecta. <a href="/docs/instalar">Ver instalación paso a paso</a>.</p>
+      <div class="acciones" style="margin-top:22px">
+        <a class="btn btn-primary" href="/docs">Leer la documentación</a>
+        <a class="btn btn-line" href={REPO}>Ver en GitHub</a>
+      </div>
+    </div></div>
+  </section>
 
-    <main id="contenido">
-      <section class="hero">
-        <p class="sobre">Base abierta · MCP · sin internet para consultar</p>
-        <h1>Las leyes, en tu equipo.<br />Tu asistente las consulta, no las inventa.</h1>
-        <p class="lead">leyes-mx instala el texto de las leyes fiscales y laborales de México, un archivo por artículo, y lo conecta a Claude Desktop, Claude Code, Codex o cualquier cliente que hable MCP. Un comando.</p>
-        <div class="cmd cmd-grande" data-bloque>
-          <pre><code><span class="prompt" aria-hidden="true">$ </span>{instalarTodo}</code></pre>
-          <button type="button" class="copiar" data-copiar={instalarTodo} aria-label={`Copiar el comando ${instalarTodo}`}>Copiar</button>
+  <section class="sec" aria-labelledby="h-problemas">
+    <div class="wrap">
+      <div class="sec-cab">
+        <p class="etq">Para qué sirve</p>
+        <h2 id="h-problemas">Un asistente que cita la ley como la citaría un colega.</h2>
+        <p>Cuando la IA busca la norma en internet puede traer una página vieja, otro año o un artículo que no existe. Con leyes-mx lee el texto y sabe de dónde salió.</p>
+      </div>
+      <div class="rejilla">
+        {problemas.map((p, i) => (
+          <article class="card">
+            <span class="num">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-docs">
+    <div class="wrap">
+      <div class="sec-cab">
+        <p class="etq">Qué incluye</p>
+        <h2 id="h-docs">Los documentos que más se consultan.</h2>
+        <p>Vigencia {anioVig}. Los conteos salen de los datos del repositorio.</p>
+      </div>
+
+      <h3 class="grupo">Leyes</h3>
+      <div class="rejilla docs-g">
+        {leyesBase.map((l) => (
+          <article class="card doc">
+            <span class="sigla">{l.sigla}</span>
+            <span class="nombre">{nombreCorto[l.sigla] ?? l.nombre}</span>
+            <span class="cifra"><strong>{l.articulos}</strong> artículos · reforma DOF {l.reforma}</span>
+          </article>
+        ))}
+      </div>
+
+      <h3 class="grupo">Reglamentos</h3>
+      <div class="rejilla docs-g">
+        {reglamentos.map((l) => (
+          <article class="card doc">
+            <span class="sigla">{l.sigla}</span>
+            <span class="nombre">{nombreCorto[l.sigla] ?? l.nombre}</span>
+            <span class="cifra"><strong>{l.articulos}</strong> artículos · reforma DOF {l.reforma}</span>
+          </article>
+        ))}
+      </div>
+
+      <h3 class="grupo">Tarifas y proyectos</h3>
+      <div class="rejilla docs-g">
+        {anexo && (
+          <article class="card doc">
+            <span class="sigla">Anexo 8 RMF {anexo.anio}</span>
+            <span class="nombre">Tarifas de ISR de pagos provisionales, retenciones y cálculo anual</span>
+            <span class="cifra"><strong>{anexo.tarifas}</strong> tarifas, verificadas con aritmética</span>
+          </article>
+        )}
+        {ref && (
+          <article class="card doc proyecto">
+            <span class="bdg warn">Proyecto, no es ley vigente</span>
+            <span class="sigla">Reforma {ref.anio}</span>
+            <span class="nombre">Paquete Económico en trámite. Va aparte y siempre rotulado como proyecto.</span>
+            <span class="cifra">Estado al {ref.actualizado}</span>
+          </article>
+        )}
+      </div>
+
+      <p class="total">En total, <strong>{total.toLocaleString("es-MX")}</strong> artículos con vigencia {anioVig}. <a href="/docs/leyes">Ver el detalle por ley y año</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-video">
+    <div class="wrap">
+      <div class="sec-cab">
+        <p class="etq">Video</p>
+        <h2 id="h-video">Cómo funciona y qué ganas al tenerlo.</h2>
+      </div>
+      <div class="video-grid">
+        <VideoExplicativo titulo="leyes-mx: cómo funciona y por qué conviene tenerlo" />
+        <div>
+          <p class="indice-tit">Lo que explicará el video</p>
+          <ol class="indice">
+            {indice.map((x) => <li><div><strong>{x.t}</strong><span>{x.d}</span></div></li>)}
+          </ol>
         </div>
-        <p class="peque">Necesita Node 20 o superior. Detecta qué clientes tienes y los registra; usa <code>--cliente</code> para elegir uno. <code>--dry-run</code> muestra qué haría sin escribir nada.</p>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section aria-labelledby="para-que">
-        <h2 id="para-que"><span class="num">01</span> Para qué sirve</h2>
-        <p>Cuando un asistente busca la ley en internet se topa con timeouts, páginas viejas o citas que no existen. Con leyes-mx lee el texto de un archivo local y sabe de dónde salió.</p>
-        <ul class="ledger">
-          <li><strong>Menos timeouts.</strong> Consultar es leer un archivo; funciona sin conexión una vez instalado.</li>
-          <li><strong>Menos citas inventadas.</strong> Si el artículo no está, la respuesta es "no verificado", no un texto de memoria.</li>
-          <li><strong>Reproducible.</strong> La misma consulta da el mismo texto, versionado por año de vigencia.</li>
-          <li><strong>Cita completa.</strong> Cada respuesta trae ley, artículo, año de vigencia y fecha de la última reforma.</li>
-          <li><strong>Proyecto no es ley.</strong> Lo que está en trámite se excluye por defecto y, si se pide, va marcado como no vigente.</li>
-        </ul>
-      </section>
-
-      <section id="instalar" aria-labelledby="h-instalar">
-        <h2 id="h-instalar"><span class="num">02</span> Instalar</h2>
-        <p>El mismo comando sirve para todo; la pestaña solo cambia el cliente. La primera vez descarga los datos (unos 3 MB) y verifica su sha256 antes de activarlos.</p>
-        <div class="tabs" data-tabs>
-          <div role="tablist" aria-label="Cliente" class="tablist">
-            {clientes.map((c, i) => (
-              <button type="button" role="tab" id={`tab-${c.id}`} aria-controls={`panel-${c.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>{c.nombre}</button>
-            ))}
+  <section class="sec" aria-labelledby="h-producto">
+    <div class="wrap">
+      <div class="sec-cab">
+        <p class="etq">Dos formas de usarlo</p>
+        <h2 id="h-producto">Dentro de Abacus, o en el asistente que ya usas.</h2>
+      </div>
+      <div class="producto">
+        <article class="card oscura">
+          <h3>Parte de Abacus</h3>
+          <p>leyes-mx será la base legal que Abacus, el asistente fiscal de TodoConta en WhatsApp, consulte primero. Así sus respuestas llegarán con fundamento: ley, artículo y vigencia.</p>
+          <div class="acciones"><a class="btn btn-primary" href={ABACUS}>Conocer Abacus</a></div>
+        </article>
+        <article class="card">
+          <h3>Gratis y abierto para cualquier asistente</h3>
+          <p>No necesitas cuenta ni pagar nada. Funciona con estos asistentes y con cualquier otro que use el estándar MCP.</p>
+          <ul class="chips" aria-label="Asistentes compatibles">
+            <li>Claude Desktop</li><li>Claude Code</li><li>Codex</li><li>Cursor</li><li>Otros clientes MCP</li>
+          </ul>
+          <div class="acciones">
+            <a class="btn btn-primary" href={REPO}>Ver en GitHub</a>
+            <a class="btn btn-line" href="/docs">Documentación</a>
           </div>
-          {clientes.map((c, i) => (
-            <div role="tabpanel" id={`panel-${c.id}`} aria-labelledby={`tab-${c.id}`} class="panel" data-nombre={c.nombre}>
-              <h3 class="solo-sin-js">{c.nombre}</h3>
-              <div class="cmd" data-bloque>
-                <pre><code><span class="prompt" aria-hidden="true">$ </span>{c.cmd}</code></pre>
-                <button type="button" class="copiar" data-copiar={c.cmd} aria-label={`Copiar el comando para ${c.nombre}`}>Copiar</button>
-              </div>
-              <p>{c.nota}</p>
-              {c.extra && <p class="aviso-suave">{c.extra}</p>}
-              <p class="etiqueta">{c.manual.etiqueta}</p>
-              <div class="cmd" data-bloque>
-                <pre><code>{c.manual.codigo}</code></pre>
-                <button type="button" class="copiar" data-copiar={c.manual.codigo} aria-label={`Copiar el bloque de ${c.nombre}`}>Copiar</button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p class="peque">Opcional: <code>--instrucciones</code> agrega a tu CLAUDE.md o AGENTS.md un bloque corto para que el asistente consulte primero leyes-mx y cite ley, artículo, año y reforma. No se toca ningún archivo de instrucciones sin esa bandera y tu confirmación.</p>
-      </section>
-
-      <section id="verificar" aria-labelledby="h-verificar">
-        <h2 id="h-verificar"><span class="num">03</span> Verificar que quedó</h2>
-        <div class="cmd" data-bloque>
-          <pre><code><span class="prompt" aria-hidden="true">$ </span>{bloques.doctor}</code></pre>
-          <button type="button" class="copiar" data-copiar={bloques.doctor} aria-label="Copiar el comando doctor">Copiar</button>
-        </div>
-        <p>Revisa Node y npx, la integridad de los datos, que el servidor responda y en qué clientes quedó registrado. Después, pregunta a tu asistente por un artículo, por ejemplo "¿qué dice el artículo 28 de la LISR?", y comprueba que cite ley, artículo, año y fecha de reforma.</p>
-        <p>También puedes consultar sin MCP, desde la terminal:</p>
-        <div class="cmd" data-bloque>
-          <pre><code><span class="prompt" aria-hidden="true">$ </span>{bloques.obtener}</code></pre>
-          <button type="button" class="copiar" data-copiar={bloques.obtener} aria-label="Copiar el comando obtener">Copiar</button>
-        </div>
-        <div class="cmd" data-bloque>
-          <pre><code><span class="prompt" aria-hidden="true">$ </span>{bloques.buscar}</code></pre>
-          <button type="button" class="copiar" data-copiar={bloques.buscar} aria-label="Copiar el comando buscar">Copiar</button>
-        </div>
-      </section>
-
-      <section id="actualizar" aria-labelledby="h-actualizar">
-        <h2 id="h-actualizar"><span class="num">04</span> Actualizar</h2>
-        <p>Cuando sale una reforma o una ley nueva se publica una versión de los datos. Para traerla:</p>
-        <div class="cmd" data-bloque>
-          <pre><code><span class="prompt" aria-hidden="true">$ </span>{bloques.actualizar}</code></pre>
-          <button type="button" class="copiar" data-copiar={bloques.actualizar} aria-label="Copiar el comando actualizar">Copiar</button>
-        </div>
-        <p>Compara con la última versión publicada, descarga, verifica el sha256 y solo entonces activa. La versión anterior se conserva (<code>npx leyes-mx revertir</code>). Para ver qué hay y qué cambió, sin descargar:</p>
-        <div class="cmd" data-bloque>
-          <pre><code><span class="prompt" aria-hidden="true">$ </span>{bloques.estado}</code></pre>
-          <button type="button" class="copiar" data-copiar={bloques.estado} aria-label="Copiar el comando estado">Copiar</button>
-        </div>
-        <p class="peque">Para quitar todo lo que puso este paquete en tus clientes: <code>{bloques.desinstalar}</code>. Tus otros servidores no se tocan.</p>
-      </section>
-
-      <section id="incluye" aria-labelledby="h-incluye">
-        <h2 id="h-incluye"><span class="num">05</span> Qué leyes y años incluye</h2>
-        <p>Año de vigencia {anios.join(", ")}. La lista sale de los datos del repositorio en cada construcción del sitio.</p>
-        <div class="tabla-envoltura">
-          <table>
-            <caption class="solo-lectores">Ordenamientos incluidos</caption>
-            <thead><tr><th scope="col">Sigla</th><th scope="col">Ordenamiento</th><th scope="col">Año</th><th scope="col" class="der">Artículos</th><th scope="col">Última reforma DOF</th></tr></thead>
-            <tbody>
-              {lista.map((l) => (
-                <tr>
-                  <th scope="row"><code>{l.sigla}</code></th>
-                  <td>{l.nombre}{l.advertencias > 0 && <span class="marca-adv"> (con advertencias)</span>}</td>
-                  <td>{l.anio}</td>
-                  <td class="der">{l.articulos}</td>
-                  <td>{l.reforma}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p class="peque">La fecha de última reforma es la que imprime el PDF de la Cámara de Diputados, no una verificación contra el DOF. Los reglamentos son los que publica la Cámara; revisa si existen versiones posteriores.</p>
-      </section>
-
-      {ref && (
-        <section id="reforma" aria-labelledby="h-reforma">
-          <h2 id="h-reforma"><span class="num">06</span> Reforma {ref.anio}: en trámite, no es ley</h2>
-          <p class="aviso"><strong>Un proyecto no es ley hasta que se publica en el Diario Oficial de la Federación.</strong> Los textos de la reforma {ref.anio} están en una carpeta aparte, el asistente no los usa salvo que se pidan, y siempre salen marcados como proyecto.</p>
-          <p>Estado al {ref.actualizado}: {ref.resumen}</p>
-          <div class="tabla-envoltura">
-            <table>
-              <caption class="solo-lectores">Línea de tiempo de la reforma {ref.anio}</caption>
-              <thead><tr><th scope="col">Fecha</th><th scope="col">Hito</th><th scope="col">Fuente</th><th scope="col">Confirmado</th></tr></thead>
-              <tbody>
-                {ref.hitos.map((h) => (
-                  <tr><td>{h.fecha}</td><td>{h.hito.replaceAll("_", " ")}</td><td>{h.nivel}</td><td>{h.confirmado ? "sí" : "no"}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p class="peque">La herramienta <code>estado_reforma</code> del servidor entrega este seguimiento con el detalle y la fuente de cada hito.</p>
-        </section>
-      )}
-
-      <section aria-labelledby="h-aviso">
-        <h2 id="h-aviso"><span class="num">07</span> Aviso</h2>
-        <p class="aviso">Los textos son informativos y se copian de la Cámara de Diputados del H. Congreso de la Unión; pueden tener diferencias o errores de extracción y no sustituyen al Diario Oficial de la Federación. <strong>La fuente oficial prevalece.</strong> Esto no es asesoría legal ni fiscal.</p>
-      </section>
-
-      <section aria-labelledby="h-contribuir">
-        <h2 id="h-contribuir"><span class="num">08</span> Código, datos y cómo contribuir</h2>
-        <p>Todo es abierto: <a href={REPO}>{REPO.replace("https://", "")}</a>. El texto legal sale siempre del texto oficial descargado, nunca se escribe a mano. Para agregar una ley basta una entrada en <code>fuentes.json</code>. Las reglas de contribución, incluido que los commits y PR no llevan co-autoría ni firmas de herramientas, están en <a href={`${REPO}/blob/main/CONTRIBUTING.md`}>CONTRIBUTING.md</a>.</p>
-      </section>
-    </main>
-
-    <footer class="pie">
-      <p>leyes-mx · código y documentación MIT · textos legales de la Cámara de Diputados y del DOF, informativos.</p>
-    </footer>
-
-    <p id="estado-copia" class="solo-lectores" role="status" aria-live="polite"></p>
-
-    <script>
-      // Pestañas (mejora progresiva: sin JavaScript se ven todos los paneles) y botón de copiar. Sin librerías.
-      const pestanas = document.querySelector("[data-tabs]");
-      if (pestanas) {
-        pestanas.classList.add("con-js");
-        const tabs = [...pestanas.querySelectorAll('[role="tab"]')];
-        const paneles = [...pestanas.querySelectorAll('[role="tabpanel"]')];
-        const activar = (tab, enfocar) => {
-          tabs.forEach((t, i) => {
-            const on = t === tab;
-            t.setAttribute("aria-selected", String(on));
-            t.tabIndex = on ? 0 : -1;
-            paneles[i].hidden = !on;
-          });
-          if (enfocar) tab.focus();
-        };
-        activar(tabs[0], false);
-        tabs.forEach((t, i) => {
-          t.addEventListener("click", () => activar(t, false));
-          t.addEventListener("keydown", (e) => {
-            const k = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
-            if (k === undefined) return;
-            e.preventDefault();
-            activar(tabs[(k + tabs.length) % tabs.length], true);
-          });
-        });
-      }
-
-      const aviso = document.getElementById("estado-copia");
-      async function copiar(texto) {
-        try { await navigator.clipboard.writeText(texto); return true; } catch { /* alternativa */ }
-        const a = document.createElement("textarea");
-        a.value = texto; a.setAttribute("readonly", ""); a.style.position = "fixed"; a.style.opacity = "0";
-        document.body.appendChild(a); a.select();
-        let ok = false;
-        try { ok = document.execCommand("copy"); } catch { ok = false; }
-        a.remove();
-        return ok;
-      }
-      document.querySelectorAll("button.copiar").forEach((b) => {
-        b.addEventListener("click", async () => {
-          const ok = await copiar(b.dataset.copiar ?? "");
-          const antes = b.textContent;
-          b.textContent = ok ? "Copiado" : "No se pudo";
-          aviso.textContent = ok ? "Copiado al portapapeles" : "No se pudo copiar; selecciona el texto a mano";
-          setTimeout(() => { b.textContent = antes; aviso.textContent = ""; }, 1800);
-        });
-      });
-    </script>
-  </body>
-</html>
-
-<style is:global>
-  :root {
-    --fondo: #0c0f0e;
-    --panel: #121714;
-    --linea: #26302b;
-    --texto: #e6e4dc;
-    --suave: #a9b0a8;
-    --verde: #7fd19b;
-    --ambar: #e8b94f;
-    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { background: var(--fondo); color: var(--texto); font-family: var(--sans); line-height: 1.6; font-size: 17px; scroll-behavior: smooth; }
-  body { margin: 0; }
-  a { color: var(--verde); text-underline-offset: 3px; }
-  a:hover { color: #a6e8bb; }
-  :focus-visible { outline: 3px solid var(--ambar); outline-offset: 2px; }
-  code, pre { font-family: var(--mono); font-size: 0.92em; }
-  :not(pre) > code { background: var(--panel); border: 1px solid var(--linea); padding: 0.05em 0.35em; border-radius: 3px; overflow-wrap: anywhere; }
-  .solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .saltar { position: absolute; left: 8px; top: -60px; background: var(--ambar); color: #111; padding: 8px 12px; z-index: 10; }
-  .saltar:focus { top: 8px; }
-
-  .barra { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding: 14px max(20px, calc((100vw - 880px) / 2)); border-bottom: 1px solid var(--linea); }
-  .marca { font-family: var(--mono); font-weight: 700; letter-spacing: 0.02em; }
-  .prompt { color: var(--verde); }
-  .barra nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.92rem; }
-  .barra nav a { color: var(--suave); text-decoration: none; padding: 4px 0; }
-  .barra nav a:hover { color: var(--texto); text-decoration: underline; }
-
-  main { max-width: 880px; margin: 0 auto; padding: 0 20px 40px; }
-  section { padding: 40px 0 8px; border-top: 1px solid var(--linea); margin-top: 32px; }
-  .hero { border-top: 0; margin-top: 0; padding-top: 56px; }
-  .sobre { font-family: var(--mono); color: var(--ambar); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 14px; }
-  h1 { font-family: var(--mono); font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.2; margin: 0 0 18px; letter-spacing: -0.01em; font-weight: 700; }
-  h2 { font-family: var(--mono); font-size: 1.35rem; margin: 0 0 14px; font-weight: 700; }
-  h3 { font-family: var(--mono); font-size: 1.05rem; }
-  .num { color: var(--verde); margin-right: 0.6em; }
-  .lead { font-size: 1.12rem; color: #d3d6cd; max-width: 62ch; }
-  .peque { font-size: 0.9rem; color: var(--suave); }
-  .etiqueta { font-family: var(--mono); font-size: 0.82rem; color: var(--suave); margin: 18px 0 6px; text-transform: uppercase; letter-spacing: 0.05em; }
-
-  .cmd { position: relative; background: var(--panel); border: 1px solid var(--linea); border-left: 3px solid var(--verde); border-radius: 4px; margin: 10px 0; }
-  .cmd pre { margin: 0; padding: 14px 92px 14px 16px; overflow-x: auto; }
-  .cmd-grande pre { font-size: 1.1rem; padding-top: 18px; padding-bottom: 18px; }
-  .copiar { position: absolute; top: 8px; right: 8px; font: inherit; font-family: var(--mono); font-size: 0.8rem; color: var(--texto); background: #1b231e; border: 1px solid #3a4a41; border-radius: 3px; padding: 5px 10px; cursor: pointer; min-height: 32px; }
-  .copiar:hover { background: #243029; border-color: var(--verde); }
-
-  .ledger { list-style: none; padding: 0; margin: 18px 0 0; }
-  .ledger li { padding: 10px 0 10px 18px; border-bottom: 1px dotted var(--linea); position: relative; }
-  .ledger li::before { content: "›"; position: absolute; left: 0; color: var(--verde); font-family: var(--mono); }
-  .ledger strong { color: var(--texto); }
-
-  .tablist { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--linea); margin-top: 18px; }
-  .tablist button { font-family: var(--mono); font-size: 0.9rem; color: var(--suave); background: transparent; border: 1px solid transparent; border-bottom: 0; padding: 10px 14px; cursor: pointer; border-radius: 4px 4px 0 0; min-height: 44px; }
-  .tablist button:hover { color: var(--texto); }
-  .tablist button[aria-selected="true"] { color: var(--texto); background: var(--panel); border-color: var(--linea); box-shadow: inset 0 2px 0 var(--verde); }
-  .panel { padding: 8px 0 0; }
-  .tabs:not(.con-js) .tablist { display: none; }
-  .tabs.con-js .solo-sin-js { display: none; }
-  .tabs:not(.con-js) .panel { border-top: 1px solid var(--linea); margin-top: 24px; }
-  .aviso, .aviso-suave { border: 1px solid var(--linea); border-left: 3px solid var(--ambar); background: var(--panel); padding: 12px 16px; border-radius: 4px; }
-  .aviso-suave { border-left-color: var(--linea); color: var(--suave); font-size: 0.93rem; }
-
-  .tabla-envoltura { overflow-x: auto; margin: 14px 0; border: 1px solid var(--linea); border-radius: 4px; }
-  table { border-collapse: collapse; width: 100%; font-size: 0.93rem; min-width: 560px; }
-  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px dotted var(--linea); vertical-align: top; }
-  thead th { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--suave); border-bottom: 1px solid var(--linea); background: var(--panel); }
-  tbody th { font-weight: 400; }
-  tbody tr:last-child > * { border-bottom: 0; }
-  .der { text-align: right; font-variant-numeric: tabular-nums; }
-  .marca-adv { color: var(--ambar); }
-
-  .pie { max-width: 880px; margin: 0 auto; padding: 24px 20px 48px; color: var(--suave); font-size: 0.88rem; border-top: 1px solid var(--linea); }
-  @media (max-width: 560px) { html { font-size: 16px; } .cmd pre { padding-right: 16px; padding-bottom: 50px; } .copiar { top: auto; bottom: 8px; } }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>

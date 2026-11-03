@@ -1,0 +1,40 @@
+---
+import Base from "./Base.astro";
+import { RUTAS, INICIO } from "../lib/docs.mjs";
+
+interface Props { titulo: string; descripcion: string }
+const { titulo, descripcion } = Astro.props;
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const lista = [INICIO, ...RUTAS];
+const i = lista.findIndex((r) => r.href === path);
+const ant = i > 0 ? lista[i - 1] : null;
+const sig = i >= 0 && i < lista.length - 1 ? lista[i + 1] : null;
+---
+<Base titulo={`${titulo} | leyes-mx`} descripcion={descripcion}>
+  <div class="wrap docs">
+    <aside class="docs-nav" aria-label="Documentación">
+      <h2>Documentación</h2>
+      <details open>
+        <summary>Menú de la documentación</summary>
+        <ul>
+          {lista.map((r) => <li><a href={r.href} aria-current={r.href === path ? "page" : undefined}>{r.nombre}</a></li>)}
+        </ul>
+      </details>
+    </aside>
+    <article class="prosa">
+      <slot />
+      <nav class="pagina-sig" aria-label="Páginas vecinas">
+        {ant ? <a href={ant.href} rel="prev">← {ant.nombre}</a> : <span></span>}
+        {sig && <a href={sig.href} rel="next">{sig.nombre} →</a>}
+      </nav>
+    </article>
+  </div>
+</Base>
+<script>
+  // En el teléfono el menú empieza cerrado; en pantallas anchas siempre va abierto (el botón se oculta).
+  const d = document.querySelector<HTMLDetailsElement>(".docs-nav details");
+  const mq = window.matchMedia("(max-width: 860px)");
+  const sync = () => { if (d) d.open = !mq.matches; };
+  sync();
+  mq.addEventListener("change", sync);
+</script>

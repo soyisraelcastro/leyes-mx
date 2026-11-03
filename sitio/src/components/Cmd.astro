@@ -1,0 +1,9 @@
+---
+// Bloque de comando con botón de copiar (el script de Base.astro lo activa). Sin JS se ve el texto seleccionable.
+interface Props { cmd: string; etiqueta?: string; grande?: boolean; prompt?: boolean; cursor?: boolean }
+const { cmd, etiqueta = "el comando", grande = false, prompt = true, cursor = false } = Astro.props;
+---
+<div class={`cmd${grande ? " cmd-grande" : ""}`}>
+  <pre><code>{prompt && <span class="prompt" aria-hidden="true">$ </span>}{cmd}{cursor && <span class="cursor" aria-hidden="true"></span>}</code></pre>
+  <button type="button" class="copiar" data-copiar={cmd} aria-label={`Copiar ${etiqueta}`}>Copiar</button>
+</div>

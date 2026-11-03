@@ -1,0 +1,27 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import { reforma } from "../../lib/datos.mjs";
+const ref = reforma();
+---
+<Docs titulo="Reforma 2027" descripcion="Estado de la reforma fiscal 2027: en trámite, no es ley vigente hasta su publicación en el Diario Oficial de la Federación.">
+  {ref ? (<>
+    <h1>Reforma {ref.anio}: en trámite, no es ley</h1>
+    <p class="aviso"><strong>Un proyecto no es ley hasta que se publica en el Diario Oficial de la Federación.</strong> Los textos de la reforma {ref.anio} están en una carpeta aparte, el asistente no los usa salvo que se pidan, y siempre salen marcados como proyecto.</p>
+    <p>Estado al {ref.actualizado}: {ref.resumen}</p>
+    <div class="tabla-envoltura">
+      <table>
+        <caption class="solo-lectores">Línea de tiempo de la reforma {ref.anio}</caption>
+        <thead><tr><th scope="col">Fecha</th><th scope="col">Hito</th><th scope="col">Fuente</th><th scope="col">Confirmado</th></tr></thead>
+        <tbody>
+          {ref.hitos.map((h) => (
+            <tr><td>{h.fecha}</td><td>{h.hito.replaceAll("_", " ")}</td><td>{h.nivel}</td><td>{h.confirmado ? "sí" : "no"}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="peque">La herramienta <code>estado_reforma</code> del servidor entrega este seguimiento con el detalle y la fuente de cada hito.</p>
+  </>) : (<>
+    <h1>Reforma 2027</h1>
+    <p>No hay un proyecto en seguimiento en esta versión de los datos.</p>
+  </>)}
+</Docs>

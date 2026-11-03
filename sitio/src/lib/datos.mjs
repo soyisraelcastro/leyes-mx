@@ -37,3 +37,14 @@ export function reforma() {
   return { anio: e.anio, actualizado: e.actualizado, resumen: e.resumen, esLey: e.es_ley_vigente, enVigor: e.entrada_en_vigor_prevista,
     hitos: (e.hitos || []).map((h) => ({ fecha: h.fecha, hito: h.hito, nivel: h.nivel, confirmado: h.confirmado, detalle: h.detalle })) };
 }
+
+// Cuenta las tarifas del Anexo 8 de la RMF (un archivo .md por tarifa; los que empiezan con "_" son índices).
+export function anexo8() {
+  const base = path.join(RAIZ, "rmf");
+  if (!fs.existsSync(base)) return null;
+  const anios = fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && fs.existsSync(path.join(base, n, "anexo-8"))).sort();
+  if (!anios.length) return null;
+  const anio = anios[anios.length - 1];
+  const tarifas = fs.readdirSync(path.join(base, anio, "anexo-8")).filter((n) => n.endsWith(".md") && !n.startsWith("_")).length;
+  return { anio, tarifas };
+}
