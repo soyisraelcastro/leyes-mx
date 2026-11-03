@@ -25,7 +25,7 @@ Instala leyes-mx ejecutando "npx leyes-mx instalar". Si falta Node 20 o superior
 Node queda como una nota ligera en la web, no como un paso del usuario. Lo que sí hay que tener claro:
 
 - Sin Node el comando no llega a ejecutarse y `leyes-mx` no puede dar un mensaje propio: el intérprete responde que no encuentra `npx` (comprobado en macOS con un PATH sin Node: `zsh:1: command not found: npx`, código 127; en Windows el mensaje típico es "'npx' no se reconoce como un comando interno o externo", no se probó). Por eso el mensaje de arriba le dice al asistente qué hacer cuando eso pasa.
-- Esto solo funciona donde el asistente puede ejecutar comandos. Un chat sin acceso a la terminal no puede correr `npx`; para ese caso sirve la extensión de escritorio de abajo.
+- Esto solo funciona donde el asistente puede ejecutar comandos en la computadora del usuario: el modo Code de Claude Desktop, Claude Code o Codex. En el chat normal de Claude Desktop el comando corre en un equipo temporal en la nube y no queda instalado en la computadora (comprobado por Israel el 2026-11-03). Un chat sin acceso a la terminal no puede correr `npx`; para ese caso sirve la extensión de escritorio de abajo.
 
 ## Extensión de escritorio (.mcpb) para Claude Desktop: viabilidad
 
