@@ -90,6 +90,19 @@ test("buscar: vigente por defecto, proyectos solo si se piden y marcados", async
   assert.match(txt(sin), /NO VERIFICADO/);
 });
 
+test("buscar con glosario: declara qué se agregó; glosario=false busca solo con las palabras dadas", async () => {
+  const q = "fundamento para no deducir actualizaciones";
+  const con = await c.callTool({ name: "buscar", arguments: { consulta: q, limite: 10 } });
+  assert.match(txt(con), /Se amplió la consulta con: accesorios; recargos/);
+  assert.match(txt(con), /\[glosario\]/);
+  assert.deepEqual(con.structuredContent.ampliacion.entradas.map((e) => e.id).sort(), ["actualizacion", "gastos-no-deducibles"]);
+  const top = con.structuredContent.resultados.slice(0, 3).map((r) => `${r.ley} ${r.articulo}`);
+  assert.ok(top.includes("LISR 28"), top.join(", "));
+  const sin = await c.callTool({ name: "buscar", arguments: { consulta: q, glosario: false } });
+  assert.doesNotMatch(txt(sin), /Se amplió/);
+  assert.equal(sin.structuredContent.ampliacion, null);
+});
+
 test("listar_leyes, estado_reforma y obtener_transitorios", async () => {
   const l = txt(await c.callTool({ name: "listar_leyes", arguments: {} }));
   for (const s of ["LISR", "LIVA", "CFF", "LFT", "RLISR", "RLIVA", "RCFF"]) assert.match(l, new RegExp(s));
