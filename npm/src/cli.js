@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { Almacen, SinDatos, AVISO_GENERAL } from "./almacen.js";
 import { Indice } from "./indice.js";
 import { Glosario } from "./glosario.js";
-import { citaArticulo, lineasAmpliacion, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
+import { citaArticulo, lineasAmpliacion, noEncontrado, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
 import { VERSION } from "./version.js";
 import * as clientes from "./clientes.js";
 import * as datos from "./datos.js";
@@ -334,7 +334,7 @@ async function cmdObtener({ pos, op }) {
   const anio = entero(op, "anio");
   const f = a.obtenerArticulo(ley, articulo, { anio: anio ?? null, incluirProyectos: !!op["incluir-proyectos"] });
   if (!f) {
-    err(`NO VERIFICADO: ${ley.toUpperCase()} art. ${articulo} no está en la base (año ${anio ?? a.anioPorDefecto(ley)}). No se inventa texto: consultar la fuente oficial (DOF / diputados.gob.mx).`);
+    err(noEncontrado(`${ley.toUpperCase()} art. ${articulo} (año ${anio ?? a.anioPorDefecto(ley)})`));
     return 1;
   }
   if (op.json) out(JSON.stringify(f, null, 2)); else imprimirFicha(f);
@@ -352,7 +352,7 @@ async function cmdBuscar({ pos, op }) {
   const amp = lineasAmpliacion(ampliacion);
   if (op.json) { if (amp.length) err(amp.join("\n")); out(JSON.stringify(r, null, 2)); return r.length ? 0 : 1; }
   if (amp.length) { out(amp.join("\n")); out(); }
-  if (!r.length) { out("Sin resultados (no verificado)."); return 1; }
+  if (!r.length) { out(noEncontrado(`resultados para ${JSON.stringify(consulta)}`)); return 1; }
   for (const x of r) {
     const marca = (x.estatus !== "vigente" && x.estatus !== "derogado" ? "  [PROYECTO, NO ES LEY VIGENTE]" : x.estatus === "derogado" ? "  [derogado]" : "") + (x.relacionado_por_glosario ? "  [glosario]" : "");
     out(`${x.ley} art. ${x.articulo} | vigencia ${x.anio_vigencia} | última reforma DOF ${x.ultima_reforma_dof}${marca}`);
@@ -368,12 +368,12 @@ function cmdTarifa({ pos, op }) {
   if (!clave) {
     const lista = a.listarTarifas(anio);
     if (op.json) { out(JSON.stringify(lista, null, 2)); return lista.length ? 0 : 1; }
-    if (!lista.length) { err("NO VERIFICADO: no hay Anexo 8 de la RMF en la base local.\n"); return 1; }
+    if (!lista.length) { err(noEncontrado("el Anexo 8 de la RMF") + "\n"); return 1; }
     out(respuestaTarifas(lista));
     return 0;
   }
   const t = a.obtenerTarifa(clave, anio);
-  if (!t) { err(`NO VERIFICADO: la tarifa ${clave} del Anexo 8 no está en la base local. No se inventan cifras.\n`); return 1; }
+  if (!t) { err(noEncontrado(`la tarifa ${clave} del Anexo 8 de la RMF`) + "\n"); return 1; }
   if (t.ambiguo) { err(`La clave ${clave} corresponde a varias tarifas; usa el id exacto:\n${t.ambiguo.map((x) => `  ${x.id}  ${x.titulo}`).join("\n")}\n`); return 2; }
   out(op.json ? JSON.stringify(t, null, 2) : respuestaTarifa(t));
   return 0;

@@ -18,15 +18,15 @@ const TOML_FIN = "# <<< leyes-mx <<<";
 export const BLOQUE_INSTRUCCIONES = `${MARCA_INI}
 ## Consulta de leyes (leyes-mx)
 
-Para citar leyes y reglamentos fiscales y laborales de México (LISR, LIVA, CFF, LFT, RLISR, RLIVA, RCFF) y las tarifas de ISR del Anexo 8 de la RMF:
+Antes de responder cualquier consulta fiscal o laboral de México (ISR, IVA, deducciones, retenciones, CFDI, aguinaldo, PTU, vacaciones, despido, tarifas, "qué dice el artículo", "fundamento legal") y antes de citar un artículo de la LISR, LIVA, CFF, LFT o sus reglamentos (RLISR, RLIVA, RCFF), consulta el servidor MCP "leyes-mx". No respondas de memoria ni busques en internet primero.
 
-1. Consulta primero el servidor MCP "leyes-mx" (buscar, obtener_articulo, obtener_tarifa, obtener_transitorios, estado_reforma, listar_leyes) antes de buscar en internet. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | reforma.
+1. Herramientas: buscar, obtener_articulo, obtener_tarifa, obtener_transitorios, estado_reforma, listar_leyes. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | reforma.
 2. Reformula con los términos de la ley, no con los del uso corriente ("accesorios de las contribuciones", no "actualizaciones"). buscar es léxico y solo devuelve fragmentos.
 3. Lee siempre el artículo completo con obtener_articulo antes de afirmar algo: un fragmento puede omitir la excepción o la fracción que cambia la respuesta.
 4. Cita ley, artículo, fracción, año de vigencia y fecha de última reforma, tal como los devuelve la herramienta.
 5. Tarifas de ISR: con obtener_tarifa (Anexo 8), nunca de memoria ni de la tabla de los arts. 96 y 152 de la LISR.
 6. Nunca presentes un proyecto de reforma (por ejemplo el de 2027) como ley vigente. Respeta las líneas ADVERTENCIA.
-7. Si no está en la base, responde "no verificado" antes de ir a internet; no completes artículos de memoria. Si buscas fuera, solo en fuentes oficiales (diputados.gob.mx, dof.gob.mx, sat.gob.mx) y di que ese dato no salió de la base local.
+7. Si no está en la base, dilo ("no verificado") y PREGUNTA al usuario si desea que lo busques en internet. Nunca busques sin su permiso; si lo autoriza, usa solo fuentes oficiales (DOF, SAT, Cámara de Diputados) y aclara que ese dato no proviene de la base verificada.
 8. Si tienes la skill "leyes-mx" (/leyes-mx), úsala: trae este flujo completo.
 ${MARCA_FIN}
 `;

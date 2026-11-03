@@ -23,16 +23,37 @@ test("initialize y tools/list", async () => {
   for (const t of tools) assert.equal(t.annotations.readOnlyHint, true);
 });
 
-test("las instrucciones y descripciones guían al modelo: reformular, artículo completo, cita, tarifas, proyectos, no verificado, fuentes oficiales", async () => {
+test("las instrucciones y descripciones guían al modelo con términos de contador: cuándo consultar, reformular, artículo completo, cita, tarifas, proyectos y permiso para internet", async () => {
   const i = c.getInstructions();
-  for (const re of [/términos de la ley/, /obtener_articulo/, /fracción/, /vigencia/, /última reforma/, /obtener_tarifa/, /NO es ley vigente/, /no verificado/, /antes de ir a internet/, /fuentes oficiales/]) assert.match(i, re);
+  for (const re of [/antes de responder cualquier consulta fiscal o laboral de México/, /ISR, IVA, deducciones, retenciones, CFDI, aguinaldo/, /qué dice el artículo/, /fundamento legal/, /palabras de la ley/,
+    /obtener_articulo/, /fracción/, /vigencia/, /última reforma/, /obtener_tarifa/, /NO es ley vigente/, /no verificado/, /PREGUNTA al usuario si desea que lo busques en internet/, /sin su permiso/, /fuentes oficiales \(DOF, SAT, Cámara de Diputados\)/]) assert.match(i, re);
   const { tools } = await c.listTools();
   const d = Object.fromEntries(tools.map((t) => [t.name, t.description]));
-  assert.match(d.buscar, /Reformula/);
+  assert.match(d.buscar, /ISR, IVA, deducciones/);
+  assert.match(d.buscar, /ANTES de responder cualquier consulta fiscal o laboral de México/);
   assert.match(d.buscar, /NO cites a partir de ellos/);
+  assert.match(d.buscar, /pregunta al usuario si desea buscar en internet/);
+  assert.match(d.obtener_articulo, /qué dice el artículo 28 de la LISR/);
   assert.match(d.obtener_articulo, /fuente para CITAR/);
   assert.match(d.obtener_tarifa, /SIEMPRE/);
+  assert.match(d.obtener_tarifa, /tarifa mensual de retención de sueldos/);
   assert.ok(!/[\u2014\u00ab\u00bb]/.test(i + Object.values(d).join("")));
+});
+
+test("lo que no está en la base: el RESULTADO de cada herramienta manda preguntar al usuario antes de buscar en internet", async () => {
+  const pregunta = /No encontré .* en la base local de leyes-mx\. .*Pregunta al usuario si desea que lo busques en internet; no busques sin su permiso\. .*fuentes oficiales \(DOF, SAT, Cámara de Diputados\).*no proviene de la base verificada/s;
+  const llamadas = [
+    ["obtener_articulo", { ley: "LISR", articulo: "9999" }],
+    ["obtener_articulo", { ley: "LSS", articulo: "1" }],
+    ["buscar", { consulta: "zzzqqqxxx wwwvvvyyy" }],
+    ["obtener_tarifa", { tarifa: "Z-9" }],
+    ["obtener_transitorios", { ley: "XXX" }],
+  ];
+  for (const [name, args] of llamadas) {
+    const t = txt(await c.callTool({ name, arguments: args }));
+    assert.match(t, /^NO VERIFICADO/, name);
+    assert.match(t, pregunta, name);
+  }
 });
 
 test("obtener_articulo: cita, variantes y advertencia de la LFT", async () => {
