@@ -1,0 +1,63 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import Cmd from "../../components/Cmd.astro";
+import { COMANDO } from "../../lib/constantes.mjs";
+
+const jsonGenerico = `{
+  "mcpServers": {
+    "leyes-mx": {
+      "command": "npx",
+      "args": ["-y", "leyes-mx", "servir"]
+    }
+  }
+}`;
+const toml = `[mcp_servers.leyes-mx]
+command = "npx"
+args = ["-y", "leyes-mx", "servir"]
+startup_timeout_sec = 60`;
+const claudeCodeManual = "claude mcp add --transport stdio --scope user leyes-mx -- npx -y leyes-mx servir";
+
+const clientes = [
+  { id: "claude-desktop", nombre: "Claude Desktop", cmd: "npx leyes-mx instalar --cliente claude-desktop",
+    nota: "Escribe el servidor en claude_desktop_config.json (con respaldo del archivo y sin tocar tus otros servidores). Después sal de Claude Desktop por completo y vuelve a abrirlo.",
+    manual: { etiqueta: "A mano, en claude_desktop_config.json", codigo: jsonGenerico },
+    extra: "Las apps de escritorio heredan un PATH reducido y a veces no encuentran npx (sobre todo con nvm). El instalador escribe la ruta completa de npx para evitarlo." },
+  { id: "claude-code", nombre: "Claude Code", cmd: "npx leyes-mx instalar --cliente claude-code",
+    nota: "Registra el servidor con alcance de usuario, disponible en todos tus proyectos. Usa claude mcp add si el comando existe; si no, escribe la configuración equivalente.",
+    manual: { etiqueta: "O directamente con la CLI de Claude Code", codigo: claudeCodeManual } },
+  { id: "codex", nombre: "Codex", cmd: "npx leyes-mx instalar --cliente codex",
+    nota: "Agrega una tabla al archivo config.toml de Codex (~/.codex/config.toml), sin tocar el resto.",
+    manual: { etiqueta: "A mano, en config.toml", codigo: toml } },
+  { id: "otro", nombre: "Otro cliente MCP", cmd: "npx leyes-mx instalar --cliente cursor",
+    nota: "Para Cursor hay registro automático (comando de arriba). Para cualquier otro cliente que hable MCP por stdio, agrega este bloque en su configuración.",
+    manual: { etiqueta: "Bloque genérico", codigo: jsonGenerico } },
+];
+---
+<Docs titulo="Instalar" descripcion="Instala leyes-mx con un comando y conéctalo a Claude Desktop, Claude Code, Codex, Cursor u otro cliente MCP.">
+  <h1>Instalar</h1>
+  <p class="bajada">El mismo comando sirve para todo; la pestaña solo cambia el cliente. La primera vez descarga los datos (unos 3 MB) y verifica su sha256 antes de activarlos.</p>
+  <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} />
+  <p class="peque">Necesita Node 20 o superior. Sin <code>--cliente</code>, detecta los clientes que tienes y los registra.</p>
+
+  <h2>Por cliente</h2>
+  <div class="tabs" data-tabs>
+    <div role="tablist" aria-label="Cliente" class="tablist">
+      {clientes.map((c, i) => (
+        <button type="button" role="tab" id={`tab-${c.id}`} aria-controls={`panel-${c.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>{c.nombre}</button>
+      ))}
+    </div>
+    {clientes.map((c) => (
+      <div role="tabpanel" id={`panel-${c.id}`} aria-labelledby={`tab-${c.id}`} class="panel">
+        <h3 class="solo-sin-js">{c.nombre}</h3>
+        <Cmd cmd={c.cmd} etiqueta={`el comando para ${c.nombre}`} />
+        <p>{c.nota}</p>
+        {c.extra && <p class="aviso-suave"><strong>Aviso sobre Node y nvm.</strong> {c.extra} Si cambias o borras esa versión de Node, la app dejará de encontrar el servidor; repite el comando de instalación.</p>}
+        <p class="etiqueta">{c.manual.etiqueta}</p>
+        <Cmd cmd={c.manual.codigo} etiqueta={`el bloque de ${c.nombre}`} prompt={false} />
+      </div>
+    ))}
+  </div>
+
+  <h2>Instrucciones para el asistente (opcional)</h2>
+  <p><code>--instrucciones</code> agrega a tu CLAUDE.md o AGENTS.md un bloque corto para que el asistente consulte primero leyes-mx y cite ley, artículo, año y reforma. No se toca ningún archivo de instrucciones sin esa bandera y tu confirmación.</p>
+</Docs>

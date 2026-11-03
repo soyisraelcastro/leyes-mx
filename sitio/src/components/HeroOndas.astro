@@ -1,0 +1,56 @@
+---
+// Fondo sutil del hero: ondas finas en canvas 2D, sin librerías. Estático con prefers-reduced-motion,
+// en pausa cuando el hero no se ve o la pestaña está oculta, y limitado a ~30 cuadros por segundo.
+---
+<canvas id="ondas" aria-hidden="true"></canvas>
+<script>
+  const canvas = document.getElementById("ondas") as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext("2d");
+  if (canvas && ctx) {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const capas = [
+      { amp: 0.11, f: 1.1, v: 0.18, fase: 0.0, y: 0.42, color: "rgba(16,20,27,0.10)" },
+      { amp: 0.09, f: 1.6, v: -0.14, fase: 1.7, y: 0.52, color: "rgba(16,20,27,0.08)" },
+      { amp: 0.13, f: 0.8, v: 0.1, fase: 3.1, y: 0.62, color: "rgba(0,140,171,0.20)" },
+      { amp: 0.07, f: 2.2, v: -0.22, fase: 4.4, y: 0.72, color: "rgba(16,20,27,0.07)" },
+      { amp: 0.1, f: 1.3, v: 0.16, fase: 5.2, y: 0.82, color: "rgba(0,140,171,0.12)" },
+    ];
+    let w = 0, h = 0, raf = 0, visible = true, ultimo = 0;
+    const ajustar = () => {
+      const r = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    const dibujar = (t: number) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1.25;
+      for (const c of capas) {
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 8) {
+          const u = x / w;
+          const y = h * c.y + Math.sin(u * Math.PI * 2 * c.f + c.fase + t * c.v) * h * c.amp + Math.sin(u * Math.PI * 5 * c.f - t * c.v * 1.6) * h * c.amp * 0.25;
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = c.color;
+        ctx.stroke();
+      }
+    };
+    const cuadro = (ms: number) => {
+      raf = 0;
+      if (!visible || document.hidden || mq.matches) return;
+      if (ms - ultimo > 33) { ultimo = ms; dibujar(ms / 1000); }
+      raf = requestAnimationFrame(cuadro);
+    };
+    const arrancar = () => {
+      if (mq.matches) { dibujar(2); return; }
+      if (!raf && visible && !document.hidden) raf = requestAnimationFrame(cuadro);
+    };
+    ajustar(); dibujar(2); arrancar();
+    new ResizeObserver(() => { ajustar(); dibujar(2); arrancar(); }).observe(canvas);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; arrancar(); }).observe(canvas);
+    document.addEventListener("visibilitychange", arrancar);
+    mq.addEventListener("change", arrancar);
+  }
+</script>

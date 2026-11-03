@@ -1,0 +1,16 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import Cmd from "../../components/Cmd.astro";
+---
+<Docs titulo="Actualizar" descripcion="Cómo traer una reforma nueva, ver el estado de los datos, revertir o desinstalar leyes-mx.">
+  <h1>Actualizar</h1>
+  <p class="bajada">Cuando sale una reforma o una ley nueva se publica una versión de los datos. Para traerla:</p>
+  <Cmd cmd="npx leyes-mx actualizar" etiqueta="el comando actualizar" />
+  <p>Compara con la última versión publicada, descarga, verifica el sha256 y solo entonces activa. La versión anterior se conserva (<code>npx leyes-mx revertir</code>).</p>
+  <h2>Ver el estado sin descargar</h2>
+  <p>Para ver qué hay y qué cambió:</p>
+  <Cmd cmd="npx leyes-mx estado" etiqueta="el comando estado" />
+  <h2>Desinstalar</h2>
+  <p>Quita todo lo que puso este paquete en tus clientes. Tus otros servidores no se tocan.</p>
+  <Cmd cmd="npx leyes-mx desinstalar" etiqueta="el comando desinstalar" />
+</Docs>

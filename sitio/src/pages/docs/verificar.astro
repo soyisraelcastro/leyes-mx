@@ -1,0 +1,13 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import Cmd from "../../components/Cmd.astro";
+---
+<Docs titulo="Verificar que quedó" descripcion="Cómo comprobar que leyes-mx está instalado y consultar un artículo desde tu asistente o desde la terminal.">
+  <h1>Verificar que quedó</h1>
+  <Cmd cmd="npx leyes-mx doctor" etiqueta="el comando doctor" />
+  <p>Revisa Node y npx, la integridad de los datos, que el servidor responda y en qué clientes quedó registrado. Después, pregunta a tu asistente por un artículo, por ejemplo “¿qué dice el artículo 28 de la LISR?”, y comprueba que cite ley, artículo, año y fecha de reforma.</p>
+  <h2>Consultar desde la terminal</h2>
+  <p>También puedes consultar sin asistente:</p>
+  <Cmd cmd="npx leyes-mx obtener LISR 28" etiqueta="el comando obtener" />
+  <Cmd cmd={'npx leyes-mx buscar "recargos deducibles" --ley LISR'} etiqueta="el comando buscar" />
+</Docs>

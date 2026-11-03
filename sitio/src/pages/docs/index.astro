@@ -1,0 +1,28 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import Cmd from "../../components/Cmd.astro";
+import { RUTAS } from "../../lib/docs.mjs";
+import { REPO, COMANDO } from "../../lib/constantes.mjs";
+const resumen = {
+  "/docs/instalar": "Un comando para Claude Desktop, Claude Code, Codex, Cursor u otro cliente.",
+  "/docs/verificar": "Comprueba que quedó bien y haz una primera consulta.",
+  "/docs/actualizar": "Trae una reforma nueva, revierte o desinstala.",
+  "/docs/leyes": "Ordenamientos, años de vigencia, artículos y fecha de reforma.",
+  "/docs/tarifas": "Las tarifas de los arts. 96 y 152 de la LISR y el Anexo 8 de la RMF 2026.",
+  "/docs/reforma-2027": "Estado del proyecto: en trámite, no es ley.",
+  "/docs/aviso": "Alcance y límites de lo que contiene la base.",
+  "/docs/contribuir": "Código, datos y reglas para colaborar.",
+};
+---
+<Docs titulo="Documentación" descripcion="Cómo instalar, verificar y actualizar leyes-mx, qué leyes incluye y cómo contribuir.">
+  <h1>Documentación</h1>
+  <p class="bajada">leyes-mx instala el texto de las leyes fiscales y laborales de México, un archivo por artículo, y lo conecta a tu asistente. Cuando le preguntas por un artículo, lee el texto local y cita ley, artículo, año de vigencia y fecha de la última reforma.</p>
+  <h2>Empezar</h2>
+  <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} />
+  <p class="peque">Necesita Node 20 o superior. Detecta qué clientes tienes y los registra; usa <code>--cliente</code> para elegir uno. <code>--dry-run</code> muestra qué haría sin escribir nada.</p>
+  <h2>Contenido</h2>
+  <ul>
+    {RUTAS.map((r) => <li><a href={r.href}>{r.nombre}</a>. {resumen[r.href]}</li>)}
+  </ul>
+  <p>Todo es abierto: <a href={REPO}>{REPO.replace("https://", "")}</a>.</p>
+</Docs>

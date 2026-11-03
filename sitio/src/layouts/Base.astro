@@ -1,0 +1,118 @@
+---
+import "../styles/site.css";
+import { REPO, TODOCONTA, ABACUS } from "../lib/constantes.mjs";
+
+interface Props { titulo: string; descripcion: string; ruta?: string }
+const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
+
+const canonical = new URL(ruta === "/" ? "/" : ruta.replace(/\/+$/, ""), Astro.site).toString();
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const enDocs = path === "/docs" || path.startsWith("/docs/");
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="leyes-mx" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f5f6f8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="nav">
+      <div class="wrap nav-in">
+        <a class="nav-logo" href="/" aria-label="leyes-mx, ir al inicio">
+          <span class="mk" aria-hidden="true"><i class="mk-l"></i><i class="mk-r"></i><i class="mk-c"></i></span>
+          <span>leyes-mx</span>
+          <span class="por">de TodoConta</span>
+        </a>
+        <nav class="nav-links" aria-label="Principal">
+          <a href="/docs" aria-current={enDocs ? "page" : undefined}>Documentación</a>
+          <a href={REPO}>GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido"><slot /></main>
+
+    <footer class="foot">
+      <div class="wrap foot-in">
+        <div class="foot-top">
+          <span class="foot-brand"><span class="mk" aria-hidden="true"><i class="mk-l"></i><i class="mk-r"></i><i class="mk-c"></i></span>leyes-mx</span>
+          <nav class="foot-links" aria-label="Pie de página">
+            <a href="/docs">Documentación</a>
+            <a href={REPO}>GitHub</a>
+            <a href={TODOCONTA}>TodoConta</a>
+            <a href={ABACUS}>Abacus</a>
+            <a href="/docs/aviso">Aviso legal</a>
+          </nav>
+        </div>
+        <p class="foot-aviso">Los textos son informativos y se copian de la Cámara de Diputados del H. Congreso de la Unión. No sustituyen al Diario Oficial de la Federación, que es la fuente oficial, ni la asesoría profesional de un contador o abogado. Código y documentación bajo licencia MIT.</p>
+      </div>
+    </footer>
+
+    <p id="estado-copia" class="solo-lectores" role="status" aria-live="polite"></p>
+
+    <script>
+      // Pestañas (mejora progresiva: sin JavaScript se ven todos los paneles) y botón de copiar. Sin librerías.
+      const pestanas = document.querySelector("[data-tabs]");
+      if (pestanas) {
+        pestanas.classList.add("con-js");
+        const tabs = [...pestanas.querySelectorAll<HTMLElement>('[role="tab"]')];
+        const paneles = [...pestanas.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+        const activar = (tab: HTMLElement, enfocar: boolean) => {
+          tabs.forEach((t, i) => {
+            const on = t === tab;
+            t.setAttribute("aria-selected", String(on));
+            t.tabIndex = on ? 0 : -1;
+            paneles[i].hidden = !on;
+          });
+          if (enfocar) tab.focus();
+        };
+        activar(tabs[0], false);
+        tabs.forEach((t, i) => {
+          t.addEventListener("click", () => activar(t, false));
+          t.addEventListener("keydown", (e) => {
+            const k = ({ ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 } as Record<string, number>)[e.key];
+            if (k === undefined) return;
+            e.preventDefault();
+            activar(tabs[(k + tabs.length) % tabs.length], true);
+          });
+        });
+      }
+
+      const aviso = document.getElementById("estado-copia");
+      async function copiar(texto: string) {
+        try { await navigator.clipboard.writeText(texto); return true; } catch { /* alternativa */ }
+        const a = document.createElement("textarea");
+        a.value = texto; a.setAttribute("readonly", ""); a.style.position = "fixed"; a.style.opacity = "0";
+        document.body.appendChild(a); a.select();
+        let ok = false;
+        try { ok = document.execCommand("copy"); } catch { ok = false; }
+        a.remove();
+        return ok;
+      }
+      document.querySelectorAll<HTMLButtonElement>("button.copiar").forEach((b) => {
+        b.addEventListener("click", async () => {
+          const ok = await copiar(b.dataset.copiar ?? "");
+          const antes = b.textContent;
+          b.textContent = ok ? "Copiado" : "No se pudo";
+          if (aviso) aviso.textContent = ok ? "Copiado al portapapeles" : "No se pudo copiar; selecciona el texto a mano";
+          setTimeout(() => { b.textContent = antes; if (aviso) aviso.textContent = ""; }, 1800);
+        });
+      });
+    </script>
+  </body>
+</html>

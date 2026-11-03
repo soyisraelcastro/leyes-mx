@@ -1,0 +1,24 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import Cmd from "../../components/Cmd.astro";
+import { anexo8 } from "../../lib/datos.mjs";
+const a = anexo8();
+---
+<Docs titulo="Tarifas de ISR (arts. 96 y 152 y Anexo 8)" descripcion="Cómo trae leyes-mx las tarifas de ISR de los artículos 96 y 152 de la LISR, publicadas como imagen, y las del Anexo 8 de la RMF 2026.">
+  <h1>Tarifas de ISR</h1>
+  <p class="bajada">Las tarifas mensual (art. 96) y anual (art. 152) de la LISR se publican como imagen en el PDF de la Cámara de Diputados, y una extracción de texto no las ve. leyes-mx las transcribe aparte y las verifica.</p>
+  <h2>Tarifas de la ley (arts. 96 y 152)</h2>
+  <ul>
+    <li>Se transcriben a una tabla por artículo y se conserva la imagen original.</li>
+    <li>Se verifican con aritmética: los rangos son contiguos y la cuota fija se recalcula en cada renglón.</li>
+    <li>Son las tarifas <strong>de la ley</strong>. Cada año se actualizan por inflación y se publican en el Anexo 8 de la RMF (art. 152, último párrafo).</li>
+    <li>Los arts. 96 y 152 de la base traen un aviso que lo dice y remite a la tarifa del año.</li>
+  </ul>
+  <h2>Anexo 8 de la RMF {a?.anio ?? "2026"}</h2>
+  <p>Para calcular retenciones o el anual 2026 se aplica la tarifa del anexo, no la de la ley. {a && <>La base incluye las <strong>{a.tarifas} tarifas</strong> del Anexo 8, una por archivo, copiadas del PDF del SAT (DOF 2025-12-28) y verificadas con aritmética y con el cruce entre tarifas que el anexo publica idénticas.</>}</p>
+  <p class="aviso-suave">Un ejemplo: la tarifa mensual de la ley empieza 0.01 a 496.07; la mensual 2026 del anexo empieza 0.01 a 844.59.</p>
+  <h2>Consultar una tarifa</h2>
+  <p>Tu asistente las usa por sí solo cuando preguntas por retenciones o por el cálculo anual. También puedes pedir el artículo desde la terminal:</p>
+  <Cmd cmd="npx leyes-mx obtener LISR 96" etiqueta="el comando para ver el artículo 96" />
+  <p class="peque">Las dos tablas de un artículo transitorio de la LISR (deducción de inversiones 2016 y 2017) solo conservan la imagen, sin transcribir. Los demás anexos de la RMF y sus reglas no están en la base.</p>
+</Docs>

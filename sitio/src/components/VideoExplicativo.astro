@@ -1,0 +1,25 @@
+---
+// Marco 16:9 tipo reproductor. Sin videoUrl muestra "Próximamente" (no hay video todavía).
+// Para publicarlo, pasa videoUrl desde src/pages/index.astro:
+//   - archivo (.mp4 o .webm, por ejemplo /video/leyes-mx.mp4 en public/): se usa <video controls>.
+//   - página de inserción (YouTube, Vimeo): se usa <iframe>. Ojo: vercel.json tiene CSP "default-src 'self'", así que
+//     hay que agregar la directiva frame-src con ese dominio (por ejemplo https://www.youtube-nocookie.com) o el
+//     navegador bloqueará el iframe.
+interface Props { titulo: string; videoUrl?: string; poster?: string }
+const { titulo, videoUrl, poster } = Astro.props;
+const esArchivo = !!videoUrl && /\.(mp4|webm)(\?.*)?$/i.test(videoUrl);
+---
+<figure style="margin:0">
+  <div class="marco">
+    {videoUrl && esArchivo && <video controls preload="none" poster={poster} src={videoUrl} aria-label={titulo}></video>}
+    {videoUrl && !esArchivo && <iframe src={videoUrl} title={titulo} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>}
+    {!videoUrl && (
+      <div class="marco-vacio" role="img" aria-label="El video explicativo aún no está disponible">
+        <span class="play" aria-hidden="true"></span>
+        <strong>Próximamente</strong>
+        <span>Todavía no hay video. Mientras tanto, la documentación explica lo mismo por escrito.</span>
+      </div>
+    )}
+  </div>
+  <figcaption class="video-tit">{titulo}</figcaption>
+</figure>

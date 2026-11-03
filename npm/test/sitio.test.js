@@ -6,13 +6,16 @@ import { spawnSync } from "node:child_process";
 import { correr, REPO } from "./ayuda.js";
 import { bloqueJsonGenerico, ARGS } from "../src/clientes.js";
 
-const dist = path.join(REPO, "sitio", "dist", "index.html");
-const hay = fs.existsSync(dist);
+const dist = path.join(REPO, "sitio", "dist");
+const hay = fs.existsSync(path.join(dist, "index.html"));
+// El sitio tiene varias páginas (portada y /docs/*): los comandos viven en la documentación, así que se leen todas.
+const paginas = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? paginas(path.join(d, e.name)) : e.name.endsWith(".html") ? [path.join(d, e.name)] : []));
+const leerSitio = () => paginas(dist).map((f) => fs.readFileSync(f, "utf8")).join("\n");
 
 const decodificar = (s) => s.replaceAll("&quot;", '"').replaceAll("&#34;", '"').replaceAll("&#39;", "'").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
 
 test("los comandos de la landing coinciden con lo implementado", { skip: !hay && "primero: cd sitio && npm run build" }, () => {
-  const html = fs.readFileSync(dist, "utf8");
+  const html = leerSitio();
   const copiables = [...html.matchAll(/data-copiar="([^"]*)"/g)].map((m) => decodificar(m[1]));
   assert.ok(copiables.length >= 10, "debe haber bloques copiables");
   const ayuda = correr(["--ayuda"]).stdout;
@@ -52,10 +55,10 @@ test("los comandos de la landing coinciden con lo implementado", { skip: !hay &&
 });
 
 test("la landing no usa github.io, ni llamadas a terceros, ni raya larga", { skip: !hay }, () => {
-  const html = fs.readFileSync(dist, "utf8");
+  const html = leerSitio();
   assert.ok(!html.includes("github.io"));
   assert.ok(!html.includes("\u2014") && !html.includes("\u00ab"));
-  const externos = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]).filter((u) => !u.startsWith("https://github.com/soyisraelcastro/leyes-mx"));
-  assert.deepEqual(externos.filter((u) => !u.includes("example.com")), []);
+  const externos = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]).filter((u) => !u.startsWith("https://github.com/soyisraelcastro/leyes-mx") && !u.startsWith("https://todoconta.com"));
+  assert.deepEqual(externos.filter((u) => !u.includes("example.com") && !u.startsWith("https://leyes.todoconta.com")), []);
   void spawnSync;
 });

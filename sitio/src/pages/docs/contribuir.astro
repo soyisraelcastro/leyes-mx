@@ -1,0 +1,10 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import { REPO } from "../../lib/constantes.mjs";
+---
+<Docs titulo="Código, datos y cómo contribuir" descripcion="leyes-mx es de código abierto: repositorio, origen de los datos y reglas para contribuir.">
+  <h1>Código, datos y cómo contribuir</h1>
+  <p class="bajada">Todo es abierto: <a href={REPO}>{REPO.replace("https://", "")}</a>.</p>
+  <p>El texto legal sale siempre del texto oficial descargado, nunca se escribe a mano. Para agregar una ley basta una entrada en <code>fuentes.json</code>.</p>
+  <p>Las reglas de contribución, incluido que los commits y PR no llevan co-autoría ni firmas de herramientas, están en <a href={`${REPO}/blob/main/CONTRIBUTING.md`}>CONTRIBUTING.md</a>.</p>
+</Docs>
