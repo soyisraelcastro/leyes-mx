@@ -29,10 +29,11 @@ const mx = (n) => n.toLocaleString("es-MX");
     <HeroOndas />
     <div class="wrap hero-in"><div class="hero-txt">
       <p class="sobre">Gratis · por TodoConta</p>
-      <h1 id="h-hero">Las leyes de México en tu asistente de IA. Con artículo exacto y vigencia real.</h1>
-      <p class="lead">Evita que la IA invente artículos, cite normas derogadas o confunda un proyecto con ley vigente. Tu asistente lee el texto de la ley antes de responder.</p>
+      <h1 id="h-hero">Las leyes de México en tu asistente de IA.</h1>
+      <p class="sub">Con artículo exacto y vigencia real.</p>
+      <p class="lead">Para que la IA no invente artículos, no cite normas derogadas y no confunda un proyecto con ley vigente.</p>
       <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} grande cursor />
-      <p class="nota"><strong>Dónde pegarlo:</strong> en el modo Code de Claude Desktop, en Claude Code, en Codex o en la Terminal de tu computadora. En el chat normal de Claude Desktop no funciona, porque ahí se ejecuta en un equipo en la nube. Detecta tus asistentes y los conecta. <a href="/docs/instalar">Ver la guía paso a paso</a>.</p>
+      <p class="nota">Sólo tienes que pegarlo en Claude Desktop (modo Code), Claude Code, Codex o la Terminal. <a href="/docs/instalar">Ver guía</a></p>
     </div></div>
   </section>
 
@@ -119,6 +120,7 @@ const mx = (n) => n.toLocaleString("es-MX");
 </Base>
 
 <style>
+  .sub { margin: 14px 0 0; font-size: clamp(22px, 3vw, 34px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; color: var(--soft); }
   .video-solo { max-width: 960px; }
   .opc { margin: 0 0 10px !important; font-family: var(--mono); font-size: 13px !important; color: var(--ghost) !important; }
   .producto .card.oscura .opc { color: #8b94a3 !important; }
