@@ -56,15 +56,18 @@ main { flex: 1 0 auto; }
 .mk-c { left: calc(50% - var(--m) * 3 / 36); top: calc(50% - var(--m) * 4 / 36); width: calc(var(--m) * 6 / 36); height: calc(var(--m) * 8 / 36); background: var(--ribbon); }
 
 /* ---------- Banner de TodoConta (discreto, se puede cerrar) ---------- */
-.banner { background: var(--app); border-bottom: 1px solid var(--rule); font-size: 13.5px; color: var(--soft); }
+.banner { background: var(--ink); font-size: 13.5px; color: #aeb6c2; }
 .sin-banner .banner { display: none; }
 .banner-in { display: flex; align-items: center; gap: 12px; min-height: 40px; }
 .banner p { flex: 1; margin: 0; padding: 8px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; line-height: 1.4; }
 .banner .mk { --m: 14px; }
-.banner strong { color: var(--ink); font-weight: 600; }
-.banner a { color: var(--ink); font-weight: 600; white-space: nowrap; }
-.banner-x { flex-shrink: 0; width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--ghost); font: 400 20px/1 var(--sans); cursor: pointer; }
-.banner-x:hover { background: var(--muted); color: var(--ink); }
+.banner .mk-l { background: var(--on-dark); } .banner .mk-r { border-color: var(--on-dark); }
+.banner strong { color: #fff; font-weight: 600; }
+.banner a { color: #fff; font-weight: 600; white-space: nowrap; }
+.banner a:hover { color: var(--on-dark); text-decoration-thickness: 2px; }
+.banner a:focus-visible, .banner-x:focus-visible { outline-color: #fff; }
+.banner-x { flex-shrink: 0; width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: #8b94a3; font: 400 20px/1 var(--sans); cursor: pointer; }
+.banner-x:hover { background: #272d37; color: #fff; }
 @media (max-width: 720px) { .banner-largo { display: none; } .banner .mk { display: none; } }
 
 /* ---------- Nav ---------- */
