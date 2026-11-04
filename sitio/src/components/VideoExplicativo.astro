@@ -5,8 +5,8 @@
 //   - página de inserción (YouTube, Vimeo): se usa <iframe>. Ojo: vercel.json tiene CSP "default-src 'self'", así que
 //     hay que agregar la directiva frame-src con ese dominio (por ejemplo https://www.youtube-nocookie.com) o el
 //     navegador bloqueará el iframe.
-interface Props { titulo: string; videoUrl?: string; poster?: string }
-const { titulo, videoUrl, poster } = Astro.props;
+interface Props { titulo: string; videoUrl?: string; poster?: string; leyenda?: boolean }
+const { titulo, videoUrl, poster, leyenda = true } = Astro.props;
 const esArchivo = !!videoUrl && /\.(mp4|webm)(\?.*)?$/i.test(videoUrl);
 ---
 <figure style="margin:0">
@@ -21,5 +21,5 @@ const esArchivo = !!videoUrl && /\.(mp4|webm)(\?.*)?$/i.test(videoUrl);
       </div>
     )}
   </div>
-  <figcaption class="video-tit">{titulo}</figcaption>
+  {leyenda && <figcaption class="video-tit">{titulo}</figcaption>}
 </figure>
