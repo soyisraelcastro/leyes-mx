@@ -31,10 +31,8 @@ const mx = (n) => n.toLocaleString("es-MX");
       <p class="sobre">Gratis · por TodoConta</p>
       <h1 id="h-hero">Las leyes de México en tu asistente de IA. Con artículo exacto y vigencia real.</h1>
       <p class="lead">Evita que la IA invente artículos, cite normas derogadas o confunda un proyecto con ley vigente. Tu asistente lee el texto de la ley antes de responder.</p>
-      <div class="acciones">
-        <a class="btn btn-primary" href={ABACUS}>Usar en WhatsApp con Abacus</a>
-        <a class="btn btn-line" href="#instalar">Instalar gratis en mi computadora</a>
-      </div>
+      <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} grande cursor />
+      <p class="nota"><strong>Dónde pegarlo:</strong> en el modo Code de Claude Desktop, en Claude Code, en Codex o en la Terminal de tu computadora. En el chat normal de Claude Desktop no funciona, porque ahí se ejecuta en un equipo en la nube. Detecta tus asistentes y los conecta. <a href="/docs/instalar">Ver la guía paso a paso</a>.</p>
     </div></div>
   </section>
 
@@ -121,7 +119,6 @@ const mx = (n) => n.toLocaleString("es-MX");
 </Base>
 
 <style>
-  .hero .acciones { margin-top: 30px; }
   .video-solo { max-width: 960px; }
   .opc { margin: 0 0 10px !important; font-family: var(--mono); font-size: 13px !important; color: var(--ghost) !important; }
   .producto .card.oscura .opc { color: #8b94a3 !important; }

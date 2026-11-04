@@ -1,6 +1,6 @@
 ---
 import "../styles/site.css";
-import { REPO, TODOCONTA, ABACUS } from "../lib/constantes.mjs";
+import { REPO, TODOCONTA, ABACUS, TODOCONTA_BANNER } from "../lib/constantes.mjs";
 
 interface Props { titulo: string; descripcion: string; ruta?: string }
 const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
@@ -28,9 +28,16 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
     <meta name="theme-color" content="#f5f6f8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>try { if (localStorage.getItem("banner-todoconta") === "cerrado") document.documentElement.classList.add("sin-banner"); } catch (e) {}</script>
   </head>
   <body>
     <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <aside class="banner" aria-label="Aviso de TodoConta">
+      <div class="wrap banner-in">
+        <p><span class="mk" aria-hidden="true"><i class="mk-l"></i><i class="mk-r"></i><i class="mk-c"></i></span><span><strong>TodoConta</strong><span class="banner-largo">, de los mismos creadores:</span> descarga masiva de CFDIs, constancia y opinión 32-D<span class="banner-largo"> de todas tus empresas</span>.</span> <a href={TODOCONTA_BANNER}>Pruébala 15 días gratis</a></p>
+        <button type="button" class="banner-x" aria-label="Cerrar el aviso de TodoConta">×</button>
+      </div>
+    </aside>
     <header class="nav">
       <div class="wrap nav-in">
         <a class="nav-logo" href="/" aria-label="leyes-mx, ir al inicio">
@@ -92,6 +99,11 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
           });
         });
       }
+
+      document.querySelector(".banner-x")?.addEventListener("click", () => {
+        document.documentElement.classList.add("sin-banner");
+        try { localStorage.setItem("banner-todoconta", "cerrado"); } catch { /* sin almacenamiento: solo se oculta en esta visita */ }
+      });
 
       const aviso = document.getElementById("estado-copia");
       async function copiar(texto: string) {

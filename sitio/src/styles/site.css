@@ -55,6 +55,18 @@ main { flex: 1 0 auto; }
 .mk-r { left: calc(50% - var(--m) * 2.5 / 36); top: calc(var(--m) * -2.5 / 36); width: calc(var(--m) * 23 / 36); height: calc(var(--m) * 41 / 36); border: calc(var(--m) * 5 / 36) solid var(--ink); border-top-right-radius: calc(var(--m) * 10.5 / 36); }
 .mk-c { left: calc(50% - var(--m) * 3 / 36); top: calc(50% - var(--m) * 4 / 36); width: calc(var(--m) * 6 / 36); height: calc(var(--m) * 8 / 36); background: var(--ribbon); }
 
+/* ---------- Banner de TodoConta (discreto, se puede cerrar) ---------- */
+.banner { background: var(--app); border-bottom: 1px solid var(--rule); font-size: 13.5px; color: var(--soft); }
+.sin-banner .banner { display: none; }
+.banner-in { display: flex; align-items: center; gap: 12px; min-height: 40px; }
+.banner p { flex: 1; margin: 0; padding: 8px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; line-height: 1.4; }
+.banner .mk { --m: 14px; }
+.banner strong { color: var(--ink); font-weight: 600; }
+.banner a { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.banner-x { flex-shrink: 0; width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--ghost); font: 400 20px/1 var(--sans); cursor: pointer; }
+.banner-x:hover { background: var(--muted); color: var(--ink); }
+@media (max-width: 720px) { .banner-largo { display: none; } .banner .mk { display: none; } }
+
 /* ---------- Nav ---------- */
 .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 86%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); box-shadow: 0 1px 0 var(--rule); }
 .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
