@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import Cmd from "../components/Cmd.astro";
 import HeroOndas from "../components/HeroOndas.astro";
 import DemoAsistente from "../components/DemoAsistente.astro";
+import VideoExplicativo from "../components/VideoExplicativo.astro";
 import { leyes, reforma, anexo8 } from "../lib/datos.mjs";
 import { ABACUS, COMANDO } from "../lib/constantes.mjs";
 
@@ -35,6 +36,18 @@ const mx = (n) => n.toLocaleString("es-MX");
         <a class="btn btn-line" href="#instalar">Instalar gratis en mi computadora</a>
       </div>
     </div></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-video">
+    <div class="wrap">
+      <div class="sec-cab">
+        <p class="etq">En 20 segundos</p>
+        <h2 id="h-video">Qué hace leyes-mx y por qué conviene tenerlo.</h2>
+      </div>
+      <div class="video-solo">
+        <VideoExplicativo titulo="leyes-mx en 20 segundos" videoUrl="/video/leyes-mx.mp4" poster="/video/leyes-mx-poster.jpg" />
+      </div>
+    </div>
   </section>
 
   <DemoAsistente />
@@ -109,6 +122,7 @@ const mx = (n) => n.toLocaleString("es-MX");
 
 <style>
   .hero .acciones { margin-top: 30px; }
+  .video-solo { max-width: 960px; }
   .opc { margin: 0 0 10px !important; font-family: var(--mono); font-size: 13px !important; color: var(--ghost) !important; }
   .producto .card.oscura .opc { color: #8b94a3 !important; }
   .producto .card .cmd { width: 100%; margin-top: 16px; }
