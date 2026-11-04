@@ -2,12 +2,13 @@
 import Base from "../layouts/Base.astro";
 import Cmd from "../components/Cmd.astro";
 import HeroOndas from "../components/HeroOndas.astro";
+import DemoAsistente from "../components/DemoAsistente.astro";
 import VideoExplicativo from "../components/VideoExplicativo.astro";
 import { leyes, reforma, anexo8 } from "../lib/datos.mjs";
-import { REPO, ABACUS, COMANDO } from "../lib/constantes.mjs";
+import { ABACUS, COMANDO } from "../lib/constantes.mjs";
 
-const titulo = "leyes-mx: las leyes fiscales y laborales de México, con cita exacta, en tu asistente";
-const descripcion = "Un comando instala en tu equipo el texto de la LISR, LIVA, CFF, LFT y sus reglamentos. Tu asistente de IA cita ley, artículo, año de vigencia y fecha de reforma, sin depender de buscadores. Gratis y de código abierto.";
+const titulo = "leyes-mx: las leyes fiscales y laborales de México en tu asistente de IA, con artículo exacto";
+const descripcion = "Tu asistente de IA cita ley, artículo, vigencia y fecha de reforma de la LISR, LIVA, CFF, LFT y sus reglamentos, en lugar de inventarlos. En WhatsApp con Abacus o gratis en tu computadora.";
 
 // Cifras leídas de los datos del repo en cada build; nada se escribe a mano.
 const lista = leyes();
@@ -16,156 +17,131 @@ const total = lista.reduce((n, l) => n + l.articulos, 0);
 const anioVig = [...new Set(lista.map((l) => l.anio))].join(", ");
 const anexo = anexo8();
 const ref = reforma();
-const leyesBase = ["LISR", "LIVA", "CFF", "LFT"].map(por).filter(Boolean);
-const reglamentos = ["RLISR", "RLIVA", "RCFF"].map(por).filter(Boolean);
-const nombreCorto = { LISR: "Ley del Impuesto sobre la Renta", LIVA: "Ley del Impuesto al Valor Agregado", CFF: "Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo",
-  RLISR: "Reglamento de la Ley del ISR", RLIVA: "Reglamento de la Ley del IVA", RCFF: "Reglamento del Código Fiscal" };
-
-const problemas = [
-  { t: "Cita completa, no “según la ley”", d: "Cada respuesta trae la ley, el artículo, el año de vigencia y la fecha de la última reforma. Puedes comprobarla contra el texto oficial." },
-  { t: "Sin depender de un buscador", d: "El asistente lee el texto instalado en tu equipo, no resultados que cambian cada vez. La misma pregunta da el mismo artículo. Si no está, responde “no verificado” en lugar de citar de memoria." },
-  { t: "2026 no se confunde con 2027", d: "Los textos van separados por año de vigencia. Un proyecto en trámite nunca se presenta como ley vigente: si se pide, sale rotulado como proyecto." },
-  { t: "Tarifas que el PDF publica como imagen", d: "Las tarifas de los arts. 96 y 152 de la LISR vienen transcritas y verificadas con aritmética, junto con las 31 tarifas del Anexo 8 de la RMF 2026 que se aplican este año." },
-  { t: "Local, gratis y abierto", d: "Se instala con un comando, funciona sin conexión una vez instalado y el código es abierto (MIT). Los datos se verifican con su sha256 antes de activarse." },
-];
-
-const indice = [
-  { t: "Qué es leyes-mx", d: "Una biblioteca de las leyes en tu equipo, que tu asistente puede consultar." },
-  { t: "Primero la base local, luego internet", d: "Cómo el asistente busca el artículo en tu equipo antes de recurrir a la web." },
-  { t: "Qué pasa con las reformas", d: "Qué es proyecto y qué es ley vigente, y cómo se marca cada uno." },
-  { t: "Cómo se actualiza", d: "El comando que trae una reforma nueva y cómo volver a la versión anterior." },
-];
+const nombre = { LISR: "Ley del Impuesto sobre la Renta", RLISR: "Reglamento de la Ley del ISR", LIVA: "Ley del Impuesto al Valor Agregado",
+  RLIVA: "Reglamento de la Ley del IVA", CFF: "Código Fiscal de la Federación", RCFF: "Reglamento del Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo" };
+const fiscal = ["LISR", "RLISR", "LIVA", "RLIVA", "CFF", "RCFF"].map(por).filter(Boolean);
+const laboral = ["LFT"].map(por).filter(Boolean);
+const redondo = Math.floor(total / 100) * 100;
+const mx = (n) => n.toLocaleString("es-MX");
 ---
 <Base titulo={titulo} descripcion={descripcion}>
   <section class="hero" aria-labelledby="h-hero">
     <HeroOndas />
     <div class="wrap hero-in"><div class="hero-txt">
-      <p class="sobre">Gratis, de código abierto y en tu equipo</p>
-      <h1 id="h-hero">Las leyes de México, en tu asistente, con cita exacta.</h1>
-      <p class="lead">leyes-mx instala el texto de las leyes fiscales y laborales para que tu asistente de IA lo consulte, no lo invente. Un solo comando.</p>
-      <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} grande cursor />
-      <p class="nota"><strong>Dónde pegarlo:</strong> en la Terminal de tu computadora, o en el modo Code de Claude Desktop, Claude Code o Codex (ahí puedes pedirle a tu asistente que lo instale por ti). En el chat normal de Claude Desktop no funciona: el comando se ejecutaría en un equipo temporal en la nube y no en tu computadora. Detecta qué asistentes tienes y los conecta. Necesita Node 20 o superior. <a href="/docs/instalar">Ver instalación paso a paso</a>.</p>
-      <div class="acciones" style="margin-top:22px">
-        <a class="btn btn-primary" href="/docs">Leer la documentación</a>
-        <a class="btn btn-line" href={REPO}>Ver en GitHub</a>
+      <p class="sobre">Gratis · por TodoConta</p>
+      <h1 id="h-hero">Las leyes de México en tu asistente de IA. Con artículo exacto y vigencia real.</h1>
+      <p class="lead">Evita que la IA invente artículos, cite normas derogadas o confunda un proyecto con ley vigente. Tu asistente lee el texto de la ley antes de responder.</p>
+      <div class="acciones">
+        <a class="btn btn-primary" href={ABACUS}>Usar en WhatsApp con Abacus</a>
+        <a class="btn btn-line" href="#instalar">Instalar gratis en mi computadora</a>
       </div>
     </div></div>
-  </section>
-
-  <section class="sec" aria-labelledby="h-problemas">
-    <div class="wrap">
-      <div class="sec-cab">
-        <p class="etq">Para qué sirve</p>
-        <h2 id="h-problemas">Un asistente que cita la ley como la citaría un colega.</h2>
-        <p>Cuando la IA busca la norma en internet puede traer una página vieja, otro año o un artículo que no existe. Con leyes-mx lee el texto y sabe de dónde salió.</p>
-      </div>
-      <div class="rejilla">
-        {problemas.map((p, i) => (
-          <article class="card">
-            <span class="num">{String(i + 1).padStart(2, "0")}</span>
-            <h3>{p.t}</h3>
-            <p>{p.d}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="h-docs">
-    <div class="wrap">
-      <div class="sec-cab">
-        <p class="etq">Qué incluye</p>
-        <h2 id="h-docs">Los documentos que más se consultan.</h2>
-        <p>Vigencia {anioVig}. Los conteos salen de los datos del repositorio.</p>
-      </div>
-
-      <h3 class="grupo">Leyes</h3>
-      <div class="rejilla docs-g">
-        {leyesBase.map((l) => (
-          <article class="card doc">
-            <span class="sigla">{l.sigla}</span>
-            <span class="nombre">{nombreCorto[l.sigla] ?? l.nombre}</span>
-            <span class="cifra"><strong>{l.articulos}</strong> artículos · reforma DOF {l.reforma}</span>
-          </article>
-        ))}
-      </div>
-
-      <h3 class="grupo">Reglamentos</h3>
-      <div class="rejilla docs-g">
-        {reglamentos.map((l) => (
-          <article class="card doc">
-            <span class="sigla">{l.sigla}</span>
-            <span class="nombre">{nombreCorto[l.sigla] ?? l.nombre}</span>
-            <span class="cifra"><strong>{l.articulos}</strong> artículos · reforma DOF {l.reforma}</span>
-          </article>
-        ))}
-      </div>
-
-      <h3 class="grupo">Tarifas y proyectos</h3>
-      <div class="rejilla docs-g">
-        {anexo && (
-          <article class="card doc">
-            <span class="sigla">Anexo 8 RMF {anexo.anio}</span>
-            <span class="nombre">Tarifas de ISR de pagos provisionales, retenciones y cálculo anual</span>
-            <span class="cifra"><strong>{anexo.tarifas}</strong> tarifas, verificadas con aritmética</span>
-          </article>
-        )}
-        {ref && (
-          <article class="card doc proyecto">
-            <span class="bdg warn">Proyecto, no es ley vigente</span>
-            <span class="sigla">Reforma {ref.anio}</span>
-            <span class="nombre">Paquete Económico en trámite. Va aparte y siempre rotulado como proyecto.</span>
-            <span class="cifra">Estado al {ref.actualizado}</span>
-          </article>
-        )}
-      </div>
-
-      <p class="total">En total, <strong>{total.toLocaleString("es-MX")}</strong> artículos con vigencia {anioVig}. <a href="/docs/leyes">Ver el detalle por ley y año</a>.</p>
-    </div>
   </section>
 
   <section class="sec" aria-labelledby="h-video">
     <div class="wrap">
       <div class="sec-cab">
-        <p class="etq">Video</p>
-        <h2 id="h-video">Cómo funciona y qué ganas al tenerlo.</h2>
+        <p class="etq">En 20 segundos</p>
+        <h2 id="h-video">Qué hace leyes-mx y por qué conviene tenerlo.</h2>
       </div>
-      <div class="video-grid">
-        <VideoExplicativo titulo="leyes-mx: cómo funciona y por qué conviene tenerlo" />
-        <div>
-          <p class="indice-tit">Lo que explicará el video</p>
-          <ol class="indice">
-            {indice.map((x) => <li><div><strong>{x.t}</strong><span>{x.d}</span></div></li>)}
-          </ol>
-        </div>
+      <div class="video-solo">
+        <VideoExplicativo titulo="leyes-mx en 20 segundos" videoUrl="/video/leyes-mx.mp4" poster="/video/leyes-mx-poster.jpg" leyenda={false} />
       </div>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-producto">
+  <DemoAsistente />
+
+  <section class="sec" id="instalar" aria-labelledby="h-usar">
     <div class="wrap">
       <div class="sec-cab">
-        <p class="etq">Dos formas de usarlo</p>
-        <h2 id="h-producto">Dentro de Abacus, o en el asistente que ya usas.</h2>
+        <p class="etq">Cómo usarlo</p>
+        <h2 id="h-usar">Elige cómo prefieres trabajar.</h2>
       </div>
       <div class="producto">
         <article class="card oscura">
-          <h3>Parte de Abacus</h3>
-          <p>leyes-mx será la base legal que Abacus, el asistente fiscal de TodoConta en WhatsApp, consulte primero. Así sus respuestas llegarán con fundamento: ley, artículo y vigencia.</p>
+          <p class="opc">Opción A</p>
+          <h3>En tu WhatsApp, con Abacus</h3>
+          <p>No instalas nada. leyes-mx ya es la base legal de Abacus, el asistente fiscal de TodoConta: le escribes desde el teléfono y responde con ley, artículo y fecha de reforma. Útil en una junta con el cliente o fuera de la oficina.</p>
+          <p class="peque-osc">Abacus es de pago. Puedes probarlo 14 días gratis.</p>
           <div class="acciones"><a class="btn btn-primary" href={ABACUS}>Conocer Abacus</a></div>
         </article>
         <article class="card">
-          <h3>Gratis y abierto para cualquier asistente</h3>
-          <p>No necesitas cuenta ni pagar nada. Funciona con estos asistentes y con cualquier otro que use el estándar MCP.</p>
-          <ul class="chips" aria-label="Asistentes compatibles">
-            <li>Claude Desktop</li><li>Claude Code</li><li>Codex</li><li>Cursor</li><li>Otros clientes MCP</li>
-          </ul>
-          <div class="acciones">
-            <a class="btn btn-primary" href={REPO}>Ver en GitHub</a>
-            <a class="btn btn-line" href="/docs">Documentación</a>
-          </div>
+          <p class="opc">Opción B</p>
+          <h3>En tu computadora, gratis</h3>
+          <p>Para quien ya trabaja con Claude Desktop, Claude Code o Codex en contratos, dictámenes o papeles de trabajo. Copia esta instrucción:</p>
+          <Cmd cmd={COMANDO} etiqueta={`el comando ${COMANDO}`} />
+          <p class="peque">Pégala en el modo Code de Claude Desktop o en la Terminal. En el chat normal no funciona, porque ahí se ejecuta en un equipo en la nube y no en tu computadora. Detecta tus asistentes y los conecta. Si te falta algún programa, tu asistente te ayuda a instalarlo.</p>
+          <div class="acciones"><a class="btn btn-line" href="/docs/instalar">Ver la guía paso a paso</a></div>
         </article>
       </div>
     </div>
   </section>
+
+  <section class="sec" aria-labelledby="h-incluye">
+    <div class="wrap">
+      <div class="sec-cab">
+        <p class="etq">Qué incluye</p>
+        <h2 id="h-incluye">Más de {mx(redondo)} artículos con vigencia {anioVig}.</h2>
+      </div>
+      <div class="listado">
+        <div>
+          <h3 class="grupo">Materia fiscal</h3>
+          <ul class="leyes-l">
+            {fiscal.map((l) => <li><span class="sigla">{l.sigla}</span><span class="nom">{nombre[l.sigla] ?? l.nombre}</span><span class="cuenta">{mx(l.articulos)} artículos</span></li>)}
+            {anexo && <li><span class="sigla">Anexo 8</span><span class="nom">RMF {anexo.anio}: tarifas de ISR de pagos provisionales, retenciones y cálculo anual</span><span class="cuenta">{anexo.tarifas} tarifas</span></li>}
+          </ul>
+        </div>
+        <div>
+          <h3 class="grupo">Materia laboral</h3>
+          <ul class="leyes-l">
+            {laboral.map((l) => <li><span class="sigla">{l.sigla}</span><span class="nom">{nombre[l.sigla] ?? l.nombre}</span><span class="cuenta">{mx(l.articulos)} artículos</span></li>)}
+          </ul>
+          {ref && (
+            <>
+              <h3 class="grupo">Proyectos, siempre aparte</h3>
+              <ul class="leyes-l">
+                <li class="proy"><span class="sigla">{ref.anio}</span><span class="nom">Paquete Económico y reformas en trámite, rotulados como proyecto</span><span class="cuenta">No es ley vigente</span></li>
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
+      <p class="total"><a href="/docs/leyes">Ver el detalle por ley, año y fecha de reforma</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec cierre" aria-labelledby="h-gratis">
+    <div class="wrap">
+      <h2 id="h-gratis">Gratis y sin pagos ocultos.</h2>
+      <p>leyes-mx no pide cuenta ni suscripción. Los textos se copian de las publicaciones oficiales y sirven para consultar y fundamentar más rápido; no sustituyen al Diario Oficial de la Federación ni el criterio de un contador o abogado. <a href="/docs/aviso">Aviso legal</a>.</p>
+      <div class="acciones"><a class="btn btn-primary" href="#instalar">Instalar gratis</a></div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .hero .acciones { margin-top: 30px; }
+  .video-solo { max-width: 960px; }
+  .opc { margin: 0 0 10px !important; font-family: var(--mono); font-size: 13px !important; color: var(--ghost) !important; }
+  .producto .card.oscura .opc { color: #8b94a3 !important; }
+  .producto .card .cmd { width: 100%; margin-top: 16px; }
+  .producto .card .peque { margin-top: 4px; }
+  .peque-osc { font-size: 14.5px !important; color: #8b94a3 !important; }
+
+  .listado { display: grid; gap: 8px 48px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .listado .grupo { margin: 0 0 6px; }
+  .listado ul + .grupo { margin-top: 30px; }
+  .leyes-l { list-style: none; margin: 0; padding: 0; }
+  .leyes-l li { display: grid; grid-template-columns: 84px 1fr auto; gap: 4px 16px; align-items: baseline; padding: 13px 0; border-top: 1px solid var(--rule); }
+  .leyes-l li:last-child { border-bottom: 1px solid var(--rule); }
+  .leyes-l .sigla { font-family: var(--mono); font-weight: 700; font-size: 16px; }
+  .leyes-l .nom { color: var(--soft); font-size: 16px; line-height: 1.35; }
+  .leyes-l .cuenta { font-family: var(--mono); font-size: 13.5px; color: var(--ghost); white-space: nowrap; }
+  .leyes-l .proy .cuenta { color: var(--warn); }
+  @media (max-width: 520px) { .leyes-l li { grid-template-columns: 72px 1fr; } .leyes-l .cuenta { grid-column: 2; } }
+
+  .cierre .wrap { max-width: 760px; text-align: center; }
+  .cierre p { color: var(--soft); margin: 16px auto 0; }
+  .cierre .acciones { justify-content: center; margin-top: 26px; }
+</style>
