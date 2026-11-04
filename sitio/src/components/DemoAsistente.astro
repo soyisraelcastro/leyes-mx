@@ -1,0 +1,223 @@
+---
+// Demo por scroll: una ventana de asistente que cambia según el paso que se está leyendo.
+// Las citas, fechas y cifras se leen de los datos del repo en el build (nada de memoria).
+// Sin JavaScript se ven todos los paneles uno debajo del otro; con prefers-reduced-motion no hay animación.
+import { leyes, reforma, tarifa, anexo8 } from "../lib/datos.mjs";
+
+const lista = leyes();
+const por = (s) => lista.find((l) => l.sigla === s);
+const cff = por("CFF");
+const lisr = por("LISR");
+const ref = reforma();
+const tm = tarifa("B-V", 4);
+const anexo = anexo8();
+const fecha = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" });
+
+const pasos = [
+  { t: "Fundamento completo, no un vago “según la ley”", d: "Ley, artículo, fracción, año de vigencia y fecha de la última reforma en el DOF. Lo compruebas en segundos contra el texto oficial." },
+  { t: "Si no está, lo dice", d: "Cuando algo no está en la base, responde “no verificado” y te pregunta si quieres buscarlo en internet, solo en fuentes oficiales. Nunca busca sin tu permiso." },
+  { t: "2026 no se confunde con 2027", d: "La ley vigente va separada de los proyectos en trámite. Un paquete económico en discusión sale rotulado como proyecto, nunca como ley." },
+  { t: "Tarifas listas para calcular", d: `Las ${anexo?.tarifas ?? 31} tarifas del Anexo 8 de la RMF ${anexo?.anio ?? 2026} y las de los artículos 96 y 152 de la LISR, transcritas y verificadas con aritmética. Sin leer números de una tabla escaneada.` },
+  { t: "Las leyes, en tu equipo", d: "Se instala con un comando y el texto queda guardado en tu computadora. Tu asistente lo consulta ahí, no en un buscador que cambia de resultados cada día." },
+];
+---
+<section class="sec demo" aria-labelledby="h-demo" data-demo>
+  <div class="wrap">
+    <div class="sec-cab">
+      <p class="etq">Cómo responde</p>
+      <h2 id="h-demo">Un asistente que responde como un colega de tu despacho.</h2>
+      <p>Un chat de IA común puede mezclar una iniciativa con una ley publicada, citar un blog de hace años o inventar una fracción. Con leyes-mx, tu asistente lee el texto de la ley antes de contestar.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-vista">
+        <div class="ventana" data-activo="0" aria-hidden="true">
+          <div class="v-barra">
+            <span class="v-luces"><i></i><i></i><i></i></span>
+            <span class="v-tit v-tit-chat">Claude Desktop</span>
+            <span class="v-tit v-tit-term">Terminal</span>
+          </div>
+          <div class="v-cuerpo">
+
+            <div class="panel" data-panel="0">
+              <p class="a msg-yo" style="--i:0">¿Cuál es el fundamento para no deducir las actualizaciones?</p>
+              <p class="a herr" style="--i:1"><span class="herr-p"></span>Consultó <b>leyes-mx</b> · CFF 17-A, LISR 28</p>
+              <div class="a msg-ia" style="--i:2">
+                <p>No son deducibles por dos disposiciones:</p>
+                <div class="cita">
+                  <span class="cita-ref">CFF, art. 17-A, párrafo cuarto</span>
+                  <q>El monto de ésta, determinado en los pagos provisionales, definitivos y del ejercicio, no será deducible ni acreditable.</q>
+                  <span class="cita-meta">Vigencia {cff.anio} · última reforma DOF {fecha(cff.reforma)}</span>
+                </div>
+                <div class="cita">
+                  <span class="cita-ref">LISR, art. 28, fracción I, segundo párrafo</span>
+                  <q>Tampoco serán deducibles […] los accesorios de las contribuciones, a excepción de los recargos que hubiere pagado efectivamente</q>
+                  <span class="cita-meta">Vigencia {lisr.anio} · última reforma DOF {fecha(lisr.reforma)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" data-panel="1">
+              <p class="a msg-yo" style="--i:0">¿Hay jurisprudencia de la Corte sobre la deducción de recargos?</p>
+              <p class="a herr" style="--i:1"><span class="herr-p"></span>Consultó <b>leyes-mx</b> · sin resultados</p>
+              <div class="a msg-ia" style="--i:2">
+                <span class="bdg">No verificado</span>
+                <p>Mi base de leyes no incluye jurisprudencia, así que no puedo citarla con certeza.</p>
+                <p>¿Quieres que la busque en internet? Solo usaría fuentes oficiales.</p>
+                <div class="opciones"><span>Sí, búscala</span><span>No, gracias</span></div>
+              </div>
+            </div>
+
+            <div class="panel" data-panel="2">
+              <p class="a msg-yo" style="--i:0">¿Ya está vigente la reforma al ISR para {ref?.anio ?? 2027}?</p>
+              <p class="a herr" style="--i:1"><span class="herr-p"></span>Consultó <b>leyes-mx</b> · estado de la reforma</p>
+              <div class="a msg-ia" style="--i:2">
+                {ref && !ref.esLey ? (
+                  <>
+                    <span class="bdg warn">Proyecto, no es ley vigente</span>
+                    <p>Al {fecha(ref.actualizado)}, el Paquete Económico {ref.anio} no está publicado en el DOF. Sigue en trámite en el Congreso.</p>
+                    <p>Para responderte uso la ley con vigencia {lisr.anio}.</p>
+                  </>
+                ) : (
+                  <p>La reforma {ref?.anio} ya está publicada; te la cito con su vigencia.</p>
+                )}
+              </div>
+            </div>
+
+            <div class="panel" data-panel="3">
+              <p class="a msg-yo" style="--i:0">Dame la tarifa mensual de ISR de {tm?.anio}.</p>
+              <p class="a herr" style="--i:1"><span class="herr-p"></span>Consultó <b>leyes-mx</b> · Anexo 8, apartado {tm?.apartado}</p>
+              <div class="a msg-ia" style="--i:2">
+                <table class="t-mini">
+                  <thead><tr><th>Límite inferior</th><th>Límite superior</th><th>Cuota fija</th><th>%</th></tr></thead>
+                  <tbody>{tm?.filas.map((f) => <tr>{f.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+                </table>
+                <span class="cita-meta">Anexo 8 de la RMF {tm?.anio}, apartado {tm?.apartado} · DOF {tm && fecha(tm.dof)} · primeras filas</span>
+              </div>
+            </div>
+
+            <div class="panel term" data-panel="4">
+              <p class="a" style="--i:0"><span class="t-pr">$</span> npx leyes-mx instalar</p>
+              <p class="a t-gris" style="--i:1">Descargando las leyes… verificadas.</p>
+              <p class="a" style="--i:2">Listo. Esto fue lo que pasó:</p>
+              <p class="a" style="--i:3">  - Las leyes quedaron guardadas en tu equipo y verificadas.</p>
+              <p class="a" style="--i:4">  - Quedó conectado con: Claude Desktop; Claude Code.</p>
+              <p class="a t-gris" style="--i:5">Qué hacer ahora:</p>
+              <p class="a" style="--i:6">  1. Reinicia Claude Desktop por completo.</p>
+              <p class="a" style="--i:7">  2. Pregunta: ¿Qué dice el artículo 28 de la LISR?<span class="cursor"></span></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <ol class="demo-pasos">
+        {pasos.map((p, i) => (
+          <li class="paso" data-paso={i}>
+            <span class="num">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .demo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-areas: "pasos vista"; gap: clamp(28px, 5vw, 72px); align-items: start; }
+  .demo-vista { grid-area: vista; position: sticky; top: calc(50vh - 250px + 30px); }
+  .demo-pasos { grid-area: pasos; list-style: none; margin: 0; padding: 0; }
+  .paso { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; opacity: 0.35; transition: opacity 0.5s var(--ease); }
+  .paso:first-child { min-height: 50vh; justify-content: flex-start; padding-top: 40px; }
+  .paso:last-child { min-height: 56vh; }
+  .paso.on { opacity: 1; }
+  .paso .num { font-family: var(--mono); font-size: 13px; color: var(--ghost); margin-bottom: 12px; }
+  .paso h3 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; }
+  .paso p { margin: 12px 0 0; color: var(--soft); max-width: 46ch; }
+
+  .ventana { height: 500px; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; box-shadow: var(--shadow), 0 40px 80px -40px rgba(16, 20, 27, 0.35); overflow: hidden; transition: background-color 0.5s var(--ease), border-color 0.5s var(--ease); }
+  .v-barra { display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 14px; border-bottom: 1px solid var(--rule-soft); background: var(--app); transition: background-color 0.5s var(--ease), border-color 0.5s var(--ease); }
+  .v-luces { display: flex; gap: 7px; } .v-luces i { width: 11px; height: 11px; border-radius: 50%; background: var(--dot); }
+  .v-tit { font-size: 13px; font-weight: 600; color: var(--ghost); }
+  .v-tit-term { display: none; }
+  .v-cuerpo { position: relative; flex: 1; overflow: hidden; }
+
+  .panel { position: absolute; inset: 0; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; opacity: 0; visibility: hidden; transition: opacity 0.35s, visibility 0s 0.35s; font-size: 15px; line-height: 1.5; }
+  .panel.on { opacity: 1; visibility: visible; transition: opacity 0.35s; }
+  .panel p { margin: 0; }
+  .msg-yo { align-self: flex-end; max-width: 82%; background: var(--muted); border: 1px solid var(--rule); padding: 10px 14px; border-radius: 14px 14px 4px 14px; }
+  .herr { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; color: var(--soft); border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; background: var(--bg); }
+  .herr b { font-family: var(--mono); font-weight: 600; color: var(--auto-text); }
+  .herr-p { width: 8px; height: 8px; border-radius: 50%; background: var(--ribbon); }
+  .msg-ia { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .cita { width: 100%; border-left: 3px solid var(--ink); background: var(--bg); border-radius: 0 10px 10px 0; padding: 10px 14px; display: grid; gap: 4px; }
+  .cita-ref { font-weight: 700; font-size: 14px; letter-spacing: -0.01em; }
+  .cita q { font-size: 14px; color: var(--soft); }
+  .cita-meta { font-family: var(--mono); font-size: 12px; color: var(--ghost); }
+  .opciones { display: flex; gap: 8px; } .opciones span { font-size: 13.5px; font-weight: 600; border: 1px solid var(--rule); border-radius: 8px; padding: 6px 12px; }
+  .opciones span:first-child { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .t-mini { min-width: 0; width: 100%; font-size: 13.5px; font-family: var(--mono); border: 1px solid var(--rule); border-radius: 10px; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+  .t-mini th { font-family: var(--sans); font-size: 11px; padding: 8px 10px; text-align: right; }
+  .t-mini td { padding: 7px 10px; text-align: right; }
+
+  /* Paso 5: la ventana se vuelve terminal */
+  .ventana[data-activo="4"] { background: var(--ink); border-color: var(--ink); }
+  .ventana[data-activo="4"] .v-barra { background: #1a1f28; border-color: #262c37; }
+  .ventana[data-activo="4"] .v-luces i { background: #3a414d; }
+  .ventana[data-activo="4"] .v-tit-chat { display: none; }
+  .ventana[data-activo="4"] .v-tit-term { display: inline; color: #8b94a3; }
+  .term { font-family: var(--mono); font-size: 13.5px; color: var(--on-dark); gap: 6px; white-space: pre-wrap; }
+  .t-pr, .t-gris { color: #8b94a3; }
+
+  /* Entrada escalonada de cada línea del panel activo */
+  .demo.con-js .panel.on .a { animation: entra 0.5s var(--ease) both; animation-delay: calc(var(--i) * 0.45s); }
+  .demo.con-js .panel.term.on .a { animation-duration: 0.25s; animation-delay: calc(var(--i) * 0.28s); }
+  .demo.con-js .panel.on .herr-p { animation: pulso 0.9s ease-in-out 2; animation-delay: 0.45s; }
+  @keyframes entra { from { opacity: 0; transform: translateY(8px); } }
+  @keyframes pulso { 50% { transform: scale(1.6); opacity: 0.5; } }
+
+  /* Sin JavaScript: todos los paneles visibles, en orden */
+  .demo:not(.con-js) .demo-vista { position: static; }
+  .demo:not(.con-js) .ventana { height: auto; }
+  .demo:not(.con-js) .v-cuerpo { display: grid; }
+  .demo:not(.con-js) .panel { position: static; opacity: 1; visibility: visible; border-bottom: 1px solid var(--rule-soft); }
+  .demo:not(.con-js) .panel.term { background: var(--ink); }
+  .demo:not(.con-js) .paso { opacity: 1; min-height: 0; }
+
+  @media (max-width: 860px) {
+    .demo-grid { grid-template-columns: 1fr; grid-template-areas: "vista" "pasos"; gap: 0; }
+    .demo.con-js .demo-vista { top: 68px; z-index: 2; padding-bottom: 12px; background: linear-gradient(var(--bg) 85%, transparent); }
+    .demo.con-js .ventana { height: min(52vh, 430px); }
+    .panel { padding: 14px 16px; font-size: 13.5px; gap: 9px; }
+    .cita q { font-size: 13px; } .term { font-size: 12px; }
+    .paso, .paso:first-child, .paso:last-child { min-height: 46vh; justify-content: center; padding-top: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .demo.con-js .panel.on .a, .demo.con-js .panel.on .herr-p { animation: none; }
+    .paso, .panel, .ventana, .v-barra { transition: none; }
+  }
+</style>
+
+<script>
+  const demo = document.querySelector<HTMLElement>("[data-demo]");
+  if (demo && "IntersectionObserver" in window) {
+    demo.classList.add("con-js");
+    const ventana = demo.querySelector<HTMLElement>(".ventana")!;
+    const paneles = [...demo.querySelectorAll<HTMLElement>(".panel")];
+    const pasos = [...demo.querySelectorAll<HTMLElement>(".paso")];
+    let actual = -1;
+    const activar = (i: number) => {
+      if (i === actual) return;
+      actual = i;
+      ventana.dataset.activo = String(i);
+      paneles.forEach((p, j) => p.classList.toggle("on", j === i));
+      pasos.forEach((p, j) => p.classList.toggle("on", j === i));
+    };
+    activar(0);
+    const io = new IntersectionObserver((entradas) => {
+      for (const e of entradas) if (e.isIntersecting) activar(Number((e.target as HTMLElement).dataset.paso));
+    }, { rootMargin: matchMedia("(max-width: 860px)").matches ? "-72% 0px -18% 0px" : "-45% 0px -45% 0px" });
+    pasos.forEach((p) => io.observe(p));
+  }
+</script>

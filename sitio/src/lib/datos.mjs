@@ -48,3 +48,17 @@ export function anexo8() {
   const tarifas = fs.readdirSync(path.join(base, anio, "anexo-8")).filter((n) => n.endsWith(".md") && !n.startsWith("_")).length;
   return { anio, tarifas };
 }
+
+// Primeras filas de una tarifa del Anexo 8 (para la demo de la portada), leídas del .md tal cual.
+export function tarifa(id, n = 4) {
+  const base = path.join(RAIZ, "rmf");
+  const anio = fs.readdirSync(base).filter((x) => /^\d+$/.test(x)).sort().pop();
+  const dir = path.join(base, anio, "anexo-8");
+  const arch = fs.readdirSync(dir).find((f) => f.startsWith(id) && f.endsWith(".md"));
+  if (!arch) return null;
+  const txt = fs.readFileSync(path.join(dir, arch), "utf8");
+  const campo = (k) => (txt.match(new RegExp(`^${k}: "?([^"\\n]+)"?$`, "m")) || [])[1];
+  const filas = txt.split("\n").filter((l) => /^\|\s*[\d,]+\.\d+/.test(l)).slice(0, n)
+    .map((l) => l.split("|").slice(1, -1).map((c) => c.trim()));
+  return { anio, apartado: campo("apartado"), dof: campo("publicado_dof"), filas };
+}
