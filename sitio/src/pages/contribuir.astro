@@ -1,0 +1,135 @@
+---
+// Cómo contribuir, en lenguaje de despacho (resumen de CONTRIBUTING.md). Una columna.
+// Animación: cada bloque entra al aparecer en pantalla y el ejemplo del glosario se reproduce una vez.
+// Sin JavaScript o con prefers-reduced-motion todo se ve en su estado final.
+import Base from "../layouts/Base.astro";
+import { REPO } from "../lib/constantes.mjs";
+
+const issue = (titulo) => `${REPO}/issues/new?title=${encodeURIComponent(titulo)}`;
+const formas = [
+  { t: "Reporta un error", d: "¿Un artículo cortado a la mitad, una fracción que falta o una cifra de tarifa que no cuadra? Dinos qué ley, qué artículo y qué viste. Lo revisamos contra el texto oficial y se corrige desde la fuente: nadie edita un artículo a mano.", cta: "Reportar un error", href: issue("Error en [ley] artículo [número]") },
+  { t: "Enséñale tus palabras", d: "Si preguntaste como lo dices en el despacho y no salió el artículo correcto, cuéntanos la pregunta, el artículo que esperabas y la frase de la ley que lo respalda. Así se agrega al glosario y la próxima vez lo encuentra para todos.", cta: "Proponer un sinónimo", href: issue("Sinónimo: [cómo lo preguntaste]"), ejemplo: true },
+  { t: "Pide una ley", d: "¿Te hace falta la Ley del Seguro Social, la Resolución Miscelánea completa u otro ordenamiento? Pídelo y cuéntanos para qué lo usas. Así se decide qué sigue.", cta: "Pedir una ley", href: issue("Agregar ley: [nombre]") },
+];
+const reglas = [
+  "El texto legal sale siempre de la publicación oficial (Cámara de Diputados y DOF). Ningún artículo se escribe ni se corrige a mano.",
+  "Un proyecto de reforma nunca se guarda como ley vigente: va aparte y rotulado hasta que se publica en el DOF.",
+  "Cada sinónimo del glosario se respalda con una frase copiada literal de la ley, no con la memoria de nadie.",
+];
+---
+<Base titulo="Contribuir a leyes-mx" descripcion="Cómo ayudar a mejorar leyes-mx sin programar: reporta un error, propone un sinónimo contable o pide una ley.">
+  <div class="contrib" data-contrib>
+    <section class="wrap angosto c-cab">
+      <p class="etq rev">Contribuir</p>
+      <h1 class="rev" style="--d:1">Ayúdanos a que la base responda mejor.</h1>
+      <p class="lead rev" style="--d:2">No necesitas programar. Lo más valioso es lo que ves en tu práctica diaria: un artículo mal cortado, una pregunta que no encontró su fundamento o una ley que hace falta.</p>
+    </section>
+
+    <section class="wrap angosto">
+      <ol class="formas">
+        {formas.map((f, i) => (
+          <li class="forma rev">
+            <span class="num">{String(i + 1).padStart(2, "0")}</span>
+            <h2>{f.t}</h2>
+            <p>{f.d}</p>
+            {f.ejemplo && (
+              <div class="ejemplo" data-ejemplo aria-label="Ejemplo: la pregunta “actualizaciones no deducibles” antes y después de agregar el sinónimo">
+                <div class="ej-paso" style="--e:0">
+                  <span class="ej-etq">Preguntaste</span>
+                  <p>“Fundamento para no deducir actualizaciones”</p>
+                  <span class="ej-res mal">LISR 28 salía en el lugar 7</span>
+                </div>
+                <div class="ej-paso" style="--e:1">
+                  <span class="ej-etq">Tú aportas</span>
+                  <p><strong>actualizaciones</strong> = <strong>accesorios de las contribuciones</strong></p>
+                  <span class="ej-res">LISR 28, fracción I: “ni los accesorios de las contribuciones”</span>
+                </div>
+                <div class="ej-paso" style="--e:2">
+                  <span class="ej-etq">Ahora, para todos</span>
+                  <p>La misma pregunta encuentra el artículo.</p>
+                  <span class="ej-res bien">LISR 28 en los primeros lugares</span>
+                </div>
+              </div>
+            )}
+            <a class="btn btn-line" href={f.href}>{f.cta}</a>
+          </li>
+        ))}
+      </ol>
+      <p class="nota-gh rev">Los reportes se hacen en GitHub, con una cuenta gratuita.</p>
+    </section>
+
+    <section class="wrap angosto c-reglas">
+      <h2 class="rev">Tres reglas que no cambian</h2>
+      <ul>
+        {reglas.map((r, i) => <li class="rev" style={`--d:${i}`}>{r}</li>)}
+      </ul>
+    </section>
+
+    <section class="wrap angosto c-dev">
+      <div class="card rev">
+        <h2>Participar en el proyecto</h2>
+        <p>Este proyecto es abierto. Las reglas para participar están en el repositorio.</p>
+        <div class="acciones">
+          <a class="btn btn-primary" href={`${REPO}/blob/main/CONTRIBUTING.md`}>Leer la guía</a>
+          <a class="btn btn-line" href={REPO}>Ver el repositorio</a>
+        </div>
+      </div>
+      <p class="estrella rev">¿Te sirve leyes-mx? <a href={REPO}>Regálanos una estrella en GitHub</a>: así más colegas lo encuentran.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .angosto { max-width: 760px; }
+  .contrib { padding-bottom: clamp(56px, 8vw, 96px); }
+  .c-cab { padding-top: clamp(48px, 8vw, 96px); padding-bottom: clamp(28px, 4vw, 44px); }
+  .c-cab h1 { font-size: clamp(36px, 5.4vw, 60px); font-weight: 800; letter-spacing: -0.05em; line-height: 1.02; }
+
+  .formas { list-style: none; margin: 0; padding: 0; }
+  .forma { padding: 34px 0; border-top: 1px solid var(--rule); }
+  .forma .num { display: block; font-family: var(--mono); font-size: 13px; color: var(--ghost); margin-bottom: 10px; }
+  .forma h2 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.035em; }
+  .forma > p { margin: 12px 0 20px; color: var(--soft); }
+  .nota-gh { margin: 8px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--ghost); }
+
+  .ejemplo { display: grid; gap: 10px; margin: 0 0 22px; }
+  .ej-paso { position: relative; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 18px; box-shadow: var(--shadow); }
+  .ej-paso:not(:last-child)::after { content: ""; position: absolute; left: 28px; bottom: -11px; width: 1.5px; height: 10px; background: var(--rule); }
+  .ej-etq { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ghost); }
+  .ej-paso p { margin: 4px 0 6px; font-size: 16.5px; }
+  .ej-res { display: inline-block; font-family: var(--mono); font-size: 13px; color: var(--soft); }
+  .ej-res.mal { color: var(--warn); }
+  .ej-res.bien { color: var(--ok); }
+
+  .c-reglas { padding-top: clamp(40px, 6vw, 64px); }
+  .c-reglas h2 { font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -0.04em; }
+  .c-reglas ul { list-style: none; margin: 18px 0 0; padding: 0; counter-reset: r; }
+  .c-reglas li { counter-increment: r; display: grid; grid-template-columns: 34px 1fr; padding: 14px 0; border-top: 1px solid var(--rule); color: var(--soft); }
+  .c-reglas li::before { content: counter(r, decimal-leading-zero); font-family: var(--mono); font-size: 13px; color: var(--ghost); padding-top: 3px; }
+  .c-dev { padding-top: clamp(40px, 6vw, 64px); }
+  .c-dev .card { padding: 28px; }
+  .c-dev h2 { font-size: 24px; letter-spacing: -0.03em; }
+  .c-dev .card p { margin: 10px 0 20px; color: var(--soft); }
+  .estrella { margin: 18px 0 0; font-size: 14px; color: var(--ghost); }
+  .estrella a { color: var(--soft); }
+
+  /* Entrada al aparecer (solo con JS y sin reduced-motion) */
+  .contrib.con-js .rev { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); transition-delay: calc(var(--d, 0) * 0.08s); }
+  .contrib.con-js .rev.visto { opacity: 1; transform: none; }
+  .contrib.con-js .ej-paso { opacity: 0; transform: translateY(10px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); transition-delay: calc(0.3s + var(--e) * 0.9s); }
+  .contrib.con-js .ejemplo.visto .ej-paso { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .contrib.con-js .rev, .contrib.con-js .ej-paso { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+
+<script>
+  const raiz = document.querySelector<HTMLElement>("[data-contrib]");
+  if (raiz && "IntersectionObserver" in window) {
+    raiz.classList.add("con-js");
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) if (e.isIntersecting) { e.target.classList.add("visto"); io.unobserve(e.target); }
+    }, { rootMargin: "0px 0px -12% 0px" });
+    raiz.querySelectorAll(".rev, [data-ejemplo]").forEach((el) => io.observe(el));
+  }
+</script>

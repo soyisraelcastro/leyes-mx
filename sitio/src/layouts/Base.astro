@@ -1,16 +1,21 @@
 ---
 import "../styles/site.css";
-import { REPO, TODOCONTA, ABACUS } from "../lib/constantes.mjs";
+import { REPO, TODOCONTA, ABACUS, TODOCONTA_BANNER } from "../lib/constantes.mjs";
+import { estrellas } from "../lib/github.mjs";
+import { grafoBase } from "../lib/seo.mjs";
 
-interface Props { titulo: string; descripcion: string; ruta?: string }
-const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
+interface Props { titulo: string; descripcion: string; ruta?: string; schema?: object[] }
+const { titulo, descripcion, ruta = Astro.url.pathname, schema = [] } = Astro.props;
 
+const ogImagen = new URL("/og.png", Astro.site).toString();
 const canonical = new URL(ruta === "/" ? "/" : ruta.replace(/\/+$/, ""), Astro.site).toString();
 const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const nEstrellas = await estrellas();
+const jsonld = { "@context": "https://schema.org", "@graph": [...grafoBase(Astro.site), ...schema] };
 const enDocs = path === "/docs" || path.startsWith("/docs/");
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,14 +28,29 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImagen} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="leyes-mx: las leyes de México en tu asistente de IA, con artículo exacto y vigencia real" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImagen} />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f5f6f8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Índice para LLMs" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
     <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>try { if (localStorage.getItem("banner-todoconta") === "cerrado") document.documentElement.classList.add("sin-banner"); } catch (e) {}</script>
   </head>
   <body>
     <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <div class="cabecera">
+    <aside class="banner" aria-label="Aviso de TodoConta">
+      <div class="wrap banner-in">
+        <p><span class="mk" aria-hidden="true"><i class="mk-l"></i><i class="mk-r"></i><i class="mk-c"></i></span><span><strong>TodoConta</strong> descarga masiva de CFDIs, constancia y opinión 32-D<span class="banner-largo"> de todas tus empresas</span>.</span> <a href={TODOCONTA_BANNER}>Pruébala 15 días gratis</a></p>
+        <button type="button" class="banner-x" aria-label="Cerrar el aviso de TodoConta">×</button>
+      </div>
+    </aside>
     <header class="nav">
       <div class="wrap nav-in">
         <a class="nav-logo" href="/" aria-label="leyes-mx, ir al inicio">
@@ -39,11 +59,17 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
           <span class="por">de TodoConta</span>
         </a>
         <nav class="nav-links" aria-label="Principal">
-          <a href="/docs" aria-current={enDocs ? "page" : undefined}>Documentación</a>
-          <a href={REPO}>GitHub</a>
+          <a href="/docs" aria-current={enDocs ? "page" : undefined}><span class="nl-largo">Documentación</span><span class="nl-corto">Docs</span></a>
+          <a href="/contribuir" aria-current={path === "/contribuir" ? "page" : undefined}>Contribuir</a>
+          <a class="gh" href={REPO} aria-label={nEstrellas ? `GitHub, ${nEstrellas} estrellas` : "GitHub"}>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span>GitHub</span>
+            {nEstrellas ? <span class="gh-n" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12"><path fill="currentColor" d="M8 .25a.75.75 0 01.67.42l1.88 3.81 4.2.61a.75.75 0 01.42 1.28l-3.04 2.96.72 4.19a.75.75 0 01-1.09.79L8 12.33l-3.76 1.98a.75.75 0 01-1.09-.79l.72-4.19L.83 6.37a.75.75 0 01.42-1.28l4.2-.61L7.33.67A.75.75 0 018 .25z"/></svg>{nEstrellas.toLocaleString("es-MX")}</span> : null}
+          </a>
         </nav>
       </div>
     </header>
+    </div>
 
     <main id="contenido"><slot /></main>
 
@@ -53,6 +79,7 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
           <span class="foot-brand"><span class="mk" aria-hidden="true"><i class="mk-l"></i><i class="mk-r"></i><i class="mk-c"></i></span>leyes-mx</span>
           <nav class="foot-links" aria-label="Pie de página">
             <a href="/docs">Documentación</a>
+            <a href="/contribuir">Contribuir</a>
             <a href={REPO}>GitHub</a>
             <a href={TODOCONTA}>TodoConta</a>
             <a href={ABACUS}>Abacus</a>
@@ -92,6 +119,17 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
           });
         });
       }
+
+      // Alto real de la cabecera fija (banner + menú), para que lo pegajoso y los anclas no queden debajo.
+      const cabecera = document.querySelector<HTMLElement>(".cabecera");
+      const medir = () => { if (cabecera) document.documentElement.style.setProperty("--cab-h", `${cabecera.offsetHeight}px`); };
+      medir();
+      if (cabecera && "ResizeObserver" in window) new ResizeObserver(medir).observe(cabecera);
+
+      document.querySelector(".banner-x")?.addEventListener("click", () => {
+        document.documentElement.classList.add("sin-banner");
+        try { localStorage.setItem("banner-todoconta", "cerrado"); } catch { /* sin almacenamiento: solo se oculta en esta visita */ }
+      });
 
       const aviso = document.getElementById("estado-copia");
       async function copiar(texto: string) {
