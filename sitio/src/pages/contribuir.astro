@@ -67,13 +67,14 @@ const reglas = [
 
     <section class="wrap angosto c-dev">
       <div class="card rev">
-        <h2>Si programas</h2>
-        <p>El repositorio es abierto. Para agregar una ley basta una entrada en <code>fuentes.json</code> y correr el extractor; antes de proponer un cambio, corre <code>python3 scripts/validar.py</code>. Los commits van en español y sin firmas de herramientas de IA.</p>
+        <h2>Participar en el proyecto</h2>
+        <p>Este proyecto es abierto. Las reglas para participar están en el repositorio.</p>
         <div class="acciones">
-          <a class="btn btn-primary" href={`${REPO}/blob/main/CONTRIBUTING.md`}>Leer la guía para programadores</a>
+          <a class="btn btn-primary" href={`${REPO}/blob/main/CONTRIBUTING.md`}>Leer la guía</a>
           <a class="btn btn-line" href={REPO}>Ver el repositorio</a>
         </div>
       </div>
+      <p class="estrella rev">¿Te sirve leyes-mx? <a href={REPO}>Regálanos una estrella en GitHub</a>: así más colegas lo encuentran.</p>
     </section>
   </div>
 </Base>
@@ -108,7 +109,9 @@ const reglas = [
   .c-dev { padding-top: clamp(40px, 6vw, 64px); }
   .c-dev .card { padding: 28px; }
   .c-dev h2 { font-size: 24px; letter-spacing: -0.03em; }
-  .c-dev p { margin: 10px 0 20px; color: var(--soft); }
+  .c-dev .card p { margin: 10px 0 20px; color: var(--soft); }
+  .estrella { margin: 18px 0 0; font-size: 14px; color: var(--ghost); }
+  .estrella a { color: var(--soft); }
 
   /* Entrada al aparecer (solo con JS y sin reduced-motion) */
   .contrib.con-js .rev { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); transition-delay: calc(var(--d, 0) * 0.08s); }
