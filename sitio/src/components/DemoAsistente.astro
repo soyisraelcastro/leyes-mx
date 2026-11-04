@@ -138,7 +138,8 @@ const pasos = [
 
   .ventana { height: 500px; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; box-shadow: var(--shadow), 0 40px 80px -40px rgba(16, 20, 27, 0.35); overflow: hidden; transition: background-color 0.5s var(--ease), border-color 0.5s var(--ease); }
   .v-barra { display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 14px; border-bottom: 1px solid var(--rule-soft); background: var(--app); transition: background-color 0.5s var(--ease), border-color 0.5s var(--ease); }
-  .v-luces { display: flex; gap: 7px; } .v-luces i { width: 11px; height: 11px; border-radius: 50%; background: var(--dot); }
+  .v-luces { display: flex; gap: 7px; } .v-luces i { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18); }
+  .v-luces i:nth-child(1) { background: #ff5f57; } .v-luces i:nth-child(2) { background: #febc2e; } .v-luces i:nth-child(3) { background: #28c840; }
   .v-tit { font-size: 13px; font-weight: 600; color: var(--ghost); }
   .v-tit-term { display: none; }
   .v-cuerpo { position: relative; flex: 1; overflow: hidden; }
@@ -164,7 +165,6 @@ const pasos = [
   /* Paso 5: la ventana se vuelve terminal */
   .ventana[data-activo="4"] { background: var(--ink); border-color: var(--ink); }
   .ventana[data-activo="4"] .v-barra { background: #1a1f28; border-color: #262c37; }
-  .ventana[data-activo="4"] .v-luces i { background: #3a414d; }
   .ventana[data-activo="4"] .v-tit-chat { display: none; }
   .ventana[data-activo="4"] .v-tit-term { display: inline; color: #8b94a3; }
   .term { font-family: var(--mono); font-size: 13.5px; color: var(--on-dark); gap: 6px; white-space: pre-wrap; }
