@@ -32,6 +32,7 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
   </head>
   <body>
     <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <div class="cabecera">
     <aside class="banner" aria-label="Aviso de TodoConta">
       <div class="wrap banner-in">
         <p><span class="mk" aria-hidden="true"><i class="mk-l"></i><i class="mk-r"></i><i class="mk-c"></i></span><span><strong>TodoConta</strong><span class="banner-largo">, de los mismos creadores:</span> descarga masiva de CFDIs, constancia y opinión 32-D<span class="banner-largo"> de todas tus empresas</span>.</span> <a href={TODOCONTA_BANNER}>Pruébala 15 días gratis</a></p>
@@ -51,6 +52,7 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
         </nav>
       </div>
     </header>
+    </div>
 
     <main id="contenido"><slot /></main>
 
@@ -99,6 +101,12 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
           });
         });
       }
+
+      // Alto real de la cabecera fija (banner + menú), para que lo pegajoso y los anclas no queden debajo.
+      const cabecera = document.querySelector<HTMLElement>(".cabecera");
+      const medir = () => { if (cabecera) document.documentElement.style.setProperty("--cab-h", `${cabecera.offsetHeight}px`); };
+      medir();
+      if (cabecera && "ResizeObserver" in window) new ResizeObserver(medir).observe(cabecera);
 
       document.querySelector(".banner-x")?.addEventListener("click", () => {
         document.documentElement.classList.add("sin-banner");

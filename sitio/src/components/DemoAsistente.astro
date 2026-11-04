@@ -126,7 +126,7 @@ const pasos = [
 
 <style>
   .demo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-areas: "pasos vista"; gap: clamp(28px, 5vw, 72px); align-items: start; }
-  .demo-vista { grid-area: vista; position: sticky; top: calc(50vh - 250px + 30px); }
+  .demo-vista { grid-area: vista; position: sticky; top: max(calc(var(--cab-h) + 16px), calc(50vh - 250px + 30px)); }
   .demo-pasos { grid-area: pasos; list-style: none; margin: 0; padding: 0; }
   .paso { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; opacity: 0.35; transition: opacity 0.5s var(--ease); }
   .paso:first-child { min-height: 50vh; justify-content: flex-start; padding-top: 40px; }
@@ -187,7 +187,7 @@ const pasos = [
 
   @media (max-width: 860px) {
     .demo-grid { grid-template-columns: 1fr; grid-template-areas: "vista" "pasos"; gap: 0; }
-    .demo.con-js .demo-vista { top: 68px; z-index: 2; padding-bottom: 12px; background: linear-gradient(var(--bg) 85%, transparent); }
+    .demo.con-js .demo-vista { top: calc(var(--cab-h) + 8px); z-index: 2; padding-bottom: 12px; background: linear-gradient(var(--bg) 85%, transparent); }
     .demo.con-js .ventana { height: min(52vh, 430px); }
     .panel { padding: 14px 16px; font-size: 13.5px; gap: 9px; }
     .cita q { font-size: 13px; } .term { font-size: 12px; }
