@@ -1,6 +1,7 @@
 ---
 import Base from "./Base.astro";
 import { RUTAS, INICIO } from "../lib/docs.mjs";
+import { grafoMigas } from "../lib/seo.mjs";
 
 interface Props { titulo: string; descripcion: string }
 const { titulo, descripcion } = Astro.props;
@@ -10,7 +11,7 @@ const i = lista.findIndex((r) => r.href === path);
 const ant = i > 0 ? lista[i - 1] : null;
 const sig = i >= 0 && i < lista.length - 1 ? lista[i + 1] : null;
 ---
-<Base titulo={`${titulo} | leyes-mx`} descripcion={descripcion}>
+<Base titulo={`${titulo} | leyes-mx`} descripcion={descripcion} schema={grafoMigas(Astro.site, i >= 0 ? lista[i].nombre : titulo, path)}>
   <div class="wrap docs">
     <aside class="docs-nav" aria-label="Documentación">
       <h2>Documentación</h2>

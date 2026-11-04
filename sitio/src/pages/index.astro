@@ -6,6 +6,7 @@ import DemoAsistente from "../components/DemoAsistente.astro";
 import VideoExplicativo from "../components/VideoExplicativo.astro";
 import { leyes, reforma, anexo8 } from "../lib/datos.mjs";
 import { ABACUS, COMANDO } from "../lib/constantes.mjs";
+import { grafoPortada } from "../lib/seo.mjs";
 
 const titulo = "leyes-mx: las leyes fiscales y laborales de México en tu asistente de IA, con artículo exacto";
 const descripcion = "Tu asistente de IA cita ley, artículo, vigencia y fecha de reforma de la LISR, LIVA, CFF, LFT y sus reglamentos, en lugar de inventarlos. En WhatsApp con Abacus o gratis en tu computadora.";
@@ -24,7 +25,7 @@ const laboral = ["LFT"].map(por).filter(Boolean);
 const redondo = Math.floor(total / 100) * 100;
 const mx = (n) => n.toLocaleString("es-MX");
 ---
-<Base titulo={titulo} descripcion={descripcion}>
+<Base titulo={titulo} descripcion={descripcion} schema={grafoPortada(Astro.site)}>
   <section class="hero" aria-labelledby="h-hero">
     <HeroOndas />
     <div class="wrap hero-in"><div class="hero-txt">

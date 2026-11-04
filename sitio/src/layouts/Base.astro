@@ -2,18 +2,20 @@
 import "../styles/site.css";
 import { REPO, TODOCONTA, ABACUS, TODOCONTA_BANNER } from "../lib/constantes.mjs";
 import { estrellas } from "../lib/github.mjs";
+import { grafoBase } from "../lib/seo.mjs";
 
-interface Props { titulo: string; descripcion: string; ruta?: string }
-const { titulo, descripcion, ruta = Astro.url.pathname } = Astro.props;
+interface Props { titulo: string; descripcion: string; ruta?: string; schema?: object[] }
+const { titulo, descripcion, ruta = Astro.url.pathname, schema = [] } = Astro.props;
 
 const ogImagen = new URL("/og.png", Astro.site).toString();
 const canonical = new URL(ruta === "/" ? "/" : ruta.replace(/\/+$/, ""), Astro.site).toString();
 const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const nEstrellas = await estrellas();
+const jsonld = { "@context": "https://schema.org", "@graph": [...grafoBase(Astro.site), ...schema] };
 const enDocs = path === "/docs" || path.startsWith("/docs/");
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,6 +37,8 @@ const enDocs = path === "/docs" || path.startsWith("/docs/");
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f5f6f8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Índice para LLMs" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
     <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>try { if (localStorage.getItem("banner-todoconta") === "cerrado") document.documentElement.classList.add("sin-banner"); } catch (e) {}</script>
   </head>
