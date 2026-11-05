@@ -1,5 +1,5 @@
 // Redacción de las respuestas pensadas para un modelo de lenguaje y paginado de textos grandes.
-import { AVISO_GENERAL, AVISO_PROYECTO } from "./almacen.js";
+import { AVISO_GENERAL, AVISO_PROYECTO, AVISO_RMF } from "./almacen.js";
 
 /** Qué hacer cuando algo no está en la base. Va dentro del RESULTADO de las herramientas para que funcione en cualquier cliente. */
 export const PERMISO_INTERNET = "Pregunta al usuario si desea que lo busques en internet; no busques sin su permiso. Si lo autoriza, usa solo fuentes oficiales " +
@@ -144,4 +144,43 @@ export function respuestaTarifas(lista) {
   const filas = lista.map((x) => `${String(x.apartado).padEnd(7)} ${String(x.id).padEnd(38)} ${x.titulo}`);
   return [`${lista[0].documento} | DOF ${lista[0].publicado_dof} | vigencia ${lista[0].anio_vigencia} | ${lista.length} tarifas`, "", ...filas,
     "", "Para una tarifa concreta usa obtener_tarifa con el id exacto (o el apartado cuando es único, p. ej. B-V mensual, C-II anual)."].join("\n");
+}
+
+export function respuestaRegla(f, pagina = 1) {
+  const cab = [`${f.nombre_ley || f.ley} (${f.ley}), regla ${f.regla}`, `Título de la regla: ${f.titulo}`,
+    `Cita: ${f.ley} regla ${f.regla}, vigencia ${f.anio_vigencia}, publicada en el DOF ${f.publicacion_dof}`,
+    `Ubicación: ${f.ubicacion}`, `Estatus: ${f.estatus}`, `Fuente: ${f.fuente_url} (descargado ${f.fecha_descarga}; página ${f.pagina_pdf} del PDF)`];
+  if (f.estatus === "derogado") cab.push("AVISO: esta regla está derogada; no aplica salvo disposición transitoria.");
+  cab.push(f.modificaciones_aplicadas?.length ? `Modificaciones aplicadas: ${f.modificaciones_aplicadas.join("; ")}.` : `AVISO: ${AVISO_RMF}`);
+  const cola = [];
+  if (f.fundamento) cola.push(`Fundamento (tal como lo imprime la RMF): ${f.fundamento}`);
+  const refs = Object.entries(f.referencias_leyes || {}).map(([l, a]) => `${l} ${a.join(", ")}`);
+  if (refs.length || f.referencias_reglas?.length) {
+    cola.push(`Remite a: ${[...refs, ...(f.referencias_reglas?.length ? [`RMF ${f.referencias_reglas.join(", ")}`] : [])].join("; ")}. ` +
+      "Léelo con obtener_articulo (leyes) u obtener_regla (reglas) antes de afirmar algo apoyado en esas remisiones.");
+  }
+  return conPaginas(cab.join("\n"), f.texto, pagina, `obtener_regla(regla="${f.regla}"`, cola.join("\n"));
+}
+
+export function respuestaTemas(info) {
+  const filas = [...info.temas].sort((a, b) => a.nombre.localeCompare(b.nombre, "es")).map((t) => `${t.id} | ${t.nombre} | ${t.documentos} documentos | ${t.descripcion}`);
+  return [`${info.temas.length} temas (vigencia ${info.anio}) sobre ${info.documentos} documentos entre artículos de ley y reglas de la RMF.`, "",
+    "id | nombre | documentos | qué cubre", ...filas, "",
+    "Para ver los documentos de un tema: temas(tema=\"<id o nombre>\"). Los temas se asignan por palabras de la ley (ver docs/temas.md): " +
+    "un documento \"menciona o trata\" el tema; el puntaje ordena de lo más central a lo más tangencial.", AVISO_GENERAL].join("\n");
+}
+
+export function respuestaTema(tema, r, { ley = null, minimo = 1 } = {}) {
+  const filtro = [ley ? `ley ${String(ley).toUpperCase()}` : null, minimo > 1 ? `puntaje >= ${minimo}` : null].filter(Boolean).join(", ");
+  const l = [`Tema: ${tema.nombre} (${tema.id}), vigencia ${r.anio}`, tema.descripcion,
+    `Palabras con las que se asigna: ${tema.palabras.join(", ") || "(solo por citas en el fundamento de las reglas)"}.`,
+    `${r.total} documentos${filtro ? ` (${filtro})` : ""}; se muestran ${r.lista.length}, de mayor a menor puntaje. ` +
+    "Puntaje: 5 por coincidencia en el encabezado, 1 por cada una en el texto (máx. 20) y 3 por citar la ley; \"donde\" dice de dónde viene.", ""];
+  r.lista.forEach((x, i) => {
+    const que = x.tipo === "regla" ? `RMF regla ${x.id}` : `${x.ley} art. ${x.id}`;
+    l.push(`${i + 1}. ${que} | puntaje ${x.puntaje} (${x.donde.join(", ")}) | ${x.titulo ?? ""}`);
+  });
+  if (r.total > r.lista.length) l.push("", `Hay ${r.total - r.lista.length} más: sube limite, filtra con ley, o sube minimo para quedarte con lo más central.`);
+  l.push("", "Esto es un índice, no el texto: para citar, lee cada artículo con obtener_articulo y cada regla con obtener_regla.", AVISO_GENERAL);
+  return l.join("\n");
 }

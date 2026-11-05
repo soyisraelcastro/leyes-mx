@@ -28,7 +28,7 @@ def sha256_bytes(b):
 
 def archivos_a_empaquetar(raiz):
     res = []
-    for base in ("leyes", "proyectos", "tablas", "rmf"):
+    for base in ("leyes", "proyectos", "tablas", "rmf", "temas"):
         if not (raiz / base).is_dir():
             continue
         for p in sorted((raiz / base).rglob("*")):
@@ -38,7 +38,7 @@ def archivos_a_empaquetar(raiz):
             if p.suffix.lower() == ".pdf" or "documentos" in rel.parts:
                 continue
             res.append(rel.as_posix())
-    for suelto in ("fuentes.json", "glosario.json"):
+    for suelto in ("fuentes.json", "glosario.json", "temas.json"):
         if (raiz / suelto).is_file():
             res.append(suelto)
     return sorted(res)

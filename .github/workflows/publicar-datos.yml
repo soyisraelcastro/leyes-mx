@@ -9,6 +9,8 @@ on:
       - "tablas/**"
       - "rmf/**"
       - "glosario.json"
+      - "temas/**"
+      - "temas.json"
       - "scripts/empaquetar_datos.py"
   workflow_dispatch:
     inputs:

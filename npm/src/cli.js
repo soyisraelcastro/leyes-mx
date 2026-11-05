@@ -365,7 +365,7 @@ async function cmdDoctor() {
   out("\nServidor MCP");
   let servidorOk = false;
   if (d) {
-    try { const r = await autoprueba(); servidorOk = r.tools.length === 6 && r.ok; servidorOk ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
+    try { const r = await autoprueba(); servidorOk = r.tools.length === 8 && r.ok; servidorOk ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
     catch (e) { fallo(`el servidor no responde: ${e.message}`); }
   } else aviso("omitido (no hay datos)");
 

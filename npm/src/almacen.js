@@ -7,6 +7,9 @@ import { Glosario } from "./glosario.js";
 
 export const AVISO_PROYECTO = "PROYECTO: este texto NO es ley vigente. Solo lo será si y cuando se publique en el DOF, " +
   "y a partir de la fecha que indique el decreto.";
+export const AVISO_RMF = "Este es el texto de la Resolución Miscelánea Fiscal para 2026 tal como se publicó en el DOF el 28-12-2025. " +
+  "NO tiene aplicadas las resoluciones de modificación de 2026 (DOF 09-07, 01-10 y 02-10-2026): la regla pudo haberse modificado o derogado después. " +
+  "Dilo al usuario y no la presentes como el texto vigente sin esa salvedad.";
 export const AVISO_GENERAL = "Texto informativo de la Cámara de Diputados; no sustituye al DOF. La fuente oficial prevalece.";
 
 export class SinDatos extends Error {}
@@ -173,6 +176,120 @@ export class Almacen {
     return { documento: fm.documento, apartado: fm.apartado, id: fm.id, titulo: fm.titulo, aplicable_a: fm.aplicable_a ?? [],
       vigencia_anio: fm.vigencia_anio, publicado_dof: fm.publicado_dof, fecha_firma: fm.fecha_firma, fuente_url: fm.fuente_url,
       fecha_descarga: fm.fecha_descarga, sha256_fuente: fm.sha256_fuente, estatus: fm.estatus, texto: strip(cuerpo), ruta: t.ruta };
+  }
+
+  // ---- Reglas de la RMF: rmf/<anio>/<carpeta>/reglas/regla-<id>.md (una resolución por carpeta, con _meta.json)
+  /** Carpetas de resoluciones (una regla por archivo) de un año: [{sigla, carpeta, dir, meta}]. */
+  resoluciones(anio) {
+    const base = path.join(this.raiz, "rmf", String(anio));
+    if (!esDir(base)) return [];
+    const res = [];
+    for (const n of fs.readdirSync(base).sort()) {
+      const dir = path.join(base, n);
+      if (!esDir(path.join(dir, "reglas"))) continue;
+      const meta = this.leerMeta(dir);
+      if (meta?.sigla) res.push({ sigla: meta.sigla, carpeta: n, dir, meta });
+    }
+    return res;
+  }
+
+  aniosReglas() {
+    const base = path.join(this.raiz, "rmf");
+    if (!esDir(base)) return [];
+    return fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && this.resoluciones(n).length).map(Number).sort((a, b) => a - b);
+  }
+
+  /** "2.7.1.1", "2.7.1.1.", "regla 2.7.1.1" -> "2.7.1.1"; null si no tiene forma de regla. */
+  normalizarRegla(texto) {
+    const t = String(texto ?? "").trim().replace(/^regla\s+/i, "").replace(/\.+$/, "");
+    return /^\d{1,2}(\.\d{1,3}){1,4}$/.test(t) ? t : null;
+  }
+
+  /** Devuelve la ficha de la regla o null si no existe (nunca inventa). Lanza Error si el número no es de una regla. */
+  obtenerRegla(regla, { anio = null, sigla = "RMF" } = {}) {
+    const id = this.normalizarRegla(regla);
+    if (!id) throw new Error(`regla no reconocida: ${JSON.stringify(regla)} (se espera un número como 2.7.1.1)`);
+    const anios = this.aniosReglas();
+    const a = anio ?? (anios.length ? Math.max(...anios) : null);
+    if (a === null) return null;
+    const r = this.resoluciones(a).find((x) => x.sigla.toUpperCase() === String(sigla).toUpperCase());
+    if (!r) return null;
+    const f = path.join(r.dir, "reglas", `regla-${id}.md`);
+    if (!fs.existsSync(f)) return null;
+    const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(f, "utf8"));
+    return {
+      ley: fm.ley ?? r.sigla, nombre_ley: fm.nombre_ley ?? r.meta.nombre_oficial ?? null, regla: fm.regla ?? id, titulo: fm.titulo ?? null,
+      ubicacion: fm.ubicacion ?? null, anio_vigencia: fm.vigencia_anio ?? a, publicacion_dof: fm.publicacion_dof ?? null, estatus: fm.estatus ?? null,
+      fundamento: fm.fundamento ?? "", referencias_leyes: fm.referencias_leyes ?? {}, referencias_reglas: fm.referencias_reglas ?? [],
+      pagina_pdf: fm.pagina_pdf ?? null, fuente_url: fm.fuente_url ?? null, fecha_descarga: fm.fecha_descarga ?? null,
+      modificaciones_aplicadas: r.meta.modificaciones_aplicadas ?? [],
+      texto: strip(cuerpo.split("\n## Fundamento", 1)[0].replace(/^\s*# Regla[^\n]*\n/, "")),
+      ruta: path.relative(this.raiz, f).split(path.sep).join("/"),
+    };
+  }
+
+  // ---- Temas: temas.json (vocabulario) y temas/<anio>/_indice.json (derivado; ver docs/temas.md)
+  aniosTemas() {
+    const base = path.join(this.raiz, "temas");
+    if (!esDir(base)) return [];
+    return fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && fs.existsSync(path.join(base, n, "_indice.json"))).map(Number).sort((a, b) => a - b);
+  }
+
+  /** {anio, temas:[{id, nombre, descripcion, documentos}], documentos, cobertura} o null si estos datos no traen temas. */
+  temas(anio = null) {
+    const anios = this.aniosTemas();
+    const a = anio ?? (anios.length ? Math.max(...anios) : null);
+    if (a === null || !anios.includes(Number(a))) return null;
+    this._temas ||= {};
+    if (!this._temas[a]) {
+      const idx = JSON.parse(fs.readFileSync(path.join(this.raiz, "temas", String(a), "_indice.json"), "utf8"));
+      let voc = [];
+      try { voc = JSON.parse(fs.readFileSync(path.join(this.raiz, "temas.json"), "utf8")).temas; } catch { /* sin vocabulario: se listan solo los nombres */ }
+      const desc = Object.fromEntries(voc.map((t) => [t.id, t]));
+      this._temas[a] = { anio: a, idx, lista: Object.entries(idx.temas).map(([id, t]) => ({ id, nombre: t.nombre, descripcion: desc[id]?.descripcion ?? "",
+        palabras: desc[id]?.palabras ?? [], documentos: t.documentos })) };
+    }
+    const t = this._temas[a];
+    return { anio: a, temas: t.lista, documentos: t.idx.documentos, cobertura: t.idx.cobertura, vocabulario_sha256: t.idx.vocabulario_sha256 };
+  }
+
+  /** Resuelve un tema por id exacto o por nombre (sin acentos ni mayúsculas, por contención). {tema} | {ambiguo:[...]} | null. */
+  resolverTema(clave, anio = null) {
+    const info = this.temas(anio);
+    if (!info) return null;
+    const n = (x) => String(x).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    const c = n(clave);
+    let m = info.temas.filter((t) => t.id === c || n(t.nombre) === c);
+    if (!m.length) m = info.temas.filter((t) => t.id.includes(c) || n(t.nombre).includes(c));
+    if (!m.length) return null;
+    return m.length === 1 ? { tema: m[0], anio: info.anio } : { ambiguo: m.map((t) => ({ id: t.id, nombre: t.nombre })) };
+  }
+
+  /** Documentos de un tema, de mayor a menor puntaje. Cada uno: {ley, id, tipo, puntaje, donde, titulo}. */
+  documentosDeTema(id, { anio = null, ley = null, minimo = 1, limite = 25 } = {}) {
+    const info = this.temas(anio);
+    if (!info) return null;
+    const t = this._temas[info.anio].idx.temas[id];
+    if (!t) return null;
+    const DONDE = { e: "encabezado", t: "texto", f: "fundamento" };
+    let todos = t.entradas.map(([l, i, p, d]) => ({ ley: l, id: i, puntaje: p, donde: [...d].map((x) => DONDE[x]) }));
+    if (ley) todos = todos.filter((x) => x.ley.toUpperCase() === String(ley).toUpperCase());
+    todos = todos.filter((x) => x.puntaje >= minimo).sort((x, y) => y.puntaje - x.puntaje || x.ley.localeCompare(y.ley) || compararIds(x.id, y.id));
+    const regla = (x) => /^\d+(\.\d+)+$/.test(x.id) && this.resoluciones(info.anio).some((r) => r.sigla === x.ley);
+    const lista = todos.slice(0, limite).map((x) => {
+      x.tipo = regla(x) ? "regla" : "articulo";
+      try {
+        if (x.tipo === "regla") x.titulo = this.obtenerRegla(x.id, { anio: info.anio, sigla: x.ley })?.titulo ?? null;
+        else {
+          const d = this.dirLey(path.join(this.raiz, "leyes", String(info.anio)), x.ley);
+          const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(path.join(d, nombreArchivo(normalizarId(x.id))), "utf8"));
+          const ub = String(fm.ubicacion ?? "").split(" > ").pop();
+          x.titulo = (ub ? `${ub}. ` : "") + textoArticulo(cuerpo).replace(/^#[^\n]*\n+/, "").replace(/\s+/g, " ").slice(0, 90);
+        }
+      } catch { x.titulo = null; }
+      return x;
+    });
+    return { anio: info.anio, total: todos.length, lista };
   }
 
   ficha(fm, cuerpo, ruta) {

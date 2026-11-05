@@ -19,6 +19,7 @@ from leyes_mx import tablas as tablas_mod
 from leyes_mx import store  # noqa: E402
 from leyes_mx import anexos_validar  # noqa: E402
 from leyes_mx import rmf_validar  # noqa: E402
+from leyes_mx import temas as temas_mod  # noqa: E402
 from leyes_mx import glosario as glosario_mod  # noqa: E402
 from leyes_mx.ids import id_desde_archivo, clave_orden, partes_id, nombre_archivo, PALABRAS  # noqa: E402
 
@@ -191,10 +192,11 @@ def main():
     aerr, aavisos = ([], []) if a.ley else anexos_validar.validar(RAIZ, a.pdf)
     gerr, gavisos = ([], []) if a.ley else glosario_mod.validar(RAIZ)
     rerr, ravisos = ([], []) if a.ley else rmf_validar.validar(RAIZ, a.pdf)
-    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr) + len(rerr)
+    terr, tavisos = ([], []) if a.ley else temas_mod.validar(RAIZ, a.anio)
+    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr) + len(rerr) + len(terr)
     if a.json:
         print(json.dumps({"leyes": informes, "proyectos_errores": perr, "anexos_errores": aerr, "anexos_avisos": aavisos,
-                          "glosario_errores": gerr, "glosario_avisos": gavisos, "rmf_errores": rerr, "rmf_avisos": ravisos, "errores": total}, ensure_ascii=False, indent=2))
+                          "glosario_errores": gerr, "glosario_avisos": gavisos, "rmf_errores": rerr, "rmf_avisos": ravisos, "temas_errores": terr, "temas_avisos": tavisos, "errores": total}, ensure_ascii=False, indent=2))
     else:
         for r in informes:
             estado = "OK" if not r["errores"] else "ERRORES"
@@ -213,6 +215,10 @@ def main():
             print("   ERROR glosario:", e)
         for w in gavisos:
             print("   aviso glosario:", w)
+        for e in terr:
+            print("   ERROR temas:", e)
+        for w in tavisos:
+            print("   aviso temas:", w)
         for e in rerr:
             print("   ERROR rmf:", e)
         # los avisos de referencias a artículos inexistentes pueden ser muchos: se resumen
