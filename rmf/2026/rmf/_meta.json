@@ -1,0 +1,13 @@
+{
+  "sigla": "RMF",
+  "nombre_oficial": "Resolución Miscelánea Fiscal para 2026",
+  "fuente_url": "https://sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf",
+  "publicacion_dof": "2025-12-28",
+  "fecha_descarga": "2026-11-05",
+  "archivo": "RMF.pdf",
+  "sha256_pdf": "6f71ce0cccf430171fe858c5d244b1c321fa68306f962d44ec4977858a52919a",
+  "paginas": 666,
+  "reglas_extraidas": 1208,
+  "ultima_regla": "12.3.18",
+  "primera_regla": "1.1"
+}

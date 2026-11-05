@@ -69,8 +69,20 @@ def resumen_anexos(raiz):
     res = []
     for meta in sorted((raiz / "rmf").glob("*/*/_meta.json")) if (raiz / "rmf").is_dir() else []:
         m = json.loads(meta.read_text(encoding="utf-8"))
+        if "documento" not in m:  # las resoluciones de la RMF (una regla por archivo) van en resumen_rmf
+            continue
         res.append({"documento": m.get("documento"), "anio_vigencia": m.get("vigencia_anio"), "publicado_dof": m.get("publicado_dof"),
                     "tarifas": m.get("tarifas"), "sha256_pdf": m.get("sha256_pdf")})
+    return res
+
+
+def resumen_rmf(raiz):
+    res = []
+    for meta in sorted((raiz / "rmf").glob("*/*/_meta.json")) if (raiz / "rmf").is_dir() else []:
+        m = json.loads(meta.read_text(encoding="utf-8"))
+        if "reglas_extraidas" in m:
+            res.append({"sigla": m.get("sigla"), "anio": int(meta.parent.parent.name), "reglas": m["reglas_extraidas"],
+                        "publicacion_dof": m.get("publicacion_dof"), "sha256_pdf": m.get("sha256_pdf")})
     return res
 
 
@@ -115,6 +127,7 @@ def construir(raiz, salida, version, fecha):
         "leyes": leyes,
         "proyectos": resumen_proyectos(raiz),
         "anexos": resumen_anexos(raiz),
+        "rmf": resumen_rmf(raiz),
         "glosario": resumen_glosario(raiz, hashes),
     }
     (salida / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

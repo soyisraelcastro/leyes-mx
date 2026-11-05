@@ -83,5 +83,17 @@
       "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_CFF.pdf",
       "ultimo_articulo_esperado": 113
     }
-  ]
+  ],
+  "rmf": [
+    {
+      "sigla": "RMF",
+      "tipo": "resolucion",
+      "nombre": "Resolución Miscelánea Fiscal para 2026",
+      "carpeta": "rmf",
+      "publicacion_dof": "2025-12-28",
+      "archivo": "RMF.pdf",
+      "url": "https://sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"
+    }
+  ],
+  "_comentario_rmf": "Resoluciones de la RMF (una regla por archivo, ver docs/rmf.md). Solo el texto publicado en el DOF; sin versiones anticipadas ni compiladas. Las resoluciones de modificación se agregan aquí, una por una."
 }

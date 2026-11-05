@@ -1,0 +1,27 @@
+---
+ley: "RMF"
+nombre_ley: "Resolución Miscelánea Fiscal para 2026"
+vigencia_anio: 2026
+publicacion_dof: "2025-12-28"
+fuente_url: "https://sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"
+fecha_descarga: "2026-11-05"
+regla: "2.8.1.2"
+titulo: "Contabilidad en idioma distinto al español"
+ubicacion: "Título 2. Código Fiscal de la Federación > Capítulo 2.8. Contabilidad, declaraciones y avisos > Sección 2.8.1. Disposiciones generales"
+estatus: "vigente"
+pagina_pdf: 175
+sha256_fuente: "6f71ce0cccf430171fe858c5d244b1c321fa68306f962d44ec4977858a52919a"
+fundamento: "CFF 28, RCFF 33"
+referencias_leyes: {"CFF": ["28"], "RCFF": ["33"]}
+referencias_reglas: []
+---
+
+# Regla 2.8.1.2. Contabilidad en idioma distinto al español
+
+Para los efectos de los artículos 28 del CFF y 33, apartado B, fracción XI de su Reglamento, los contribuyentes podrán llevar la documentación que integra su contabilidad, incluida la documentación comprobatoria que ampare operaciones realizadas, en idioma distinto al español. En este caso, las autoridades fiscales, podrán solicitar su traducción por perito traductor autorizado por autoridad competente para tal efecto.
+
+Tratándose de solicitudes de devolución y avisos de compensación, la documentación comprobatoria en idioma distinto al español, que ampare las operaciones de los contribuyentes deberá acompañarse de su correspondiente traducción al idioma español por perito traductor autorizado por autoridad competente para tal efecto.
+
+## Fundamento (cursiva del PDF)
+
+CFF 28, RCFF 33

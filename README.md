@@ -125,6 +125,12 @@ print(a["texto"])
 
 El contrato de las funciones está en [docs/arquitectura.md](docs/arquitectura.md).
 
+## Reglas de la Resolución Miscelánea Fiscal 2026
+
+`rmf/2026/rmf/reglas/regla-2.7.1.1.md`: una regla por archivo (1,208 reglas), con título, ubicación (Título > Capítulo > Sección), página del PDF, el fundamento tal como lo imprime la RMF (`CFF 29, 29-A, RMF 2.7.1.32.`) y ese mismo fundamento ya separado por ley y por regla (`referencias_leyes`, `referencias_reglas`) para cruzarlo con los artículos de `leyes/`. Además `glosario.md`, `preambulo.md`, `transitorios.md` y `_indice.md`. Cómo se extrae y qué controles tiene: [docs/rmf.md](docs/rmf.md).
+
+**Estado, con cuidado:** es el texto de la RMF para 2026 publicado en el DOF el 28-12-2025. **Todavía no trae aplicadas** las resoluciones de modificación (09-07, 01-10 y 02-10-2026): una regla modificada o derogada después sigue apareciendo aquí con su texto original. El servidor MCP aún no consulta estas reglas.
+
 ## Anexo 8 de la RMF 2026 (tarifas de ISR)
 
 `rmf/2026/anexo-8/` trae las tarifas del Anexo 8 de la Resolución Miscelánea Fiscal para 2026 (DOF 2025-12-28, firmado 2025-12-17): 31 tarifas, una por archivo, copiadas del PDF del SAT y verificadas con aritmética. Las tarifas de los arts. 96 y 152 de la LISR son las **de la ley**; para 2026 se aplican las del anexo (mensual 2026: `B-V-tarifa-mensual-2026.md`; anual 2026: `C-II-tarifa-anual-2026.md`). Los arts. 96 y 152 de `leyes/` traen un aviso que lo dice.
@@ -173,9 +179,9 @@ python3 -I tests/test_ids.py
 ## Limitaciones
 
 - Los textos son tan buenos como el PDF de la Cámara y la extracción. Las tablas que el PDF publica como TEXTO se conservan como bloque de texto; las que publica como IMAGEN (hoy solo en la LISR: tarifa mensual del art. 96, tarifa anual del art. 152 y dos tablas de un transitorio) no las ve la extracción, así que se transcriben aparte en `tablas/<año>/<LEY>/tablas.json`, se verifican con aritmética (rangos contiguos y cuota fija recalculada) y conservan la imagen original. `python3 scripts/detectar_imagenes.py` avisa si aparece otra imagen sin cubrir. Las dos tablas del transitorio (deducción de inversiones 2016 y 2017) solo tienen la imagen, sin transcribir.
-- Las tarifas de los arts. 96 y 152 de `leyes/` son las de la ley. Cada año se actualizan por inflación y se publican en el Anexo 8 de la RMF (art. 152, último párrafo). El Anexo 8 de la RMF 2026 sí está en el repo (`rmf/2026/anexo-8/`, ver sección "Anexo 8 de la RMF"): para calcular retenciones o el anual 2026 se usa esa tarifa. Los demás anexos y las reglas de la RMF no están.
+- Las tarifas de los arts. 96 y 152 de `leyes/` son las de la ley. Cada año se actualizan por inflación y se publican en el Anexo 8 de la RMF (art. 152, último párrafo). El Anexo 8 de la RMF 2026 sí está en el repo (`rmf/2026/anexo-8/`, ver sección "Anexo 8 de la RMF"): para calcular retenciones o el anual 2026 se usa esa tarifa. Los demás anexos no están; las reglas de la RMF están en `rmf/2026/rmf/` (ver abajo), sin las modificaciones posteriores.
 - La Cámara puede tardar en reflejar una reforma; la fecha "última reforma" es la que imprime su PDF, no una verificación contra el DOF.
-- Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014); verificar si existen versiones posteriores en el DOF. Las reglas de miscelánea (RMF) y sus anexos, salvo el Anexo 8, **no** están en la base.
+- Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014); verificar si existen versiones posteriores en el DOF. Las reglas de la RMF 2026 están en `rmf/2026/rmf/` en su texto original (sin las resoluciones de modificación) y sus anexos, salvo el Anexo 8, **no** están en la base.
 - El artículo 513 de la LFT (tabla de enfermedades) es un archivo de ~360 mil caracteres.
 - Búsqueda léxica (no semántica). El paquete npm la complementa con un glosario de sinónimos contables ([docs/glosario.md](docs/glosario.md)); el motor de Python (`scripts/buscar.py`) no lo usa. Para un artículo conocido usar `obtener`.
 - Los dictámenes y minutas de la reforma 2027 están escaneados; los archivos por artículo de `proyectos/2027/` reflejan la iniciativa, no el texto final del trámite. Detalle en su README.
