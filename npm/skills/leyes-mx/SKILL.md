@@ -6,7 +6,7 @@ license: MIT
 
 # Leyes fiscales y laborales de México (leyes-mx)
 
-Responde consultas fiscales y laborales de México con el texto de la ley, no de memoria. La base está en el equipo del usuario: LISR, LIVA, CFF, LFT, RLISR, RLIVA, RCFF y las tarifas de ISR del Anexo 8 de la RMF, con año de vigencia y fecha de última reforma.
+Responde consultas fiscales y laborales de México con el texto de la ley, no de memoria. La base está en el equipo del usuario: LISR, LIVA, CFF, LFT, LSS, RLISR, RLIVA, RCFF, RACERF y las tarifas de ISR del Anexo 8 de la RMF, con año de vigencia y fecha de última reforma.
 
 ## Cuándo usarla
 
@@ -15,7 +15,7 @@ Antes de responder cualquier consulta fiscal o laboral de México y antes de cit
 ## Flujo
 
 1. **Reformula con las palabras de la ley.** La búsqueda es léxica: encuentra palabras, no ideas. "Actualizaciones" no encuentra "accesorios de las contribuciones"; "CFDI" no aparece en la ley, que dice "comprobante fiscal digital por Internet"; "PTU" es "participación de los trabajadores en las utilidades de las empresas". Un glosario de sinónimos ayuda y la respuesta declara qué agregó, pero no sustituye este paso.
-2. **Busca.** Con el servidor MCP `leyes-mx`: herramienta `buscar` (parámetro `ley` para acotar a LISR, LIVA, CFF, LFT, RLISR, RLIVA o RCFF). Si el artículo ya se conoce, ve directo a `obtener_articulo`.
+2. **Busca.** Con el servidor MCP `leyes-mx`: herramienta `buscar` (parámetro `ley` para acotar a LISR, LIVA, CFF, LFT, LSS, RLISR, RLIVA, RCFF o RACERF). Si el artículo ya se conoce, ve directo a `obtener_articulo`.
 3. **Lee el artículo completo** con `obtener_articulo`. Los resultados de `buscar` son fragmentos y pueden omitir la excepción o la fracción que cambia la respuesta. Si el texto viene por páginas, lee todas.
 4. **Cita.** Ley, artículo, fracción o párrafo (tómalos del texto leído), año de vigencia y fecha de última reforma DOF, tal como los devuelve la herramienta. Ejemplo: "LISR art. 28, fracción I, vigencia 2026, última reforma DOF 2024-04-01". Un artículo derogado no aplica; si se menciona, dilo.
 5. **Cuida las advertencias.** Respeta las líneas ADVERTENCIA del artículo (por ejemplo, la jornada laboral de la LFT se reduce de forma gradual) y consulta `obtener_transitorios` antes de afirmar desde cuándo aplica una reforma.
@@ -57,7 +57,7 @@ Las tablas de los artículos 96 y 152 de la LISR son las de la ley: no son las q
 
 ## Lo que NO está en la base
 
-Reglas y anexos de la Resolución Miscelánea Fiscal (salvo el Anexo 8), jurisprudencia, criterios del SAT, la Ley del Seguro Social y el valor de la UMA. De eso no hay dato local: dilo.
+Reglas y anexos de la Resolución Miscelánea Fiscal (salvo el Anexo 8), jurisprudencia, criterios del SAT o del IMSS y el valor de la UMA. De eso no hay dato local: dilo.
 
 ## Si no encuentras algo
 

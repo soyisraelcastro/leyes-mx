@@ -8,14 +8,14 @@ import { noEncontrado, respuestaArticulo, respuestaBusqueda, respuestaEstado, re
 import { VERSION } from "./version.js";
 
 const INSTRUCCIONES = [
-  "Leyes fiscales y laborales de México en el equipo del usuario: Ley del ISR (LISR), Ley del IVA (LIVA), Código Fiscal de la Federación (CFF), Ley Federal del Trabajo (LFT) y sus reglamentos (RLISR, RLIVA, RCFF), más las tarifas de ISR del Anexo 8 de la RMF.",
+  "Leyes fiscales y laborales de México en el equipo del usuario: Ley del ISR (LISR), Ley del IVA (LIVA), Código Fiscal de la Federación (CFF), Ley Federal del Trabajo (LFT), Ley del Seguro Social (LSS) y sus reglamentos (RLISR, RLIVA, RCFF, RACERF), más las tarifas de ISR del Anexo 8 de la RMF.",
   "REGLA: antes de responder cualquier consulta fiscal o laboral de México (ISR, IVA, deducciones, retenciones, CFDI, aguinaldo, PTU, vacaciones, despido, tarifas, infracciones, \"qué dice el artículo\", \"fundamento legal\") y antes de citar un artículo, consulta estas herramientas; no respondas de memoria ni busques en internet primero.",
   "Cómo: (1) para un artículo conocido usa obtener_articulo; (2) para un tema usa buscar, que es léxico y solo devuelve fragmentos, y reformula con las palabras de la ley (\"accesorios de las contribuciones\" y no \"actualizaciones\"; \"comprobante fiscal digital por Internet\" y no \"CFDI\"); (3) lee SIEMPRE el artículo completo con obtener_articulo antes de afirmar algo, porque un fragmento puede omitir la excepción o la fracción que cambia la respuesta; (4) cita.",
   "Cita siempre ley, artículo, fracción o párrafo (léelo del texto, no de memoria), año de vigencia y fecha de última reforma DOF que devuelve la herramienta. Un artículo derogado no aplica.",
   "Las tarifas de ISR (mensual, anual, por periodos) se obtienen con obtener_tarifa (Anexo 8 de la RMF), nunca de la tabla de los arts. 96 y 152 de la LISR ni de memoria: esas cifras se actualizan cada año.",
   "Respeta las líneas ADVERTENCIA. Un proyecto de reforma (por ejemplo la de 2027) NO es ley vigente hasta su publicación en el DOF: no lo presentes como vigente y, si lo mencionas, dilo y da la fecha de estado_reforma.",
   "Si la herramienta no encuentra lo pedido, dilo con claridad (\"no verificado\") y PREGUNTA al usuario si desea que lo busques en internet. Nunca busques en internet por tu cuenta sin su permiso; si lo autoriza, usa solo fuentes oficiales (DOF, SAT, Cámara de Diputados) y aclara que ese dato no proviene de la base verificada.",
-  "La base no incluye reglas ni anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT ni la Ley del Seguro Social: de eso no hay dato local.",
+  "La base no incluye reglas ni anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
 ].join(" ");
 
 function texto(t, extra = {}) {
@@ -36,7 +36,7 @@ export function crearServidor(almacen = null) {
   };
   const RO = { readOnlyHint: true, idempotentHint: true, openWorldHint: false };
 
-  const leyDesc = "Sigla del ordenamiento, por ejemplo LISR, LIVA, CFF, LFT, RLISR, RLIVA, RCFF (sin distinguir mayúsculas)";
+  const leyDesc = "Sigla del ordenamiento, por ejemplo LISR, LIVA, CFF, LFT, LSS, RLISR, RLIVA, RCFF, RACERF (sin distinguir mayúsculas)";
   const anioDesc = "Año de vigencia (opcional). Por omisión, el vigente más reciente que tenga datos.";
 
   server.registerTool("obtener_articulo", {

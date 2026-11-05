@@ -112,7 +112,7 @@ def separar_notas(lineas):
 _WORDS = "|".join(PALABRAS + ["qu[áa]ter"])
 RE_ART = re.compile(
     r"^(?P<ind>\s*)Art[íi]culo\s+(?P<num>\d+)\s?(?P<ord>[oº°])?"
-    r"(?P<suf>(?:\.?-[A-ZÑ](?![a-záéíóúñ])|\.?\s{0,4}-?\s{0,4}(?i:" + _WORDS + r")\b)*)"
+    r"(?P<suf>(?:\.?-[A-ZÑ](?![a-záéíóúñ])|\s{1,2}[A-ZÑ](?=[.\-]\s)|\.?\s{0,4}-?\s{0,4}(?i:" + _WORDS + r")\b)*)"
     r"(?:\.(?P<term>-?)|(?P<term2>-))(?=\s|$)"
 )
 

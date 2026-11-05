@@ -9,7 +9,7 @@ const issue = (titulo) => `${REPO}/issues/new?title=${encodeURIComponent(titulo)
 const formas = [
   { t: "Reporta un error", d: "¿Un artículo cortado a la mitad, una fracción que falta o una cifra de tarifa que no cuadra? Dinos qué ley, qué artículo y qué viste. Lo revisamos contra el texto oficial y se corrige desde la fuente: nadie edita un artículo a mano.", cta: "Reportar un error", href: issue("Error en [ley] artículo [número]") },
   { t: "Enséñale tus palabras", d: "Si preguntaste como lo dices en el despacho y no salió el artículo correcto, cuéntanos la pregunta, el artículo que esperabas y la frase de la ley que lo respalda. Así se agrega al glosario y la próxima vez lo encuentra para todos.", cta: "Proponer un sinónimo", href: issue("Sinónimo: [cómo lo preguntaste]"), ejemplo: true },
-  { t: "Pide una ley", d: "¿Te hace falta la Ley del Seguro Social, la Resolución Miscelánea completa u otro ordenamiento? Pídelo y cuéntanos para qué lo usas. Así se decide qué sigue.", cta: "Pedir una ley", href: issue("Agregar ley: [nombre]") },
+  { t: "Pide una ley", d: "¿Te hace falta la Ley del INFONAVIT, la Resolución Miscelánea completa u otro ordenamiento? Pídelo y cuéntanos para qué lo usas. Así se decide qué sigue.", cta: "Pedir una ley", href: issue("Agregar ley: [nombre]") },
 ];
 const reglas = [
   "El texto legal sale siempre de la publicación oficial (Cámara de Diputados y DOF). Ningún artículo se escribe ni se corrige a mano.",

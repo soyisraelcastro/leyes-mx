@@ -63,6 +63,13 @@
       ]
     },
     {
+      "sigla": "LSS",
+      "nombre": "Ley del Seguro Social",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf",
+      "ultimo_articulo_esperado": 319
+    },
+    {
       "sigla": "RLISR",
       "nombre": "Reglamento de la Ley del Impuesto sobre la Renta",
       "tipo": "reglamento",
@@ -82,6 +89,13 @@
       "tipo": "reglamento",
       "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_CFF.pdf",
       "ultimo_articulo_esperado": 113
+    },
+    {
+      "sigla": "RACERF",
+      "nombre": "Reglamento de la Ley del Seguro Social en Materia de Afiliación, Clasificación de Empresas, Recaudación y Fiscalización",
+      "tipo": "reglamento",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LSS_MACERF.pdf",
+      "ultimo_articulo_esperado": 196
     }
   ]
 }

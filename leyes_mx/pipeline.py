@@ -110,11 +110,14 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
              f"\n# Transitorios de {ley['nombre']} ({sigla.upper()})\n\n",
              "> Texto tal cual del PDF de la Cámara de Diputados: transitorios del decreto original y de los decretos de reforma. "
              "Muchos transitorios ya agotaron sus efectos; verificar siempre su vigencia.\n"]
+        colocadas = set()
         for titulo, lineas in bloques:
             cuerpo = extraer.formatear(lineas)
+            cuerpo, puestas = _tablas.inyectar("transitorios", cuerpo, datos_tablas, estricto=False, excluir=colocadas)
+            colocadas.update(puestas)
             if cuerpo.strip():
                 t.append(f"\n## {titulo}\n\n{cuerpo}\n")
-        t.append(_tablas.bloque_transitorios(datos_tablas))
+        t.append(_tablas.bloque_transitorios(datos_tablas, colocadas))
         (dest / "transitorios.md").write_text("".join(t), encoding="utf-8")
         _tablas.copiar_imagenes(datos_tablas, carpeta_tablas, dest)
     resumen["decretos_transitorios"] = len(bloques)
