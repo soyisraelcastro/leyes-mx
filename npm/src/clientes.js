@@ -20,7 +20,7 @@ export const BLOQUE_INSTRUCCIONES = `${MARCA_INI}
 
 Antes de responder cualquier consulta fiscal o laboral de México (ISR, IVA, deducciones, retenciones, CFDI, aguinaldo, PTU, vacaciones, despido, tarifas, "qué dice el artículo", "fundamento legal") y antes de citar un artículo de la LISR, LIVA, CFF, LFT, LSS o sus reglamentos (RLISR, RLIVA, RCFF, RACERF), consulta el servidor MCP "leyes-mx". No respondas de memoria ni busques en internet primero.
 
-1. Herramientas: buscar, obtener_articulo, obtener_tarifa, obtener_transitorios, estado_reforma, listar_leyes. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | reforma.
+1. Herramientas: buscar, temas, obtener_articulo, obtener_regla, obtener_tarifa, obtener_transitorios, estado_reforma, listar_leyes. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | reforma.
 2. Reformula con los términos de la ley, no con los del uso corriente ("accesorios de las contribuciones", no "actualizaciones"). buscar es léxico y solo devuelve fragmentos.
 3. Lee siempre el artículo completo con obtener_articulo antes de afirmar algo: un fragmento puede omitir la excepción o la fracción que cambia la respuesta.
 4. Cita ley, artículo, fracción, año de vigencia y fecha de última reforma, tal como los devuelve la herramienta.

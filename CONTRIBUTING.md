@@ -25,7 +25,8 @@ En español, cortos y claros. Ejemplos: "Agrega LSS 2026", "Corrige corte del ar
 - El texto legal sale siempre del texto oficial descargado (Cámara de Diputados / DOF). Nunca se escribe ni se corrige a mano un artículo.
 - Un artículo con estatus distinto de "vigente" va en `proyectos/`, nunca en `leyes/`.
 - Antes de abrir PR: `python3 scripts/validar.py`.
-- Para agregar una ley: nueva entrada en `fuentes.json` y `python3 scripts/extraer.py SIGLA`. No hace falta tocar código.
+- Para agregar una ley: nueva entrada en `fuentes.json`, `python3 scripts/extraer.py SIGLA` y **`python3 scripts/etiquetar.py`**. Para una resolución de la RMF: `scripts/extraer_rmf.py` y lo mismo. No hace falta tocar código.
+- **Todo ordenamiento se etiqueta por temas.** El índice `temas/` se genera de `temas.json` y de todo lo que hay en `leyes/` y `rmf/`; `scripts/validar.py` (y el CI) falla si no está al día. Al agregar un ordenamiento, además de regenerar: mira la cobertura que imprime `etiquetar.py` (un ordenamiento con muy pocos documentos etiquetados casi siempre es un hueco del vocabulario) y agrega a `temas.json` las palabras propias de esa materia. Ver [docs/temas.md](docs/temas.md).
 - Texto plano en español, comillas dobles rectas, sin raya larga.
 
 ## Glosario de sinónimos contables

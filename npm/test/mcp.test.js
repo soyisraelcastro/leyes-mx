@@ -19,7 +19,7 @@ test("initialize y tools/list", async () => {
   assert.equal(info.name, "leyes-mx");
   assert.match(c.getInstructions(), /no verificado/);
   const { tools } = await c.listTools();
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["buscar", "estado_reforma", "listar_leyes", "obtener_articulo", "obtener_tarifa", "obtener_transitorios"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["buscar", "estado_reforma", "listar_leyes", "obtener_articulo", "obtener_regla", "obtener_tarifa", "obtener_transitorios", "temas"]);
   for (const t of tools) assert.equal(t.annotations.readOnlyHint, true);
 });
 
@@ -179,5 +179,56 @@ test("los artículos 96 y 152 de la LISR remiten al Anexo 8", async () => {
   for (const art of ["96", "152"]) {
     const t = txt(await c.callTool({ name: "obtener_articulo", arguments: { ley: "LISR", articulo: art } }));
     assert.match(t, /Anexo 8 de la RMF 2026/);
+  }
+});
+
+test("obtener_regla: texto, fundamento, remisiones y la advertencia de que no trae las modificaciones", async () => {
+  const r = await c.callTool({ name: "obtener_regla", arguments: { regla: "2.7.1.1" } });
+  const t = txt(r);
+  assert.match(t, /regla 2\.7\.1\.1/);
+  assert.match(t, /Almacenamiento de CFDI/);
+  assert.match(t, /Fundamento \(tal como lo imprime la RMF\): CFF 28, 30/);
+  assert.match(t, /NO tiene aplicadas las resoluciones de modificación/);
+  assert.equal(r.structuredContent.encontrado, true);
+  assert.deepEqual(r.structuredContent.referencias_leyes, { CFF: ["28", "30"] });
+  assert.match(r.structuredContent.texto, /Para los efectos de los artículos 28/); // el texto viaja también en structuredContent (Claude Desktop lee solo eso)
+  // también con la forma "regla 2.7.1.1." y con cinco niveles
+  assert.equal((await c.callTool({ name: "obtener_regla", arguments: { regla: "regla 2.7.1.1." } })).structuredContent.regla, "2.7.1.1");
+  assert.equal((await c.callTool({ name: "obtener_regla", arguments: { regla: "2.7.7.1.1" } })).structuredContent.encontrado, true);
+});
+
+test("obtener_regla: inexistente = no verificado; mal formada = error", async () => {
+  const n = await c.callTool({ name: "obtener_regla", arguments: { regla: "99.9.9" } });
+  assert.match(txt(n), /NO VERIFICADO/);
+  assert.equal(n.structuredContent.encontrado, false);
+  const e = await c.callTool({ name: "obtener_regla", arguments: { regla: "xyz" } });
+  assert.equal(e.isError, true);
+});
+
+test("temas: lista, tema por id o nombre, filtro por ley y mínimo, y el que no existe", async () => {
+  const l = await c.callTool({ name: "temas", arguments: {} });
+  assert.match(txt(l), /hidrocarburos \| Hidrocarburos y combustibles/);
+  assert.ok(l.structuredContent.temas.length >= 50);
+  const h = await c.callTool({ name: "temas", arguments: { tema: "hidrocarburos", limite: 5 } });
+  assert.match(txt(h), /Tema: Hidrocarburos y combustibles/);
+  assert.equal(h.structuredContent.documentos.length, 5);
+  assert.ok(h.structuredContent.total > 50);
+  assert.match(txt(h), /RMF regla 2\.6\./);
+  // por nombre, sin acentos, y acotado a una ley
+  const s = await c.callTool({ name: "temas", arguments: { tema: "Subcontratacion", ley: "LFT" } });
+  assert.equal(s.structuredContent.tema, "subcontratacion");
+  assert.ok(s.structuredContent.documentos.every((x) => x.ley === "LFT"));
+  // el puntaje mínimo deja solo lo más central
+  const m = await c.callTool({ name: "temas", arguments: { tema: "cfdi", minimo: 20, limite: 100 } });
+  assert.ok(m.structuredContent.documentos.every((x) => x.puntaje >= 20));
+  const x = await c.callTool({ name: "temas", arguments: { tema: "zzz inexistente" } });
+  assert.match(txt(x), /NO VERIFICADO/);
+});
+
+test("obtener_regla y temas llevan el texto completo en structuredContent.texto, igual que en content", async () => {
+  for (const [name, args] of [["obtener_regla", { regla: "2.7.1.1" }], ["temas", { tema: "ptu" }], ["temas", {}]]) {
+    const r = await c.callTool({ name, arguments: args });
+    assert.equal(r.structuredContent.texto, r.content[0].text);
+    assert.ok(r.structuredContent.texto.length > 100);
   }
 });

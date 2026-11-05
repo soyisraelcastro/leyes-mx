@@ -1,0 +1,835 @@
+{
+ "version": "1",
+ "descripcion": "Vocabulario controlado de temas. Cada tema es una lista de palabras en el idioma de la ley; un artículo o una regla recibe el tema si la palabra aparece en su encabezado, o al menos `umbral` veces (2 por omisión) en su texto, o si es una regla cuyo fundamento cita una de las `citas`. Ver docs/temas.md. Después de editar este archivo: python3 scripts/etiquetar.py",
+ "temas": [
+  {
+   "id": "cfdi",
+   "nombre": "Comprobantes fiscales (CFDI) y facturación",
+   "descripcion": "Expedición, requisitos, cancelación y complementos de los CFDI.",
+   "palabras": [
+    "comprobante fiscal digital por internet",
+    "CFDI",
+    "factura electrónica",
+    "proveedor de certificación",
+    "complemento carta porte",
+    "carta porte",
+    "complemento de pago",
+    "comprobante fiscal",
+    "sello digital",
+    "cancelación de los comprobantes"
+   ]
+  },
+  {
+   "id": "declaraciones",
+   "nombre": "Declaraciones y pagos provisionales",
+   "descripcion": "Presentación de declaraciones anuales, provisionales, complementarias e informativas.",
+   "palabras": [
+    "declaración anual",
+    "declaración provisional",
+    "pago provisional",
+    "declaración complementaria",
+    "declaración informativa",
+    "declaración de pago",
+    "pago definitivo",
+    "declaración mensual",
+    "declaración del ejercicio"
+   ]
+  },
+  {
+   "id": "devoluciones",
+   "nombre": "Devoluciones y compensaciones",
+   "descripcion": "Saldos a favor, devolución de contribuciones y compensación.",
+   "palabras": [
+    "devolución",
+    "compensación",
+    "saldo a favor",
+    "pago de lo indebido"
+   ]
+  },
+  {
+   "id": "rfc",
+   "nombre": "Inscripción y avisos en el RFC",
+   "descripcion": "Registro Federal de Contribuyentes, avisos, domicilio fiscal y constancia de situación fiscal.",
+   "palabras": [
+    "Registro Federal de Contribuyentes",
+    "inscripción en el RFC",
+    "constancia de situación fiscal",
+    "domicilio fiscal",
+    "cédula de identificación fiscal",
+    "clave en el RFC",
+    "suspensión de actividades",
+    "aviso de cambio de domicilio",
+    "actividades económicas y obligaciones"
+   ]
+  },
+  {
+   "id": "firma-electronica",
+   "nombre": "e.firma, contraseña y buzón tributario",
+   "descripcion": "Firma electrónica avanzada, certificados digitales y buzón tributario.",
+   "palabras": [
+    "e.firma",
+    "firma electrónica avanzada",
+    "firma electrónica",
+    "certificado digital",
+    "buzón tributario",
+    "certificado de sello digital"
+   ]
+  },
+  {
+   "id": "notificaciones",
+   "nombre": "Notificaciones",
+   "descripcion": "Notificación de actos y resoluciones, por buzón tributario, estrados o edictos.",
+   "palabras": [
+    "notificación",
+    "notificaciones por buzón tributario",
+    "notificación por estrados",
+    "notificación por edictos"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "facultades-comprobacion",
+   "nombre": "Facultades de comprobación y auditorías",
+   "descripcion": "Visitas domiciliarias, revisiones de gabinete y electrónicas, y el procedimiento de revisión.",
+   "palabras": [
+    "facultades de comprobación",
+    "visita domiciliaria",
+    "revisión de gabinete",
+    "revisión electrónica",
+    "orden de visita",
+    "acta final",
+    "oficio de observaciones",
+    "resolución determinante",
+    "determinación presuntiva",
+    "auditoría",
+    "facultades de las autoridades fiscales"
+   ]
+  },
+  {
+   "id": "recursos-defensa",
+   "nombre": "Recursos y medios de defensa",
+   "descripcion": "Recurso de revocación, juicio de nulidad, amparo, PRODECON y acuerdos conclusivos.",
+   "palabras": [
+    "recurso de revocación",
+    "juicio de nulidad",
+    "juicio contencioso administrativo",
+    "amparo",
+    "Tribunal Federal de Justicia Administrativa",
+    "PRODECON",
+    "Procuraduría de la Defensa del Contribuyente",
+    "acuerdo conclusivo",
+    "recurso de inconformidad"
+   ]
+  },
+  {
+   "id": "multas-infracciones",
+   "nombre": "Infracciones, multas y recargos",
+   "descripcion": "Infracciones fiscales, multas, sanciones y recargos.",
+   "palabras": [
+    "infracción",
+    "multa",
+    "sanción",
+    "recargos",
+    "reducción de multas"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "delitos-fiscales",
+   "nombre": "Delitos fiscales",
+   "descripcion": "Defraudación fiscal, contrabando, querella y declaratoria de perjuicio.",
+   "palabras": [
+    "defraudación fiscal",
+    "contrabando",
+    "querella",
+    "delito",
+    "declaratoria de perjuicio"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "cobro-ejecucion",
+   "nombre": "Cobro, garantías y ejecución",
+   "descripcion": "Procedimiento administrativo de ejecución, embargo, garantía del interés fiscal, parcialidades, prescripción y caducidad.",
+   "palabras": [
+    "procedimiento administrativo de ejecución",
+    "embargo",
+    "garantía del interés fiscal",
+    "remate",
+    "crédito fiscal",
+    "pago en parcialidades",
+    "pago diferido",
+    "prescripción",
+    "caducidad"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "operaciones-inexistentes",
+   "nombre": "Operaciones inexistentes y listas del SAT",
+   "descripcion": "Operaciones simuladas o inexistentes (art. 69-B del CFF) y listados de contribuyentes.",
+   "palabras": [
+    "operaciones inexistentes",
+    "operaciones simuladas",
+    "69-B",
+    "listado definitivo",
+    "contribuyentes incumplidos",
+    "empresas que facturan"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "contabilidad",
+   "nombre": "Contabilidad y registros contables",
+   "descripcion": "Contabilidad electrónica, libros, catálogo de cuentas y balanza de comprobación.",
+   "palabras": [
+    "contabilidad electrónica",
+    "registros contables",
+    "libros de contabilidad",
+    "balanza de comprobación",
+    "catálogo de cuentas",
+    "sistema de registro contable",
+    "contabilidad"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "dictamen",
+   "nombre": "Dictamen fiscal y contador público",
+   "descripcion": "Dictamen de estados financieros, de enajenación de acciones y contador público inscrito.",
+   "palabras": [
+    "dictamen fiscal",
+    "dictamen de estados financieros",
+    "contador público inscrito",
+    "contador público registrado",
+    "dictamen de enajenación de acciones"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "beneficiario-controlador",
+   "nombre": "Beneficiario controlador y cuentas financieras",
+   "descripcion": "Beneficiario controlador, intercambio de información y cuentas financieras.",
+   "palabras": [
+    "beneficiario controlador",
+    "cuentas financieras",
+    "FATCA",
+    "intercambio de información",
+    "estándar común de reporte"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "resico",
+   "nombre": "Régimen Simplificado de Confianza (RESICO)",
+   "descripcion": "Personas físicas y morales en el régimen simplificado de confianza.",
+   "palabras": [
+    "régimen simplificado de confianza",
+    "RESICO"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "sueldos-salarios",
+   "nombre": "Sueldos, salarios y subsidio para el empleo",
+   "descripcion": "Ingresos por servicio personal subordinado, retenciones del ISR a trabajadores, ajuste anual y subsidio.",
+   "palabras": [
+    "servicio personal subordinado",
+    "sueldos y salarios",
+    "subsidio para el empleo",
+    "ingresos por salarios",
+    "ajuste anual",
+    "constancia de percepciones"
+   ]
+  },
+  {
+   "id": "honorarios-empresarial",
+   "nombre": "Actividades empresariales y servicios profesionales",
+   "descripcion": "Ingresos por actividades empresariales, honorarios y servicios profesionales.",
+   "palabras": [
+    "actividades empresariales",
+    "servicios profesionales",
+    "honorarios",
+    "actividad empresarial"
+   ]
+  },
+  {
+   "id": "arrendamiento",
+   "nombre": "Arrendamiento y uso o goce temporal",
+   "descripcion": "Ingresos por arrendamiento y por el uso o goce temporal de bienes.",
+   "palabras": [
+    "arrendamiento",
+    "uso o goce temporal",
+    "arrendador",
+    "arrendatario"
+   ]
+  },
+  {
+   "id": "plataformas-digitales",
+   "nombre": "Plataformas tecnológicas y servicios digitales",
+   "descripcion": "Personas que enajenan bienes o prestan servicios mediante plataformas, y servicios digitales de residentes en el extranjero.",
+   "palabras": [
+    "plataformas tecnológicas",
+    "plataformas digitales",
+    "servicios digitales",
+    "intermediarios digitales"
+   ]
+  },
+  {
+   "id": "deducciones",
+   "nombre": "Deducciones autorizadas",
+   "descripcion": "Requisitos y límites de las deducciones.",
+   "palabras": [
+    "deducciones autorizadas",
+    "estrictamente indispensables",
+    "deducible",
+    "deducción",
+    "no deducible"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "inversiones-depreciacion",
+   "nombre": "Inversiones, depreciación y amortización",
+   "descripcion": "Deducción de inversiones, activos fijos, depreciación y amortización.",
+   "palabras": [
+    "deducción de inversiones",
+    "activo fijo",
+    "depreciación",
+    "amortización",
+    "monto original de la inversión",
+    "porcientos máximos autorizados"
+   ]
+  },
+  {
+   "id": "dividendos-cufin",
+   "nombre": "Dividendos, CUFIN y CUCA",
+   "descripcion": "Utilidades distribuidas, cuenta de utilidad fiscal neta y cuenta de capital de aportación.",
+   "palabras": [
+    "dividendo",
+    "utilidades distribuidas",
+    "cuenta de utilidad fiscal neta",
+    "CUFIN",
+    "cuenta de capital de aportación",
+    "CUCA",
+    "reinversión de utilidades"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "ptu",
+   "nombre": "Participación de los trabajadores en las utilidades (PTU)",
+   "descripcion": "Reparto de utilidades a los trabajadores y su base de cálculo.",
+   "palabras": [
+    "participación de los trabajadores en las utilidades",
+    "PTU",
+    "reparto de utilidades",
+    "utilidad repartible"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "estimulos-fiscales",
+   "nombre": "Estímulos fiscales",
+   "descripcion": "Estímulos fiscales, decretos de estímulos y la región fronteriza.",
+   "palabras": [
+    "estímulo fiscal",
+    "estímulos fiscales",
+    "región fronteriza",
+    "Plan México"
+   ]
+  },
+  {
+   "id": "donativos",
+   "nombre": "Donatarias y donativos",
+   "descripcion": "Donatarias autorizadas, donativos deducibles y personas morales con fines no lucrativos.",
+   "palabras": [
+    "donataria autorizada",
+    "donatarias",
+    "donativo",
+    "organizaciones civiles",
+    "personas morales con fines no lucrativos",
+    "remanente distribuible"
+   ]
+  },
+  {
+   "id": "internacional",
+   "nombre": "Residentes en el extranjero y operaciones internacionales",
+   "descripcion": "Establecimiento permanente, tratados, regímenes fiscales preferentes y precios de transferencia.",
+   "palabras": [
+    "residentes en el extranjero",
+    "establecimiento permanente",
+    "tratados para evitar la doble tributación",
+    "régimen fiscal preferente",
+    "regímenes fiscales preferentes",
+    "partes relacionadas",
+    "precios de transferencia",
+    "impuestos pagados en el extranjero"
+   ]
+  },
+  {
+   "id": "retenciones",
+   "nombre": "Retenciones y retenedores",
+   "descripcion": "Obligación de retener y enterar contribuciones y constancias de retenciones.",
+   "palabras": [
+    "retención",
+    "retenciones",
+    "retenedor",
+    "constancia de retenciones"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "intereses-sistema-financiero",
+   "nombre": "Intereses y sistema financiero",
+   "descripcion": "Intereses reales, instituciones del sistema financiero y ajuste por inflación.",
+   "palabras": [
+    "interés real",
+    "intereses reales",
+    "sistema financiero",
+    "ajuste anual por inflación",
+    "instituciones del sistema financiero",
+    "instituciones de crédito",
+    "instituciones de seguros",
+    "almacenes generales de depósito",
+    "casas de bolsa"
+   ]
+  },
+  {
+   "id": "iva",
+   "nombre": "IVA: traslado, acreditamiento y tasa del 0%",
+   "descripcion": "Traslado y acreditamiento del impuesto al valor agregado, tasa del 0% y exportación.",
+   "palabras": [
+    "impuesto al valor agregado",
+    "acreditamiento",
+    "tasa del 0",
+    "impuesto trasladado",
+    "acreditable"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "ieps",
+   "nombre": "IEPS y productos con impuesto especial",
+   "descripcion": "Impuesto especial sobre producción y servicios, tabacos, bebidas y alimentos no básicos.",
+   "palabras": [
+    "impuesto especial sobre producción y servicios",
+    "IEPS",
+    "bebidas saborizadas",
+    "tabacos labrados",
+    "cigarros",
+    "bebidas alcohólicas",
+    "cerveza",
+    "alimentos no básicos",
+    "plaguicidas"
+   ]
+  },
+  {
+   "id": "juegos-sorteos",
+   "nombre": "Juegos con apuesta y sorteos",
+   "descripcion": "Impuesto y obligaciones de juegos con apuesta, casinos y sorteos.",
+   "palabras": [
+    "juegos con apuesta",
+    "sorteos",
+    "casino",
+    "juegos y sorteos"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "automoviles",
+   "nombre": "Automóviles nuevos",
+   "descripcion": "Impuesto sobre automóviles nuevos.",
+   "palabras": [
+    "automóviles nuevos",
+    "impuesto sobre automóviles nuevos",
+    "ISAN"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "comercio-exterior",
+   "nombre": "Comercio exterior y aduanas",
+   "descripcion": "Importación, exportación, pedimento, IMMEX y régimen aduanero.",
+   "palabras": [
+    "importación",
+    "exportación",
+    "aduana",
+    "pedimento",
+    "IMMEX",
+    "comercio exterior",
+    "recinto fiscalizado",
+    "agente aduanal"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "agropecuario",
+   "nombre": "Sector agropecuario y pesquero",
+   "descripcion": "Actividades agrícolas, ganaderas, silvícolas y pesqueras.",
+   "palabras": [
+    "actividades agrícolas",
+    "ganaderas",
+    "silvícolas",
+    "pesqueras",
+    "sector primario",
+    "actividades agropecuarias",
+    "productos agropecuarios"
+   ]
+  },
+  {
+   "id": "inmuebles-notarios",
+   "nombre": "Inmuebles, notarios y fedatarios",
+   "descripcion": "Enajenación de inmuebles, notarios y fedatarios públicos.",
+   "palabras": [
+    "enajenación de bienes inmuebles",
+    "fedatario público",
+    "fedatarios públicos",
+    "notario",
+    "adquisición de inmuebles",
+    "escritura pública",
+    "enajenación de acciones",
+    "ingresos por enajenación de bienes"
+   ]
+  },
+  {
+   "id": "hidrocarburos",
+   "nombre": "Hidrocarburos y combustibles",
+   "descripcion": "Hidrocarburos, petrolíferos, gasolina y diésel, controles volumétricos y la Ley de Ingresos sobre Hidrocarburos.",
+   "palabras": [
+    "hidrocarburo",
+    "petrolífero",
+    "petróleo",
+    "gasolina",
+    "diésel",
+    "biodiésel",
+    "turbosina",
+    "gas natural",
+    "gas licuado de petróleo",
+    "combustible",
+    "controles volumétricos",
+    "asignatario",
+    "estaciones de servicio",
+    "ingresos petroleros",
+    "contrato para la exploración y extracción"
+   ],
+   "citas": [
+    "LISH",
+    "LSH"
+   ]
+  },
+  {
+   "id": "aguinaldo-vacaciones",
+   "nombre": "Aguinaldo, vacaciones y prestaciones",
+   "descripcion": "Aguinaldo, vacaciones, prima vacacional y descansos.",
+   "palabras": [
+    "aguinaldo",
+    "vacaciones",
+    "prima vacacional",
+    "prima dominical",
+    "descanso obligatorio",
+    "días de descanso"
+   ]
+  },
+  {
+   "id": "jornada-salario",
+   "nombre": "Jornada, tiempo extra y salario",
+   "descripcion": "Jornada de trabajo, horas extras, salario mínimo e integración del salario.",
+   "palabras": [
+    "jornada de trabajo",
+    "horas extras",
+    "tiempo extraordinario",
+    "salario mínimo",
+    "jornada máxima",
+    "pago del salario"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "terminacion-laboral",
+   "nombre": "Despido, rescisión y finiquito",
+   "descripcion": "Terminación de la relación de trabajo, indemnizaciones, prima de antigüedad y reinstalación.",
+   "palabras": [
+    "despido",
+    "rescisión",
+    "terminación de la relación de trabajo",
+    "indemnización",
+    "prima de antigüedad",
+    "finiquito",
+    "reinstalación"
+   ]
+  },
+  {
+   "id": "subcontratacion",
+   "nombre": "Subcontratación y servicios especializados",
+   "descripcion": "Servicios u obras especializadas, registro REPSE y subcontratación.",
+   "palabras": [
+    "subcontratación",
+    "servicios especializados",
+    "obras especializadas",
+    "REPSE",
+    "registro de prestadoras de servicios especializados"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "sindicatos-colectivo",
+   "nombre": "Sindicatos, contratación colectiva y huelga",
+   "descripcion": "Contrato colectivo, sindicatos, huelga y reglamento interior de trabajo.",
+   "palabras": [
+    "contrato colectivo de trabajo",
+    "sindicato",
+    "huelga",
+    "contrato ley",
+    "reglamento interior de trabajo",
+    "negociación colectiva"
+   ]
+  },
+  {
+   "id": "capacitacion-seguridad",
+   "nombre": "Capacitación, seguridad e higiene",
+   "descripcion": "Capacitación y adiestramiento, seguridad e higiene en el trabajo.",
+   "palabras": [
+    "capacitación y adiestramiento",
+    "seguridad e higiene",
+    "comisiones de seguridad",
+    "condiciones de seguridad"
+   ]
+  },
+  {
+   "id": "trabajos-especiales",
+   "nombre": "Trabajo doméstico, del campo y de plataformas",
+   "descripcion": "Regímenes especiales: personas trabajadoras del hogar, del campo y de plataformas digitales.",
+   "palabras": [
+    "trabajadores domésticos",
+    "personas trabajadoras del hogar",
+    "personas trabajadoras de plataformas digitales",
+    "trabajadores del campo",
+    "trabajadores eventuales",
+    "teletrabajo",
+    "trabajos especiales",
+    "tripulaciones aeronáuticas",
+    "trabajadores de los buques",
+    "trabajo a domicilio",
+    "deportistas profesionales",
+    "actores y músicos",
+    "trabajadores de confianza",
+    "trabajadores de las minas",
+    "seguridad social en el campo"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "cuotas-imss",
+   "nombre": "Cuotas obrero-patronales y salario base de cotización",
+   "descripcion": "Determinación y pago de cuotas, salario base de cotización, prima media y capital constitutivo.",
+   "palabras": [
+    "cuotas obrero patronales",
+    "cuota obrero patronal",
+    "salario base de cotización",
+    "cuotas patronales",
+    "capital constitutivo",
+    "cuota diaria patronal",
+    "cuotas obreras",
+    "determinación de cuotas",
+    "prima media",
+    "bases de cotización",
+    "salario de cotización"
+   ]
+  },
+  {
+   "id": "riesgos-trabajo",
+   "nombre": "Riesgos de trabajo",
+   "descripcion": "Accidentes y enfermedades de trabajo, incapacidades, prima y siniestralidad.",
+   "palabras": [
+    "riesgo de trabajo",
+    "riesgos de trabajo",
+    "accidente de trabajo",
+    "enfermedad de trabajo",
+    "incapacidad temporal",
+    "incapacidad permanente",
+    "siniestralidad"
+   ]
+  },
+  {
+   "id": "pensiones-retiro",
+   "nombre": "Pensiones, cesantía, vejez y retiro",
+   "descripcion": "Pensiones, cesantía en edad avanzada y vejez, cuenta individual, AFORE y semanas de cotización.",
+   "palabras": [
+    "pensión",
+    "cesantía en edad avanzada",
+    "vejez",
+    "pensión garantizada",
+    "cuenta individual",
+    "AFORE",
+    "ahorro para el retiro",
+    "semanas de cotización",
+    "jubilación"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "enfermedad-maternidad",
+   "nombre": "Enfermedades, maternidad y prestaciones en especie",
+   "descripcion": "Seguro de enfermedades y maternidad, subsidios por incapacidad y prestaciones en especie.",
+   "palabras": [
+    "enfermedades y maternidad",
+    "maternidad",
+    "embarazo",
+    "subsidio por incapacidad",
+    "prestaciones en especie"
+   ]
+  },
+  {
+   "id": "guarderias",
+   "nombre": "Guarderías y prestaciones sociales",
+   "descripcion": "Ramo de guarderías y prestaciones sociales del IMSS.",
+   "palabras": [
+    "guarderías",
+    "prestaciones sociales"
+   ]
+  },
+  {
+   "id": "vivienda-infonavit",
+   "nombre": "Vivienda e INFONAVIT",
+   "descripcion": "Aportaciones de vivienda, crédito y subcuenta de vivienda.",
+   "palabras": [
+    "INFONAVIT",
+    "crédito para vivienda",
+    "vivienda",
+    "aportaciones patronales",
+    "subcuenta de vivienda",
+    "habitaciones para los trabajadores",
+    "casas habitación"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "incorporacion-voluntaria",
+   "nombre": "Incorporación voluntaria y trabajadores independientes",
+   "descripcion": "Continuación voluntaria, incorporación voluntaria y trabajadores independientes en el IMSS.",
+   "palabras": [
+    "continuación voluntaria",
+    "incorporación voluntaria",
+    "trabajadores independientes",
+    "seguro de salud para la familia"
+   ]
+  },
+  {
+   "id": "procedimiento-laboral",
+   "nombre": "Procedimiento laboral, conciliación y pruebas",
+   "descripcion": "Derecho procesal del trabajo: conciliación, tribunales laborales, demanda, audiencias, pruebas y laudo.",
+   "palabras": [
+    "derecho procesal del trabajo",
+    "conciliación",
+    "tribunal laboral",
+    "tribunales laborales",
+    "Centro Federal de Conciliación y Registro Laboral",
+    "demanda",
+    "laudo",
+    "de las pruebas",
+    "audiencia",
+    "Junta de Conciliación y Arbitraje",
+    "actuaciones",
+    "procedimiento ordinario"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "derechos-federales",
+   "nombre": "Derechos y aprovechamientos federales",
+   "descripcion": "Pago de derechos por servicios del Estado (Ley Federal de Derechos) y aprovechamientos.",
+   "palabras": [
+    "Ley Federal de Derechos",
+    "pago de derechos",
+    "derechos por",
+    "aprovechamientos",
+    "derechos federales"
+   ],
+   "citas": [
+    "LFD"
+   ]
+  },
+  {
+   "id": "invalidez-vida",
+   "nombre": "Invalidez, viudez y orfandad",
+   "descripcion": "Seguro de invalidez y vida: pensiones por invalidez, viudez, orfandad y ascendientes.",
+   "palabras": [
+    "invalidez",
+    "seguro de invalidez y vida",
+    "viudez",
+    "orfandad",
+    "ascendientes"
+   ]
+  },
+  {
+   "id": "organizacion-imss",
+   "nombre": "Organización del IMSS y reservas",
+   "descripcion": "Órganos del Instituto Mexicano del Seguro Social, patrimonio y reservas financieras y actuariales.",
+   "palabras": [
+    "Consejo Técnico",
+    "Asamblea General",
+    "reservas financieras",
+    "reserva de operación",
+    "Dirección General del Instituto",
+    "patrimonio del Instituto"
+   ]
+  },
+  {
+   "id": "contribuyentes-obligaciones",
+   "nombre": "Derechos y obligaciones de los contribuyentes",
+   "descripcion": "Derechos y obligaciones de los contribuyentes y la Carta de los Derechos del Contribuyente.",
+   "palabras": [
+    "derechos y obligaciones de los contribuyentes",
+    "carta de los derechos del contribuyente",
+    "obligaciones de los contribuyentes"
+   ]
+  },
+  {
+   "id": "ingresos-acumulables",
+   "nombre": "Ingresos acumulables",
+   "descripcion": "Qué ingresos se acumulan, cuándo y cómo.",
+   "palabras": [
+    "ingresos acumulables",
+    "ingreso acumulable",
+    "acumulación de ingresos",
+    "de los ingresos"
+   ],
+   "umbral": 3
+  },
+  {
+   "id": "esquemas-reportables",
+   "nombre": "Esquemas reportables",
+   "descripcion": "Revelación de esquemas reportables y asesores fiscales.",
+   "palabras": [
+    "esquemas reportables",
+    "esquema reportable",
+    "asesor fiscal",
+    "revelación de esquemas"
+   ]
+  },
+  {
+   "id": "grupos-sociedades",
+   "nombre": "Grupos de sociedades",
+   "descripcion": "Régimen opcional para grupos de sociedades, integradoras e integradas.",
+   "palabras": [
+    "régimen opcional para grupos de sociedades",
+    "sociedad integradora",
+    "sociedades integradoras",
+    "sociedad integrada",
+    "sociedades integradas"
+   ],
+   "umbral": 1
+  },
+  {
+   "id": "perdidas-fiscales",
+   "nombre": "Pérdidas fiscales",
+   "descripcion": "Pérdidas fiscales, su amortización y actualización.",
+   "palabras": [
+    "pérdida fiscal",
+    "pérdidas fiscales",
+    "amortización de pérdidas"
+   ]
+  }
+ ]
+}

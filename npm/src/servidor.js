@@ -4,7 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import * as z from "zod";
 import { Almacen, SinDatos } from "./almacen.js";
 import { Indice } from "./indice.js";
-import { noEncontrado, respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaTarifa, respuestaTarifas, respuestaTransitorios } from "./respuestas.js";
+import { noEncontrado, respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaRegla, respuestaTarifa, respuestaTarifas, respuestaTema, respuestaTemas, respuestaTransitorios } from "./respuestas.js";
 import { VERSION } from "./version.js";
 
 const INSTRUCCIONES = [
@@ -15,7 +15,7 @@ const INSTRUCCIONES = [
   "Las tarifas de ISR (mensual, anual, por periodos) se obtienen con obtener_tarifa (Anexo 8 de la RMF), nunca de la tabla de los arts. 96 y 152 de la LISR ni de memoria: esas cifras se actualizan cada año.",
   "Respeta las líneas ADVERTENCIA. Un proyecto de reforma (por ejemplo la de 2027) NO es ley vigente hasta su publicación en el DOF: no lo presentes como vigente y, si lo mencionas, dilo y da la fecha de estado_reforma.",
   "Si la herramienta no encuentra lo pedido, dilo con claridad (\"no verificado\") y PREGUNTA al usuario si desea que lo busques en internet. Nunca busques en internet por tu cuenta sin su permiso; si lo autoriza, usa solo fuentes oficiales (DOF, SAT, Cámara de Diputados) y aclara que ese dato no proviene de la base verificada.",
-  "La base no incluye reglas ni anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
+  "Las reglas de la Resolución Miscelánea Fiscal 2026 se leen con obtener_regla: es el texto original del DOF del 28-12-2025, SIN las resoluciones de modificación de 2026, y la herramienta lo advierte. La base no incluye otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
 ].join(" ");
 
 /**
@@ -152,6 +152,54 @@ export function crearServidor(almacen = null) {
     const r = respuestaTransitorios(t, pagina ?? 1);
     if (r.error) return error(r.texto);
     return texto(r.texto, { structuredContent: { encontrado: true, ley: t.ley, pagina: r.pagina, paginas: r.total } });
+  }));
+
+  server.registerTool("obtener_regla", {
+    title: "Obtener regla de la Resolución Miscelánea Fiscal",
+    description: "Muestra lo que dice una regla de la RMF 2026 (por ejemplo 2.7.1.1, 3.17.2, 11.1.1) con su título, ubicación, fundamento y las leyes y reglas a las que remite. Úsala cuando el usuario cite una regla de la miscelánea o cuando un artículo o el fundamento de otra regla remita a ella. OJO: es el texto original publicado el 28-12-2025, sin las resoluciones de modificación de 2026; la respuesta lo advierte y debes repetirlo. Para buscar por materia usa temas.",
+    inputSchema: {
+      regla: z.string().describe("Número de regla, por ejemplo \"2.7.1.1\" o \"3.17.2\""),
+      anio: z.number().int().optional().describe(anioDesc),
+      pagina: z.number().int().min(1).optional().describe("Página (1 por omisión) cuando la regla es muy extensa"),
+    },
+    annotations: RO,
+  }, envolver(({ regla, anio, pagina }) => {
+    const a = obtenerAlmacen();
+    let f;
+    try { f = a.obtenerRegla(regla, { anio: anio ?? null }); } catch (e) { return error(e.message); }
+    if (!f) {
+      const hay = a.aniosReglas().length > 0;
+      return texto(noEncontrado(`la regla ${regla} de la RMF`, hay ? "Esa regla no existe en la RMF 2026 de la base." : "Estos datos no traen las reglas de la RMF: ejecuta npx leyes-mx actualizar."),
+        { structuredContent: { encontrado: false, regla: String(regla) } });
+    }
+    const r = respuestaRegla(f, pagina ?? 1);
+    if (r.error) return error(r.texto);
+    return texto(r.texto, { structuredContent: { encontrado: true, ley: f.ley, regla: f.regla, titulo: f.titulo, anio_vigencia: f.anio_vigencia, estatus: f.estatus,
+      modificaciones_aplicadas: f.modificaciones_aplicadas, pagina: r.pagina, paginas: r.total, referencias_leyes: f.referencias_leyes, referencias_reglas: f.referencias_reglas } });
+  }));
+
+  server.registerTool("temas", {
+    title: "Documentos de la base por tema",
+    description: "Encuentra, en TODAS las leyes, reglamentos y reglas de la RMF a la vez, lo que trata o menciona una materia (\"todo lo de hidrocarburos\", \"CFDI\", \"subcontratación\", \"cuotas del IMSS\", \"donatarias\", \"PTU\"). Sin parámetros lista los temas. Con tema devuelve los artículos y reglas de ese tema ordenados por puntaje. Es un índice por palabras de la ley (no semántico) para saber DÓNDE mirar: después lee cada documento con obtener_articulo u obtener_regla antes de citarlo. Si el tema no está, usa buscar.",
+    inputSchema: {
+      tema: z.string().optional().describe("Id o nombre del tema, por ejemplo \"hidrocarburos\". Omitir para listar los temas."),
+      ley: z.string().optional().describe(leyDesc + "; para la RMF usa RMF"),
+      minimo: z.number().int().min(1).optional().describe("Puntaje mínimo (1 por omisión); súbelo para quedarte con lo más central"),
+      limite: z.number().int().min(1).max(100).optional().describe("Máximo de documentos (25 por omisión)"),
+      anio: z.number().int().optional().describe(anioDesc),
+    },
+    annotations: RO,
+  }, envolver(({ tema, ley, minimo, limite, anio }) => {
+    const a = obtenerAlmacen();
+    const info = a.temas(anio ?? null);
+    if (!info) return texto(noEncontrado("el índice de temas", "Estos datos no lo traen: ejecuta npx leyes-mx actualizar."), { structuredContent: { encontrado: false } });
+    if (!tema) return texto(respuestaTemas(info), { structuredContent: { anio: info.anio, temas: info.temas.map((t) => ({ id: t.id, nombre: t.nombre, documentos: t.documentos })) } });
+    const res = a.resolverTema(tema, anio ?? null);
+    if (!res) return texto(noEncontrado(`el tema ${JSON.stringify(tema)}`, `Temas disponibles: ${info.temas.map((t) => t.id).join(", ")}. Si no es uno de ellos, usa buscar.`), { structuredContent: { encontrado: false } });
+    if (res.ambiguo) return texto(`${JSON.stringify(tema)} corresponde a varios temas; usa el id exacto:\n` + res.ambiguo.map((x) => `- ${x.id}: ${x.nombre}`).join("\n"), { structuredContent: { encontrado: false, ambiguo: res.ambiguo } });
+    const r = a.documentosDeTema(res.tema.id, { anio: res.anio, ley: ley ?? null, minimo: minimo ?? 1, limite: limite ?? 25 });
+    return texto(respuestaTema(res.tema, r, { ley: ley ?? null, minimo: minimo ?? 1 }), { structuredContent: { encontrado: true, tema: res.tema.id, anio_vigencia: r.anio, total: r.total,
+      documentos: r.lista.map((x) => ({ ley: x.ley, id: x.id, tipo: x.tipo, puntaje: x.puntaje, donde: x.donde, titulo: x.titulo })) } });
   }));
 
   return server;

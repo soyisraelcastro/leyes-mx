@@ -131,7 +131,13 @@ El contrato de las funciones está en [docs/arquitectura.md](docs/arquitectura.m
 
 `rmf/2026/rmf/reglas/regla-2.7.1.1.md`: una regla por archivo (1,208 reglas), con título, ubicación (Título > Capítulo > Sección), página del PDF, el fundamento tal como lo imprime la RMF (`CFF 29, 29-A, RMF 2.7.1.32.`) y ese mismo fundamento ya separado por ley y por regla (`referencias_leyes`, `referencias_reglas`) para cruzarlo con los artículos de `leyes/`. Además `glosario.md`, `preambulo.md`, `transitorios.md` y `_indice.md`. Cómo se extrae y qué controles tiene: [docs/rmf.md](docs/rmf.md).
 
-**Estado, con cuidado:** es el texto de la RMF para 2026 publicado en el DOF el 28-12-2025. **Todavía no trae aplicadas** las resoluciones de modificación (09-07, 01-10 y 02-10-2026): una regla modificada o derogada después sigue apareciendo aquí con su texto original. El servidor MCP aún no consulta estas reglas.
+**Estado, con cuidado:** es el texto de la RMF para 2026 publicado en el DOF el 28-12-2025. **Todavía no trae aplicadas** las resoluciones de modificación (09-07, 01-10 y 02-10-2026): una regla modificada o derogada después sigue apareciendo aquí con su texto original. El servidor MCP las sirve con `obtener_regla`, y cada respuesta repite esta advertencia.
+
+## Temas: lo que una materia toca en todas las leyes
+
+`temas.json` es un vocabulario controlado (hidrocarburos, CFDI, subcontratación, cuotas del IMSS, donatarias, PTU...) y `temas/2026/` el índice que resulta de aplicarlo a **todos** los artículos de `leyes/` y las reglas de `rmf/`: `temas/2026/hidrocarburos.md` lista, de lo más central a lo más tangencial, qué artículos y reglas de cualquier ley tocan ese tema. Desde el asistente: herramienta `temas`.
+
+No es semántico ni lo asigna un modelo: cada tema es una lista de palabras en el idioma de la ley y un documento lo recibe si la palabra está en su encabezado, se repite en el texto o lo cita el fundamento de la regla. El mismo vocabulario sobre los mismos textos da siempre el mismo índice. **Es obligatorio:** al agregar o actualizar cualquier ordenamiento se corre `python3 scripts/etiquetar.py` y el CI falla si `temas/` no está al día. Reglas, límites y cómo agregar un tema: [docs/temas.md](docs/temas.md).
 
 ## Anexo 8 de la RMF 2026 (tarifas de ISR)
 
