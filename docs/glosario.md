@@ -69,4 +69,4 @@ El motor de búsqueda de Python (`scripts/buscar.py`, SQLite FTS5, el que usa Ab
 
 - La búsqueda no indexa los títulos de capítulo y sección (`ubicacion` en el front matter). "Régimen Simplificado de Confianza" solo está ahí, no en el cuerpo de los artículos: por eso la entrada `resico` depende de los artículos que cita. Indexar los títulos mejoraría la búsqueda, pero cambia el puntaje de todos los artículos; queda como mejora aparte.
 - Los pesos (0.6 y 0.8) se calibraron con los casos de `npm/test/consultas.json`; son un punto de partida, no una verdad.
-- Las 40 entradas iniciales cubren los temas más frecuentes; faltan, por ejemplo, ISN, INFONAVIT, criptomonedas y todo lo de la Ley del Seguro Social (que no está en la base).
+- Las 40 entradas iniciales cubren los temas más frecuentes; faltan, por ejemplo, ISN, INFONAVIT, criptomonedas y los temas de la Ley del Seguro Social que no usan sus palabras (la LSS ya está en la base, pero el glosario aún no la cubre).
