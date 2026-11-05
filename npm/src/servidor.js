@@ -18,8 +18,14 @@ const INSTRUCCIONES = [
   "La base no incluye reglas ni anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT ni la Ley del Seguro Social: de eso no hay dato local.",
 ].join(" ");
 
+/**
+ * Respuesta de texto. Algunos clientes le muestran al modelo solo structuredContent y descartan content, así que el
+ * mismo texto viaja también en structuredContent.texto (los demás campos no cambian; content queda igual).
+ */
 function texto(t, extra = {}) {
-  return { content: [{ type: "text", text: t }], ...extra };
+  const r = { content: [{ type: "text", text: t }], ...extra };
+  if (r.structuredContent) r.structuredContent = { ...r.structuredContent, texto: t };
+  return r;
 }
 const error = (t) => ({ content: [{ type: "text", text: t }], isError: true });
 
