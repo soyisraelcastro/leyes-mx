@@ -19,9 +19,10 @@ const anioVig = [...new Set(lista.map((l) => l.anio))].join(", ");
 const anexo = anexo8();
 const ref = reforma();
 const nombre = { LISR: "Ley del Impuesto sobre la Renta", RLISR: "Reglamento de la Ley del ISR", LIVA: "Ley del Impuesto al Valor Agregado",
-  RLIVA: "Reglamento de la Ley del IVA", CFF: "Código Fiscal de la Federación", RCFF: "Reglamento del Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo" };
+  RLIVA: "Reglamento de la Ley del IVA", CFF: "Código Fiscal de la Federación", RCFF: "Reglamento del Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo", LSS: "Ley del Seguro Social",
+  RACERF: "Reglamento de la LSS en materia de afiliación, clasificación de empresas, recaudación y fiscalización" };
 const fiscal = ["LISR", "RLISR", "LIVA", "RLIVA", "CFF", "RCFF"].map(por).filter(Boolean);
-const laboral = ["LFT"].map(por).filter(Boolean);
+const laboral = ["LFT", "LSS", "RACERF"].map(por).filter(Boolean);
 const redondo = Math.floor(total / 100) * 100;
 const mx = (n) => n.toLocaleString("es-MX");
 ---

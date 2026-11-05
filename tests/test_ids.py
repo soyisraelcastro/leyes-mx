@@ -32,13 +32,16 @@ class TestIds(unittest.TestCase):
     def test_encabezados(self):
         ok = {"Artículo 1o.- Están": "1", "Artículo 1o.-A.- Están": "1-A", "Artículo 3o. Bis.- Para": "3-bis",
               "Artículo 22 Bis. Queda": "22-bis", "Artículo 113-E. Los": "113-E", "Artículo 890- Se deroga.": "890",
-              "Artículo 2o.-C. (Se deroga).": "2-C", "Artículo 1o.-A BIS.- Los": "1-A-bis"}
+              "Artículo 2o.-C. (Se deroga).": "2-C", "Artículo 1o.-A BIS.- Los": "1-A-bis",
+              # LSS: la letra va separada por espacio, sin guion
+              "Artículo 15 A. La contratación": "15-A", "Artículo 5 A. Para los": "5-A", "Artículo 304 D. Los": "304-D"}
         for linea, esperado in ok.items():
             h = encabezado_articulo(linea)
             self.assertTrue(h, linea)
             self.assertEqual(h[0], esperado, linea)
         for linea in ["Artículo 123 Constitucional; de la Ley", "Artículo 28 de esta Ley establece", "Artículo adicionado DOF 09-12-2019",
-                      "Artículo 10.- A los" if False else "Artículo reformado DOF 01-01-2020"]:
+                      "Artículo 10.- A los" if False else "Artículo reformado DOF 01-01-2020",
+                      "Artículo 15 A de esta Ley", "Artículo 28 A partir de", "Artículo 5 Aquí se"]:
             self.assertIsNone(encabezado_articulo(linea), linea)
 
 

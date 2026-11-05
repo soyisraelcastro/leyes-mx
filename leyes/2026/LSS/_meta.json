@@ -1,0 +1,15 @@
+{
+  "sigla": "LSS",
+  "nombre_oficial": "Ley del Seguro Social",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf",
+  "ultima_reforma_dof": "2026-01-15",
+  "fecha_descarga": "2026-11-05",
+  "sha256_pdf": "8a28a16e1dce1f8e666f4cce5ed19745bc912b2ab1ca49787d5d4bef229398ed",
+  "articulos_extraidos": 385,
+  "ultimo_articulo_numerico": 319,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 43,
+  "advertencias": []
+}

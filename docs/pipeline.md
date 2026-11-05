@@ -19,6 +19,7 @@ Código en `leyes_mx/extraer.py` y `leyes_mx/pipeline.py`; scripts en `scripts/`
 
 - "Artículo 890-" (sin punto) en LFT: error tipográfico del PDF; se acepta el guion como terminador.
 - "Artículo 3o. Bis.-", "Artículo 1o.-A BIS.-": ordinal y letra/palabra combinados.
+- LSS: la letra va separada por un espacio, sin guion ("Artículo 15 A.", "Artículo 304 D."). El extractor la acepta; sin eso se perdían 48 artículos (entre ellos el 15-A, de subcontratación) y solo lo detectó el cruce con `validar.py --pdf` (385 encabezados contra 337 archivos).
 - Artículos derogados: "Se deroga", "(Se deroga).", "(Derogado)." se marcan con `estatus: "derogado"`.
 - LFT 513 (tabla de enfermedades de trabajo) mide ~360 mil caracteres: es un solo artículo con un catálogo completo. Un chunk por artículo es la regla, pero ese archivo es demasiado grande para meterlo entero en un contexto; usar `buscar` para ubicar el padecimiento y leer solo el tramo necesario.
 
@@ -28,7 +29,7 @@ pdftotext no ve las imágenes del PDF. En el art. 96 de la LISR la frase "la sig
 
 1. `scripts/detectar_imagenes.py` lista las páginas con imágenes de contenido (ignora el logo del encabezado) y dice si están cubiertas. Es el control independiente: se corre antes de dar por buena una ley.
 2. Cada tabla se transcribe en `tablas/<año>/<LEY>/tablas.json` (con el PNG original al lado) y `leyes_mx/tablas.py` la inyecta justo después del párrafo ancla al construir el artículo. Vive fuera de `leyes/` porque el pipeline borra y regenera esa carpeta.
-3. Las tarifas se verifican en `validar.py`: cada límite inferior es el superior previo más 0.01 y cada cuota fija se recalcula desde la fila anterior (tolerancia 0.02). Un error de transcripción rompe la validación.
+3. Cada tabla se verifica en `validar.py` según su `tipo` en `tablas.json` (`leyes_mx/tablas.py`, `verificar`). `tarifa` (por omisión): cada límite inferior es el superior previo más 0.01 y cada cuota fija se recalcula desde la fila anterior (tolerancia 0.02). Otros: `lineal-por-fila` (porcentajes que crecen en línea recta por año), `matriz-pension` (lineal en semanas, creciente con edad y salario), `progresion` (paso fijo) y `monotona-decreciente` (con `escalon` opcional). Un tipo desconocido es error. Un error de transcripción rompe la validación. Las tablas de los transitorios llevan `"articulo": "transitorios"` y una `ancla`: se insertan en el decreto que las contiene.
 4. `validar.py` además avisa si un párrafo termina en "la siguiente:" sin tabla ni lista debajo.
 5. Las tablas sin verificación aritmética posible se dejan como imagen enlazada (`solo_imagen`), sin transcribir.
 
