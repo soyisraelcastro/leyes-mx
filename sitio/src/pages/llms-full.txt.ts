@@ -53,7 +53,7 @@ Fuente de los textos: PDF oficiales de la Cámara de Diputados del H. Congreso d
 
 ## Qué NO incluye
 
-Reglas de la RMF (salvo el Anexo 8), otros anexos de la RMF, jurisprudencia, criterios del SAT, la Ley del Seguro Social ni leyes estatales. Para eso la herramienta responde "no verificado".
+Reglas de la RMF (salvo el Anexo 8), otros anexos de la RMF, jurisprudencia, criterios del SAT o del IMSS ni leyes estatales. Para eso la herramienta responde "no verificado".
 ${ref ? `
 ## Reforma ${ref.anio}: proyecto, no ley vigente
 

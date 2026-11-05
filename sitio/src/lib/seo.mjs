@@ -8,11 +8,12 @@ export const NOMBRES = {
   LISR: "Ley del Impuesto sobre la Renta", RLISR: "Reglamento de la Ley del Impuesto sobre la Renta",
   LIVA: "Ley del Impuesto al Valor Agregado", RLIVA: "Reglamento de la Ley del Impuesto al Valor Agregado",
   CFF: "Código Fiscal de la Federación", RCFF: "Reglamento del Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo",
+  LSS: "Ley del Seguro Social", RACERF: "Reglamento de la Ley del Seguro Social en Materia de Afiliación, Clasificación de Empresas, Recaudación y Fiscalización",
 };
-const ORDEN = ["LISR", "RLISR", "LIVA", "RLIVA", "CFF", "RCFF", "LFT"];
+const ORDEN = ["LISR", "RLISR", "LIVA", "RLIVA", "CFF", "RCFF", "LFT", "LSS", "RACERF"];
 
 export const RESUMEN = "leyes-mx es una base gratuita y de código abierto con el texto de las leyes fiscales y laborales de México "
-  + "(LISR, LIVA, CFF, LFT y sus reglamentos, más las tarifas de ISR del Anexo 8 de la RMF) para que los asistentes de IA "
+  + "(LISR, LIVA, CFF, LFT, LSS y sus reglamentos, más las tarifas de ISR del Anexo 8 de la RMF) para que los asistentes de IA "
   + "(Claude Desktop, Claude Code, Codex, Cursor y otros clientes MCP) citen ley, artículo, fracción, año de vigencia y fecha "
   + "de la última reforma en el DOF, en lugar de inventarlos. Se instala con un comando y consulta el texto guardado en la computadora.";
 
@@ -61,7 +62,7 @@ export function grafoPortada(site) {
       url: abs(site, "/docs/leyes"), sameAs: REPO, inLanguage: "es-MX", isAccessibleForFree: true,
       license: "https://opensource.org/licenses/MIT", creator: fuente, publisher: fuente,
       spatialCoverage: { "@type": "Country", name: "México" }, temporalCoverage: anios.join("/"),
-      keywords: ["leyes de México", "LISR", "LIVA", "CFF", "LFT", "ISR", "IVA", "Código Fiscal", "Ley Federal del Trabajo", "DOF", "Anexo 8 RMF", "MCP", "asistente de IA", "contadores", "abogados"],
+      keywords: ["leyes de México", "LISR", "LIVA", "CFF", "LFT", "LSS", "IMSS", "ISR", "IVA", "Código Fiscal", "Ley Federal del Trabajo", "DOF", "Anexo 8 RMF", "MCP", "asistente de IA", "contadores", "abogados"],
       isBasedOn: lista.map((l) => `https://www.diputados.gob.mx/LeyesBiblio/pdf/${l.sigla}.pdf`),
       distribution: [{ "@type": "DataDownload", encodingFormat: "text/markdown", contentUrl: `${REPO}/releases` }] },
   ];
