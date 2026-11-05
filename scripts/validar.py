@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from leyes_mx import tablas as tablas_mod
 from leyes_mx import store  # noqa: E402
 from leyes_mx import anexos_validar  # noqa: E402
+from leyes_mx import rmf_validar  # noqa: E402
 from leyes_mx import glosario as glosario_mod  # noqa: E402
 from leyes_mx.ids import id_desde_archivo, clave_orden, partes_id, nombre_archivo, PALABRAS  # noqa: E402
 
@@ -189,10 +190,11 @@ def main():
     perr = validar_proyectos()
     aerr, aavisos = ([], []) if a.ley else anexos_validar.validar(RAIZ, a.pdf)
     gerr, gavisos = ([], []) if a.ley else glosario_mod.validar(RAIZ)
-    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr)
+    rerr, ravisos = ([], []) if a.ley else rmf_validar.validar(RAIZ, a.pdf)
+    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr) + len(rerr)
     if a.json:
         print(json.dumps({"leyes": informes, "proyectos_errores": perr, "anexos_errores": aerr, "anexos_avisos": aavisos,
-                          "glosario_errores": gerr, "glosario_avisos": gavisos, "errores": total}, ensure_ascii=False, indent=2))
+                          "glosario_errores": gerr, "glosario_avisos": gavisos, "rmf_errores": rerr, "rmf_avisos": ravisos, "errores": total}, ensure_ascii=False, indent=2))
     else:
         for r in informes:
             estado = "OK" if not r["errores"] else "ERRORES"
@@ -211,6 +213,15 @@ def main():
             print("   ERROR glosario:", e)
         for w in gavisos:
             print("   aviso glosario:", w)
+        for e in rerr:
+            print("   ERROR rmf:", e)
+        # los avisos de referencias a artículos inexistentes pueden ser muchos: se resumen
+        resumen = [w for w in ravisos if "que no existe en la base" not in w and "no interpretable" not in w]
+        omitidos = len(ravisos) - len(resumen)
+        for w in resumen:
+            print("   rmf:", w)
+        if omitidos:
+            print(f"   rmf: {omitidos} aviso(s) de referencias dudosas (usar --json para verlos)")
         print(f"\n{total} error(es)")
     return 1 if total else 0
 

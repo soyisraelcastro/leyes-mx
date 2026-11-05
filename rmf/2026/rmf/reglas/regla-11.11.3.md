@@ -1,0 +1,26 @@
+---
+ley: "RMF"
+nombre_ley: "Resolución Miscelánea Fiscal para 2026"
+vigencia_anio: 2026
+publicacion_dof: "2025-12-28"
+fuente_url: "https://sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"
+fecha_descarga: "2026-11-05"
+regla: "11.11.3"
+titulo: "Pagos provisionales del ISR de personas físicas que obtuvieron la constancia a que se refiere el Decreto PODEBI"
+ubicacion: "Título 11. Decretos, Circulares, Convenios y otras disposiciones > Capítulo 11.11. Del Decreto por el que se fomenta la inversión de los contribuyentes que realicen actividades económicas productivas al interior de los Polos de Desarrollo para el Bienestar del istmo de Tehuantepec, publicado en el DOF el 05 de junio de 2023"
+estatus: "vigente"
+pagina_pdf: 632
+sha256_fuente: "6f71ce0cccf430171fe858c5d244b1c321fa68306f962d44ec4977858a52919a"
+fundamento: "CFF 31, Decreto PODEBI DOF 05/06/2023 Sexto, Séptimo"
+referencias_leyes: {"CFF": ["31"]}
+referencias_reglas: []
+referencias_parcial: true
+---
+
+# Regla 11.11.3. Pagos provisionales del ISR de personas físicas que obtuvieron la constancia a que se refiere el Decreto PODEBI
+
+Para los efectos de los artículos Sexto, quinto párrafo y Séptimo, sexto párrafo del Decreto a que se refiere este Capítulo, las personas físicas que tributen en el Régimen de actividades empresariales y profesionales en los términos del Título IV, Capítulo II, Sección I de la Ley del ISR, y apliquen en sus pagos provisionales mensuales los estímulos establecidos en las citadas disposiciones, deberán presentar el pago correspondiente a través de la declaración “ISR Personas físicas. Actividad Empresarial PODEBI”, a más tardar el día 17 del mes inmediato posterior a aquel al que corresponda el pago.
+
+## Fundamento (cursiva del PDF)
+
+CFF 31, Decreto PODEBI DOF 05/06/2023 Sexto, Séptimo
