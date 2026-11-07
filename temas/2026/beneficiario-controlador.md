@@ -4,7 +4,7 @@ Beneficiario controlador, intercambio de información y cuentas financieras.
 
 Palabras: beneficiario controlador, cuentas financieras, FATCA, intercambio de información, estándar común de reporte.
 
-53 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+54 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -36,6 +36,7 @@ Palabras: beneficiario controlador, cuentas financieras, FATCA, intercambio de i
 | CFF | 200 | 1 | texto | [art-0200.md](../../leyes/2026/CFF/art-0200.md) |
 | CFF | 33 | 1 | texto | [art-0033.md](../../leyes/2026/CFF/art-0033.md) |
 | CFF | 9 | 1 | texto | [art-0009.md](../../leyes/2026/CFF/art-0009.md) |
+| LCF | 10-E | 1 | texto | [art-0010-E.md](../../leyes/2026/LCF/art-0010-E.md) |
 | LFT | 836-B | 1 | texto | [art-0836-B.md](../../leyes/2026/LFT/art-0836-B.md) |
 | LISR | 176 | 1 | texto | [art-0176.md](../../leyes/2026/LISR/art-0176.md) |
 | LISR | 183 | 1 | texto | [art-0183.md](../../leyes/2026/LISR/art-0183.md) |

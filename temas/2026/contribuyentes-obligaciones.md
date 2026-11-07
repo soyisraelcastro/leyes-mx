@@ -1,13 +1,15 @@
 # Derechos y obligaciones de los contribuyentes
 
-Derechos y obligaciones de los contribuyentes y la Carta de los Derechos del Contribuyente.
+Derechos y obligaciones de los contribuyentes, la Carta de los Derechos del Contribuyente y la Ley Federal de los Derechos del Contribuyente.
 
-Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos del contribuyente, obligaciones de los contribuyentes.
+Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos del contribuyente, obligaciones de los contribuyentes, derechos de los contribuyentes, derechos del contribuyente, asistencia al contribuyente.
 
-140 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+152 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
+| CFF | 31 | 6 | encabezado | [art-0031.md](../../leyes/2026/CFF/art-0031.md) |
+| LFDC | 6 | 6 | encabezado, texto | [art-0006.md](../../leyes/2026/LFDC/art-0006.md) |
 | CFF | 18 | 5 | encabezado | [art-0018.md](../../leyes/2026/CFF/art-0018.md) |
 | CFF | 18-A | 5 | encabezado | [art-0018-A.md](../../leyes/2026/CFF/art-0018-A.md) |
 | CFF | 18-B | 5 | encabezado | [art-0018-B.md](../../leyes/2026/CFF/art-0018-B.md) |
@@ -37,7 +39,6 @@ Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos d
 | CFF | 30 | 5 | encabezado | [art-0030.md](../../leyes/2026/CFF/art-0030.md) |
 | CFF | 30-A | 5 | encabezado | [art-0030-A.md](../../leyes/2026/CFF/art-0030-A.md) |
 | CFF | 30-B | 5 | encabezado | [art-0030-B.md](../../leyes/2026/CFF/art-0030-B.md) |
-| CFF | 31 | 5 | encabezado | [art-0031.md](../../leyes/2026/CFF/art-0031.md) |
 | CFF | 31-A | 5 | encabezado | [art-0031-A.md](../../leyes/2026/CFF/art-0031-A.md) |
 | CFF | 32 | 5 | encabezado | [art-0032.md](../../leyes/2026/CFF/art-0032.md) |
 | CFF | 32-A | 5 | encabezado | [art-0032-A.md](../../leyes/2026/CFF/art-0032-A.md) |
@@ -53,6 +54,12 @@ Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos d
 | CFF | 32-G | 5 | encabezado | [art-0032-G.md](../../leyes/2026/CFF/art-0032-G.md) |
 | CFF | 32-H | 5 | encabezado | [art-0032-H.md](../../leyes/2026/CFF/art-0032-H.md) |
 | CFF | 32-I | 5 | encabezado | [art-0032-I.md](../../leyes/2026/CFF/art-0032-I.md) |
+| LFDC | 10 | 5 | encabezado | [art-0010.md](../../leyes/2026/LFDC/art-0010.md) |
+| LFDC | 11 | 5 | encabezado | [art-0011.md](../../leyes/2026/LFDC/art-0011.md) |
+| LFDC | 5 | 5 | encabezado | [art-0005.md](../../leyes/2026/LFDC/art-0005.md) |
+| LFDC | 7 | 5 | encabezado | [art-0007.md](../../leyes/2026/LFDC/art-0007.md) |
+| LFDC | 8 | 5 | encabezado | [art-0008.md](../../leyes/2026/LFDC/art-0008.md) |
+| LFDC | 9 | 5 | encabezado | [art-0009.md](../../leyes/2026/LFDC/art-0009.md) |
 | LIVA | 32 | 5 | encabezado | [art-0032.md](../../leyes/2026/LIVA/art-0032.md) |
 | LIVA | 33 | 5 | encabezado | [art-0033.md](../../leyes/2026/LIVA/art-0033.md) |
 | LIVA | 34 | 5 | encabezado | [art-0034.md](../../leyes/2026/LIVA/art-0034.md) |
@@ -147,4 +154,9 @@ Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos d
 | RMF | regla 5.2.7 | 5 | encabezado | [regla-5.2.7.md](../../rmf/2026/rmf/reglas/regla-5.2.7.md) |
 | RMF | regla 5.2.8 | 5 | encabezado | [regla-5.2.8.md](../../rmf/2026/rmf/reglas/regla-5.2.8.md) |
 | RMF | regla 5.2.9 | 5 | encabezado | [regla-5.2.9.md](../../rmf/2026/rmf/reglas/regla-5.2.9.md) |
+| CFF | 33 | 2 | texto | [art-0033.md](../../leyes/2026/CFF/art-0033.md) |
+| CFF | 76 | 2 | texto | [art-0076.md](../../leyes/2026/CFF/art-0076.md) |
+| CFF | 69-G | 1 | texto | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
+| CFF | 72 | 1 | texto | [art-0072.md](../../leyes/2026/CFF/art-0072.md) |
+| LOPDC | 20 | 1 | texto | [art-0020.md](../../leyes/2026/LOPDC/art-0020.md) |
 | RMF | regla 1.3 | 1 | texto | [regla-1.3.md](../../rmf/2026/rmf/reglas/regla-1.3.md) |

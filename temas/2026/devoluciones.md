@@ -4,7 +4,7 @@ Saldos a favor, devolución de contribuciones y compensación.
 
 Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 
-145 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+150 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -77,6 +77,7 @@ Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 | RMF | regla 2.11.3 | 4 | texto | [regla-2.11.3.md](../../rmf/2026/rmf/reglas/regla-2.11.3.md) |
 | CFF | 17-A | 3 | texto | [art-0017-A.md](../../leyes/2026/CFF/art-0017-A.md) |
 | CFF | 22-B | 3 | texto | [art-0022-B.md](../../leyes/2026/CFF/art-0022-B.md) |
+| LCF | 4-A | 3 | texto | [art-0004-A.md](../../leyes/2026/LCF/art-0004-A.md) |
 | LISR | 39 | 3 | texto | [art-0039.md](../../leyes/2026/LISR/art-0039.md) |
 | LISR | 97 | 3 | texto | [art-0097.md](../../leyes/2026/LISR/art-0097.md) |
 | LIVA | 7 | 3 | texto | [art-0007.md](../../leyes/2026/LIVA/art-0007.md) |
@@ -92,6 +93,8 @@ Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 | CFF | 69-C | 2 | texto | [art-0069-C.md](../../leyes/2026/CFF/art-0069-C.md) |
 | CFF | 69-G | 2 | texto | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
 | CFF | 76 | 2 | texto | [art-0076.md](../../leyes/2026/CFF/art-0076.md) |
+| LCF | 11-A | 2 | texto | [art-0011-A.md](../../leyes/2026/LCF/art-0011-A.md) |
+| LCF | 9 | 2 | texto | [art-0009.md](../../leyes/2026/LCF/art-0009.md) |
 | LFT | 141 | 2 | texto | [art-0141.md](../../leyes/2026/LFT/art-0141.md) |
 | LFT | 984 | 2 | texto | [art-0984.md](../../leyes/2026/LFT/art-0984.md) |
 | LISR | 14 | 2 | texto | [art-0014.md](../../leyes/2026/LISR/art-0014.md) |
@@ -120,6 +123,8 @@ Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 | CFF | 117 | 1 | texto | [art-0117.md](../../leyes/2026/CFF/art-0117.md) |
 | CFF | 22-C | 1 | texto | [art-0022-C.md](../../leyes/2026/CFF/art-0022-C.md) |
 | CFF | 41-A | 1 | texto | [art-0041-A.md](../../leyes/2026/CFF/art-0041-A.md) |
+| LCF | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LCF/art-0015.md) |
+| LCF | 3-B | 1 | texto | [art-0003-B.md](../../leyes/2026/LCF/art-0003-B.md) |
 | LFT | 105 | 1 | texto | [art-0105.md](../../leyes/2026/LFT/art-0105.md) |
 | LFT | 128 | 1 | texto | [art-0128.md](../../leyes/2026/LFT/art-0128.md) |
 | LFT | 163 | 1 | texto | [art-0163.md](../../leyes/2026/LFT/art-0163.md) |

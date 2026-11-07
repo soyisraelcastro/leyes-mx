@@ -4,7 +4,7 @@ Derecho procesal del trabajo: conciliación, tribunales laborales, demanda, audi
 
 Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribunales laborales, Centro Federal de Conciliación y Registro Laboral, demanda, laudo, de las pruebas, audiencia, Junta de Conciliación y Arbitraje, actuaciones, procedimiento ordinario.
 
-359 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+366 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -301,6 +301,7 @@ Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribuna
 | CFF | 196-B | 4 | texto | [art-0196-B.md](../../leyes/2026/CFF/art-0196-B.md) |
 | LFT | 939 | 4 | texto | [art-0939.md](../../leyes/2026/LFT/art-0939.md) |
 | CFF | 133-F | 3 | texto | [art-0133-F.md](../../leyes/2026/CFF/art-0133-F.md) |
+| LFDC | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LFDC/art-0002.md) |
 | LFT | 28 | 3 | texto | [art-0028.md](../../leyes/2026/LFT/art-0028.md) |
 | LFT | 365-bis | 3 | texto | [art-0365-bis.md](../../leyes/2026/LFT/art-0365-bis.md) |
 | LFT | 390 | 3 | texto | [art-0390.md](../../leyes/2026/LFT/art-0390.md) |
@@ -324,10 +325,14 @@ Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribuna
 | LFT | 977 | 2 | texto | [art-0977.md](../../leyes/2026/LFT/art-0977.md) |
 | LFT | 978 | 2 | texto | [art-0978.md](../../leyes/2026/LFT/art-0978.md) |
 | LFT | 987 | 2 | texto | [art-0987.md](../../leyes/2026/LFT/art-0987.md) |
+| LOPDC | 15 | 2 | texto | [art-0015.md](../../leyes/2026/LOPDC/art-0015.md) |
 | CFF | 136 | 1 | texto | [art-0136.md](../../leyes/2026/CFF/art-0136.md) |
 | CFF | 149 | 1 | texto | [art-0149.md](../../leyes/2026/CFF/art-0149.md) |
 | CFF | 72 | 1 | texto | [art-0072.md](../../leyes/2026/CFF/art-0072.md) |
 | CFF | 93 | 1 | texto | [art-0093.md](../../leyes/2026/CFF/art-0093.md) |
+| LCF | 12 | 1 | texto | [art-0012.md](../../leyes/2026/LCF/art-0012.md) |
+| LFDC | 12 | 1 | texto | [art-0012.md](../../leyes/2026/LFDC/art-0012.md) |
+| LFDC | 4 | 1 | texto | [art-0004.md](../../leyes/2026/LFDC/art-0004.md) |
 | LFT | 1005 | 1 | texto | [art-1005.md](../../leyes/2026/LFT/art-1005.md) |
 | LFT | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LFT/art-0019.md) |
 | LFT | 291-G | 1 | texto | [art-0291-G.md](../../leyes/2026/LFT/art-0291-G.md) |
@@ -357,6 +362,8 @@ Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribuna
 | LFT | 684-Q | 1 | texto | [art-0684-Q.md](../../leyes/2026/LFT/art-0684-Q.md) |
 | LFT | 684-R | 1 | texto | [art-0684-R.md](../../leyes/2026/LFT/art-0684-R.md) |
 | LFT | 684-T | 1 | texto | [art-0684-T.md](../../leyes/2026/LFT/art-0684-T.md) |
+| LOPDC | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LOPDC/art-0017.md) |
+| LOPDC | 23 | 1 | texto | [art-0023.md](../../leyes/2026/LOPDC/art-0023.md) |
 | LSS | 172 | 1 | texto | [art-0172.md](../../leyes/2026/LSS/art-0172.md) |
 | LSS | 172-A | 1 | texto | [art-0172-A.md](../../leyes/2026/LSS/art-0172-A.md) |
 | LSS | 286-L | 1 | texto | [art-0286-L.md](../../leyes/2026/LSS/art-0286-L.md) |

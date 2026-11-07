@@ -4,7 +4,7 @@ Ingresos por servicio personal subordinado, retenciones del ISR a trabajadores, 
 
 Palabras: servicio personal subordinado, sueldos y salarios, subsidio para el empleo, ingresos por salarios, ajuste anual, constancia de percepciones.
 
-64 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+65 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -49,6 +49,7 @@ Palabras: servicio personal subordinado, sueldos y salarios, subsidio para el em
 | RMF | regla 3.4.1 | 6 | encabezado, texto | [regla-3.4.1.md](../../rmf/2026/rmf/reglas/regla-3.4.1.md) |
 | LISR | 154 | 4 | texto | [art-0154.md](../../leyes/2026/LISR/art-0154.md) |
 | LISR | 27 | 4 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
+| LCF | 3-B | 3 | texto | [art-0003-B.md](../../leyes/2026/LCF/art-0003-B.md) |
 | LISR | 151 | 3 | texto | [art-0151.md](../../leyes/2026/LISR/art-0151.md) |
 | RLISR | 278 | 3 | texto | [art-0278.md](../../leyes/2026/RLISR/art-0278.md) |
 | RMF | regla 2.4.10 | 3 | texto | [regla-2.4.10.md](../../rmf/2026/rmf/reglas/regla-2.4.10.md) |

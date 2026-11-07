@@ -4,7 +4,7 @@ Requisitos y límites de las deducciones.
 
 Palabras: deducciones autorizadas, estrictamente indispensables, deducible, deducción, no deducible.
 
-330 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+331 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -271,6 +271,7 @@ Palabras: deducciones autorizadas, estrictamente indispensables, deducible, dedu
 | RMF | regla 3.5.2 | 2 | texto | [regla-3.5.2.md](../../rmf/2026/rmf/reglas/regla-3.5.2.md) |
 | CFF | 32-F | 1 | texto | [art-0032-F.md](../../leyes/2026/CFF/art-0032-F.md) |
 | CFF | 36-bis | 1 | texto | [art-0036-bis.md](../../leyes/2026/CFF/art-0036-bis.md) |
+| LFDC | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LFDC/art-0010.md) |
 | LFT | 101 | 1 | texto | [art-0101.md](../../leyes/2026/LFT/art-0101.md) |
 | LFT | 496 | 1 | texto | [art-0496.md](../../leyes/2026/LFT/art-0496.md) |
 | LFT | 586 | 1 | texto | [art-0586.md](../../leyes/2026/LFT/art-0586.md) |

@@ -1,0 +1,30 @@
+{
+  "sigla": "LCF",
+  "nombre_oficial": "Ley de Coordinación Fiscal",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LCF.pdf",
+  "ultima_reforma_dof": "2024-01-03",
+  "fecha_descarga": "2026-11-07",
+  "sha256_pdf": "5c89d48167a4e1170c69e0b1e0294260b806a30d861275d8dca09b0334cd09d4",
+  "articulos_extraidos": 67,
+  "ultimo_articulo_numerico": 52,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 25,
+  "advertencias": [
+    {
+      "articulos": [
+        "2",
+        "2-A",
+        "4",
+        "4-A",
+        "4-B",
+        "31",
+        "34",
+        "46"
+      ],
+      "en_archivo": true,
+      "texto": "Las fórmulas de distribución de este artículo vienen en el PDF de la Cámara como imagen o como notación matemática que la extracción de texto no reproduce: aquí faltan, o salen desordenadas, la fórmula y algunos símbolos de sus variables. Para la fórmula, consultar el PDF oficial: https://www.diputados.gob.mx/LeyesBiblio/pdf/LCF.pdf"
+    }
+  ]
+}

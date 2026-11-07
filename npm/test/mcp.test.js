@@ -138,7 +138,7 @@ test("buscar con glosario: declara qué se agregó; glosario=false busca solo co
 
 test("listar_leyes, estado_reforma y obtener_transitorios", async () => {
   const l = txt(await c.callTool({ name: "listar_leyes", arguments: {} }));
-  for (const s of ["LISR", "LIVA", "CFF", "LFT", "LSS", "RLISR", "RLIVA", "RCFF", "RACERF"]) assert.match(l, new RegExp(s));
+  for (const s of ["LISR", "LIVA", "CFF", "LFT", "LSS", "LFDC", "LCF", "LOPDC", "RLISR", "RLIVA", "RCFF", "RACERF"]) assert.match(l, new RegExp(s));
   const e = txt(await c.callTool({ name: "estado_reforma", arguments: {} }));
   assert.match(e, /es_ley_vigente: false/);
   assert.match(e, /NO es ley vigente/);

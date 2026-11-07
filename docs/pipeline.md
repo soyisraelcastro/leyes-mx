@@ -34,6 +34,7 @@ pdftotext no ve las imágenes del PDF. En el art. 96 de la LISR la frase "la sig
 3. Cada tabla se verifica en `validar.py` según su `tipo` en `tablas.json` (`leyes_mx/tablas.py`, `verificar`). `tarifa` (por omisión): cada límite inferior es el superior previo más 0.01 y cada cuota fija se recalcula desde la fila anterior (tolerancia 0.02). Otros: `lineal-por-fila` (porcentajes que crecen en línea recta por año), `matriz-pension` (lineal en semanas, creciente con edad y salario), `progresion` (paso fijo) y `monotona-decreciente` (con `escalon` opcional). Un tipo desconocido es error. Un error de transcripción rompe la validación. Las tablas de los transitorios llevan `"articulo": "transitorios"` y una `ancla`: se insertan en el decreto que las contiene.
 4. `validar.py` además avisa si un párrafo termina en "la siguiente:" sin tabla ni lista debajo.
 5. Las tablas sin verificación aritmética posible se dejan como imagen enlazada (`solo_imagen`), sin transcribir.
+6. Las fórmulas de distribución de la LCF (arts. 2, 2-A, 4, 4-A, 4-B, 31, 34 y 46, y algunas de sus transitorias) vienen como imágenes chicas (debajo del umbral de `detectar_imagenes.py`, que solo ve las de más de 200x100) o como notación matemática que pdftotext desordena. No se transcriben: esos artículos llevan una ADVERTENCIA (`fuentes.json`) que manda al PDF oficial para la fórmula. Por eso también salen debajo del 97% en `verificar_cobertura.py`.
 
 
 ## Anexo 8 de la RMF

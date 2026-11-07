@@ -1,0 +1,15 @@
+{
+  "sigla": "LFDC",
+  "nombre_oficial": "Ley Federal de los Derechos del Contribuyente",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFDC.pdf",
+  "ultima_reforma_dof": "2005-06-23",
+  "fecha_descarga": "2026-11-07",
+  "sha256_pdf": "70f871ee9f8791063f9da9df9eab93b68efc1f2878f8024299bb5cd93b238658",
+  "articulos_extraidos": 24,
+  "ultimo_articulo_numerico": 24,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 1,
+  "advertencias": []
+}

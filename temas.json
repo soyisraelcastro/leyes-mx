@@ -106,6 +106,21 @@
    ]
   },
   {
+   "id": "autocorreccion",
+   "nombre": "Autocorrección fiscal",
+   "descripcion": "Corrección de la situación fiscal durante el ejercicio de facultades de comprobación, multas reducidas por corregir y solicitud de corrección fiscal.",
+   "umbral": 1,
+   "palabras": [
+    "corregir su situación fiscal",
+    "corrija su situación fiscal",
+    "corrijan su situación fiscal",
+    "corregido su situación fiscal",
+    "corregir la situación fiscal",
+    "autocorrección",
+    "corrección fiscal"
+   ]
+  },
+  {
    "id": "recursos-defensa",
    "nombre": "Recursos y medios de defensa",
    "descripcion": "Recurso de revocación, juicio de nulidad, amparo, PRODECON y acuerdos conclusivos.",
@@ -119,6 +134,23 @@
     "Procuraduría de la Defensa del Contribuyente",
     "acuerdo conclusivo",
     "recurso de inconformidad"
+   ]
+  },
+  {
+   "id": "prodecon",
+   "nombre": "PRODECON: quejas y acuerdos conclusivos",
+   "descripcion": "Procuraduría de la Defensa del Contribuyente: atribuciones, quejas o reclamaciones, recomendaciones, acuerdos de no responsabilidad y acuerdos conclusivos.",
+   "palabras": [
+    "Procuraduría de la Defensa del Contribuyente",
+    "PRODECON",
+    "Procurador de la Defensa del Contribuyente",
+    "acuerdo conclusivo",
+    "acuerdos conclusivos",
+    "quejas o reclamaciones",
+    "queja o reclamación",
+    "acuerdo de no responsabilidad",
+    "acuerdos de no responsabilidad",
+    "recomendaciones públicas"
    ]
   },
   {
@@ -751,6 +783,47 @@
    ]
   },
   {
+   "id": "coordinacion-fiscal",
+   "nombre": "Coordinación fiscal y participaciones",
+   "descripcion": "Sistema Nacional de Coordinación Fiscal, participaciones de entidades y municipios en ingresos federales, convenios de colaboración administrativa y organismos de coordinación.",
+   "palabras": [
+    "Sistema Nacional de Coordinación Fiscal",
+    "coordinación fiscal",
+    "participaciones federales",
+    "participaciones en ingresos federales",
+    "participaciones de la entidad",
+    "participaciones que correspondan",
+    "participaciones a los municipios",
+    "participaciones a que se refiere esta Ley",
+    "recaudación federal participable",
+    "Fondo General de Participaciones",
+    "Fondo de Fomento Municipal",
+    "Fondo de Compensación",
+    "Fondo de Fiscalización y Recaudación",
+    "Fondo de Extracción de Hidrocarburos",
+    "colaboración administrativa",
+    "convenios de coordinación",
+    "funcionarios fiscales",
+    "entidades adheridas",
+    "Junta de Coordinación Fiscal",
+    "Instituto para el Desarrollo Técnico de las Haciendas Públicas",
+    "haciendas públicas"
+   ]
+  },
+  {
+   "id": "aportaciones-federales",
+   "nombre": "Fondos de aportaciones federales",
+   "descripcion": "Fondos de aportaciones federales a entidades y municipios (nómina educativa, salud, infraestructura social, fortalecimiento, aportaciones múltiples, seguridad pública).",
+   "palabras": [
+    "aportaciones federales",
+    "Fondo de Aportaciones",
+    "Fondos de Aportaciones",
+    "Fondo para la Infraestructura Social",
+    "Fondo de Aportaciones Múltiples",
+    "Ramo General 33"
+   ]
+  },
+  {
    "id": "invalidez-vida",
    "nombre": "Invalidez, viudez y orfandad",
    "descripcion": "Seguro de invalidez y vida: pensiones por invalidez, viudez, orfandad y ascendientes.",
@@ -778,11 +851,14 @@
   {
    "id": "contribuyentes-obligaciones",
    "nombre": "Derechos y obligaciones de los contribuyentes",
-   "descripcion": "Derechos y obligaciones de los contribuyentes y la Carta de los Derechos del Contribuyente.",
+   "descripcion": "Derechos y obligaciones de los contribuyentes, la Carta de los Derechos del Contribuyente y la Ley Federal de los Derechos del Contribuyente.",
    "palabras": [
     "derechos y obligaciones de los contribuyentes",
     "carta de los derechos del contribuyente",
-    "obligaciones de los contribuyentes"
+    "obligaciones de los contribuyentes",
+    "derechos de los contribuyentes",
+    "derechos del contribuyente",
+    "asistencia al contribuyente"
    ]
   },
   {

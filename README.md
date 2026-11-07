@@ -53,6 +53,11 @@ Año de vigencia 2026 (texto vigente al 2026-11-02, descargado ese día):
 | RCFF | Reglamento del CFF | 113 | 113 | 0 | 2014-04-02 (nuevo reglamento) |
 | LSS | Ley del Seguro Social | 385 | 385 | 0 | 2026-01-15 |
 | RACERF | Reglamento de la LSS en materia de afiliación, clasificación de empresas, recaudación y fiscalización | 196 | 196 | 0 | 2005-07-15 |
+| LFDC | Ley Federal de los Derechos del Contribuyente | 24 | 24 | 0 | 2005-06-23 (sin reformas: fecha de publicación) |
+| LCF | Ley de Coordinación Fiscal | 67 | 66 | 1 | 2024-01-03 |
+| LOPDC | Ley Orgánica de la Procuraduría de la Defensa del Contribuyente | 28 | 28 | 0 | 2022-05-11 |
+
+LFDC, LCF y LOPDC se descargaron el 2026-11-07. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática y no se transcriben: esos artículos llevan una advertencia que manda al PDF oficial.
 
 Además `proyectos/2027/`: seguimiento de la reforma fiscal 2027 (**no es ley vigente**).
 

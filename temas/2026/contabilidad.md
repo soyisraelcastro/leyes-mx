@@ -4,7 +4,7 @@ Contabilidad electrónica, libros, catálogo de cuentas y balanza de comprobaci�
 
 Palabras: contabilidad electrónica, registros contables, libros de contabilidad, balanza de comprobación, catálogo de cuentas, sistema de registro contable, contabilidad.
 
-100 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+101 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -75,6 +75,7 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | RMF | regla 2.7.6.1 | 3 | texto | [regla-2.7.6.1.md](../../rmf/2026/rmf/reglas/regla-2.7.6.1.md) |
 | RMF | regla 3.1.20 | 3 | texto | [regla-3.1.20.md](../../rmf/2026/rmf/reglas/regla-3.1.20.md) |
 | CFF | 85 | 2 | texto | [art-0085.md](../../leyes/2026/CFF/art-0085.md) |
+| LCF | 1 | 2 | texto | [art-0001.md](../../leyes/2026/LCF/art-0001.md) |
 | LSS | 277-E | 2 | texto | [art-0277-E.md](../../leyes/2026/LSS/art-0277-E.md) |
 | LSS | 313 | 2 | texto | [art-0313.md](../../leyes/2026/LSS/art-0313.md) |
 | RLISR | 28 | 2 | texto | [art-0028.md](../../leyes/2026/RLISR/art-0028.md) |

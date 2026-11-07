@@ -4,7 +4,7 @@ Visitas domiciliarias, revisiones de gabinete y electrónicas, y el procedimient
 
 Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinete, revisión electrónica, orden de visita, acta final, oficio de observaciones, resolución determinante, determinación presuntiva, auditoría, facultades de las autoridades fiscales.
 
-179 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+188 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -26,6 +26,7 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 50 | 9 | encabezado, texto | [art-0050.md](../../leyes/2026/CFF/art-0050.md) |
 | CFF | 52 | 9 | encabezado, texto | [art-0052.md](../../leyes/2026/CFF/art-0052.md) |
 | CFF | 56 | 9 | encabezado, texto | [art-0056.md](../../leyes/2026/CFF/art-0056.md) |
+| LFDC | 16 | 9 | texto | [art-0016.md](../../leyes/2026/LFDC/art-0016.md) |
 | RCFF | 60 | 9 | encabezado, texto | [art-0060.md](../../leyes/2026/RCFF/art-0060.md) |
 | CFF | 44 | 8 | encabezado, texto | [art-0044.md](../../leyes/2026/CFF/art-0044.md) |
 | CFF | 45 | 8 | encabezado, texto | [art-0045.md](../../leyes/2026/CFF/art-0045.md) |
@@ -41,6 +42,8 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 55 | 7 | encabezado, texto | [art-0055.md](../../leyes/2026/CFF/art-0055.md) |
 | CFF | 59 | 7 | encabezado, texto | [art-0059.md](../../leyes/2026/CFF/art-0059.md) |
 | CFF | 76 | 7 | texto | [art-0076.md](../../leyes/2026/CFF/art-0076.md) |
+| LCF | 49 | 7 | texto | [art-0049.md](../../leyes/2026/LCF/art-0049.md) |
+| LFDC | 17 | 7 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
 | RMF | regla 9.2.12 | 7 | encabezado, texto | [regla-9.2.12.md](../../rmf/2026/rmf/reglas/regla-9.2.12.md) |
 | CFF | 34 | 6 | encabezado | [art-0034.md](../../leyes/2026/CFF/art-0034.md) |
 | CFF | 41 | 6 | encabezado | [art-0041.md](../../leyes/2026/CFF/art-0041.md) |
@@ -140,11 +143,13 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 30 | 3 | texto | [art-0030.md](../../leyes/2026/CFF/art-0030.md) |
 | CFF | 5-A | 3 | texto | [art-0005-A.md](../../leyes/2026/CFF/art-0005-A.md) |
 | CFF | 70-A | 3 | texto | [art-0070-A.md](../../leyes/2026/CFF/art-0070-A.md) |
+| LFDC | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LFDC/art-0002.md) |
 | RMF | regla 2.10.18 | 3 | texto | [regla-2.10.18.md](../../rmf/2026/rmf/reglas/regla-2.10.18.md) |
 | RMF | regla 2.14.15 | 3 | texto | [regla-2.14.15.md](../../rmf/2026/rmf/reglas/regla-2.14.15.md) |
 | CFF | 83 | 2 | texto | [art-0083.md](../../leyes/2026/CFF/art-0083.md) |
 | LISR | 177 | 2 | texto | [art-0177.md](../../leyes/2026/LISR/art-0177.md) |
 | LISR | 76 | 2 | texto | [art-0076.md](../../leyes/2026/LISR/art-0076.md) |
+| LOPDC | 14 | 2 | texto | [art-0014.md](../../leyes/2026/LOPDC/art-0014.md) |
 | LSS | 251 | 2 | texto | [art-0251.md](../../leyes/2026/LSS/art-0251.md) |
 | LSS | 304-A | 2 | texto | [art-0304-A.md](../../leyes/2026/LSS/art-0304-A.md) |
 | RACERF | 164 | 2 | texto | [art-0164.md](../../leyes/2026/RACERF/art-0164.md) |
@@ -166,6 +171,10 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 32-E | 1 | texto | [art-0032-E.md](../../leyes/2026/CFF/art-0032-E.md) |
 | CFF | 86 | 1 | texto | [art-0086.md](../../leyes/2026/CFF/art-0086.md) |
 | CFF | 91-A | 1 | texto | [art-0091-A.md](../../leyes/2026/CFF/art-0091-A.md) |
+| LFDC | 14 | 1 | texto | [art-0014.md](../../leyes/2026/LFDC/art-0014.md) |
+| LFDC | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LFDC/art-0015.md) |
+| LFDC | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LFDC/art-0018.md) |
+| LFDC | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LFDC/art-0019.md) |
 | LISR | 113-I | 1 | texto | [art-0113-I.md](../../leyes/2026/LISR/art-0113-I.md) |
 | LIVA | 39 | 1 | texto | [art-0039.md](../../leyes/2026/LIVA/art-0039.md) |
 | LSS | 16 | 1 | texto | [art-0016.md](../../leyes/2026/LSS/art-0016.md) |
