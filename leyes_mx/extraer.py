@@ -18,7 +18,7 @@ def pdf_a_texto(pdf_path, layout=True):
 RE_CAMARA = re.compile(r"^\s*C[ÁA]MARA DE DIPUTADOS DEL H\. CONGRESO DE LA UNI[ÓO]N")
 RE_SECRETARIA = re.compile(r"^\s*Secretar[íi]a (General|de Servicios Parlamentarios)\s*$")
 RE_PAGINA = re.compile(r"^\s*\d+\s+de\s+\d+\s*$")
-RE_ULT_REFORMA = re.compile(r"(?:[ÚU]ltima [Rr]eforma(?: publicada)?|Nuevo (?:Reglamento|C[óo]digo|Ley)|Texto vigente)[^\n]*?DOF\s+(\d{2})-(\d{2})-(\d{4})")
+RE_ULT_REFORMA = re.compile(r"(?:[ÚU]ltima [Rr]eforma(?: publicada)?|Nuevo (?:Reglamento|C[óo]digo)|Nueva Ley|Texto vigente)[^\n]*?DOF\s+(\d{2})-(\d{2})-(\d{4})")
 
 # Notas marginales que la Camara imprime al margen derecho
 _ANN_INI = (r"(?:P[áa]rrafos?|Fracci[óo]n(?:es)?|Incisos?|Subincisos?|Art[íi]culos?|Numeral(?:es)?|Apartados?|Cap[íi]tulos?|"
@@ -324,9 +324,9 @@ def trocear_transitorios(lineas):
         if re.match(r"^DECRETO\b", l) and (i == 0 or not lineas[i - 1].strip() or lineas[i - 1] == "\f" or True):
             # el encabezado de decreto termina en 'Publicado en el Diario Oficial...'
             j = i
-            while j < min(i + 12, n) and not re.search(r"Publicado en el Diario Oficial", lineas[j]):
+            while j < min(i + 30, n) and not re.search(r"Publicado en el Diario Oficial", lineas[j]):
                 j += 1
-            if j < min(i + 12, n):
+            if j < min(i + 30, n):
                 if cur:
                     bloques.append((cur_t, cur))
                 titulo = " ".join(x.strip() for x in lineas[i:j + 1] if x.strip() and x != "\f")

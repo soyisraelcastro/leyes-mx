@@ -20,6 +20,8 @@ Código en `leyes_mx/extraer.py` y `leyes_mx/pipeline.py`; scripts en `scripts/`
 - "Artículo 890-" (sin punto) en LFT: error tipográfico del PDF; se acepta el guion como terminador.
 - "Artículo 3o. Bis.-", "Artículo 1o.-A BIS.-": ordinal y letra/palabra combinados.
 - LSS: la letra va separada por un espacio, sin guion ("Artículo 15 A.", "Artículo 304 D."). El extractor la acepta; sin eso se perdían 48 artículos (entre ellos el 15-A, de subcontratación) y solo lo detectó el cruce con `validar.py --pdf` (385 encabezados contra 337 archivos).
+- LFDC: no tiene reformas y su encabezado dice "Nueva Ley DOF 23-06-2005" en lugar de "Última Reforma DOF". El extractor acepta "Nueva Ley" igual que "Nuevo Reglamento" (RCFF): `ultima_reforma_dof` es entonces la fecha de publicación. Sin eso quedaba vacía.
+- Títulos de decreto muy largos en los transitorios: el decreto de paridad de género del 11-05-2022 (LOPDC) y el del 15-01-2026 (LFT y LSS) reforman decenas de leyes y su título ocupa más de 12 renglones antes de "Publicado en el Diario Oficial". El extractor busca esa línea hasta 30 renglones abajo; con 12, sus transitorios quedaban pegados al decreto anterior. Regenerar las 12 leyes con los mismos PDF (mismo sha256) solo cambió esos tres encabezados.
 - Artículos derogados: "Se deroga", "(Se deroga).", "(Derogado)." se marcan con `estatus: "derogado"`.
 - LFT 513 (tabla de enfermedades de trabajo) mide ~360 mil caracteres: es un solo artículo con un catálogo completo. Un chunk por artículo es la regla, pero ese archivo es demasiado grande para meterlo entero en un contexto; usar `buscar` para ubicar el padecimiento y leer solo el tramo necesario.
 
