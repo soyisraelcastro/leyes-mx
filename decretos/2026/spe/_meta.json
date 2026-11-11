@@ -1,0 +1,103 @@
+{
+  "documento": "Subsidio para el empleo (decreto del 01-05-2024 y sus reformas)",
+  "tipo": "decreto_spe",
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "fecha_descarga": "2026-11-11",
+  "aviso": "Texto informativo copiado del DOF; no sustituye al DOF. La fuente oficial prevalece. Los decretos se citan por su fecha de publicación; el valor de la UMA lo publica el INEGI cada año.",
+  "fundamento": "LISR art. 96 (el subsidio se aplica contra el ISR a cargo); LISR art. 94, primer párrafo y fracción I",
+  "parametros_2026": {
+    "limite_ingresos_mensuales": "11492.66",
+    "porcentaje_uma_febrero_a_diciembre": "15.02",
+    "porcentaje_uma_enero": "15.59",
+    "divisor_periodos_menores_a_un_mes": "30.4",
+    "vigencia_desde": "2026-01-01"
+  },
+  "uma": {
+    "2025": {
+      "diario": "113.14",
+      "mensual": "3439.46",
+      "anual": "41273.52",
+      "vigente_desde": "2025-02-01",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5746930&fecha=10/01/2025",
+      "fuente_archivo": "uma-2025.md"
+    },
+    "2026": {
+      "diario": "117.31",
+      "mensual": "3566.22",
+      "anual": "42794.64",
+      "vigente_desde": "2026-02-01",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5778072&fecha=09/01/2026",
+      "fuente_archivo": "uma-2026.md"
+    }
+  },
+  "calculo_derivado": {
+    "aviso": "Cálculo aritmético de este proyecto, redondeado a centavos (el decreto no fija redondeo); NO es texto del DOF. El considerando del decreto de 2025 cita $536.22 para 15.02%.",
+    "enero_2026": {
+      "uma_mensual": "3439.46",
+      "porcentaje": "15.59",
+      "subsidio_mensual_maximo": "536.21"
+    },
+    "febrero_a_diciembre_2026": {
+      "uma_mensual": "3566.22",
+      "porcentaje": "15.02",
+      "subsidio_mensual_maximo": "535.65"
+    }
+  },
+  "no_verificado": [
+    "Modificaciones al decreto publicadas después del 31-12-2025: no se encontraron, pero la búsqueda no es exhaustiva; revisar el DOF antes de afirmar que no hay."
+  ],
+  "documentos": [
+    {
+      "id": "decreto-2024-05-01",
+      "tipo": "decreto",
+      "publicado_dof": "2024-05-01",
+      "nota_dof": "5725287",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5725287&fecha=01/05/2024",
+      "sha256_texto": "58b2e62ca9a162f5ee6ff419b9d06c00fdf5c023fffe091dc97f13d21f584602",
+      "estatus": "vigente, con los párrafos 1, 3, 4 y 5 del Artículo Segundo reformados"
+    },
+    {
+      "id": "modificacion-2024-12-31",
+      "tipo": "modificacion",
+      "publicado_dof": "2024-12-31",
+      "nota_dof": "5746529",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5746529&fecha=31/12/2024",
+      "sha256_texto": "a9bda02c2d1c66d3ed0ef0987c7f3d1ef5cea8042c7e79a2428a1206158a5336",
+      "estatus": "superada: el decreto de 31-12-2025 reforma los mismos párrafos desde el 01-01-2026"
+    },
+    {
+      "id": "modificacion-2025-12-31",
+      "tipo": "modificacion",
+      "publicado_dof": "2025-12-31",
+      "nota_dof": "5777649",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5777649&fecha=31/12/2025",
+      "sha256_texto": "c20adcd47b3c75f1569b777738c54da9d40505312a8fca0eafe539da5444925e",
+      "estatus": "vigente desde el 01-01-2026"
+    },
+    {
+      "id": "uma-2025",
+      "tipo": "uma",
+      "publicado_dof": "2025-01-10",
+      "nota_dof": "5746930",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5746930&fecha=10/01/2025",
+      "sha256_texto": "bb06db90e2064d14642d00272a8588dddac978c7abd90c127ca5649ddb0ea9a5",
+      "estatus": "vigente del 01-02-2025 al 31-01-2026 (aplica a enero de 2026)"
+    },
+    {
+      "id": "uma-2026",
+      "tipo": "uma",
+      "publicado_dof": "2026-01-09",
+      "nota_dof": "5778072",
+      "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5778072&fecha=09/01/2026",
+      "sha256_texto": "6c68ed0aa3dd4be15176c92600fd0f8bbdbd879742f73699962958ee6cf7ce9d",
+      "estatus": "vigente desde el 01-02-2026"
+    },
+    {
+      "id": "vigente-2026",
+      "tipo": "consolidado",
+      "sha256_texto": "90f0665d6dd87f52f2296086ec3fbd7812b624bbe74bf0cc7224899fde767b07",
+      "estatus": "vigente"
+    }
+  ]
+}

@@ -55,6 +55,6 @@ Tolerancia de la cuota fija (por evidencia, ver `leyes_mx/anexos.py`): las tarif
 
 `python3 scripts/revisar_reformas.py --dry-run` compara también el sha256 y el tamaño del PDF del anexo con `_meta.json` y avisa ("PDF distinto"). Nunca regenera solo: el SAT publica modificaciones de anexos durante el año (puede ser otro archivo con otro nombre); se revisa a mano y se corre `scripts/extraer_anexo8.py`. El workflow mensual abre un issue.
 
-## Pendiente: subsidio para el empleo 2026
+## Subsidio para el empleo 2026
 
-No está en el Anexo 8 (el PDF no contiene las palabras "subsidio" ni "empleo"). Fuente oficial encontrada: DECRETO por el que se modifica el diverso que otorga el subsidio para el empleo, DOF 2025-12-31 (firmado 2025-12-30), nota 5777649: `https://dof.gob.mx/nota_detalle.php?codigo=5777649&fecha=31/12/2025`. Según su texto ya no hay tabla de montos variables: hay un subsidio mensual como porcentaje del valor mensual de la UMA, con un tope de ingresos mensuales. Por eso no es una tarifa para este formato y **no se incorporan cifras** hasta definir cómo modelarlo (decreto con transitorios, UMA mensual vigente y el caso especial de enero de 2026). Pendiente.
+No está en el Anexo 8 (el PDF no contiene las palabras "subsidio" ni "empleo"): desde el decreto del DOF del 01-05-2024 ya no es una tabla de montos variables sino una cuota mensual igual a un porcentaje de la UMA mensual. Se incorporó aparte, con el texto de los decretos del DOF y el valor de la UMA: ver [spe.md](spe.md) y `decretos/2026/spe/`.

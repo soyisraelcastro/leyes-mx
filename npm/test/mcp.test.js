@@ -19,7 +19,7 @@ test("initialize y tools/list", async () => {
   assert.equal(info.name, "leyes-mx");
   assert.match(c.getInstructions(), /no verificado/);
   const { tools } = await c.listTools();
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["buscar", "estado_reforma", "listar_leyes", "obtener_articulo", "obtener_regla", "obtener_tarifa", "obtener_transitorios", "temas"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["buscar", "estado_reforma", "listar_leyes", "obtener_articulo", "obtener_regla", "obtener_subsidio_empleo", "obtener_tarifa", "obtener_transitorios", "temas"]);
   for (const t of tools) assert.equal(t.annotations.readOnlyHint, true);
 });
 
@@ -37,6 +37,7 @@ test("las instrucciones y descripciones guían al modelo con términos de contad
   assert.match(d.obtener_articulo, /fuente para CITAR/);
   assert.match(d.obtener_tarifa, /SIEMPRE/);
   assert.match(d.obtener_tarifa, /tarifa mensual de retención de sueldos/);
+  assert.match(d.obtener_subsidio_empleo, /SIEMPRE/);
   assert.ok(!/[\u2014\u00ab\u00bb]/.test(i + Object.values(d).join("")));
 });
 
@@ -47,6 +48,7 @@ test("lo que no está en la base: el RESULTADO de cada herramienta manda pregunt
     ["obtener_articulo", { ley: "LIEPS", articulo: "1" }],
     ["buscar", { consulta: "zzzqqqxxx wwwvvvyyy" }],
     ["obtener_tarifa", { tarifa: "Z-9" }],
+    ["obtener_subsidio_empleo", { documento: "no-existe" }],
     ["obtener_transitorios", { ley: "XXX" }],
   ];
   for (const [name, args] of llamadas) {
@@ -172,6 +174,32 @@ test("obtener_tarifa: lista, apartado ambiguo y tarifa inexistente", async () =>
   assert.match(txt(amb), /varias tarifas; usa el id exacto/);
   const no = await c.callTool({ name: "obtener_tarifa", arguments: { tarifa: "Z-9" } });
   assert.match(txt(no), /NO VERIFICADO/);
+  assert.equal(no.structuredContent.encontrado, false);
+});
+
+test("obtener_subsidio_empleo: parámetros 2026 del decreto, UMA del INEGI y el cálculo derivado marcado como tal", async () => {
+  const r = await c.callTool({ name: "obtener_subsidio_empleo", arguments: {} });
+  const t = txt(r);
+  assert.equal(r.structuredContent.encontrado, true);
+  assert.deepEqual(r.structuredContent.parametros, { limite_ingresos_mensuales: "11492.66", porcentaje_uma_febrero_a_diciembre: "15.02", porcentaje_uma_enero: "15.59", divisor_periodos_menores_a_un_mes: "30.4", vigencia_desde: "2026-01-01" });
+  assert.match(t, /Tope de ingresos mensuales: \$11,492\.66/);
+  assert.match(t, /valor mensual de la UMA x 15\.02%\. En enero de 2026, x 15\.59%/);
+  assert.match(t, /UMA 2026: diario \$117\.31, mensual \$3,566\.22, anual \$42,794\.64; vigente desde 2026-02-01/);
+  assert.match(t, /UMA 2025: diario \$113\.14, mensual \$3,439\.46/);
+  assert.match(t, /NO es texto del DOF/);
+  assert.match(t, /NO VERIFICADO: Modificaciones al decreto publicadas después del 31-12-2025/);
+});
+
+test("obtener_subsidio_empleo: texto del decreto de 2025 y el consolidado, íntegros", async () => {
+  const d = txt(await c.callTool({ name: "obtener_subsidio_empleo", arguments: { documento: "modificacion-2025-12-31" } }));
+  assert.match(d, /=== DECRETO por el que se modifica el diverso que otorga el subsidio para el empleo/i);
+  assert.match(d, /no excedan de \$11,492\.66 \(once mil cuatrocientos noventa y dos pesos 66\/100 M\.N\.\)/);
+  assert.match(d, /para calcular el Subsidio para el Empleo correspondiente al mes de enero de 2026, el valor mensual de la Unidad de Medida y Actualización se deberá multiplicar por 15\.59%, en sustitución del porcentaje de 15\.02%/);
+  const v = txt(await c.callTool({ name: "obtener_subsidio_empleo", arguments: { documento: "vigente-2026" } }));
+  assert.match(v, /no es una publicación oficial/);
+  assert.match(v, /Artículo Segundo \(decreto del 01-05-2024; párrafos 1, 3, 4 y 5 según el decreto del 31-12-2025/);
+  assert.ok(!/11\.82%|13\.8%/.test(v.split("## Artículos Tercero")[0].split("## Artículo Segundo")[1]));
+  const no = await c.callTool({ name: "obtener_subsidio_empleo", arguments: { documento: "../../LISR" } });
   assert.equal(no.structuredContent.encontrado, false);
 });
 

@@ -31,6 +31,7 @@ Requiere Node 20 o superior. Opciones de `instalar`: `--anio 2026` (año por def
 | `buscar(consulta, ley?, anio?, incluir_proyectos?, limite?, glosario?)` | Búsqueda por palabras clave, ampliada con un glosario de sinónimos contables (la respuesta dice qué agregó; `glosario=false` lo apaga). Por defecto excluye proyectos. |
 | `listar_leyes(anio?)` | Qué hay en la base. |
 | `estado_reforma(anio?)` | Seguimiento de la reforma en trámite y última reforma por ley. |
+| `obtener_subsidio_empleo(documento?, anio?)` | Subsidio para el empleo (decreto del DOF 01-05-2024 y reformas): tope de ingresos, porcentaje de la UMA, UMA 2025 y 2026 del INEGI y el texto de cada decreto; `documento` pide uno (`vigente-2026`, `modificacion-2025-12-31`...). En terminal: `npx leyes-mx subsidio`. |
 | `obtener_transitorios(ley, anio?, pagina?)` | Transitorios por decreto. |
 | `obtener_tarifa(tarifa?, anio?)` | Tarifas de ISR vigentes del Anexo 8 de la RMF (mensual `B-V`, anual `C-II`, por 7/10/15 días, bimestrales...). Sin parámetro, las lista. Son las que se aplican en el ejercicio; las tablas de los arts. 96 y 152 de la LISR son las de la ley. |
 
