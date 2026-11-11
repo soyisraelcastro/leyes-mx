@@ -45,6 +45,7 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
     for t in (datos_t or {}).get("tablas", []):
         if not t.get("solo_imagen"):
             errores.extend(tablas_mod.verificar(t))
+    errores.extend(tablas_mod.verificar_formulas(datos_t))
     ids, cortos, sospechosos = [], [], []
     for p in sorted(dirley.glob("art-*.md")):
         id_ = id_desde_archivo(p.name)

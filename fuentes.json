@@ -95,7 +95,7 @@
             "46"
           ],
           "en_archivo": true,
-          "texto": "Las fórmulas de distribución de este artículo vienen en el PDF de la Cámara como imagen o como notación matemática que la extracción de texto no reproduce: aquí faltan, o salen desordenadas, la fórmula y algunos símbolos de sus variables. Para la fórmula, consultar el PDF oficial: https://www.diputados.gob.mx/LeyesBiblio/pdf/LCF.pdf"
+          "texto": "Las fórmulas de distribución de este artículo se transcribieron a LaTeX ($...$ en línea, $$...$$ en bloque) desde las imágenes del PDF de la Cámara, porque la extracción de texto no las reproduce. Si hay duda sobre una fórmula o un símbolo, prevalece el PDF oficial: https://www.diputados.gob.mx/LeyesBiblio/pdf/LCF.pdf"
         }
       ]
     },

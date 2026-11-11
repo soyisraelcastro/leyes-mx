@@ -57,7 +57,7 @@ Año de vigencia 2026 (texto vigente al 2026-11-02, descargado ese día):
 | LCF | Ley de Coordinación Fiscal | 67 | 66 | 1 | 2024-01-03 |
 | LOPDC | Ley Orgánica de la Procuraduría de la Defensa del Contribuyente | 28 | 28 | 0 | 2022-05-11 |
 
-LFDC, LCF y LOPDC se descargaron el 2026-11-07. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática y no se transcriben: esos artículos llevan una advertencia que manda al PDF oficial.
+LFDC, LCF y LOPDC se descargaron el 2026-11-07. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática; se transcribieron a LaTeX (`$...$` y `$$...$$`) para que las lean los asistentes, y esos artículos llevan una advertencia: ante la duda prevalece el PDF oficial.
 
 Además `proyectos/2027/`: seguimiento de la reforma fiscal 2027 (**no es ley vigente**).
 

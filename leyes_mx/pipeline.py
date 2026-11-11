@@ -82,6 +82,7 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
     for a in arts:
         cuerpo = extraer.formatear(a.lineas)
         cuerpo, tablas_puestas = _tablas.inyectar(a.id, cuerpo, datos_tablas)
+        cuerpo, formulas_puestas = _tablas.aplicar_formulas(a.id, cuerpo, datos_tablas)
         estatus = extraer.estatus_de(cuerpo)
         fm = dict(comunes)
         fm["articulo"] = a.id
@@ -91,6 +92,8 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
             fm["ubicacion"] = a.ubicacion
         if tablas_puestas:
             fm["tablas_transcritas"] = tablas_puestas
+        if formulas_puestas:
+            fm["formulas_latex"] = formulas_puestas
         # advertencias con "en_archivo": true se escriben también dentro del artículo (visibles para un RAG que lee el .md)
         avisos = "".join(f"> ADVERTENCIA: {adv['texto']}\n\n" for adv in ley.get("advertencias", [])
                          if adv.get("en_archivo") and a.id in adv.get("articulos", []))
