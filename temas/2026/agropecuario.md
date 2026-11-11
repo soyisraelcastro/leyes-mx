@@ -4,7 +4,7 @@ Actividades agrícolas, ganaderas, silvícolas y pesqueras.
 
 Palabras: actividades agrícolas, ganaderas, silvícolas, pesqueras, sector primario, actividades agropecuarias, productos agropecuarios.
 
-62 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+64 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -41,6 +41,7 @@ Palabras: actividades agrícolas, ganaderas, silvícolas, pesqueras, sector prim
 | RMF | regla 2.7.4.10 | 11 | encabezado | [regla-2.7.4.10.md](../../rmf/2026/rmf/reglas/regla-2.7.4.10.md) |
 | RMF | regla 2.7.4.6 | 11 | encabezado | [regla-2.7.4.6.md](../../rmf/2026/rmf/reglas/regla-2.7.4.6.md) |
 | RMF | regla 2.7.4.7 | 11 | encabezado, texto | [regla-2.7.4.7.md](../../rmf/2026/rmf/reglas/regla-2.7.4.7.md) |
+| LIF | 20 | 9 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | RMF | regla 2.7.3.10 | 9 | encabezado, texto | [regla-2.7.3.10.md](../../rmf/2026/rmf/reglas/regla-2.7.3.10.md) |
 | LISR | 113-E | 8 | texto | [art-0113-E.md](../../leyes/2026/LISR/art-0113-E.md) |
 | RMF | regla 3.13.9 | 8 | texto | [regla-3.13.9.md](../../rmf/2026/rmf/reglas/regla-3.13.9.md) |
@@ -55,6 +56,7 @@ Palabras: actividades agrícolas, ganaderas, silvícolas, pesqueras, sector prim
 | RMF | regla 2.7.3.8 | 5 | encabezado | [regla-2.7.3.8.md](../../rmf/2026/rmf/reglas/regla-2.7.3.8.md) |
 | RMF | regla 2.7.3.9 | 5 | encabezado | [regla-2.7.3.9.md](../../rmf/2026/rmf/reglas/regla-2.7.3.9.md) |
 | CFF | 18 | 4 | texto | [art-0018.md](../../leyes/2026/CFF/art-0018.md) |
+| LIF | 25 | 4 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | RMF | regla 2.1.4 | 4 | texto | [regla-2.1.4.md](../../rmf/2026/rmf/reglas/regla-2.1.4.md) |
 | RMF | regla 2.16.1 | 4 | texto | [regla-2.16.1.md](../../rmf/2026/rmf/reglas/regla-2.16.1.md) |
 | RMF | regla 2.3.3 | 4 | texto | [regla-2.3.3.md](../../rmf/2026/rmf/reglas/regla-2.3.3.md) |

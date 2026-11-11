@@ -45,6 +45,7 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
     for t in (datos_t or {}).get("tablas", []):
         if not t.get("solo_imagen"):
             errores.extend(tablas_mod.verificar(t))
+    errores.extend(tablas_mod.verificar_formulas(datos_t))
     ids, cortos, sospechosos = [], [], []
     for p in sorted(dirley.glob("art-*.md")):
         id_ = id_desde_archivo(p.name)
@@ -129,6 +130,11 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
             else:
                 crudo = extraer.pdf_a_texto(pdf, layout=False)
                 n = _contar_crudo(crudo, extraer)
+                # encabezados "falsos" que el PDF trae dentro de una tabla (p. ej. los renglones "Artículo 2o." de la LIF);
+                # se declaran en fuentes.json, clave "cruce_encabezados_ajenos", con su explicación en "nota"
+                cfg_ley = next((l for l in json.loads((RAIZ / "fuentes.json").read_text(encoding="utf-8"))["leyes"]
+                                if l["sigla"].upper() == sigla.upper()), {})
+                n -= cfg_ley.get("cruce_encabezados_ajenos", 0)
                 if n != len(ids):
                     errores.append(f"cruce con extraccion sin -layout: {n} encabezados vs {len(ids)} archivos")
                 else:

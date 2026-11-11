@@ -4,7 +4,7 @@ Procedimiento administrativo de ejecución, embargo, garantía del interés fisc
 
 Palabras: procedimiento administrativo de ejecución, embargo, garantía del interés fiscal, remate, crédito fiscal, pago en parcialidades, pago diferido, prescripción, caducidad.
 
-314 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+316 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -253,6 +253,7 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | LFT | 47 | 3 | texto | [art-0047.md](../../leyes/2026/LFT/art-0047.md) |
 | LFT | 513 | 3 | texto | [art-0513.md](../../leyes/2026/LFT/art-0513.md) |
 | LFT | 945 | 3 | texto | [art-0945.md](../../leyes/2026/LFT/art-0945.md) |
+| LIEPS | 15-A | 3 | texto | [art-0015-A.md](../../leyes/2026/LIEPS/art-0015-A.md) |
 | LISR | 203 | 3 | texto | [art-0203.md](../../leyes/2026/LISR/art-0203.md) |
 | LIVA | 28-A | 3 | texto | [art-0028-A.md](../../leyes/2026/LIVA/art-0028-A.md) |
 | LSS | 251 | 3 | texto | [art-0251.md](../../leyes/2026/LSS/art-0251.md) |
@@ -296,6 +297,7 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | LFT | 976 | 1 | texto | [art-0976.md](../../leyes/2026/LFT/art-0976.md) |
 | LFT | 979 | 1 | texto | [art-0979.md](../../leyes/2026/LFT/art-0979.md) |
 | LFT | 981 | 1 | texto | [art-0981.md](../../leyes/2026/LFT/art-0981.md) |
+| LIEPS | 26 | 1 | texto | [art-0026.md](../../leyes/2026/LIEPS/art-0026.md) |
 | LISR | 102 | 1 | texto | [art-0102.md](../../leyes/2026/LISR/art-0102.md) |
 | LISR | 130 | 1 | texto | [art-0130.md](../../leyes/2026/LISR/art-0130.md) |
 | LSS | 15-B | 1 | texto | [art-0015-B.md](../../leyes/2026/LSS/art-0015-B.md) |

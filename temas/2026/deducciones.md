@@ -4,7 +4,7 @@ Requisitos y límites de las deducciones.
 
 Palabras: deducciones autorizadas, estrictamente indispensables, deducible, deducción, no deducible.
 
-331 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+333 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -139,6 +139,7 @@ Palabras: deducciones autorizadas, estrictamente indispensables, deducible, dedu
 | RMF | regla 3.1.20 | 9 | encabezado, texto | [regla-3.1.20.md](../../rmf/2026/rmf/reglas/regla-3.1.20.md) |
 | RMF | regla 3.10.1.12 | 9 | encabezado, texto | [regla-3.10.1.12.md](../../rmf/2026/rmf/reglas/regla-3.10.1.12.md) |
 | RMF | regla 3.10.1.23 | 9 | encabezado, texto | [regla-3.10.1.23.md](../../rmf/2026/rmf/reglas/regla-3.10.1.23.md) |
+| LIF | 25 | 8 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 210 | 8 | texto | [art-0210.md](../../leyes/2026/LISR/art-0210.md) |
 | LISR | 34 | 8 | encabezado, texto | [art-0034.md](../../leyes/2026/LISR/art-0034.md) |
 | LISR | 41 | 8 | encabezado, texto | [art-0041.md](../../leyes/2026/LISR/art-0041.md) |
@@ -237,6 +238,7 @@ Palabras: deducciones autorizadas, estrictamente indispensables, deducible, dedu
 | RMF | regla 2.1.45 | 4 | texto | [regla-2.1.45.md](../../rmf/2026/rmf/reglas/regla-2.1.45.md) |
 | RMF | regla 3.2.11 | 4 | texto | [regla-3.2.11.md](../../rmf/2026/rmf/reglas/regla-3.2.11.md) |
 | CFF | 15-D | 3 | texto | [art-0015-D.md](../../leyes/2026/CFF/art-0015-D.md) |
+| LIF | 28 | 3 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
 | LISR | 104 | 3 | texto | [art-0104.md](../../leyes/2026/LISR/art-0104.md) |
 | LISR | 109 | 3 | texto | [art-0109.md](../../leyes/2026/LISR/art-0109.md) |
 | LISR | 115 | 3 | texto | [art-0115.md](../../leyes/2026/LISR/art-0115.md) |

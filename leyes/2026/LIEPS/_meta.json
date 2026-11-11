@@ -1,0 +1,23 @@
+{
+  "sigla": "LIEPS",
+  "nombre_oficial": "Ley del Impuesto Especial sobre Producción y Servicios",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIEPS.pdf",
+  "ultima_reforma_dof": "2025-11-07",
+  "fecha_descarga": "2026-11-11",
+  "sha256_pdf": "32639ede8448f91e6ddde556d4b8bceaf349b904bc21631f06e1c8a7a3d416f4",
+  "articulos_extraidos": 69,
+  "ultimo_articulo_numerico": 29,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 26,
+  "advertencias": [
+    {
+      "articulos": [
+        "26-L"
+      ],
+      "en_archivo": true,
+      "texto": "El artículo 26-LL (se deroga; adicionado DOF 31-12-1999, derogado DOF 01-01-2002) no tiene archivo propio: el sistema de identificadores solo admite una letra, así que su línea queda al final de este archivo. No hay texto vigente en 26-LL."
+    }
+  ]
+}

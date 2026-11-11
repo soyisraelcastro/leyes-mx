@@ -130,7 +130,7 @@ def encabezado_articulo(linea):
 
 
 RE_FIN_CUERPO = re.compile(
-    r"^\s*(?:TRANSITORIOS?|ART[ÍI]CULOS?\s+TRANSITORIOS?(?:\s+DE\s+.*)?|DISPOSICIONES\s+(?:DE\s+VIGENCIA\s+TEMPORAL|TRANSITORIAS)\b.*|"
+    r"^\s*(?:TRANSITORIOS?|Transitorios|ART[ÍI]CULOS?\s+TRANSITORIOS?(?:\s+DE\s+.*)?|DISPOSICIONES\s+(?:DE\s+VIGENCIA\s+TEMPORAL|TRANSITORIAS)\b.*|"
     r"ART[ÍI]CULO\s+[A-ZÁÉÍÓÚ]+(?:\s+[A-ZÁÉÍÓÚ]+)?\s*[.\-].*|DECRETO\b.*)\s*$"
 )
 

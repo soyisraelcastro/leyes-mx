@@ -18,7 +18,7 @@ const TOML_FIN = "# <<< leyes-mx <<<";
 export const BLOQUE_INSTRUCCIONES = `${MARCA_INI}
 ## Consulta de leyes (leyes-mx)
 
-Antes de responder cualquier consulta fiscal o laboral de México (ISR, IVA, deducciones, retenciones, CFDI, aguinaldo, PTU, vacaciones, despido, tarifas, "qué dice el artículo", "fundamento legal") y antes de citar un artículo de la LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC o sus reglamentos (RLISR, RLIVA, RCFF, RACERF), consulta el servidor MCP "leyes-mx". No respondas de memoria ni busques en internet primero.
+Antes de responder cualquier consulta fiscal o laboral de México (ISR, IVA, deducciones, retenciones, CFDI, aguinaldo, PTU, vacaciones, despido, tarifas, "qué dice el artículo", "fundamento legal") y antes de citar un artículo de la LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, LIEPS, LIF o sus reglamentos (RLISR, RLIVA, RCFF, RACERF), consulta el servidor MCP "leyes-mx". No respondas de memoria ni busques en internet primero.
 
 1. Herramientas: buscar, temas, obtener_articulo, obtener_regla, obtener_tarifa, obtener_transitorios, estado_reforma, listar_leyes. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | reforma.
 2. Reformula con los términos de la ley, no con los del uso corriente ("accesorios de las contribuciones", no "actualizaciones"). buscar es léxico y solo devuelve fragmentos.

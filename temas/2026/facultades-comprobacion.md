@@ -4,7 +4,7 @@ Visitas domiciliarias, revisiones de gabinete y electrónicas, y el procedimient
 
 Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinete, revisión electrónica, orden de visita, acta final, oficio de observaciones, resolución determinante, determinación presuntiva, auditoría, facultades de las autoridades fiscales.
 
-188 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+191 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -33,6 +33,7 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 51 | 8 | encabezado, texto | [art-0051.md](../../leyes/2026/CFF/art-0051.md) |
 | CFF | 53-B | 8 | encabezado, texto | [art-0053-B.md](../../leyes/2026/CFF/art-0053-B.md) |
 | CFF | 66 | 8 | encabezado, texto | [art-0066.md](../../leyes/2026/CFF/art-0066.md) |
+| LIF | 19 | 8 | texto | [art-0019.md](../../leyes/2026/LIF/art-0019.md) |
 | RMF | regla 2.14.10 | 8 | encabezado, texto | [regla-2.14.10.md](../../rmf/2026/rmf/reglas/regla-2.14.10.md) |
 | RMF | regla 2.5.19 | 8 | encabezado, texto | [regla-2.5.19.md](../../rmf/2026/rmf/reglas/regla-2.5.19.md) |
 | CFF | 22 | 7 | texto | [art-0022.md](../../leyes/2026/CFF/art-0022.md) |
@@ -175,6 +176,8 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | LFDC | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LFDC/art-0015.md) |
 | LFDC | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LFDC/art-0018.md) |
 | LFDC | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LFDC/art-0019.md) |
+| LIEPS | 22 | 1 | texto | [art-0022.md](../../leyes/2026/LIEPS/art-0022.md) |
+| LIEPS | 23-A | 1 | texto | [art-0023-A.md](../../leyes/2026/LIEPS/art-0023-A.md) |
 | LISR | 113-I | 1 | texto | [art-0113-I.md](../../leyes/2026/LISR/art-0113-I.md) |
 | LIVA | 39 | 1 | texto | [art-0039.md](../../leyes/2026/LIVA/art-0039.md) |
 | LSS | 16 | 1 | texto | [art-0016.md](../../leyes/2026/LSS/art-0016.md) |

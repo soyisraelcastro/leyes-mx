@@ -95,7 +95,7 @@
             "46"
           ],
           "en_archivo": true,
-          "texto": "Las fórmulas de distribución de este artículo vienen en el PDF de la Cámara como imagen o como notación matemática que la extracción de texto no reproduce: aquí faltan, o salen desordenadas, la fórmula y algunos símbolos de sus variables. Para la fórmula, consultar el PDF oficial: https://www.diputados.gob.mx/LeyesBiblio/pdf/LCF.pdf"
+          "texto": "Las fórmulas de distribución de este artículo se transcribieron a LaTeX ($...$ en línea, $$...$$ en bloque) desde las imágenes del PDF de la Cámara, porque la extracción de texto no las reproduce. Si hay duda sobre una fórmula o un símbolo, prevalece el PDF oficial: https://www.diputados.gob.mx/LeyesBiblio/pdf/LCF.pdf"
         }
       ]
     },
@@ -105,6 +105,31 @@
       "tipo": "ley",
       "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LOPDC.pdf",
       "ultimo_articulo_esperado": 28
+    },
+    {
+      "sigla": "LIEPS",
+      "nombre": "Ley del Impuesto Especial sobre Producción y Servicios",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIEPS.pdf",
+      "ultimo_articulo_esperado": 29,
+      "advertencias": [
+        {
+          "articulos": [
+            "26-L"
+          ],
+          "en_archivo": true,
+          "texto": "El artículo 26-LL (se deroga; adicionado DOF 31-12-1999, derogado DOF 01-01-2002) no tiene archivo propio: el sistema de identificadores solo admite una letra, así que su línea queda al final de este archivo. No hay texto vigente en 26-LL."
+        }
+      ]
+    },
+    {
+      "sigla": "LIF",
+      "nombre": "Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf",
+      "ultimo_articulo_esperado": 34,
+      "cruce_encabezados_ajenos": 2,
+      "nota": "Ley anual: solo rige en el ejercicio fiscal 2026. La de 2027 tendrá su propia carpeta (otra sigla o año) y NO se copia con copiar_anio.py. cruce_encabezados_ajenos: 2 renglones de la tabla del art. 1 (\"Artículo 2o., fracción I, inciso D).\" y \"Artículo 2o.-A.\", conceptos del IEPS) que el cruce sin -layout cuenta como encabezados."
     },
     {
       "sigla": "RLISR",

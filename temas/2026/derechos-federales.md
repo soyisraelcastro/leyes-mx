@@ -4,10 +4,11 @@ Pago de derechos por servicios del Estado (Ley Federal de Derechos) y aprovecham
 
 Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamientos, derechos federales. Reglas cuyo fundamento cita: LFD.
 
-85 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+93 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
+| LIF | 13 | 20 | texto | [art-0013.md](../../leyes/2026/LIF/art-0013.md) |
 | RMF | regla 11.15.1 | 14 | encabezado, fundamento | [regla-11.15.1.md](../../rmf/2026/rmf/reglas/regla-11.15.1.md) |
 | RMF | regla 2.8.4.1 | 11 | encabezado | [regla-2.8.4.1.md](../../rmf/2026/rmf/reglas/regla-2.8.4.1.md) |
 | RMF | regla 2.8.5.2 | 11 | encabezado, texto, fundamento | [regla-2.8.5.2.md](../../rmf/2026/rmf/reglas/regla-2.8.5.2.md) |
@@ -29,12 +30,14 @@ Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamien
 | RMF | regla 7.5 | 9 | encabezado, texto, fundamento | [regla-7.5.md](../../rmf/2026/rmf/reglas/regla-7.5.md) |
 | RMF | regla 7.9 | 9 | encabezado, texto, fundamento | [regla-7.9.md](../../rmf/2026/rmf/reglas/regla-7.9.md) |
 | RMF | regla 2.8.1.11 | 8 | encabezado, texto | [regla-2.8.1.11.md](../../rmf/2026/rmf/reglas/regla-2.8.1.11.md) |
+| LIF | 1 | 7 | texto | [art-0001.md](../../leyes/2026/LIF/art-0001.md) |
 | RMF | regla 2.8.1.10 | 7 | encabezado, texto | [regla-2.8.1.10.md](../../rmf/2026/rmf/reglas/regla-2.8.1.10.md) |
 | RMF | regla 7.1 | 7 | texto, fundamento | [regla-7.1.md](../../rmf/2026/rmf/reglas/regla-7.1.md) |
 | RMF | regla 7.34 | 7 | encabezado, texto | [regla-7.34.md](../../rmf/2026/rmf/reglas/regla-7.34.md) |
 | RMF | regla 2.14.9 | 6 | texto | [regla-2.14.9.md](../../rmf/2026/rmf/reglas/regla-2.14.9.md) |
 | RMF | regla 7.10 | 6 | encabezado, texto | [regla-7.10.md](../../rmf/2026/rmf/reglas/regla-7.10.md) |
 | RMF | regla 7.33 | 6 | encabezado, texto | [regla-7.33.md](../../rmf/2026/rmf/reglas/regla-7.33.md) |
+| LIF | 16 | 5 | texto | [art-0016.md](../../leyes/2026/LIF/art-0016.md) |
 | RMF | regla 7.22 | 5 | texto, fundamento | [regla-7.22.md](../../rmf/2026/rmf/reglas/regla-7.22.md) |
 | RMF | regla 7.23 | 5 | texto, fundamento | [regla-7.23.md](../../rmf/2026/rmf/reglas/regla-7.23.md) |
 | RMF | regla 7.6 | 5 | texto, fundamento | [regla-7.6.md](../../rmf/2026/rmf/reglas/regla-7.6.md) |
@@ -49,6 +52,9 @@ Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamien
 | CFF | 17-A | 3 | texto | [art-0017-A.md](../../leyes/2026/CFF/art-0017-A.md) |
 | CFF | 3 | 3 | texto | [art-0003.md](../../leyes/2026/CFF/art-0003.md) |
 | CFF | 53-B | 3 | texto | [art-0053-B.md](../../leyes/2026/CFF/art-0053-B.md) |
+| LIF | 15 | 3 | texto | [art-0015.md](../../leyes/2026/LIF/art-0015.md) |
+| LIF | 21 | 3 | texto | [art-0021.md](../../leyes/2026/LIF/art-0021.md) |
+| LIF | 29 | 3 | texto | [art-0029.md](../../leyes/2026/LIF/art-0029.md) |
 | RMF | regla 2.8.5.3 | 3 | fundamento | [regla-2.8.5.3.md](../../rmf/2026/rmf/reglas/regla-2.8.5.3.md) |
 | RMF | regla 4.1.5 | 3 | fundamento | [regla-4.1.5.md](../../rmf/2026/rmf/reglas/regla-4.1.5.md) |
 | RMF | regla 5.2.45 | 3 | fundamento | [regla-5.2.45.md](../../rmf/2026/rmf/reglas/regla-5.2.45.md) |
@@ -72,6 +78,8 @@ Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamien
 | CFF | 53-C | 2 | texto | [art-0053-C.md](../../leyes/2026/CFF/art-0053-C.md) |
 | LCF | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LCF/art-0002.md) |
 | LCF | 37 | 2 | texto | [art-0037.md](../../leyes/2026/LCF/art-0037.md) |
+| LIEPS | 14 | 2 | texto | [art-0014.md](../../leyes/2026/LIEPS/art-0014.md) |
+| LIF | 20 | 2 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | LIVA | 27 | 2 | texto | [art-0027.md](../../leyes/2026/LIVA/art-0027.md) |
 | LIVA | 3 | 2 | texto | [art-0003.md](../../leyes/2026/LIVA/art-0003.md) |
 | RMF | regla 2.8.1.1 | 2 | texto | [regla-2.8.1.1.md](../../rmf/2026/rmf/reglas/regla-2.8.1.1.md) |

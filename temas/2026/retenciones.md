@@ -4,10 +4,11 @@ Obligación de retener y enterar contribuciones y constancias de retenciones.
 
 Palabras: retención, retenciones, retenedor, constancia de retenciones.
 
-193 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+197 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
+| LIF | 25 | 19 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | RMF | regla 2.7.5.4 | 19 | encabezado, texto | [regla-2.7.5.4.md](../../rmf/2026/rmf/reglas/regla-2.7.5.4.md) |
 | LISR | 166 | 15 | texto | [art-0166.md](../../leyes/2026/LISR/art-0166.md) |
 | RMF | regla 2.7.6.3 | 14 | encabezado, texto | [regla-2.7.6.3.md](../../rmf/2026/rmf/reglas/regla-2.7.6.3.md) |
@@ -148,6 +149,9 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | LCF | 3-B | 1 | texto | [art-0003-B.md](../../leyes/2026/LCF/art-0003-B.md) |
 | LFT | 280 | 1 | texto | [art-0280.md](../../leyes/2026/LFT/art-0280.md) |
 | LFT | 291-S | 1 | texto | [art-0291-S.md](../../leyes/2026/LFT/art-0291-S.md) |
+| LIEPS | 5-A | 1 | texto | [art-0005-A.md](../../leyes/2026/LIEPS/art-0005-A.md) |
+| LIEPS | 5-A-bis | 1 | texto | [art-0005-A-bis.md](../../leyes/2026/LIEPS/art-0005-A-bis.md) |
+| LIF | 24 | 1 | texto | [art-0024.md](../../leyes/2026/LIF/art-0024.md) |
 | LISR | 136 | 1 | texto | [art-0136.md](../../leyes/2026/LISR/art-0136.md) |
 | LISR | 137 | 1 | texto | [art-0137.md](../../leyes/2026/LISR/art-0137.md) |
 | LISR | 157 | 1 | texto | [art-0157.md](../../leyes/2026/LISR/art-0157.md) |

@@ -4,7 +4,7 @@ Aportaciones de vivienda, crédito y subcuenta de vivienda.
 
 Palabras: INFONAVIT, crédito para vivienda, vivienda, aportaciones patronales, subcuenta de vivienda, habitaciones para los trabajadores, casas habitación.
 
-68 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+69 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -57,6 +57,7 @@ Palabras: INFONAVIT, crédito para vivienda, vivienda, aportaciones patronales, 
 | RMF | regla 11.5.3 | 5 | encabezado | [regla-11.5.3.md](../../rmf/2026/rmf/reglas/regla-11.5.3.md) |
 | RMF | regla 11.5.5 | 5 | encabezado | [regla-11.5.5.md](../../rmf/2026/rmf/reglas/regla-11.5.5.md) |
 | LFT | 899-A | 3 | texto | [art-0899-A.md](../../leyes/2026/LFT/art-0899-A.md) |
+| LIEPS | 8 | 3 | texto | [art-0008.md](../../leyes/2026/LIEPS/art-0008.md) |
 | LISR | 27 | 3 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | LSS | 159 | 3 | texto | [art-0159.md](../../leyes/2026/LSS/art-0159.md) |
 | RLISR | 250 | 3 | texto | [art-0250.md](../../leyes/2026/RLISR/art-0250.md) |
