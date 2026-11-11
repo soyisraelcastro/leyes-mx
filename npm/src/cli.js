@@ -1,4 +1,4 @@
-// Línea de comandos: instalar, actualizar, servir, estado, doctor, desinstalar, revertir, skill, obtener, tarifa, buscar, listar, reforma.
+// Línea de comandos: instalar, actualizar, servir, estado, doctor, desinstalar, revertir, skill, obtener, tarifa, subsidio, buscar, listar, reforma.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { Almacen, SinDatos, AVISO_GENERAL } from "./almacen.js";
 import { Indice } from "./indice.js";
 import { Glosario } from "./glosario.js";
-import { citaArticulo, lineasAmpliacion, noEncontrado, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
+import { citaArticulo, lineasAmpliacion, noEncontrado, respuestaSubsidio, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
 import { VERSION } from "./version.js";
 import * as clientes from "./clientes.js";
 import * as datos from "./datos.js";
@@ -37,6 +37,7 @@ Servidor
 Consulta directa (sin MCP)
   obtener LEY ARTICULO [--anio N] [--incluir-proyectos] [--json]
   tarifa [ID|APARTADO] [--anio N] [--json]   Tarifas de ISR del Anexo 8 de la RMF (sin argumento: las lista)
+  subsidio [DOCUMENTO] [--anio N] [--json]   Subsidio para el empleo (decreto del DOF y UMA); DOCUMENTO: vigente-2026, modificacion-2025-12-31...
   buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--sin-glosario] [--json]
   listar [--incluir-proyectos] [--json]
   reforma [--anio N]     estado de la reforma en trámite (proyecto, no es ley vigente)
@@ -365,7 +366,7 @@ async function cmdDoctor() {
   out("\nServidor MCP");
   let servidorOk = false;
   if (d) {
-    try { const r = await autoprueba(); servidorOk = r.tools.length === 8 && r.ok; servidorOk ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
+    try { const r = await autoprueba(); servidorOk = r.tools.length === 9 && r.ok; servidorOk ? ok(`initialize y tools/list correctos: ${r.tools.join(", ")}`) : fallo(`herramientas inesperadas: ${r.tools.join(", ")}`); }
     catch (e) { fallo(`el servidor no responde: ${e.message}`); }
   } else aviso("omitido (no hay datos)");
 
@@ -475,6 +476,14 @@ function cmdTarifa({ pos, op }) {
   return 0;
 }
 
+function cmdSubsidio({ pos, op }) {
+  const a = Almacen.abrir();
+  const f = a.obtenerSubsidioEmpleo({ anio: entero(op, "anio") ?? null, documento: pos[1] ?? null });
+  if (!f) { err(noEncontrado(pos[1] ? `el documento ${pos[1]} del subsidio para el empleo` : "el subsidio para el empleo") + "\n"); return 1; }
+  out(op.json ? JSON.stringify(f, null, 2) : respuestaSubsidio(f));
+  return 0;
+}
+
 function cmdListar({ op }) {
   const r = Almacen.abrir().listarLeyes({ incluirProyectos: !!op["incluir-proyectos"] });
   if (op.json) { out(JSON.stringify(r, null, 2)); return 0; }
@@ -501,6 +510,7 @@ export async function main(argv) {
       case "skill": return cmdSkill({ op });
       case "obtener": return await cmdObtener({ pos, op });
       case "tarifa": return cmdTarifa({ pos, op });
+      case "subsidio": return cmdSubsidio({ pos, op });
       case "buscar": return await cmdBuscar({ pos, op });
       case "listar": return cmdListar({ op });
       case "reforma": out(JSON.stringify(Almacen.abrir().estadoReforma(entero(op, "anio") ?? null), null, 2)); return 0;

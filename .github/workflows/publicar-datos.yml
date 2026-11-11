@@ -8,6 +8,7 @@ on:
       - "proyectos/**"
       - "tablas/**"
       - "rmf/**"
+      - "decretos/**"
       - "glosario.json"
       - "temas/**"
       - "temas.json"

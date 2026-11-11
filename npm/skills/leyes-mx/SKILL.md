@@ -27,6 +27,7 @@ Antes de responder cualquier consulta fiscal o laboral de México y antes de cit
 | `obtener_articulo(ley, articulo)` | Texto íntegro de un artículo: la fuente para citar. |
 | `buscar(consulta, ley?)` | Encontrar artículos por tema. Devuelve fragmentos. `glosario=false` busca solo con las palabras dadas. |
 | `obtener_tarifa(tarifa?)` | Tarifas de ISR del Anexo 8 (mensual `B-V`, anual `C-II`, por periodos). Sin argumento, las lista. |
+| `obtener_subsidio_empleo(documento?)` | Subsidio para el empleo 2026: tope de ingresos, porcentaje de la UMA, UMA 2025 y 2026 (INEGI) y el texto de los decretos del DOF. No es tarifa. |
 | `obtener_transitorios(ley)` | Transitorios por decreto de reforma. |
 | `estado_reforma()` | Seguimiento de la reforma 2027 (proyecto) y última reforma por ley. |
 | `listar_leyes()` | Qué cubre la base. |
@@ -57,7 +58,7 @@ Las tablas de los artículos 96 y 152 de la LISR son las de la ley: no son las q
 
 ## Lo que NO está en la base
 
-Las reglas de la RMF 2026 están (`obtener_regla`), pero con el texto original del DOF del 28-12-2025, sin las resoluciones de modificación de 2026: avísalo siempre. Otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT o del IMSS y el valor de la UMA. De eso no hay dato local: dilo.
+Las reglas de la RMF 2026 están (`obtener_regla`), pero con el texto original del DOF del 28-12-2025, sin las resoluciones de modificación de 2026: avísalo siempre. Otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT o del IMSS y el valor de la UMA de años distintos de 2025 y 2026 (esos dos salen con `obtener_subsidio_empleo`, citados del DOF). De eso no hay dato local: dilo. Los importes del subsidio marcados como cálculo derivado no son texto del DOF: el decreto de 2025 cita $536.22 para 15.02% y la UMA mensual publicada da otra cifra; dilo si el usuario necesita el monto exacto.
 
 ## Si no encuentras algo
 

@@ -20,11 +20,11 @@ export const BLOQUE_INSTRUCCIONES = `${MARCA_INI}
 
 Antes de responder cualquier consulta fiscal o laboral de México (ISR, IVA, deducciones, retenciones, CFDI, aguinaldo, PTU, vacaciones, despido, tarifas, "qué dice el artículo", "fundamento legal") y antes de citar un artículo de la LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC o sus reglamentos (RLISR, RLIVA, RCFF, RACERF), consulta el servidor MCP "leyes-mx". No respondas de memoria ni busques en internet primero.
 
-1. Herramientas: buscar, temas, obtener_articulo, obtener_regla, obtener_tarifa, obtener_transitorios, estado_reforma, listar_leyes. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | reforma.
+1. Herramientas: buscar, temas, obtener_articulo, obtener_regla, obtener_tarifa, obtener_subsidio_empleo, obtener_transitorios, estado_reforma, listar_leyes. Sin MCP, por terminal: npx leyes-mx buscar | obtener | tarifa | subsidio | reforma.
 2. Reformula con los términos de la ley, no con los del uso corriente ("accesorios de las contribuciones", no "actualizaciones"). buscar es léxico y solo devuelve fragmentos.
 3. Lee siempre el artículo completo con obtener_articulo antes de afirmar algo: un fragmento puede omitir la excepción o la fracción que cambia la respuesta.
 4. Cita ley, artículo, fracción, año de vigencia y fecha de última reforma, tal como los devuelve la herramienta.
-5. Tarifas de ISR: con obtener_tarifa (Anexo 8), nunca de memoria ni de la tabla de los arts. 96 y 152 de la LISR.
+5. Tarifas de ISR: con obtener_tarifa (Anexo 8), nunca de memoria ni de la tabla de los arts. 96 y 152 de la LISR. Subsidio para el empleo: con obtener_subsidio_empleo (decreto del DOF y UMA), nunca de memoria.
 6. Nunca presentes un proyecto de reforma (por ejemplo el de 2027) como ley vigente. Respeta las líneas ADVERTENCIA.
 7. Si no está en la base, dilo ("no verificado") y PREGUNTA al usuario si desea que lo busques en internet. Nunca busques sin su permiso; si lo autoriza, usa solo fuentes oficiales (DOF, SAT, Cámara de Diputados) y aclara que ese dato no proviene de la base verificada.
 8. Si tienes la skill "leyes-mx" (/leyes-mx), úsala: trae este flujo completo.
