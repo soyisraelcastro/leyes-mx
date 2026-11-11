@@ -5,6 +5,7 @@ export const RUTAS = [
   { href: "/docs/actualizar", nombre: "Actualizar" },
   { href: "/docs/leyes", nombre: "Qué leyes y años incluye" },
   { href: "/docs/tarifas", nombre: "Tarifas de ISR (arts. 96 y 152)" },
+  { href: "/docs/subsidio-empleo", nombre: "Subsidio para el empleo 2026" },
   { href: "/docs/reforma-2027", nombre: "Reforma 2027" },
   { href: "/docs/aviso", nombre: "Aviso legal" },
   { href: "/docs/contribuir", nombre: "Código, datos y contribuir" },

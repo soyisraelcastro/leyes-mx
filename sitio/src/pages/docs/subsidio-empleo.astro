@@ -1,0 +1,42 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import Cmd from "../../components/Cmd.astro";
+import { subsidioEmpleo } from "../../lib/datos.mjs";
+const s = subsidioEmpleo();
+const peso = (v) => "$" + Number(v).toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fecha = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" });
+---
+<Docs titulo="Subsidio para el empleo 2026" descripcion="Cómo trae leyes-mx el subsidio para el empleo 2026: el texto de los decretos del DOF, el tope de ingresos, el porcentaje de la UMA y los valores de la UMA.">
+  <h1>Subsidio para el empleo 2026</h1>
+  <p class="bajada">Desde 2024 el subsidio para el empleo ya no es una tabla: es un porcentaje de la UMA mensual, con un tope de ingresos. Por eso no vive con las tarifas del Anexo 8, sino en su propia carpeta, con el texto íntegro de cada decreto del DOF.</p>
+  {s && <>
+  <h2>Cifras para {s.anio}</h2>
+  <ul>
+    <li>Tope de ingresos mensuales: <strong>{peso(s.parametros.limite_ingresos_mensuales)}</strong>.</li>
+    <li>Subsidio mensual máximo, de febrero a diciembre: <strong>{s.parametros.porcentaje_uma_febrero_a_diciembre}%</strong> de la UMA mensual.</li>
+    <li>Enero de {s.anio}: <strong>{s.parametros.porcentaje_uma_enero}%</strong> de la UMA mensual (transitorio segundo del decreto de 2025).</li>
+    <li>Periodos menores a un mes: (UMA mensual × porcentaje) ÷ {s.parametros.divisor_periodos_menores_a_un_mes} × los días del periodo, sin pasar del máximo mensual.</li>
+  </ul>
+  <h2>UMA</h2>
+  <p>La UMA no la fija el decreto: la publica el INEGI cada año. Los valores salen de la nota del DOF.</p>
+  <ul>
+    {Object.entries(s.uma).sort().map(([anio, u]) => <li><strong>UMA {anio}</strong> (desde el {fecha(u.vigente_desde)}): diaria {peso(u.diario)}, mensual {peso(u.mensual)}, anual {peso(u.anual)}. <a href={u.fuente_url}>Nota del DOF</a>.</li>)}
+  </ul>
+  <p class="peque">La UMA de {Object.keys(s.uma).sort()[0]} es la que aplica a enero de {s.anio}; la de {Object.keys(s.uma).sort().pop()} rige desde febrero.</p>
+  <h2>Decretos incluidos</h2>
+  <ul>
+    {s.documentos.map((d) => <li>DOF {fecha(d.dof)}: {d.estatus}. <a href={d.url}>Texto en el DOF</a>.</li>)}
+  </ul>
+  <p>Además hay un texto consolidado, <code>vigente-2026</code>, que arma el programa con los párrafos que sustituye el decreto de 2025. Es un apoyo para leer, <strong>no es texto oficial</strong>; prevalece el DOF.</p>
+  <h2>Importes calculados</h2>
+  <p>Con esas cifras, el subsidio mensual máximo sale en <strong>{peso(s.derivado.enero_2026.subsidio_mensual_maximo)}</strong> en enero y <strong>{peso(s.derivado.febrero_a_diciembre_2026.subsidio_mensual_maximo)}</strong> de febrero a diciembre. Son un cálculo aritmético de este proyecto, redondeado a centavos, <strong>no texto del DOF</strong>. El considerando del decreto de 2025 cita $536.22 para el 15.02%, que no coincide con el 15.02% de la UMA publicada.</p>
+  {s.noVerificado.length > 0 && <>
+  <h2>No verificado</h2>
+  <ul>{s.noVerificado.map((n) => <li>{n}</li>)}</ul>
+  </>}
+  </>}
+  <h2>Consultarlo</h2>
+  <p>Tu asistente usa la herramienta <code>obtener_subsidio_empleo</code> por sí solo cuando preguntas por el subsidio. También puedes verlo desde la terminal:</p>
+  <Cmd cmd="npx leyes-mx subsidio" etiqueta="el comando para ver el subsidio para el empleo" />
+  <p class="peque">La base no incluye modificaciones al decreto publicadas después del 31 de diciembre de 2025, si las hubo. Revisa el DOF antes de afirmar que no las hay.</p>
+</Docs>
