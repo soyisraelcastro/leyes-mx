@@ -4,7 +4,7 @@ Donatarias autorizadas, donativos deducibles y personas morales con fines no luc
 
 Palabras: donataria autorizada, donatarias, donativo, organizaciones civiles, personas morales con fines no lucrativos, remanente distribuible.
 
-98 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+100 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -24,6 +24,7 @@ Palabras: donataria autorizada, donatarias, donativo, organizaciones civiles, pe
 | RMF | regla 3.10.1.8 | 23 | encabezado, texto | [regla-3.10.1.8.md](../../rmf/2026/rmf/reglas/regla-3.10.1.8.md) |
 | RMF | regla 3.10.1.18 | 21 | encabezado, texto | [regla-3.10.1.18.md](../../rmf/2026/rmf/reglas/regla-3.10.1.18.md) |
 | RMF | regla 3.10.1.19 | 21 | encabezado, texto | [regla-3.10.1.19.md](../../rmf/2026/rmf/reglas/regla-3.10.1.19.md) |
+| LIF | 25 | 20 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 82-quater | 20 | encabezado, texto | [art-0082-quater.md](../../leyes/2026/LISR/art-0082-quater.md) |
 | RMF | regla 3.10.1.14 | 20 | encabezado, texto | [regla-3.10.1.14.md](../../rmf/2026/rmf/reglas/regla-3.10.1.14.md) |
 | RMF | regla 3.10.1.21 | 20 | encabezado, texto | [regla-3.10.1.21.md](../../rmf/2026/rmf/reglas/regla-3.10.1.21.md) |
@@ -52,6 +53,7 @@ Palabras: donataria autorizada, donatarias, donativo, organizaciones civiles, pe
 | RMF | regla 3.10.2.4 | 10 | encabezado | [regla-3.10.2.4.md](../../rmf/2026/rmf/reglas/regla-3.10.2.4.md) |
 | RMF | regla 3.10.2.5 | 10 | encabezado | [regla-3.10.2.5.md](../../rmf/2026/rmf/reglas/regla-3.10.2.5.md) |
 | RMF | regla 3.10.2.6 | 10 | encabezado | [regla-3.10.2.6.md](../../rmf/2026/rmf/reglas/regla-3.10.2.6.md) |
+| LIF | 28 | 9 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
 | LISR | 82-bis | 9 | encabezado, texto | [art-0082-bis.md](../../leyes/2026/LISR/art-0082-bis.md) |
 | LISR | 86 | 9 | encabezado, texto | [art-0086.md](../../leyes/2026/LISR/art-0086.md) |
 | RLISR | 130 | 9 | encabezado, texto | [art-0130.md](../../leyes/2026/RLISR/art-0130.md) |

@@ -4,7 +4,7 @@ Presentación de declaraciones anuales, provisionales, complementarias e informa
 
 Palabras: declaración anual, declaración provisional, pago provisional, declaración complementaria, declaración informativa, declaración de pago, pago definitivo, declaración mensual, declaración del ejercicio.
 
-246 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+252 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -104,6 +104,7 @@ Palabras: declaración anual, declaración provisional, pago provisional, declar
 | CFF | 32 | 3 | texto | [art-0032.md](../../leyes/2026/CFF/art-0032.md) |
 | CFF | 32-A | 3 | texto | [art-0032-A.md](../../leyes/2026/CFF/art-0032-A.md) |
 | CFF | 82-E | 3 | texto | [art-0082-E.md](../../leyes/2026/CFF/art-0082-E.md) |
+| LIF | 25 | 3 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 107 | 3 | texto | [art-0107.md](../../leyes/2026/LISR/art-0107.md) |
 | LISR | 132 | 3 | texto | [art-0132.md](../../leyes/2026/LISR/art-0132.md) |
 | LISR | 138 | 3 | texto | [art-0138.md](../../leyes/2026/LISR/art-0138.md) |
@@ -130,6 +131,9 @@ Palabras: declaración anual, declaración provisional, pago provisional, declar
 | CFF | 201 | 2 | texto | [art-0201.md](../../leyes/2026/CFF/art-0201.md) |
 | CFF | 22 | 2 | texto | [art-0022.md](../../leyes/2026/CFF/art-0022.md) |
 | CFF | 32-D | 2 | texto | [art-0032-D.md](../../leyes/2026/CFF/art-0032-D.md) |
+| LIEPS | 19 | 2 | texto | [art-0019.md](../../leyes/2026/LIEPS/art-0019.md) |
+| LIEPS | 20-A | 2 | texto | [art-0020-A.md](../../leyes/2026/LIEPS/art-0020-A.md) |
+| LIEPS | 6 | 2 | texto | [art-0006.md](../../leyes/2026/LIEPS/art-0006.md) |
 | LISR | 113-A | 2 | texto | [art-0113-A.md](../../leyes/2026/LISR/art-0113-A.md) |
 | LISR | 113-E | 2 | texto | [art-0113-E.md](../../leyes/2026/LISR/art-0113-E.md) |
 | LISR | 113-I | 2 | texto | [art-0113-I.md](../../leyes/2026/LISR/art-0113-I.md) |
@@ -191,6 +195,8 @@ Palabras: declaración anual, declaración provisional, pago provisional, declar
 | RMF | regla 4.1.4 | 2 | texto | [regla-4.1.4.md](../../rmf/2026/rmf/reglas/regla-4.1.4.md) |
 | CFF | 202 | 1 | texto | [art-0202.md](../../leyes/2026/CFF/art-0202.md) |
 | CFF | 41-A | 1 | texto | [art-0041-A.md](../../leyes/2026/CFF/art-0041-A.md) |
+| LIEPS | 5-A-bis | 1 | texto | [art-0005-A-bis.md](../../leyes/2026/LIEPS/art-0005-A-bis.md) |
+| LIEPS | 5-B | 1 | texto | [art-0005-B.md](../../leyes/2026/LIEPS/art-0005-B.md) |
 | LISR | 117 | 1 | texto | [art-0117.md](../../leyes/2026/LISR/art-0117.md) |
 | LISR | 136 | 1 | texto | [art-0136.md](../../leyes/2026/LISR/art-0136.md) |
 | LISR | 211 | 1 | texto | [art-0211.md](../../leyes/2026/LISR/art-0211.md) |

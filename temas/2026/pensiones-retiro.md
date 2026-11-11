@@ -4,7 +4,7 @@ Pensiones, cesantía en edad avanzada y vejez, cuenta individual, AFORE y semana
 
 Palabras: pensión, cesantía en edad avanzada, vejez, pensión garantizada, cuenta individual, AFORE, ahorro para el retiro, semanas de cotización, jubilación.
 
-200 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+202 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -88,6 +88,7 @@ Palabras: pensión, cesantía en edad avanzada, vejez, pensión garantizada, cue
 | RLISR | 274 | 8 | texto | [art-0274.md](../../leyes/2026/RLISR/art-0274.md) |
 | RLISR | 35 | 8 | texto | [art-0035.md](../../leyes/2026/RLISR/art-0035.md) |
 | RLISR | 66 | 8 | texto | [art-0066.md](../../leyes/2026/RLISR/art-0066.md) |
+| LIF | 1 | 7 | texto | [art-0001.md](../../leyes/2026/LIF/art-0001.md) |
 | LSS | 143 | 7 | encabezado, texto | [art-0143.md](../../leyes/2026/LSS/art-0143.md) |
 | LSS | 302 | 7 | texto | [art-0302.md](../../leyes/2026/LSS/art-0302.md) |
 | RMF | regla 3.17.9 | 7 | encabezado, texto | [regla-3.17.9.md](../../rmf/2026/rmf/reglas/regla-3.17.9.md) |
@@ -135,6 +136,7 @@ Palabras: pensión, cesantía en edad avanzada, vejez, pensión garantizada, cue
 | CFF | 155 | 3 | texto | [art-0155.md](../../leyes/2026/CFF/art-0155.md) |
 | CFF | 156-bis | 3 | texto | [art-0156-bis.md](../../leyes/2026/CFF/art-0156-bis.md) |
 | LFT | 899-C | 3 | texto | [art-0899-C.md](../../leyes/2026/LFT/art-0899-C.md) |
+| LIF | 28 | 3 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
 | LISR | 50 | 3 | texto | [art-0050.md](../../leyes/2026/LISR/art-0050.md) |
 | LIVA | 15 | 3 | texto | [art-0015.md](../../leyes/2026/LIVA/art-0015.md) |
 | LSS | 115 | 3 | texto | [art-0115.md](../../leyes/2026/LSS/art-0115.md) |

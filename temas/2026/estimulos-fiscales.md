@@ -4,7 +4,7 @@ Estímulos fiscales, decretos de estímulos y la región fronteriza.
 
 Palabras: estímulo fiscal, estímulos fiscales, región fronteriza, Plan México.
 
-157 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+159 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -38,6 +38,7 @@ Palabras: estímulo fiscal, estímulos fiscales, región fronteriza, Plan Méxic
 | RMF | regla 3.21.5.2 | 17 | encabezado, texto | [regla-3.21.5.2.md](../../rmf/2026/rmf/reglas/regla-3.21.5.2.md) |
 | LISR | 190 | 16 | encabezado, texto | [art-0190.md](../../leyes/2026/LISR/art-0190.md) |
 | RMF | regla 11.6.1 | 16 | encabezado, texto | [regla-11.6.1.md](../../rmf/2026/rmf/reglas/regla-11.6.1.md) |
+| LIF | 20 | 15 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | LISR | 189 | 14 | encabezado, texto | [art-0189.md](../../leyes/2026/LISR/art-0189.md) |
 | LISR | 202 | 14 | encabezado, texto | [art-0202.md](../../leyes/2026/LISR/art-0202.md) |
 | LISR | 203 | 14 | encabezado, texto | [art-0203.md](../../leyes/2026/LISR/art-0203.md) |
@@ -145,6 +146,7 @@ Palabras: estímulo fiscal, estímulos fiscales, región fronteriza, Plan Méxic
 | RMF | regla 12.3.13 | 4 | texto | [regla-12.3.13.md](../../rmf/2026/rmf/reglas/regla-12.3.13.md) |
 | RMF | regla 12.3.14 | 4 | texto | [regla-12.3.14.md](../../rmf/2026/rmf/reglas/regla-12.3.14.md) |
 | CFF | 25-A | 3 | texto | [art-0025-A.md](../../leyes/2026/CFF/art-0025-A.md) |
+| LIF | 27 | 3 | texto | [art-0027.md](../../leyes/2026/LIF/art-0027.md) |
 | RMF | regla 11.11.12 | 3 | texto | [regla-11.11.12.md](../../rmf/2026/rmf/reglas/regla-11.11.12.md) |
 | RMF | regla 11.13.12 | 3 | texto | [regla-11.13.12.md](../../rmf/2026/rmf/reglas/regla-11.13.12.md) |
 | CFF | 105 | 2 | texto | [art-0105.md](../../leyes/2026/CFF/art-0105.md) |

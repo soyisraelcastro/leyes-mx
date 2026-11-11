@@ -4,14 +4,17 @@ Traslado y acreditamiento del impuesto al valor agregado, tasa del 0% y exportac
 
 Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasladado, acreditable.
 
-143 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+154 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
+| LIF | 25 | 20 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 5 | 20 | texto | [art-0005.md](../../leyes/2026/LISR/art-0005.md) |
 | LIVA | 5 | 20 | texto | [art-0005.md](../../leyes/2026/LIVA/art-0005.md) |
 | LIVA | 5-B | 19 | texto | [art-0005-B.md](../../leyes/2026/LIVA/art-0005-B.md) |
 | LIVA | 5-A | 17 | texto | [art-0005-A.md](../../leyes/2026/LIVA/art-0005-A.md) |
+| LIEPS | 4 | 15 | texto | [art-0004.md](../../leyes/2026/LIEPS/art-0004.md) |
+| LIF | 20 | 15 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | LIVA | 1-C | 14 | texto | [art-0001-C.md](../../leyes/2026/LIVA/art-0001-C.md) |
 | RMF | regla 4.1.4 | 13 | encabezado, texto | [regla-4.1.4.md](../../rmf/2026/rmf/reglas/regla-4.1.4.md) |
 | RMF | regla 2.1.12 | 12 | texto | [regla-2.1.12.md](../../rmf/2026/rmf/reglas/regla-2.1.12.md) |
@@ -31,6 +34,7 @@ Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasl
 | RMF | regla 4.5.1 | 7 | encabezado | [regla-4.5.1.md](../../rmf/2026/rmf/reglas/regla-4.5.1.md) |
 | RMF | regla 5.1.11 | 7 | encabezado, texto | [regla-5.1.11.md](../../rmf/2026/rmf/reglas/regla-5.1.11.md) |
 | RMF | regla 9.1.4 | 7 | encabezado, texto | [regla-9.1.4.md](../../rmf/2026/rmf/reglas/regla-9.1.4.md) |
+| LIEPS | 2 | 6 | texto | [art-0002.md](../../leyes/2026/LIEPS/art-0002.md) |
 | LIVA | 32 | 6 | texto | [art-0032.md](../../leyes/2026/LIVA/art-0032.md) |
 | RMF | regla 3.1.18 | 6 | encabezado | [regla-3.1.18.md](../../rmf/2026/rmf/reglas/regla-3.1.18.md) |
 | RMF | regla 4.1.11 | 6 | encabezado, texto | [regla-4.1.11.md](../../rmf/2026/rmf/reglas/regla-4.1.11.md) |
@@ -80,6 +84,7 @@ Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasl
 | CFF | 15-D | 4 | texto | [art-0015-D.md](../../leyes/2026/CFF/art-0015-D.md) |
 | CFF | 67 | 4 | texto | [art-0067.md](../../leyes/2026/CFF/art-0067.md) |
 | CFF | 81 | 4 | texto | [art-0081.md](../../leyes/2026/CFF/art-0081.md) |
+| LIEPS | 20-A | 4 | texto | [art-0020-A.md](../../leyes/2026/LIEPS/art-0020-A.md) |
 | LISR | 87 | 4 | texto | [art-0087.md](../../leyes/2026/LISR/art-0087.md) |
 | LIVA | 18-D | 4 | texto | [art-0018-D.md](../../leyes/2026/LIVA/art-0018-D.md) |
 | LIVA | 3 | 4 | texto | [art-0003.md](../../leyes/2026/LIVA/art-0003.md) |
@@ -88,6 +93,7 @@ Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasl
 | RMF | regla 2.3.11 | 4 | texto | [regla-2.3.11.md](../../rmf/2026/rmf/reglas/regla-2.3.11.md) |
 | RMF | regla 3.9.1.2 | 4 | texto | [regla-3.9.1.2.md](../../rmf/2026/rmf/reglas/regla-3.9.1.2.md) |
 | CFF | 29-A | 3 | texto | [art-0029-A.md](../../leyes/2026/CFF/art-0029-A.md) |
+| LIEPS | 6 | 3 | texto | [art-0006.md](../../leyes/2026/LIEPS/art-0006.md) |
 | LISR | 113-C | 3 | texto | [art-0113-C.md](../../leyes/2026/LISR/art-0113-C.md) |
 | LISR | 148 | 3 | texto | [art-0148.md](../../leyes/2026/LISR/art-0148.md) |
 | LISR | 177 | 3 | texto | [art-0177.md](../../leyes/2026/LISR/art-0177.md) |
@@ -116,6 +122,11 @@ Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasl
 | RMF | regla 2.7.6.2 | 2 | texto | [regla-2.7.6.2.md](../../rmf/2026/rmf/reglas/regla-2.7.6.2.md) |
 | CFF | 32-G | 1 | texto | [art-0032-G.md](../../leyes/2026/CFF/art-0032-G.md) |
 | CFF | 90-A | 1 | texto | [art-0090-A.md](../../leyes/2026/CFF/art-0090-A.md) |
+| LIEPS | 18-B | 1 | texto | [art-0018-B.md](../../leyes/2026/LIEPS/art-0018-B.md) |
+| LIEPS | 22 | 1 | texto | [art-0022.md](../../leyes/2026/LIEPS/art-0022.md) |
+| LIEPS | 5-A-bis | 1 | texto | [art-0005-A-bis.md](../../leyes/2026/LIEPS/art-0005-A-bis.md) |
+| LIEPS | 5-B | 1 | texto | [art-0005-B.md](../../leyes/2026/LIEPS/art-0005-B.md) |
+| LIEPS | 5-C | 1 | texto | [art-0005-C.md](../../leyes/2026/LIEPS/art-0005-C.md) |
 | LISR | 113-J | 1 | texto | [art-0113-J.md](../../leyes/2026/LISR/art-0113-J.md) |
 | LIVA | 18-H | 1 | texto | [art-0018-H.md](../../leyes/2026/LIVA/art-0018-H.md) |
 | LIVA | 31 | 1 | texto | [art-0031.md](../../leyes/2026/LIVA/art-0031.md) |

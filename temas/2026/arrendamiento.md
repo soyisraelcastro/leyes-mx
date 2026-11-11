@@ -4,7 +4,7 @@ Ingresos por arrendamiento y por el uso o goce temporal de bienes.
 
 Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 
-134 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+137 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -81,6 +81,7 @@ Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 | RMF | regla 3.21.2.4 | 4 | texto | [regla-3.21.2.4.md](../../rmf/2026/rmf/reglas/regla-3.21.2.4.md) |
 | CFF | 15 | 3 | texto | [art-0015.md](../../leyes/2026/CFF/art-0015.md) |
 | CFF | 32-D | 3 | texto | [art-0032-D.md](../../leyes/2026/CFF/art-0032-D.md) |
+| LIF | 25 | 3 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 158 | 3 | texto | [art-0158.md](../../leyes/2026/LISR/art-0158.md) |
 | LISR | 188 | 3 | texto | [art-0188.md](../../leyes/2026/LISR/art-0188.md) |
 | LISR | 38 | 3 | texto | [art-0038.md](../../leyes/2026/LISR/art-0038.md) |
@@ -92,6 +93,8 @@ Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 | LFT | 281 | 2 | texto | [art-0281.md](../../leyes/2026/LFT/art-0281.md) |
 | LFT | 707-bis | 2 | texto | [art-0707-bis.md](../../leyes/2026/LFT/art-0707-bis.md) |
 | LFT | 963 | 2 | texto | [art-0963.md](../../leyes/2026/LFT/art-0963.md) |
+| LIF | 20 | 2 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
+| LIF | 28 | 2 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
 | LISR | 113-G | 2 | texto | [art-0113-G.md](../../leyes/2026/LISR/art-0113-G.md) |
 | LISR | 147 | 2 | texto | [art-0147.md](../../leyes/2026/LISR/art-0147.md) |
 | LISR | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LISR/art-0002.md) |

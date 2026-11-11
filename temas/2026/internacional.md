@@ -4,7 +4,7 @@ Establecimiento permanente, tratados, regímenes fiscales preferentes y precios 
 
 Palabras: residentes en el extranjero, establecimiento permanente, tratados para evitar la doble tributación, régimen fiscal preferente, regímenes fiscales preferentes, partes relacionadas, precios de transferencia, impuestos pagados en el extranjero.
 
-317 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+323 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -130,6 +130,7 @@ Palabras: residentes en el extranjero, establecimiento permanente, tratados para
 | RMF | regla 4.6.7 | 7 | encabezado, texto | [regla-4.6.7.md](../../rmf/2026/rmf/reglas/regla-4.6.7.md) |
 | CFF | 198 | 6 | texto | [art-0198.md](../../leyes/2026/CFF/art-0198.md) |
 | CFF | 42-B | 6 | texto | [art-0042-B.md](../../leyes/2026/CFF/art-0042-B.md) |
+| LIF | 25 | 6 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 155 | 6 | encabezado | [art-0155.md](../../leyes/2026/LISR/art-0155.md) |
 | LISR | 158 | 6 | encabezado | [art-0158.md](../../leyes/2026/LISR/art-0158.md) |
 | LISR | 169 | 6 | encabezado | [art-0169.md](../../leyes/2026/LISR/art-0169.md) |
@@ -239,6 +240,8 @@ Palabras: residentes en el extranjero, establecimiento permanente, tratados para
 | RMF | regla 4.4.3 | 4 | texto | [regla-4.4.3.md](../../rmf/2026/rmf/reglas/regla-4.4.3.md) |
 | RMF | regla 9.4.3 | 4 | texto | [regla-9.4.3.md](../../rmf/2026/rmf/reglas/regla-9.4.3.md) |
 | CFF | 69-B-bis | 3 | texto | [art-0069-B-bis.md](../../leyes/2026/CFF/art-0069-B-bis.md) |
+| LIEPS | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LIEPS/art-0002.md) |
+| LIEPS | 20-A | 3 | texto | [art-0020-A.md](../../leyes/2026/LIEPS/art-0020-A.md) |
 | LISR | 113-E | 3 | texto | [art-0113-E.md](../../leyes/2026/LISR/art-0113-E.md) |
 | LISR | 4 | 3 | texto | [art-0004.md](../../leyes/2026/LISR/art-0004.md) |
 | LIVA | 3 | 3 | texto | [art-0003.md](../../leyes/2026/LIVA/art-0003.md) |
@@ -248,6 +251,7 @@ Palabras: residentes en el extranjero, establecimiento permanente, tratados para
 | RMF | regla 2.19.17 | 3 | texto | [regla-2.19.17.md](../../rmf/2026/rmf/reglas/regla-2.19.17.md) |
 | RMF | regla 3.21.2.2 | 3 | texto | [regla-3.21.2.2.md](../../rmf/2026/rmf/reglas/regla-3.21.2.2.md) |
 | CFF | 29-A | 2 | texto | [art-0029-A.md](../../leyes/2026/CFF/art-0029-A.md) |
+| LIF | 20 | 2 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | LISR | 103 | 2 | texto | [art-0103.md](../../leyes/2026/LISR/art-0103.md) |
 | LISR | 113-A | 2 | texto | [art-0113-A.md](../../leyes/2026/LISR/art-0113-A.md) |
 | LISR | 113-B | 2 | texto | [art-0113-B.md](../../leyes/2026/LISR/art-0113-B.md) |
@@ -294,6 +298,8 @@ Palabras: residentes en el extranjero, establecimiento permanente, tratados para
 | CFF | 32-G | 1 | texto | [art-0032-G.md](../../leyes/2026/CFF/art-0032-G.md) |
 | CFF | 34-A | 1 | texto | [art-0034-A.md](../../leyes/2026/CFF/art-0034-A.md) |
 | CFF | 74 | 1 | texto | [art-0074.md](../../leyes/2026/CFF/art-0074.md) |
+| LIEPS | 18-B | 1 | texto | [art-0018-B.md](../../leyes/2026/LIEPS/art-0018-B.md) |
+| LIEPS | 5-A-bis | 1 | texto | [art-0005-A-bis.md](../../leyes/2026/LIEPS/art-0005-A-bis.md) |
 | LISR | 100 | 1 | texto | [art-0100.md](../../leyes/2026/LISR/art-0100.md) |
 | LISR | 141 | 1 | texto | [art-0141.md](../../leyes/2026/LISR/art-0141.md) |
 | LISR | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LISR/art-0015.md) |

@@ -4,7 +4,7 @@ Expedición, requisitos, cancelación y complementos de los CFDI.
 
 Palabras: comprobante fiscal digital por internet, CFDI, factura electrónica, proveedor de certificación, complemento carta porte, carta porte, complemento de pago, comprobante fiscal, sello digital, cancelación de los comprobantes.
 
-291 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+294 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -151,6 +151,7 @@ Palabras: comprobante fiscal digital por internet, CFDI, factura electrónica, p
 | RMF | regla 3.18.10 | 7 | encabezado, texto | [regla-3.18.10.md](../../rmf/2026/rmf/reglas/regla-3.18.10.md) |
 | RMF | regla 3.7.1 | 7 | encabezado, texto | [regla-3.7.1.md](../../rmf/2026/rmf/reglas/regla-3.7.1.md) |
 | RMF | regla 9.1.21 | 7 | encabezado, texto | [regla-9.1.21.md](../../rmf/2026/rmf/reglas/regla-9.1.21.md) |
+| LIF | 20 | 6 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | LISR | 147 | 6 | texto | [art-0147.md](../../leyes/2026/LISR/art-0147.md) |
 | LISR | 28 | 6 | texto | [art-0028.md](../../leyes/2026/LISR/art-0028.md) |
 | RCFF | 37 | 6 | texto | [art-0037.md](../../leyes/2026/RCFF/art-0037.md) |
@@ -183,6 +184,7 @@ Palabras: comprobante fiscal digital por internet, CFDI, factura electrónica, p
 | LISR | 116 | 4 | texto | [art-0116.md](../../leyes/2026/LISR/art-0116.md) |
 | CFF | 55 | 3 | texto | [art-0055.md](../../leyes/2026/CFF/art-0055.md) |
 | CFF | 84 | 3 | texto | [art-0084.md](../../leyes/2026/CFF/art-0084.md) |
+| LIEPS | 19 | 3 | texto | [art-0019.md](../../leyes/2026/LIEPS/art-0019.md) |
 | LISR | 126 | 3 | texto | [art-0126.md](../../leyes/2026/LISR/art-0126.md) |
 | LISR | 145 | 3 | texto | [art-0145.md](../../leyes/2026/LISR/art-0145.md) |
 | LISR | 151 | 3 | texto | [art-0151.md](../../leyes/2026/LISR/art-0151.md) |
@@ -202,6 +204,7 @@ Palabras: comprobante fiscal digital por internet, CFDI, factura electrónica, p
 | CFF | 82-H | 2 | texto | [art-0082-H.md](../../leyes/2026/CFF/art-0082-H.md) |
 | LFT | 101 | 2 | texto | [art-0101.md](../../leyes/2026/LFT/art-0101.md) |
 | LFT | 836-B | 2 | texto | [art-0836-B.md](../../leyes/2026/LFT/art-0836-B.md) |
+| LIEPS | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LIEPS/art-0002.md) |
 | LISR | 105 | 2 | texto | [art-0105.md](../../leyes/2026/LISR/art-0105.md) |
 | LISR | 113-G | 2 | texto | [art-0113-G.md](../../leyes/2026/LISR/art-0113-G.md) |
 | LISR | 139 | 2 | texto | [art-0139.md](../../leyes/2026/LISR/art-0139.md) |

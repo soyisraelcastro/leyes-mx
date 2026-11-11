@@ -4,7 +4,7 @@ Intereses reales, instituciones del sistema financiero y ajuste por inflación.
 
 Palabras: interés real, intereses reales, sistema financiero, ajuste anual por inflación, instituciones del sistema financiero, instituciones de crédito, instituciones de seguros, almacenes generales de depósito, casas de bolsa.
 
-193 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+194 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -88,6 +88,7 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | RLISR | 225 | 5 | texto | [art-0225.md](../../leyes/2026/RLISR/art-0225.md) |
 | RLISR | 232 | 5 | texto | [art-0232.md](../../leyes/2026/RLISR/art-0232.md) |
 | RMF | regla 2.12.7 | 5 | texto | [regla-2.12.7.md](../../rmf/2026/rmf/reglas/regla-2.12.7.md) |
+| LIF | 25 | 4 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LISR | 115 | 4 | texto | [art-0115.md](../../leyes/2026/LISR/art-0115.md) |
 | LISR | 146 | 4 | texto | [art-0146.md](../../leyes/2026/LISR/art-0146.md) |
 | LISR | 27 | 4 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
