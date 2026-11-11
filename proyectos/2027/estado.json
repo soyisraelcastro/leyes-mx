@@ -1,10 +1,10 @@
 {
   "anio": 2027,
-  "actualizado": "2026-11-02",
-  "resumen": "El Paquete Económico 2027 NO está publicado en el DOF al 2026-11-02. La reforma a la LISR fue aprobada por la Cámara de Diputados, el Senado la aprobó con una modificación y la devolvió a la Cámara (oficio del 27-oct-2026), que debe votar el cambio. La Ley de Ingresos 2027 y la Ley Federal de Derechos pasaron el Senado (por prensa) y esperan publicación. Nada de esto es ley vigente hasta su publicación en el DOF.",
+  "actualizado": "2026-11-11",
+  "resumen": "El Paquete Económico 2027 NO está publicado en el DOF al 2026-11-11 (no se encontró publicación; el DOF no se pudo consultar directamente). La reforma a la LISR ya cumplió su trámite en el Congreso: la Cámara de Diputados aceptó el 3-nov-2026 el cambio del Senado al artículo 78-E (349 a favor y 92 en contra, según el Canal del Congreso) y la turnó al Ejecutivo para sus efectos constitucionales. La Ley de Ingresos 2027 y la Ley Federal de Derechos pasaron el Senado (por prensa) y fueron enviadas al Ejecutivo. Falta la publicación en el DOF. Nada de esto es ley vigente hasta su publicación.",
   "es_ley_vigente": false,
-  "estado_proyecto_lisr": "aprobado_camara",
-  "entrada_en_vigor_prevista": "2027-01-01 (transitorio de la iniciativa; sujeto a publicación en el DOF)",
+  "estado_proyecto_lisr": "aprobado_senado",
+  "entrada_en_vigor_prevista": "2027-01-01 (transitorio de la iniciativa; sujeto a publicación en el DOF, que debe ocurrir antes)",
   "hitos": [
     {
       "hito": "iniciativa",
@@ -49,17 +49,17 @@
     {
       "hito": "camara_vota_cambios_senado",
       "fecha": "2026-11-03",
-      "confirmado": false,
-      "nivel": "oficial_convocatoria",
-      "detalle": "Pendiente. La Gaceta 7158 (30-oct-2026) convoca a la Comisión de Hacienda a su segunda reunión extraordinaria el martes 3 de noviembre a las 9:00 h. La prensa mencionó el 4 de noviembre; prevalece la Gaceta, verificar. Después del dictamen falta el pleno de la Cámara.",
-      "fuente": "https://gaceta.diputados.gob.mx/gp_hoy.html"
+      "confirmado": true,
+      "nivel": "oficial",
+      "detalle": "La Cámara de Diputados aceptó las modificaciones del Senado al artículo 78-E de la LISR en los términos del dictamen: 349 votos a favor y 92 en contra (el boletín dice \"34 9\", error de captura evidente; la prensa da 349-92). El proyecto se turnó al Ejecutivo para sus efectos constitucionales. Fuente: boletín del Canal del Congreso (órgano de la Cámara). No se localizó el acta de votación en la Gaceta; la Gaceta del 3-nov no se pudo abrir (403) desde este equipo.",
+      "fuente": "https://www.canaldelcongreso.gob.mx/noticias/10346"
     },
     {
       "hito": "publicado_dof",
       "fecha": null,
       "confirmado": false,
       "nivel": "no_publicado",
-      "detalle": "No se encontró publicación en el DOF de ninguno de los decretos del Paquete Económico 2027 al 2026-11-02. El sitio del DOF no respondió a la consulta automática; verificar en dof.gob.mx.",
+      "detalle": "No se encontró publicación en el DOF de ninguno de los decretos del Paquete Económico 2027 al 2026-11-11 (búsquedas en prensa y despachos; la consulta directa al DOF no fue posible por un error de certificado TLS desde este equipo). Verificar en dof.gob.mx. Una nota de prensa proyecta diciembre para la publicación y para la Resolución Miscelánea 2027; es proyección, no fecha confirmada.",
       "fuente": "https://www.dof.gob.mx"
     }
   ],
