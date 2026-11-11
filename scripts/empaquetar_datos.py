@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Empaqueta los datos (leyes/, proyectos/ sin PDF, tablas/, rmf/, fuentes.json y glosario.json) para el Release de datos.
+"""Empaqueta los datos (leyes/, proyectos/ sin PDF, tablas/, rmf/, decretos/, fuentes.json y glosario.json) para el Release de datos.
 
 Genera en --salida:
   leyes-mx-datos.tar.gz   tarball determinista (mismo contenido -> mismos bytes -> mismo sha256)
@@ -28,7 +28,7 @@ def sha256_bytes(b):
 
 def archivos_a_empaquetar(raiz):
     res = []
-    for base in ("leyes", "proyectos", "tablas", "rmf", "temas"):
+    for base in ("leyes", "proyectos", "tablas", "rmf", "temas", "decretos"):
         if not (raiz / base).is_dir():
             continue
         for p in sorted((raiz / base).rglob("*")):

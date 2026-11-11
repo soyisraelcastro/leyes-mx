@@ -4,7 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import * as z from "zod";
 import { Almacen, SinDatos } from "./almacen.js";
 import { Indice } from "./indice.js";
-import { noEncontrado, respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaRegla, respuestaTarifa, respuestaTarifas, respuestaTema, respuestaTemas, respuestaTransitorios } from "./respuestas.js";
+import { noEncontrado, respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaRegla, respuestaSubsidio, respuestaTarifa, respuestaTarifas, respuestaTema, respuestaTemas, respuestaTransitorios } from "./respuestas.js";
 import { VERSION } from "./version.js";
 
 const INSTRUCCIONES = [
@@ -15,7 +15,7 @@ const INSTRUCCIONES = [
   "Las tarifas de ISR (mensual, anual, por periodos) se obtienen con obtener_tarifa (Anexo 8 de la RMF), nunca de la tabla de los arts. 96 y 152 de la LISR ni de memoria: esas cifras se actualizan cada año.",
   "Respeta las líneas ADVERTENCIA. Un proyecto de reforma (por ejemplo la de 2027) NO es ley vigente hasta su publicación en el DOF: no lo presentes como vigente y, si lo mencionas, dilo y da la fecha de estado_reforma.",
   "Si la herramienta no encuentra lo pedido, dilo con claridad (\"no verificado\") y PREGUNTA al usuario si desea que lo busques en internet. Nunca busques en internet por tu cuenta sin su permiso; si lo autoriza, usa solo fuentes oficiales (DOF, SAT, Cámara de Diputados) y aclara que ese dato no proviene de la base verificada.",
-  "Las reglas de la Resolución Miscelánea Fiscal 2026 se leen con obtener_regla: es el texto original del DOF del 28-12-2025, SIN las resoluciones de modificación de 2026, y la herramienta lo advierte. La base no incluye otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
+  "Las reglas de la Resolución Miscelánea Fiscal 2026 se leen con obtener_regla: es el texto original del DOF del 28-12-2025, SIN las resoluciones de modificación de 2026, y la herramienta lo advierte. El subsidio para el empleo (decreto del DOF 01-05-2024 y su reforma del 31-12-2025, con la UMA de 2025 y 2026 que publica el INEGI) se consulta con obtener_subsidio_empleo; no lo calcules de memoria. La base no incluye otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA de otros años ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
 ].join(" ");
 
 /**
@@ -134,6 +134,22 @@ export function crearServidor(almacen = null) {
     if (!t) return texto(noEncontrado(`la tarifa ${tarifa} del Anexo 8 de la RMF`), { structuredContent: { encontrado: false } });
     if (t.ambiguo) return texto(`La clave ${tarifa} corresponde a varias tarifas; usa el id exacto:\n` + t.ambiguo.map((x) => `- ${x.id}: ${x.titulo}`).join("\n"), { structuredContent: { encontrado: false, ambiguo: t.ambiguo } });
     return texto(respuestaTarifa(t), { structuredContent: { encontrado: true, id: t.id, apartado: t.apartado, anio_vigencia: t.vigencia_anio, publicado_dof: t.publicado_dof } });
+  }));
+
+  server.registerTool("obtener_subsidio_empleo", {
+    title: "Obtener el subsidio para el empleo (decreto del DOF)",
+    description: "Subsidio para el empleo vigente en 2026: tope de ingresos mensuales, porcentaje de la UMA mensual (15.02%; 15.59% en enero de 2026), regla para periodos menores a un mes, valor de la UMA 2025 y 2026 (INEGI, DOF) y el texto de los decretos (01-05-2024, reformas del 31-12-2024 y 31-12-2025) y el texto consolidado. Úsala SIEMPRE para cualquier cálculo o cita del subsidio para el empleo: ya no es una tabla de montos variables ni está en el Anexo 8 ni en el art. 96 de la LISR. Cita el decreto y su fecha de publicación en el DOF. Los importes marcados como cálculo derivado no son texto del DOF. Sin parámetro `documento` da el resumen; con `documento` (por ejemplo \"vigente-2026\" o \"modificacion-2025-12-31\") devuelve también ese texto.",
+    inputSchema: {
+      documento: z.string().optional().describe("Id del documento: vigente-2026, decreto-2024-05-01, modificacion-2024-12-31, modificacion-2025-12-31, uma-2025 o uma-2026. Omitir para el resumen."),
+      anio: z.number().int().optional().describe("Año de vigencia (por omisión, el más reciente)"),
+    },
+    annotations: RO,
+  }, envolver(({ documento, anio }) => {
+    const a = obtenerAlmacen();
+    const f = a.obtenerSubsidioEmpleo({ anio: anio ?? null, documento: documento ?? null });
+    if (!f) return texto(noEncontrado(documento ? `el documento ${documento} del subsidio para el empleo` : "el subsidio para el empleo",
+      documento ? "Los ids válidos salen de llamar la herramienta sin `documento`." : "Estos datos no lo traen: ejecuta npx leyes-mx actualizar."), { structuredContent: { encontrado: false } });
+    return texto(respuestaSubsidio(f), { structuredContent: { encontrado: true, anio: f.anio, parametros: f.parametros, uma: f.uma, documento: f.texto_documento?.id ?? null } });
   }));
 
   server.registerTool("obtener_transitorios", {

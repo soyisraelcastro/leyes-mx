@@ -156,7 +156,9 @@ python3 scripts/buscar.py obtener-anexo 8 B-V        # tarifa mensual 2026
 python3 scripts/buscar.py obtener-anexo 8 C-II --json
 ```
 
-Detalle, verificación y el pendiente del subsidio para el empleo: [docs/anexo-8.md](docs/anexo-8.md).
+Detalle y verificación: [docs/anexo-8.md](docs/anexo-8.md).
+
+**Subsidio para el empleo 2026:** no es tarifa (desde 2024 es un porcentaje de la UMA mensual con tope de ingresos). Los decretos del DOF (01-05-2024 y reformas), el valor de la UMA 2025 y 2026 que publica el INEGI y un texto consolidado están en `decretos/2026/spe/`; herramienta `obtener_subsidio_empleo`, en terminal `npx leyes-mx subsidio`. Detalle, cifras y qué no está verificado: [docs/spe.md](docs/spe.md).
 
 ## Conectarlo a un asistente
 

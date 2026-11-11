@@ -178,6 +178,34 @@ export class Almacen {
       fecha_descarga: fm.fecha_descarga, sha256_fuente: fm.sha256_fuente, estatus: fm.estatus, texto: strip(cuerpo), ruta: t.ruta };
   }
 
+  // ---- Subsidio para el empleo (decretos del DOF y valor de la UMA): decretos/<anio>/spe/
+  aniosSubsidio() {
+    const base = path.join(this.raiz, "decretos");
+    if (!esDir(base)) return [];
+    return fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && fs.existsSync(path.join(base, n, "spe", "_meta.json"))).map(Number).sort((a, b) => a - b);
+  }
+
+  /** Ficha del subsidio para el empleo del año (por omisión el más reciente): parámetros, UMA, cálculo derivado, documentos y, con
+   *  `documento` (id como "vigente-2026" o "modificacion-2025-12-31"), el texto de ese archivo. null si no hay datos o el documento no existe. */
+  obtenerSubsidioEmpleo({ anio = null, documento = null } = {}) {
+    const anios = this.aniosSubsidio();
+    const a = anio ?? (anios.length ? Math.max(...anios) : null);
+    if (a === null || !anios.includes(Number(a))) return null;
+    const dir = path.join(this.raiz, "decretos", String(a), "spe");
+    const meta = JSON.parse(fs.readFileSync(path.join(dir, "_meta.json"), "utf8"));
+    const res = { anio: Number(a), documento: meta.documento, estatus: meta.estatus, fecha_descarga: meta.fecha_descarga, fundamento: meta.fundamento,
+      parametros: meta.parametros_2026, uma: meta.uma, calculo_derivado: meta.calculo_derivado, no_verificado: meta.no_verificado ?? [],
+      documentos: meta.documentos.map((d) => ({ id: d.id, tipo: d.tipo, publicado_dof: d.publicado_dof ?? null, fuente_url: d.fuente_url ?? null, estatus: d.estatus })),
+      aviso: meta.aviso, ruta: `decretos/${a}/spe` };
+    if (documento) {
+      const id = String(documento).trim().toLowerCase().replace(/\.md$/, "");
+      if (!/^[a-z0-9-]+$/.test(id) || !res.documentos.some((d) => d.id === id)) return null;
+      const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(path.join(dir, `${id}.md`), "utf8"));
+      res.texto_documento = { id, titulo: fm.titulo, publicado_dof: fm.publicado_dof ?? null, fuente_url: fm.fuente_url ?? null, estatus: fm.estatus, aviso: fm.aviso ?? null, texto: strip(cuerpo) };
+    }
+    return res;
+  }
+
   // ---- Reglas de la RMF: rmf/<anio>/<carpeta>/reglas/regla-<id>.md (una resolución por carpeta, con _meta.json)
   /** Carpetas de resoluciones (una regla por archivo) de un año: [{sigla, carpeta, dir, meta}]. */
   resoluciones(anio) {

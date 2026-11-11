@@ -2,15 +2,15 @@
 
 > **Nada de esta carpeta es ley vigente.** Todo lo que está aquí tiene estatus "proyecto" y solo será ley si se publica en el DOF, a partir de la fecha que diga el decreto publicado. Lo vigente está en `leyes/`.
 
-Estado al **2026-11-02**. Versión legible por máquina: [`estado.json`](estado.json) (el comando `leyes-mx estado` la imprime).
+Estado al **2026-11-11**. Versión legible por máquina: [`estado.json`](estado.json) (el comando `leyes-mx estado` la imprime).
 
 ## Resumen
 
-- El Paquete Económico 2027 **no está publicado en el DOF** (no se encontró publicación; el sitio del DOF no respondió a la consulta automática, verificar en dof.gob.mx).
-- De las leyes de este repo, la iniciativa del Ejecutivo solo reforma la **LISR**. No hay iniciativa del Ejecutivo para CFF, LIVA ni LIEPS en la Gaceta 7121 (anexos A a N). Otras iniciativas de legisladores sobre CFF que aparecen en la Gaceta no son parte del paquete.
-- La reforma a la LISR fue aprobada por la Cámara de Diputados, el Senado la aprobó **con una modificación** y la devolvió a la Cámara el 27 de octubre de 2026. La Cámara todavía debe votar ese cambio.
-- La Ley de Ingresos 2027 y la Ley Federal de Derechos pasaron el Senado y esperan publicación (según prensa, sin verificar en fuente oficial del Senado).
-- Entrada en vigor prevista de la LISR: 1 de enero de 2027 (transitorio de la iniciativa), si se publica antes.
+- El Paquete Económico 2027 **no está publicado en el DOF** al 2026-11-11 (no se encontró publicación; el sitio del DOF no se pudo consultar directamente desde el equipo que hizo esta revisión, verificar en dof.gob.mx).
+- De las leyes de este repo, la iniciativa del Ejecutivo solo reforma la **LISR**. No hay iniciativa del Ejecutivo para CFF, LIVA ni LIEPS en la Gaceta 7121 (anexos A a N).
+- **La LISR ya terminó su trámite en el Congreso:** la Cámara aprobó la reforma, el Senado la aprobó con una modificación (art. 78-E) y la Cámara **aceptó ese cambio el 3 de noviembre de 2026** (349 a favor, 92 en contra, según el Canal del Congreso). Se turnó al Ejecutivo; falta su publicación en el DOF.
+- La Ley de Ingresos 2027 y la Ley Federal de Derechos pasaron el Senado y se enviaron al Ejecutivo (según prensa, sin verificar en fuente oficial del Senado). Falta su publicación.
+- Entrada en vigor prevista de la LISR: 1 de enero de 2027 (transitorio de la iniciativa), si se publica antes. **Hasta que salga en el DOF, nada de esto es ley vigente** y `leyes/` no cambia.
 
 ## Línea de tiempo
 
@@ -24,8 +24,8 @@ Clave: **CONFIRMADO** = documento oficial leído. **PRENSA** = solo notas de pre
 | Turno en el Senado a Comisiones de Hacienda y Estudios Legislativos Primera | 2026-10-14 | PRENSA | Comunicado del Senado citado por buscador (no se pudo abrir directamente). |
 | Senado aprueba LISR con modificaciones y la devuelve (fracción E del art. 72 constitucional) | 2026-10-27 | CONFIRMADO (el hecho); el contenido del cambio, PRENSA | Oficio DGPL-1P3A.-3160 de la Mesa Directiva del Senado, recibido en la Cámara el 27-oct a las 21:24 h: https://gaceta.diputados.gob.mx/PDF/66/2026/oct/20261028-I-2.pdf . La prensa ubica el cambio en el art. 78-E (excepción de armadoras y gasolineras al mecanismo de control de deducciones). |
 | Senado aprueba LIF 2027 y Ley Federal de Derechos sin cambios | 2026-10-27 | PRENSA | Varias notas; votos reportados 79-34 o 74-33 (una nota dice 31-oct). |
-| La Cámara dictamina y vota el cambio del Senado | convocada 2026-11-03 | PENDIENTE | Gaceta 7158 (30-oct) convoca a la Comisión de Hacienda a su segunda reunión extraordinaria el martes 3 de noviembre, 9:00 h (la prensa dijo 4 de noviembre; prevalece la Gaceta, verificar). Falta además el pleno. |
-| Publicación en el DOF | sin fecha | PENDIENTE | No encontrada al 2026-11-02. |
+| La Cámara acepta el cambio del Senado (art. 78-E) y turna al Ejecutivo | 2026-11-03 | CONFIRMADO | Boletín del Canal del Congreso (3-nov-2026): 349 a favor y 92 en contra (el boletín imprime "34 9", error de captura). No se encontró el acta en la Gaceta (la página del 3-nov devolvió 403): https://www.canaldelcongreso.gob.mx/noticias/10346 |
+| Publicación en el DOF | sin fecha | PENDIENTE | No encontrada al 2026-11-11 (la consulta directa al DOF falló por certificado TLS; verificar en dof.gob.mx). Una nota de prensa proyecta diciembre; es proyección. |
 
 ## Contenido de la LISR proyectada (según la iniciativa)
 

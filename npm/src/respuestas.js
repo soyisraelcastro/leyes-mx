@@ -146,6 +146,38 @@ export function respuestaTarifas(lista) {
     "", "Para una tarifa concreta usa obtener_tarifa con el id exacto (o el apartado cuando es único, p. ej. B-V mensual, C-II anual)."].join("\n");
 }
 
+const pesos = (x) => `$${Number(x).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+/** Subsidio para el empleo: parámetros del decreto, UMA que publica el INEGI y, si se pidió, el texto de un documento. */
+export function respuestaSubsidio(f) {
+  const p = f.parametros, u = f.uma, d = f.calculo_derivado;
+  const l = [
+    `Subsidio para el empleo ${f.anio} | ${f.documento} | estatus: ${f.estatus} | datos descargados ${f.fecha_descarga}`,
+    `Fundamento: ${f.fundamento}`, "",
+    `Parámetros del decreto vigentes desde ${p.vigencia_desde} (verificados contra el texto publicado en el DOF; reforma del 31-12-2025, Artículo Segundo):`,
+    `- Tope de ingresos mensuales: ${pesos(p.limite_ingresos_mensuales)} (sin contar primas de antigüedad, retiro, indemnizaciones ni otros pagos por separación).`,
+    `- Subsidio mensual máximo: valor mensual de la UMA x ${p.porcentaje_uma_febrero_a_diciembre}%. En enero de ${f.anio}, x ${p.porcentaje_uma_enero}% (transitorio segundo; la UMA ${f.anio} entra en vigor el 1 de febrero).`,
+    `- Pagos por periodos menores a un mes: (UMA mensual x porcentaje) / ${p.divisor_periodos_menores_a_un_mes} x días del periodo, sin exceder el máximo mensual. Pago único de varios meses: (UMA mensual x porcentaje) x número de meses.`,
+    "- Se aplica contra el ISR a cargo del art. 96 de la LISR; si el impuesto es menor, la diferencia no se acredita después ni se entrega (Artículo Segundo, segundo párrafo, que la reforma no cambió).", "",
+    "UMA que publica el INEGI en el DOF (el valor mensual lo usa el decreto):",
+    ...Object.entries(u).map(([a, x]) => `- UMA ${a}: diario ${pesos(x.diario)}, mensual ${pesos(x.mensual)}, anual ${pesos(x.anual)}; vigente desde ${x.vigente_desde}. Fuente: ${x.fuente_url}`), "",
+    `${d.aviso}`,
+    `- Enero ${f.anio}: UMA mensual ${pesos(d.enero_2026.uma_mensual)} x ${d.enero_2026.porcentaje}% = ${pesos(d.enero_2026.subsidio_mensual_maximo)}`,
+    `- Febrero a diciembre ${f.anio}: UMA mensual ${pesos(d.febrero_a_diciembre_2026.uma_mensual)} x ${d.febrero_a_diciembre_2026.porcentaje}% = ${pesos(d.febrero_a_diciembre_2026.subsidio_mensual_maximo)}`, "",
+    ...f.no_verificado.map((x) => `NO VERIFICADO: ${x}`), "",
+    "Documentos (texto íntegro con obtener_subsidio_empleo(documento=\"<id>\")):",
+    ...f.documentos.map((x) => `- ${x.id} | ${x.tipo}${x.publicado_dof ? ` | DOF ${x.publicado_dof}` : ""} | ${x.estatus}`), "", f.aviso,
+  ];
+  const t = f.texto_documento;
+  if (t) {
+    l.push("", `=== ${t.titulo} (${t.id}${t.publicado_dof ? `, DOF ${t.publicado_dof}` : ""}; estatus: ${t.estatus}) ===`);
+    if (t.fuente_url) l.push(`Fuente: ${t.fuente_url}`);
+    if (t.aviso) l.push(`AVISO: ${t.aviso}`);
+    l.push("", t.texto);
+  }
+  return l.join("\n");
+}
+
 export function respuestaRegla(f, pagina = 1) {
   const cab = [`${f.nombre_ley || f.ley} (${f.ley}), regla ${f.regla}`, `Título de la regla: ${f.titulo}`,
     `Cita: ${f.ley} regla ${f.regla}, vigencia ${f.anio_vigencia}, publicada en el DOF ${f.publicacion_dof}`,

@@ -19,6 +19,7 @@ from leyes_mx import tablas as tablas_mod
 from leyes_mx import store  # noqa: E402
 from leyes_mx import anexos_validar  # noqa: E402
 from leyes_mx import rmf_validar  # noqa: E402
+from leyes_mx import spe as spe_mod  # noqa: E402
 from leyes_mx import temas as temas_mod  # noqa: E402
 from leyes_mx import glosario as glosario_mod  # noqa: E402
 from leyes_mx.ids import id_desde_archivo, clave_orden, partes_id, nombre_archivo, PALABRAS  # noqa: E402
@@ -199,10 +200,11 @@ def main():
     gerr, gavisos = ([], []) if a.ley else glosario_mod.validar(RAIZ)
     rerr, ravisos = ([], []) if a.ley else rmf_validar.validar(RAIZ, a.pdf)
     terr, tavisos = ([], []) if a.ley else temas_mod.validar(RAIZ, a.anio)
-    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr) + len(rerr) + len(terr)
+    serr, savisos = ([], []) if a.ley else spe_mod.validar(RAIZ)
+    total = sum(len(r["errores"]) for r in informes) + len(perr) + len(aerr) + len(gerr) + len(rerr) + len(terr) + len(serr)
     if a.json:
         print(json.dumps({"leyes": informes, "proyectos_errores": perr, "anexos_errores": aerr, "anexos_avisos": aavisos,
-                          "glosario_errores": gerr, "glosario_avisos": gavisos, "rmf_errores": rerr, "rmf_avisos": ravisos, "temas_errores": terr, "temas_avisos": tavisos, "errores": total}, ensure_ascii=False, indent=2))
+                          "glosario_errores": gerr, "glosario_avisos": gavisos, "rmf_errores": rerr, "rmf_avisos": ravisos, "temas_errores": terr, "temas_avisos": tavisos, "spe_errores": serr, "spe_avisos": savisos, "errores": total}, ensure_ascii=False, indent=2))
     else:
         for r in informes:
             estado = "OK" if not r["errores"] else "ERRORES"
@@ -225,6 +227,10 @@ def main():
             print("   ERROR temas:", e)
         for w in tavisos:
             print("   aviso temas:", w)
+        for e in serr:
+            print("   ERROR spe:", e)
+        for w in savisos:
+            print("   aviso spe:", w)
         for e in rerr:
             print("   ERROR rmf:", e)
         # los avisos de referencias a artículos inexistentes pueden ser muchos: se resumen
