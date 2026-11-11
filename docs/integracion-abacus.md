@@ -7,7 +7,7 @@ Nada de esto se ejecuta desde este repo: son instrucciones para quien administra
 ```markdown
 ## Consulta de leyes (leyes-mx)
 
-Para citar leyes o reglamentos fiscales y laborales de México (LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, RLISR, RLIVA, RCFF, RACERF):
+Para citar leyes o reglamentos fiscales y laborales de México (LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, LIEPS, LIF, RLISR, RLIVA, RCFF, RACERF):
 
 1. PRIMERO consulta la base local en `knowledge/leyes-mx/`:
    - Artículo conocido: `python3 knowledge/leyes-mx/scripts/buscar.py obtener LEY ARTICULO`

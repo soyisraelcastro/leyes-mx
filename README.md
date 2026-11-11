@@ -56,8 +56,10 @@ Año de vigencia 2026 (texto vigente al 2026-11-02, descargado ese día):
 | LFDC | Ley Federal de los Derechos del Contribuyente | 24 | 24 | 0 | 2005-06-23 (sin reformas: fecha de publicación) |
 | LCF | Ley de Coordinación Fiscal | 67 | 66 | 1 | 2024-01-03 |
 | LOPDC | Ley Orgánica de la Procuraduría de la Defensa del Contribuyente | 28 | 28 | 0 | 2022-05-11 |
+| LIEPS | Ley del Impuesto Especial sobre Producción y Servicios | 69 | 44 | 25 | 2025-11-07 |
+| LIF | Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026 | 34 | 34 | 0 | 2025-11-07 (nueva ley, en vigor desde 2026-01-01) |
 
-LFDC, LCF y LOPDC se descargaron el 2026-11-07. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática; se transcribieron a LaTeX (`$...$` y `$$...$$`) para que las lean los asistentes, y esos artículos llevan una advertencia: ante la duda prevalece el PDF oficial.
+LFDC, LCF y LOPDC se descargaron el 2026-11-07; LIEPS y LIF el 2026-11-11. La LIF es una ley anual: solo rige en 2026 y la de 2027 tendrá su propia carpeta (no se copia con `copiar_anio.py`). El artículo 26-LL de la LIEPS (derogado) no tiene archivo propio, lleva su línea al final del 26-L. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática; se transcribieron a LaTeX (`$...$` y `$$...$$`) para que las lean los asistentes, y esos artículos llevan una advertencia: ante la duda prevalece el PDF oficial.
 
 Además `proyectos/2027/`: seguimiento de la reforma fiscal 2027 (**no es ley vigente**).
 

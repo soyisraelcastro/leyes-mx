@@ -9,13 +9,14 @@ export const NOMBRES = {
   LIVA: "Ley del Impuesto al Valor Agregado", RLIVA: "Reglamento de la Ley del Impuesto al Valor Agregado",
   CFF: "Código Fiscal de la Federación", RCFF: "Reglamento del Código Fiscal de la Federación", LFT: "Ley Federal del Trabajo",
   LSS: "Ley del Seguro Social", RACERF: "Reglamento de la Ley del Seguro Social en Materia de Afiliación, Clasificación de Empresas, Recaudación y Fiscalización",
-  LFDC: "Ley Federal de los Derechos del Contribuyente", LCF: "Ley de Coordinación Fiscal",
+  LFDC: "Ley Federal de los Derechos del Contribuyente", LCF: "Ley de Coordinación Fiscal", LIEPS: "Ley del Impuesto Especial sobre Producción y Servicios",
+  LIF: "Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026",
   LOPDC: "Ley Orgánica de la Procuraduría de la Defensa del Contribuyente",
 };
-const ORDEN = ["LISR", "RLISR", "LIVA", "RLIVA", "CFF", "RCFF", "LFDC", "LOPDC", "LCF", "LFT", "LSS", "RACERF"];
+const ORDEN = ["LISR", "RLISR", "LIVA", "RLIVA", "CFF", "RCFF", "LFDC", "LOPDC", "LCF", "LIEPS", "LIF", "LFT", "LSS", "RACERF"];
 
 export const RESUMEN = "leyes-mx es una base gratuita y de código abierto con el texto de las leyes fiscales y laborales de México "
-  + "(LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC y sus reglamentos, más las tarifas de ISR del Anexo 8 de la RMF) para que los asistentes de IA "
+  + "(LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, LIEPS, LIF y sus reglamentos, más las tarifas de ISR del Anexo 8 de la RMF) para que los asistentes de IA "
   + "(Claude Desktop, Claude Code, Codex, Cursor y otros clientes MCP) citen ley, artículo, fracción, año de vigencia y fecha "
   + "de la última reforma en el DOF, en lugar de inventarlos. Se instala con un comando y consulta el texto guardado en la computadora.";
 

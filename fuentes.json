@@ -107,6 +107,31 @@
       "ultimo_articulo_esperado": 28
     },
     {
+      "sigla": "LIEPS",
+      "nombre": "Ley del Impuesto Especial sobre Producción y Servicios",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIEPS.pdf",
+      "ultimo_articulo_esperado": 29,
+      "advertencias": [
+        {
+          "articulos": [
+            "26-L"
+          ],
+          "en_archivo": true,
+          "texto": "El artículo 26-LL (se deroga; adicionado DOF 31-12-1999, derogado DOF 01-01-2002) no tiene archivo propio: el sistema de identificadores solo admite una letra, así que su línea queda al final de este archivo. No hay texto vigente en 26-LL."
+        }
+      ]
+    },
+    {
+      "sigla": "LIF",
+      "nombre": "Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf",
+      "ultimo_articulo_esperado": 34,
+      "cruce_encabezados_ajenos": 2,
+      "nota": "Ley anual: solo rige en el ejercicio fiscal 2026. La de 2027 tendrá su propia carpeta (otra sigla o año) y NO se copia con copiar_anio.py. cruce_encabezados_ajenos: 2 renglones de la tabla del art. 1 (\"Artículo 2o., fracción I, inciso D).\" y \"Artículo 2o.-A.\", conceptos del IEPS) que el cruce sin -layout cuenta como encabezados."
+    },
+    {
       "sigla": "RLISR",
       "nombre": "Reglamento de la Ley del Impuesto sobre la Renta",
       "tipo": "reglamento",
