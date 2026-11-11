@@ -1,0 +1,15 @@
+{
+  "sigla": "LIF",
+  "nombre_oficial": "Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf",
+  "ultima_reforma_dof": "2025-11-07",
+  "fecha_descarga": "2026-11-11",
+  "sha256_pdf": "a305ca23bba43cddf2275067af29bb0ba35def7aedbbb0d3fc4557da9067a82c",
+  "articulos_extraidos": 34,
+  "ultimo_articulo_numerico": 34,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 1,
+  "advertencias": []
+}

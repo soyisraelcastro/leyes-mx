@@ -44,7 +44,7 @@ test("lo que no está en la base: el RESULTADO de cada herramienta manda pregunt
   const pregunta = /No encontré .* en la base local de leyes-mx\. .*Pregunta al usuario si desea que lo busques en internet; no busques sin su permiso\. .*fuentes oficiales \(DOF, SAT, Cámara de Diputados\).*no proviene de la base verificada/s;
   const llamadas = [
     ["obtener_articulo", { ley: "LISR", articulo: "9999" }],
-    ["obtener_articulo", { ley: "LIEPS", articulo: "1" }],
+    ["obtener_articulo", { ley: "LISH", articulo: "1" }],
     ["buscar", { consulta: "zzzqqqxxx wwwvvvyyy" }],
     ["obtener_tarifa", { tarifa: "Z-9" }],
     ["obtener_transitorios", { ley: "XXX" }],
@@ -69,7 +69,7 @@ test("artículo que no existe: lo dice y no inventa", async () => {
   const r = await c.callTool({ name: "obtener_articulo", arguments: { ley: "LISR", articulo: "9999" } });
   assert.match(txt(r), /NO VERIFICADO/);
   assert.equal(r.structuredContent.encontrado, false);
-  const r2 = await c.callTool({ name: "obtener_articulo", arguments: { ley: "LIEPS", articulo: "1" } });
+  const r2 = await c.callTool({ name: "obtener_articulo", arguments: { ley: "LISH", articulo: "1" } });
   assert.match(txt(r2), /NO VERIFICADO[\s\S]*no existe en la base/);
   const r3 = await c.callTool({ name: "obtener_articulo", arguments: { ley: "LISR", articulo: "xyz" } });
   assert.equal(r3.isError, true);
@@ -138,7 +138,7 @@ test("buscar con glosario: declara qué se agregó; glosario=false busca solo co
 
 test("listar_leyes, estado_reforma y obtener_transitorios", async () => {
   const l = txt(await c.callTool({ name: "listar_leyes", arguments: {} }));
-  for (const s of ["LISR", "LIVA", "CFF", "LFT", "LSS", "LFDC", "LCF", "LOPDC", "RLISR", "RLIVA", "RCFF", "RACERF"]) assert.match(l, new RegExp(s));
+  for (const s of ["LISR", "LIVA", "CFF", "LFT", "LSS", "LFDC", "LCF", "LOPDC", "LIEPS", "LIF", "RLISR", "RLIVA", "RCFF", "RACERF"]) assert.match(l, new RegExp(s));
   const e = txt(await c.callTool({ name: "estado_reforma", arguments: {} }));
   assert.match(e, /es_ley_vigente: false/);
   assert.match(e, /NO es ley vigente/);
