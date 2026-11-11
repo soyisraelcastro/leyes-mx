@@ -4,7 +4,7 @@ Utilidades distribuidas, cuenta de utilidad fiscal neta y cuenta de capital de a
 
 Palabras: dividendo, utilidades distribuidas, cuenta de utilidad fiscal neta, CUFIN, cuenta de capital de aportación, CUCA, reinversión de utilidades.
 
-90 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+91 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -62,6 +62,7 @@ Palabras: dividendo, utilidades distribuidas, cuenta de utilidad fiscal neta, CU
 | RMF | regla 3.1.5 | 2 | texto | [regla-3.1.5.md](../../rmf/2026/rmf/reglas/regla-3.1.5.md) |
 | RMF | regla 3.2.14 | 2 | texto | [regla-3.2.14.md](../../rmf/2026/rmf/reglas/regla-3.2.14.md) |
 | CFF | 31-A | 1 | texto | [art-0031-A.md](../../leyes/2026/CFF/art-0031-A.md) |
+| LIF | 28 | 1 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
 | LISR | 11 | 1 | texto | [art-0011.md](../../leyes/2026/LISR/art-0011.md) |
 | LISR | 16 | 1 | texto | [art-0016.md](../../leyes/2026/LISR/art-0016.md) |
 | LISR | 171 | 1 | texto | [art-0171.md](../../leyes/2026/LISR/art-0171.md) |

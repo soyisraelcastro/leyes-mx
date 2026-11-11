@@ -42,12 +42,12 @@ export function crearServidor(almacen = null) {
   };
   const RO = { readOnlyHint: true, idempotentHint: true, openWorldHint: false };
 
-  const leyDesc = "Sigla del ordenamiento, por ejemplo LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, RLISR, RLIVA, RCFF, RACERF (sin distinguir mayúsculas)";
+  const leyDesc = "Sigla del ordenamiento, por ejemplo LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, LIEPS, LIF, RLISR, RLIVA, RCFF, RACERF (sin distinguir mayúsculas)";
   const anioDesc = "Año de vigencia (opcional). Por omisión, el vigente más reciente que tenga datos.";
 
   server.registerTool("obtener_articulo", {
     title: "Obtener artículo",
-    description: "Muestra lo que dice un artículo de la LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC o de sus reglamentos (\"qué dice el artículo 28 de la LISR\", \"fundamento legal\", \"qué dice la ley sobre...\"). Úsala ANTES de responder cualquier consulta fiscal o laboral de México y antes de citar un artículo: devuelve el texto íntegro con año de vigencia, fecha de última reforma, estatus y advertencias. Es la fuente para CITAR; después de buscar, léelo completo porque buscar solo da fragmentos. Cita ley, artículo, fracción, vigencia y última reforma tal como salen. Acepta \"113 E\", \"113-e\", \"28 bis\", \"32-B-bis\". Si el texto es muy extenso se entrega por páginas (parámetro pagina). Si no existe, el resultado dice NO VERIFICADO y qué hacer: no inventes el artículo y pregunta al usuario antes de buscar en internet.",
+    description: "Muestra lo que dice un artículo de la LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, LIEPS, LIF o de sus reglamentos (\"qué dice el artículo 28 de la LISR\", \"fundamento legal\", \"qué dice la ley sobre...\"). Úsala ANTES de responder cualquier consulta fiscal o laboral de México y antes de citar un artículo: devuelve el texto íntegro con año de vigencia, fecha de última reforma, estatus y advertencias. Es la fuente para CITAR; después de buscar, léelo completo porque buscar solo da fragmentos. Cita ley, artículo, fracción, vigencia y última reforma tal como salen. Acepta \"113 E\", \"113-e\", \"28 bis\", \"32-B-bis\". Si el texto es muy extenso se entrega por páginas (parámetro pagina). Si no existe, el resultado dice NO VERIFICADO y qué hacer: no inventes el artículo y pregunta al usuario antes de buscar en internet.",
     inputSchema: {
       ley: z.string().describe(leyDesc),
       articulo: z.string().describe("Número de artículo, por ejemplo \"28\", \"113-E\", \"28 bis\""),
@@ -95,7 +95,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("listar_leyes", {
     title: "Listar ordenamientos",
-    description: "Lista qué leyes y reglamentos fiscales y laborales hay en la base local (LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC y reglamentos), con año de vigencia, número de artículos y fecha de última reforma DOF. Úsala para saber qué cubre la base antes de decir que algo \"no está\" y para citar la fecha de última reforma.",
+    description: "Lista qué leyes y reglamentos fiscales y laborales hay en la base local (LISR, LIVA, CFF, LFT, LSS, LFDC, LCF, LOPDC, LIEPS, LIF y reglamentos), con año de vigencia, número de artículos y fecha de última reforma DOF. Úsala para saber qué cubre la base antes de decir que algo \"no está\" y para citar la fecha de última reforma.",
     inputSchema: { anio: z.number().int().optional().describe("Filtrar por año de vigencia (opcional)") },
     annotations: RO,
   }, envolver(({ anio }) => {

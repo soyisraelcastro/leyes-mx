@@ -4,7 +4,7 @@ Personas que enajenan bienes o prestan servicios mediante plataformas, y servici
 
 Palabras: plataformas tecnológicas, plataformas digitales, servicios digitales, intermediarios digitales.
 
-89 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+94 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -53,6 +53,7 @@ Palabras: plataformas tecnológicas, plataformas digitales, servicios digitales,
 | RMF | regla 12.2.3 | 11 | encabezado, texto | [regla-12.2.3.md](../../rmf/2026/rmf/reglas/regla-12.2.3.md) |
 | RMF | regla 12.3.5 | 11 | encabezado, texto | [regla-12.3.5.md](../../rmf/2026/rmf/reglas/regla-12.3.5.md) |
 | LFT | 291-C | 10 | encabezado, texto | [art-0291-C.md](../../leyes/2026/LFT/art-0291-C.md) |
+| LIEPS | 20-A | 10 | texto | [art-0020-A.md](../../leyes/2026/LIEPS/art-0020-A.md) |
 | LIVA | 18-D | 10 | encabezado, texto | [art-0018-D.md](../../leyes/2026/LIVA/art-0018-D.md) |
 | LIVA | 18-K | 10 | encabezado | [art-0018-K.md](../../leyes/2026/LIVA/art-0018-K.md) |
 | LIVA | 18-L | 10 | encabezado | [art-0018-L.md](../../leyes/2026/LIVA/art-0018-L.md) |
@@ -91,9 +92,13 @@ Palabras: plataformas tecnológicas, plataformas digitales, servicios digitales,
 | LIVA | 18-H-quintus | 5 | encabezado | [art-0018-H-quintus.md](../../leyes/2026/LIVA/art-0018-H-quintus.md) |
 | LIVA | 18-H-ter | 5 | encabezado | [art-0018-H-ter.md](../../leyes/2026/LIVA/art-0018-H-ter.md) |
 | LIVA | 18-I | 5 | encabezado | [art-0018-I.md](../../leyes/2026/LIVA/art-0018-I.md) |
+| LIEPS | 2 | 4 | texto | [art-0002.md](../../leyes/2026/LIEPS/art-0002.md) |
+| LIEPS | 5-A-bis | 3 | texto | [art-0005-A-bis.md](../../leyes/2026/LIEPS/art-0005-A-bis.md) |
+| LIF | 25 | 3 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | LFT | 997-B | 2 | texto | [art-0997-B.md](../../leyes/2026/LFT/art-0997-B.md) |
 | CFF | 30-B | 1 | texto | [art-0030-B.md](../../leyes/2026/CFF/art-0030-B.md) |
 | LFT | 50 | 1 | texto | [art-0050.md](../../leyes/2026/LFT/art-0050.md) |
+| LIEPS | 18-B | 1 | texto | [art-0018-B.md](../../leyes/2026/LIEPS/art-0018-B.md) |
 | LIVA | 1-A-bis | 1 | texto | [art-0001-A-bis.md](../../leyes/2026/LIVA/art-0001-A-bis.md) |
 | LIVA | 16 | 1 | texto | [art-0016.md](../../leyes/2026/LIVA/art-0016.md) |
 | RMF | regla 3.13.3 | 1 | texto | [regla-3.13.3.md](../../rmf/2026/rmf/reglas/regla-3.13.3.md) |

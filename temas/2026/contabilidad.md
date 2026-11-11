@@ -4,7 +4,7 @@ Contabilidad electrónica, libros, catálogo de cuentas y balanza de comprobaci�
 
 Palabras: contabilidad electrónica, registros contables, libros de contabilidad, balanza de comprobación, catálogo de cuentas, sistema de registro contable, contabilidad.
 
-101 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+102 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -83,6 +83,7 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | CFF | 13 | 1 | texto | [art-0013.md](../../leyes/2026/CFF/art-0013.md) |
 | CFF | 53 | 1 | texto | [art-0053.md](../../leyes/2026/CFF/art-0053.md) |
 | CFF | 89 | 1 | texto | [art-0089.md](../../leyes/2026/CFF/art-0089.md) |
+| LIF | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LIF/art-0018.md) |
 | LSS | 109 | 1 | texto | [art-0109.md](../../leyes/2026/LSS/art-0109.md) |
 | LSS | 175 | 1 | texto | [art-0175.md](../../leyes/2026/LSS/art-0175.md) |
 | LSS | 188 | 1 | texto | [art-0188.md](../../leyes/2026/LSS/art-0188.md) |

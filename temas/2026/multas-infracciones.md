@@ -4,7 +4,7 @@ Infracciones fiscales, multas, sanciones y recargos.
 
 Palabras: infracción, multa, sanción, recargos, reducción de multas.
 
-276 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+279 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -130,6 +130,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | CFF | 101 | 8 | encabezado, texto | [art-0101.md](../../leyes/2026/CFF/art-0101.md) |
 | CFF | 112 | 8 | encabezado, texto | [art-0112.md](../../leyes/2026/CFF/art-0112.md) |
 | LFT | 1004 | 8 | encabezado, texto | [art-1004.md](../../leyes/2026/LFT/art-1004.md) |
+| LIF | 19 | 8 | texto | [art-0019.md](../../leyes/2026/LIF/art-0019.md) |
 | RMF | regla 2.1.20 | 8 | encabezado, texto | [regla-2.1.20.md](../../rmf/2026/rmf/reglas/regla-2.1.20.md) |
 | RMF | regla 3.1.23 | 8 | encabezado, texto | [regla-3.1.23.md](../../rmf/2026/rmf/reglas/regla-3.1.23.md) |
 | CFF | 113-bis | 7 | encabezado | [art-0113-bis.md](../../leyes/2026/CFF/art-0113-bis.md) |
@@ -174,6 +175,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 997-A | 6 | encabezado, texto | [art-0997-A.md](../../leyes/2026/LFT/art-0997-A.md) |
 | LFT | 998 | 6 | encabezado, texto | [art-0998.md](../../leyes/2026/LFT/art-0998.md) |
 | LFT | 999 | 6 | encabezado, texto | [art-0999.md](../../leyes/2026/LFT/art-0999.md) |
+| LIF | 11 | 6 | texto | [art-0011.md](../../leyes/2026/LIF/art-0011.md) |
 | LOPDC | 28 | 6 | encabezado | [art-0028.md](../../leyes/2026/LOPDC/art-0028.md) |
 | RCFF | 73 | 6 | encabezado, texto | [art-0073.md](../../leyes/2026/RCFF/art-0073.md) |
 | CFF | 100 | 5 | encabezado | [art-0100.md](../../leyes/2026/CFF/art-0100.md) |
@@ -205,6 +207,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 48 | 3 | texto | [art-0048.md](../../leyes/2026/LFT/art-0048.md) |
 | LFT | 48-bis | 3 | texto | [art-0048-bis.md](../../leyes/2026/LFT/art-0048-bis.md) |
 | LFT | 549 | 3 | texto | [art-0549.md](../../leyes/2026/LFT/art-0549.md) |
+| LIEPS | 20 | 3 | texto | [art-0020.md](../../leyes/2026/LIEPS/art-0020.md) |
 | LISR | 30 | 3 | texto | [art-0030.md](../../leyes/2026/LISR/art-0030.md) |
 | LSS | 40-C | 3 | texto | [art-0040-C.md](../../leyes/2026/LSS/art-0040-C.md) |
 | RACERF | 127 | 3 | texto | [art-0127.md](../../leyes/2026/RACERF/art-0127.md) |

@@ -4,7 +4,7 @@ Sistema Nacional de Coordinación Fiscal, participaciones de entidades y municip
 
 Palabras: Sistema Nacional de Coordinación Fiscal, coordinación fiscal, participaciones federales, participaciones en ingresos federales, participaciones de la entidad, participaciones que correspondan, participaciones a los municipios, participaciones a que se refiere esta Ley, recaudación federal participable, Fondo General de Participaciones, Fondo de Fomento Municipal, Fondo de Compensación, Fondo de Fiscalización y Recaudación, Fondo de Extracción de Hidrocarburos, colaboración administrativa, convenios de coordinación, funcionarios fiscales, entidades adheridas, Junta de Coordinación Fiscal, Instituto para el Desarrollo Técnico de las Haciendas Públicas, haciendas públicas.
 
-60 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+63 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -19,6 +19,7 @@ Palabras: Sistema Nacional de Coordinación Fiscal, coordinación fiscal, partic
 | LCF | 14 | 7 | encabezado, texto | [art-0014.md](../../leyes/2026/LCF/art-0014.md) |
 | LCF | 22 | 7 | texto | [art-0022.md](../../leyes/2026/LCF/art-0022.md) |
 | LCF | 4 | 7 | texto | [art-0004.md](../../leyes/2026/LCF/art-0004.md) |
+| LIEPS | 27 | 7 | texto | [art-0027.md](../../leyes/2026/LIEPS/art-0027.md) |
 | LCF | 10-B | 6 | encabezado, texto | [art-0010-B.md](../../leyes/2026/LCF/art-0010-B.md) |
 | LCF | 10-E | 6 | encabezado, texto | [art-0010-E.md](../../leyes/2026/LCF/art-0010-E.md) |
 | LCF | 19 | 6 | texto | [art-0019.md](../../leyes/2026/LCF/art-0019.md) |
@@ -47,6 +48,8 @@ Palabras: Sistema Nacional de Coordinación Fiscal, coordinación fiscal, partic
 | LCF | 30 | 2 | texto | [art-0030.md](../../leyes/2026/LCF/art-0030.md) |
 | LCF | 32 | 2 | texto | [art-0032.md](../../leyes/2026/LCF/art-0032.md) |
 | LCF | 36 | 2 | texto | [art-0036.md](../../leyes/2026/LCF/art-0036.md) |
+| LIEPS | 19 | 2 | texto | [art-0019.md](../../leyes/2026/LIEPS/art-0019.md) |
+| LIEPS | 28 | 2 | texto | [art-0028.md](../../leyes/2026/LIEPS/art-0028.md) |
 | LIVA | 41 | 2 | texto | [art-0041.md](../../leyes/2026/LIVA/art-0041.md) |
 | RMF | regla 11.4.1 | 2 | texto | [regla-11.4.1.md](../../rmf/2026/rmf/reglas/regla-11.4.1.md) |
 | RMF | regla 11.4.2 | 2 | texto | [regla-11.4.2.md](../../rmf/2026/rmf/reglas/regla-11.4.2.md) |

@@ -4,7 +4,7 @@ Derechos y obligaciones de los contribuyentes, la Carta de los Derechos del Cont
 
 Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos del contribuyente, obligaciones de los contribuyentes, derechos de los contribuyentes, derechos del contribuyente, asistencia al contribuyente.
 
-152 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+158 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -60,6 +60,11 @@ Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos d
 | LFDC | 7 | 5 | encabezado | [art-0007.md](../../leyes/2026/LFDC/art-0007.md) |
 | LFDC | 8 | 5 | encabezado | [art-0008.md](../../leyes/2026/LFDC/art-0008.md) |
 | LFDC | 9 | 5 | encabezado | [art-0009.md](../../leyes/2026/LFDC/art-0009.md) |
+| LIEPS | 19 | 5 | encabezado | [art-0019.md](../../leyes/2026/LIEPS/art-0019.md) |
+| LIEPS | 19-A | 5 | encabezado | [art-0019-A.md](../../leyes/2026/LIEPS/art-0019-A.md) |
+| LIEPS | 20 | 5 | encabezado | [art-0020.md](../../leyes/2026/LIEPS/art-0020.md) |
+| LIEPS | 20-A | 5 | encabezado | [art-0020-A.md](../../leyes/2026/LIEPS/art-0020-A.md) |
+| LIEPS | 21 | 5 | encabezado | [art-0021.md](../../leyes/2026/LIEPS/art-0021.md) |
 | LIVA | 32 | 5 | encabezado | [art-0032.md](../../leyes/2026/LIVA/art-0032.md) |
 | LIVA | 33 | 5 | encabezado | [art-0033.md](../../leyes/2026/LIVA/art-0033.md) |
 | LIVA | 34 | 5 | encabezado | [art-0034.md](../../leyes/2026/LIVA/art-0034.md) |
@@ -158,5 +163,6 @@ Palabras: derechos y obligaciones de los contribuyentes, carta de los derechos d
 | CFF | 76 | 2 | texto | [art-0076.md](../../leyes/2026/CFF/art-0076.md) |
 | CFF | 69-G | 1 | texto | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
 | CFF | 72 | 1 | texto | [art-0072.md](../../leyes/2026/CFF/art-0072.md) |
+| LIEPS | 26 | 1 | texto | [art-0026.md](../../leyes/2026/LIEPS/art-0026.md) |
 | LOPDC | 20 | 1 | texto | [art-0020.md](../../leyes/2026/LOPDC/art-0020.md) |
 | RMF | regla 1.3 | 1 | texto | [regla-1.3.md](../../rmf/2026/rmf/reglas/regla-1.3.md) |

@@ -4,7 +4,7 @@ Impuesto sobre automóviles nuevos.
 
 Palabras: automóviles nuevos, impuesto sobre automóviles nuevos, ISAN.
 
-20 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+21 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -20,6 +20,7 @@ Palabras: automóviles nuevos, impuesto sobre automóviles nuevos, ISAN.
 | CFF | 29-A | 2 | texto | [art-0029-A.md](../../leyes/2026/CFF/art-0029-A.md) |
 | LCF | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LCF/art-0002.md) |
 | LCF | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LCF/art-0015.md) |
+| LIF | 1 | 1 | texto | [art-0001.md](../../leyes/2026/LIF/art-0001.md) |
 | RMF | regla 1.4 | 1 | texto | [regla-1.4.md](../../rmf/2026/rmf/reglas/regla-1.4.md) |
 | RMF | regla 2.7.1.27 | 1 | texto | [regla-2.7.1.27.md](../../rmf/2026/rmf/reglas/regla-2.7.1.27.md) |
 | RMF | regla 2.7.1.34 | 1 | texto | [regla-2.7.1.34.md](../../rmf/2026/rmf/reglas/regla-2.7.1.34.md) |

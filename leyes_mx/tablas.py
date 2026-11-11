@@ -152,6 +152,64 @@ def inyectar(articulo_id, cuerpo, datos, estricto=True, excluir=()):
     return cuerpo, puestas
 
 
+def aplicar_formulas(articulo_id, cuerpo, datos):
+    """Sustituye texto que pdftotext desordena o pierde (fórmulas en imagen, símbolos de variables) por su
+    transcripción en LaTeX. Cada entrada de datos["formulas"] es de este artículo y lleva:
+
+    - "buscar": texto exacto que debe aparecer UNA sola vez en el cuerpo; o bien
+    - "desde" y "hasta": desde el inicio de "desde" hasta el final del párrafo que contiene a "hasta"
+      (los dos únicos, en ese orden); sirve para quitar un bloque desordenado de varias líneas;
+    - "reemplazar": el texto nuevo ($...$ en línea, $$...$$ en bloque).
+
+    Falla (ValueError) si algo no aparece o aparece más de una vez: un cambio en el PDF no pasa en silencio.
+    Devuelve (cuerpo, [ids]).
+    """
+    puestas = []
+    for f in (datos or {}).get("formulas", []):
+        if f["articulo"] != articulo_id:
+            continue
+        if "buscar" in f:
+            if cuerpo.count(f["buscar"]) != 1:
+                raise ValueError(f"fórmula {f['id']} (art. {articulo_id}): 'buscar' aparece {cuerpo.count(f['buscar'])} veces: {f['buscar']!r}")
+            cuerpo = cuerpo.replace(f["buscar"], f["reemplazar"])
+        else:
+            if cuerpo.count(f["desde"]) != 1:
+                raise ValueError(f"fórmula {f['id']} (art. {articulo_id}): 'desde' aparece {cuerpo.count(f['desde'])} veces: {f['desde']!r}")
+            i = cuerpo.index(f["desde"])
+            if cuerpo.count(f["hasta"], i) < 1:
+                raise ValueError(f"fórmula {f['id']} (art. {articulo_id}): 'hasta' no aparece tras 'desde': {f['hasta']!r}")
+            j = cuerpo.index(f["hasta"], i)
+            fin = cuerpo.find("\n\n", j)
+            fin = len(cuerpo) if fin < 0 else fin
+            cuerpo = cuerpo[:i] + f["reemplazar"] + cuerpo[fin:]
+        puestas.append(f["id"])
+    return cuerpo, puestas
+
+
+_DELIMITADORES = [("{", "}"), ("(", ")"), ("[", "]")]
+
+
+def verificar_formulas(datos):
+    """Errores de forma de las transcripciones LaTeX: ids repetidos, $ sin cerrar, llaves y \\left/\\right desbalanceados."""
+    errs, vistos = [], set()
+    for f in (datos or {}).get("formulas", []):
+        i = f.get("id", "?")
+        if i in vistos:
+            errs.append(f"fórmula {i}: id repetido")
+        vistos.add(i)
+        txt = f["reemplazar"]
+        if txt.count("$") % 2:
+            errs.append(f"fórmula {i}: número impar de $")
+        limpio = re.sub(r"\\[{}()\[\]]", "", txt)
+        if limpio.count("{") != limpio.count("}"):
+            errs.append(f"fórmula {i}: llaves desbalanceadas")
+        if len(re.findall(r"\\left\b", txt)) != len(re.findall(r"\\right\b", txt)):
+            errs.append(f"fórmula {i}: \\left y \\right no coinciden")
+        if len(re.findall(r"\\begin\{", txt)) != len(re.findall(r"\\end\{", txt)):
+            errs.append(f"fórmula {i}: \\begin y \\end no coinciden")
+    return errs
+
+
 def copiar_imagenes(datos, carpeta_tablas, dest):
     if not datos:
         return

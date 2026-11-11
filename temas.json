@@ -453,7 +453,24 @@
     "bebidas alcohólicas",
     "cerveza",
     "alimentos no básicos",
-    "plaguicidas"
+    "plaguicidas",
+    "marbete",
+    "precinto",
+    "alcohol desnaturalizado",
+    "mieles incristalizables",
+    "bebidas energizantes",
+    "alta densidad calórica",
+    "combustibles fósiles",
+    "combustible fósil",
+    "gasolinas y diésel",
+    "cuota por litro",
+    "servicios digitales",
+    "plataformas digitales de intermediación",
+    "juegos con apuestas y sorteos",
+    "redes públicas de telecomunicaciones"
+   ],
+   "citas": [
+    "LIEPS"
    ]
   },
   {
@@ -905,6 +922,36 @@
     "pérdida fiscal",
     "pérdidas fiscales",
     "amortización de pérdidas"
+   ]
+  },
+  {
+   "id": "credito-publico",
+   "nombre": "Crédito público y endeudamiento",
+   "descripcion": "Autorizaciones de endeudamiento, empréstitos, déficit de la banca de desarrollo y proyectos de infraestructura productiva de largo plazo (Ley de Ingresos de la Federación).",
+   "palabras": [
+    "crédito público",
+    "endeudamiento",
+    "empréstito",
+    "empréstitos",
+    "deuda pública",
+    "déficit por intermediación financiera",
+    "infraestructura productiva de largo plazo",
+    "banca de desarrollo"
+   ]
+  },
+  {
+   "id": "ingresos-presupuesto",
+   "nombre": "Ley de Ingresos y presupuesto federal",
+   "descripcion": "Ingresos de la Federación, ingresos excedentes, aprovechamientos, cuotas y tarifas, Presupuesto de Egresos y transparencia de la política fiscal.",
+   "palabras": [
+    "Ley de Ingresos de la Federación",
+    "ingresos excedentes",
+    "calendario de los ingresos",
+    "aprovechamientos",
+    "Presupuesto de Egresos de la Federación",
+    "Ley Federal de Presupuesto y Responsabilidad Hacendaria",
+    "mandatos y análogos",
+    "denominación de alguna dependencia"
    ]
   }
  ]

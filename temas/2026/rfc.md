@@ -4,7 +4,7 @@ Registro Federal de Contribuyentes, avisos, domicilio fiscal y constancia de sit
 
 Palabras: Registro Federal de Contribuyentes, inscripción en el RFC, constancia de situación fiscal, domicilio fiscal, cédula de identificación fiscal, clave en el RFC, suspensión de actividades, aviso de cambio de domicilio, actividades económicas y obligaciones.
 
-245 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+248 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -103,6 +103,7 @@ Palabras: Registro Federal de Contribuyentes, inscripción en el RFC, constancia
 | CFF | 67 | 3 | texto | [art-0067.md](../../leyes/2026/CFF/art-0067.md) |
 | CFF | 69 | 3 | texto | [art-0069.md](../../leyes/2026/CFF/art-0069.md) |
 | CFF | 83 | 3 | texto | [art-0083.md](../../leyes/2026/CFF/art-0083.md) |
+| LIF | 25 | 3 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
 | RCFF | 34 | 3 | texto | [art-0034.md](../../leyes/2026/RCFF/art-0034.md) |
 | RLISR | 103 | 3 | texto | [art-0103.md](../../leyes/2026/RLISR/art-0103.md) |
 | RLISR | 212 | 3 | texto | [art-0212.md](../../leyes/2026/RLISR/art-0212.md) |
@@ -208,6 +209,8 @@ Palabras: Registro Federal de Contribuyentes, inscripción en el RFC, constancia
 | LCF | 13 | 1 | texto | [art-0013.md](../../leyes/2026/LCF/art-0013.md) |
 | LFT | 25 | 1 | texto | [art-0025.md](../../leyes/2026/LFT/art-0025.md) |
 | LFT | 512-D-bis | 1 | texto | [art-0512-D-bis.md](../../leyes/2026/LFT/art-0512-D-bis.md) |
+| LIEPS | 19-A | 1 | texto | [art-0019-A.md](../../leyes/2026/LIEPS/art-0019-A.md) |
+| LIF | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LIF/art-0018.md) |
 | LISR | 113-H | 1 | texto | [art-0113-H.md](../../leyes/2026/LISR/art-0113-H.md) |
 | LISR | 113-I | 1 | texto | [art-0113-I.md](../../leyes/2026/LISR/art-0113-I.md) |
 | LISR | 136 | 1 | texto | [art-0136.md](../../leyes/2026/LISR/art-0136.md) |

@@ -1,0 +1,242 @@
+{
+ "ley": "LCF",
+ "vigencia_anio": 2026,
+ "nota": "Transcripciones en LaTeX de las fórmulas de distribución que el PDF de la Cámara publica como imagen o como notación matemática que pdftotext desordena. Cada entrada sustituye un texto exacto del artículo (ver leyes_mx/tablas.py, aplicar_formulas). Transcritas a mano desde la imagen de la página indicada.",
+ "tablas": [],
+ "formulas": [
+  {
+   "id": "art-2-fgp",
+   "articulo": "2",
+   "pagina_pdf": 2,
+   "desde": "Pi ,t  Pi ,07",
+   "hasta": "C 3 i ,t",
+   "reemplazar": "$$P_{i,t} = P_{i,07} + \\Delta FGP_{07,t}\\left(0.6\\,C1_{i,t} + 0.3\\,C2_{i,t} + 0.1\\,C3_{i,t}\\right)$$\n\n$$C1_{i,t} = \\frac{\\frac{PIB_{i,t-1}}{PIB_{i,t-2}}\\,n_i}{\\sum_i \\frac{PIB_{i,t-1}}{PIB_{i,t-2}}\\,n_i}$$\n\n$$C2_{i,t} = \\frac{\\Delta IE_{i,t}\\,n_i}{\\sum_i \\Delta IE_{i,t}\\,n_i}\\quad\\text{con}\\quad \\Delta IE_{i,t} = \\frac{1}{3}\\sum_{j=1}^{3}\\frac{IE_{i,t-j}}{IE_{i,t-j-1}}$$\n\n$$C3_{i,t} = \\frac{IE_{i,t-1}\\,n_i}{\\sum_i IE_{i,t-1}\\,n_i}$$"
+  },
+  {
+   "id": "art-2-delta-fgp",
+   "articulo": "2",
+   "pagina_pdf": 3,
+   "buscar": "FGP07,t es el crecimiento",
+   "reemplazar": "$\\Delta FGP_{07,t}$ es el crecimiento"
+  },
+  {
+   "id": "art-2-delta-ie",
+   "articulo": "2",
+   "pagina_pdf": 4,
+   "buscar": "IEi,t es un promedio móvil",
+   "reemplazar": "$\\Delta IE_{i,t}$ es un promedio móvil"
+  },
+  {
+   "id": "art-2-suma",
+   "articulo": "2",
+   "pagina_pdf": 4,
+   "buscar": " es la suma sobre todas las entidades de la variable que le sigue. i",
+   "reemplazar": "$\\sum_i$ es la suma sobre todas las entidades de la variable que le sigue."
+  },
+  {
+   "id": "art-2a-ffm",
+   "articulo": "2-A",
+   "pagina_pdf": 6,
+   "buscar": "El Fondo de Fomento Municipal se distribuirá entre las entidades conforme a la fórmula siguiente:",
+   "reemplazar": "El Fondo de Fomento Municipal se distribuirá entre las entidades conforme a la fórmula siguiente:\n\n$$F_{i,t} = F_{i,13} + \\Delta FFM_{13,t}\\left(0.7\\,C_{i,t} + 0.3\\,CP_{i,t}\\right)$$\n\n$$C_{i,t} = \\frac{\\frac{R_{i,t-1}}{R_{i,t-2}}\\,n_i}{\\sum_i \\frac{R_{i,t-1}}{R_{i,t-2}}\\,n_i}$$\n\n$$CP_{i,t} = \\frac{I_{i,t}\\,nc_i}{\\sum_i I_{i,t}\\,nc_i}$$\n\n$$I_{i,t} = \\min\\left\\{\\frac{RC_{i,t-1}}{RC_{i,t-2}},\\,2\\right\\}$$"
+  },
+  {
+   "id": "art-2a-c",
+   "articulo": "2-A",
+   "pagina_pdf": 6,
+   "buscar": "\n\nes el coeficiente de distribución del 70%",
+   "reemplazar": "\n\n$C_{i,t}$ es el coeficiente de distribución del 70%"
+  },
+  {
+   "id": "art-2a-cp",
+   "articulo": "2-A",
+   "pagina_pdf": 6,
+   "buscar": "\n\nes el coeficiente de distribución del 30%",
+   "reemplazar": "\n\n$CP_{i,t}$ es el coeficiente de distribución del 30%"
+  },
+  {
+   "id": "art-2a-f13",
+   "articulo": "2-A",
+   "pagina_pdf": 6,
+   "buscar": "\n\nes la participación del fondo al que se refiere este artículo que la entidad i recibió",
+   "reemplazar": "\n\n$F_{i,13}$ es la participación del fondo al que se refiere este artículo que la entidad i recibió"
+  },
+  {
+   "id": "art-2a-dffm",
+   "articulo": "2-A",
+   "pagina_pdf": 7,
+   "buscar": "\n\nes el crecimiento en el Fondo de Fomento Municipal",
+   "reemplazar": "\n\n$\\Delta FFM_{13,t}$ es el crecimiento en el Fondo de Fomento Municipal"
+  },
+  {
+   "id": "art-2a-r",
+   "articulo": "2-A",
+   "pagina_pdf": 7,
+   "buscar": "\n\nes la recaudación local de predial y de los derechos de agua",
+   "reemplazar": "\n\n$R_{i,t}$ es la recaudación local de predial y de los derechos de agua"
+  },
+  {
+   "id": "art-2a-i",
+   "articulo": "2-A",
+   "pagina_pdf": 7,
+   "buscar": "\n\nes el valor mínimo entre el resultado del cociente y el número 2.",
+   "reemplazar": "\n\n$I_{i,t}$ es el valor mínimo entre el resultado del cociente $\\frac{RC_{i,t-1}}{RC_{i,t-2}}$ y el número 2."
+  },
+  {
+   "id": "art-2a-rc",
+   "articulo": "2-A",
+   "pagina_pdf": 7,
+   "buscar": "\n\nes la suma de la recaudación de predial en los municipios",
+   "reemplazar": "\n\n$RC_{i,t}$ es la suma de la recaudación de predial en los municipios"
+  },
+  {
+   "id": "art-2a-n",
+   "articulo": "2-A",
+   "pagina_pdf": 7,
+   "buscar": "\n\nes la última información oficial de población que hubiere dado a conocer el Instituto Nacional de Estadística y Geografía para la entidad i.",
+   "reemplazar": "\n\n$n_i$ es la última información oficial de población que hubiere dado a conocer el Instituto Nacional de Estadística y Geografía para la entidad i."
+  },
+  {
+   "id": "art-2a-nc",
+   "articulo": "2-A",
+   "pagina_pdf": 7,
+   "buscar": "\n\nes la última información oficial de población que hubiere dado a conocer el Instituto Nacional de Estadística y Geografía de los municipios",
+   "reemplazar": "\n\n$nc_i$ es la última información oficial de población que hubiere dado a conocer el Instituto Nacional de Estadística y Geografía de los municipios"
+  },
+  {
+   "id": "art-4-fofir",
+   "articulo": "4",
+   "pagina_pdf": 9,
+   "desde": "CVi ,t 1 ni PIBi",
+   "hasta": "C 2i ,t",
+   "reemplazar": "$$T_{i,t} = T_{i,13} + \\Delta FOFIR_{13,t}\\left(0.3\\,C1_{i,t} + 0.1\\,C2_{i,t} + 0.3\\,C3_{i,t} + 0.3\\,C4_{i,t}\\right)$$\n\n$$C1_{i,t} = \\frac{\\frac{CV_{i,t-1}}{PIB_{i,t-1}}\\,n_i}{\\sum_i \\frac{CV_{i,t-1}}{PIB_{i,t-1}}\\,n_i}$$\n\n$$C2_{i,t} = \\frac{VM_{i,t-1}\\,n_i}{\\sum_i VM_{i,t-1}\\,n_i}$$\n\n$$C3_{i,t} = \\frac{\\frac{R_{i,t-1}}{R_{i,t-2}}\\,n_i}{\\sum_i \\frac{R_{i,t-1}}{R_{i,t-2}}\\,n_i}$$\n\n$$C4_{i,t} = \\frac{\\frac{R_{i,t-1}}{ILD_{i,t-1}}\\,n_i}{\\sum_i \\frac{R_{i,t-1}}{ILD_{i,t-1}}\\,n_i}$$"
+  },
+  {
+   "id": "art-4-delta",
+   "articulo": "4",
+   "pagina_pdf": 9,
+   "buscar": "FOFIR13,t es la diferencia",
+   "reemplazar": "$\\Delta FOFIR_{13,t}$ es la diferencia"
+  },
+  {
+   "id": "art-4-suma",
+   "articulo": "4",
+   "pagina_pdf": 10,
+   "buscar": " i es la suma sobre todas las entidades de la variable que le sigue.",
+   "reemplazar": "$\\sum_i$ es la suma sobre todas las entidades de la variable que le sigue."
+  },
+  {
+   "id": "art-4b-t",
+   "articulo": "4-B",
+   "pagina_pdf": 12,
+   "buscar": "de acuerdo a la fórmula siguiente:\n\nDonde FEXHIt",
+   "reemplazar": "de acuerdo a la fórmula siguiente:\n\n$$T_{i,t} = \\left(0.5\\,C1_{i,t} + 0.5\\,C2_{i,t}\\right)FEXHI_t$$\n\nDonde FEXHIt"
+  },
+  {
+   "id": "art-4b-c1",
+   "articulo": "4-B",
+   "pagina_pdf": 12,
+   "buscar": "\n\nes el coeficiente relativo a la extracción de petróleo y gas.",
+   "reemplazar": "\n\n$$C1_{i,t} = \\frac{EXP_{i,t-1}}{\\sum_i EXP_{i,t-1}}$$\n\nes el coeficiente relativo a la extracción de petróleo y gas."
+  },
+  {
+   "id": "art-4b-c2",
+   "articulo": "4-B",
+   "pagina_pdf": 12,
+   "buscar": "\n\nes el coeficiente relativo a la producción de gas asociado y no asociado.",
+   "reemplazar": "\n\n$$C2_{i,t} = \\frac{EXG_{i,t-1}}{\\sum_i EXG_{i,t-1}}$$\n\nes el coeficiente relativo a la producción de gas asociado y no asociado."
+  },
+  {
+   "id": "art-4b-suma",
+   "articulo": "4-B",
+   "pagina_pdf": 12,
+   "buscar": " i es la sumatoria de la variable que le sigue",
+   "reemplazar": "$\\sum_i$ es la sumatoria de la variable que le sigue"
+  },
+  {
+   "id": "art-34-f",
+   "articulo": "34",
+   "pagina_pdf": 35,
+   "buscar": "Fi,t=Fi,2013+ΔF2013,t (0.8zi,t+0.2ei,t)\n\nDonde:\n\nY las variables",
+   "reemplazar": "$$F_{i,t} = F_{i,2013} + \\Delta F_{2013,t}\\left(0.8\\,z_{i,t} + 0.2\\,e_{i,t}\\right)$$\n\nDonde:\n\n$$z_{i,t} = \\frac{x_{i,t}}{\\sum_i x_{i,t}}$$\n\n$$x_{i,t} = CPPE_i\\,\\frac{PPE_{i,T}}{\\sum_i PPE_{i,T}}$$\n\n$$e_{i,t} = \\frac{\\frac{PPE_{i,T-1}}{PPE_{i,T}}}{\\sum_i \\frac{PPE_{i,T-1}}{PPE_{i,T}}}$$\n\nY las variables"
+  },
+  {
+   "id": "art-34-delta",
+   "articulo": "34",
+   "pagina_pdf": 35,
+   "buscar": "F2013,t= FAISt-Fi,2013,",
+   "reemplazar": "$\\Delta F_{2013,t} = FAIS_t - \\sum F_{i,2013}$,"
+  },
+  {
+   "id": "art-34-cppe",
+   "articulo": "34",
+   "pagina_pdf": 36,
+   "buscar": "\n\n= Número de carencias promedio",
+   "reemplazar": "\n\n$CPPE_i$ = Número de carencias promedio"
+  },
+  {
+   "id": "art-34-ppe",
+   "articulo": "34",
+   "pagina_pdf": 36,
+   "buscar": "\n\n= Población en Pobreza Extrema de la entidad i, de acuerdo con la información más reciente",
+   "reemplazar": "\n\n$PPE_{i,T}$ = Población en Pobreza Extrema de la entidad i, de acuerdo con la información más reciente"
+  },
+  {
+   "id": "art-34-ppe1",
+   "articulo": "34",
+   "pagina_pdf": 36,
+   "buscar": "\n\n= Población en Pobreza Extrema de la entidad i, de acuerdo con la información inmediata",
+   "reemplazar": "\n\n$PPE_{i,T-1}$ = Población en Pobreza Extrema de la entidad i, de acuerdo con la información inmediata"
+  },
+  {
+   "id": "art-46-fafef",
+   "articulo": "46",
+   "pagina_pdf": 41,
+   "desde": "Ti ,t  Ti , 07",
+   "hasta": "PIBpc  ni",
+   "reemplazar": "$$T_{i,t} = T_{i,07} + \\Delta FAFEF_{07,t}\\,C_{i,t}$$\n\n$$C_{i,t} = \\frac{\\left[\\frac{1}{PIBpc_i}\\right]n_i}{\\sum_i \\left[\\frac{1}{PIBpc_i}\\right]n_i}$$"
+  },
+  {
+   "id": "art-46-delta",
+   "articulo": "46",
+   "pagina_pdf": 42,
+   "buscar": "FAFEF07,t es el crecimiento",
+   "reemplazar": "$\\Delta FAFEF_{07,t}$ es el crecimiento"
+  },
+  {
+   "id": "art-46-suma",
+   "articulo": "46",
+   "pagina_pdf": 42,
+   "buscar": " es la sumatoria sobre todas las entidades de la variable que le sigue. i",
+   "reemplazar": "$\\sum_i$ es la sumatoria sobre todas las entidades de la variable que le sigue."
+  },
+  {
+   "id": "art-4a-fc",
+   "articulo": "4-A",
+   "pagina_pdf": 11,
+   "buscar": "1 PIBpc i ,t 1 Ti ,t  FC t 1 i PIBpc i ,t 1",
+   "reemplazar": "$$T_{i,t} = \\frac{\\frac{1}{PIBpc_{i,t-1}}}{\\sum_i \\frac{1}{PIBpc_{i,t-1}}}\\,FC_t$$"
+  },
+  {
+   "id": "art-4a-suma",
+   "articulo": "4-A",
+   "pagina_pdf": 11,
+   "buscar": " i es la sumatoria de la variable que le sigue.",
+   "reemplazar": "$\\sum_i$ es la sumatoria de la variable que le sigue."
+  },
+  {
+   "id": "art-31-suma",
+   "articulo": "31",
+   "pagina_pdf": 32,
+   "buscar": "donde  representa la sumatoria",
+   "reemplazar": "donde $\\sum$ representa la sumatoria"
+  },
+  {
+   "id": "art-31-fi",
+   "articulo": "31",
+   "pagina_pdf": 32,
+   "buscar": "Fi = (M*Ti)",
+   "reemplazar": "$$\\sum F_i = \\sum (M \\cdot T_i)$$"
+  }
+ ]
+}

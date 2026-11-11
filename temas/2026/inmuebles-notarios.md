@@ -4,7 +4,7 @@ Enajenación de inmuebles, notarios y fedatarios públicos.
 
 Palabras: enajenación de bienes inmuebles, fedatario público, fedatarios públicos, notario, adquisición de inmuebles, escritura pública, enajenación de acciones, ingresos por enajenación de bienes.
 
-132 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+133 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -100,6 +100,7 @@ Palabras: enajenación de bienes inmuebles, fedatario público, fedatarios públ
 | RMF | regla 2.4.8 | 3 | texto | [regla-2.4.8.md](../../rmf/2026/rmf/reglas/regla-2.4.8.md) |
 | RMF | regla 2.8.1.21 | 3 | texto | [regla-2.8.1.21.md](../../rmf/2026/rmf/reglas/regla-2.8.1.21.md) |
 | CFF | 52 | 2 | texto | [art-0052.md](../../leyes/2026/CFF/art-0052.md) |
+| LIF | 17 | 2 | texto | [art-0017.md](../../leyes/2026/LIF/art-0017.md) |
 | LISR | 132 | 2 | texto | [art-0132.md](../../leyes/2026/LISR/art-0132.md) |
 | LISR | 153 | 2 | texto | [art-0153.md](../../leyes/2026/LISR/art-0153.md) |
 | LISR | 166 | 2 | texto | [art-0166.md](../../leyes/2026/LISR/art-0166.md) |

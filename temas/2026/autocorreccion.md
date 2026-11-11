@@ -4,7 +4,7 @@ Corrección de la situación fiscal durante el ejercicio de facultades de compro
 
 Palabras: corregir su situación fiscal, corrija su situación fiscal, corrijan su situación fiscal, corregido su situación fiscal, corregir la situación fiscal, autocorrección, corrección fiscal.
 
-47 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+48 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -35,6 +35,7 @@ Palabras: corregir su situación fiscal, corrija su situación fiscal, corrijan 
 | LFDC | 13 | 1 | texto | [art-0013.md](../../leyes/2026/LFDC/art-0013.md) |
 | LFDC | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
 | LFDC | 2 | 1 | texto | [art-0002.md](../../leyes/2026/LFDC/art-0002.md) |
+| LIF | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LIF/art-0019.md) |
 | RCFF | 41 | 1 | texto | [art-0041.md](../../leyes/2026/RCFF/art-0041.md) |
 | RCFF | 50 | 1 | texto | [art-0050.md](../../leyes/2026/RCFF/art-0050.md) |
 | RCFF | 66 | 1 | texto | [art-0066.md](../../leyes/2026/RCFF/art-0066.md) |
