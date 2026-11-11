@@ -4,7 +4,7 @@ Impuesto especial sobre producción y servicios, tabacos, bebidas y alimentos no
 
 Palabras: impuesto especial sobre producción y servicios, IEPS, bebidas saborizadas, tabacos labrados, cigarros, bebidas alcohólicas, cerveza, alimentos no básicos, plaguicidas.
 
-121 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+124 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -87,6 +87,7 @@ Palabras: impuesto especial sobre producción y servicios, IEPS, bebidas saboriz
 | RMF | regla 5.2.34 | 6 | encabezado, texto | [regla-5.2.34.md](../../rmf/2026/rmf/reglas/regla-5.2.34.md) |
 | RMF | regla 5.2.36 | 6 | encabezado, texto | [regla-5.2.36.md](../../rmf/2026/rmf/reglas/regla-5.2.36.md) |
 | RMF | regla 5.2.38 | 6 | encabezado, texto | [regla-5.2.38.md](../../rmf/2026/rmf/reglas/regla-5.2.38.md) |
+| LCF | 3-A | 5 | texto | [art-0003-A.md](../../leyes/2026/LCF/art-0003-A.md) |
 | RMF | regla 11.6.2 | 5 | texto | [regla-11.6.2.md](../../rmf/2026/rmf/reglas/regla-11.6.2.md) |
 | RMF | regla 2.1.12 | 5 | texto | [regla-2.1.12.md](../../rmf/2026/rmf/reglas/regla-2.1.12.md) |
 | CFF | 105 | 4 | texto | [art-0105.md](../../leyes/2026/CFF/art-0105.md) |
@@ -106,6 +107,7 @@ Palabras: impuesto especial sobre producción y servicios, IEPS, bebidas saboriz
 | CFF | 104 | 2 | texto | [art-0104.md](../../leyes/2026/CFF/art-0104.md) |
 | CFF | 42 | 2 | texto | [art-0042.md](../../leyes/2026/CFF/art-0042.md) |
 | CFF | 58 | 2 | texto | [art-0058.md](../../leyes/2026/CFF/art-0058.md) |
+| LCF | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LCF/art-0002.md) |
 | LISR | 148 | 2 | texto | [art-0148.md](../../leyes/2026/LISR/art-0148.md) |
 | LISR | 28 | 2 | texto | [art-0028.md](../../leyes/2026/LISR/art-0028.md) |
 | LIVA | 2-A | 2 | texto | [art-0002-A.md](../../leyes/2026/LIVA/art-0002-A.md) |
@@ -117,6 +119,7 @@ Palabras: impuesto especial sobre producción y servicios, IEPS, bebidas saboriz
 | RMF | regla 3.9.1.2 | 2 | texto | [regla-3.9.1.2.md](../../rmf/2026/rmf/reglas/regla-3.9.1.2.md) |
 | RMF | regla 9.4.3 | 2 | texto | [regla-9.4.3.md](../../rmf/2026/rmf/reglas/regla-9.4.3.md) |
 | CFF | 32-G | 1 | texto | [art-0032-G.md](../../leyes/2026/CFF/art-0032-G.md) |
+| LCF | 10-D | 1 | texto | [art-0010-D.md](../../leyes/2026/LCF/art-0010-D.md) |
 | LFT | 242 | 1 | texto | [art-0242.md](../../leyes/2026/LFT/art-0242.md) |
 | LFT | 261 | 1 | texto | [art-0261.md](../../leyes/2026/LFT/art-0261.md) |
 | RMF | regla 11.6.1 | 1 | texto | [regla-11.6.1.md](../../rmf/2026/rmf/reglas/regla-11.6.1.md) |

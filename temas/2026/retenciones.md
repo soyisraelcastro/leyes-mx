@@ -4,7 +4,7 @@ Obligación de retener y enterar contribuciones y constancias de retenciones.
 
 Palabras: retención, retenciones, retenedor, constancia de retenciones.
 
-191 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+193 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -110,6 +110,7 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | RLISR | 177 | 4 | texto | [art-0177.md](../../leyes/2026/RLISR/art-0177.md) |
 | RMF | regla 3.16.10 | 4 | texto | [regla-3.16.10.md](../../rmf/2026/rmf/reglas/regla-3.16.10.md) |
 | CFF | 32-D | 3 | texto | [art-0032-D.md](../../leyes/2026/CFF/art-0032-D.md) |
+| LCF | 51 | 3 | texto | [art-0051.md](../../leyes/2026/LCF/art-0051.md) |
 | LISR | 138 | 3 | texto | [art-0138.md](../../leyes/2026/LISR/art-0138.md) |
 | LISR | 142 | 3 | texto | [art-0142.md](../../leyes/2026/LISR/art-0142.md) |
 | LISR | 153 | 3 | texto | [art-0153.md](../../leyes/2026/LISR/art-0153.md) |
@@ -144,6 +145,7 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | RMF | regla 12.3.6 | 2 | texto | [regla-12.3.6.md](../../rmf/2026/rmf/reglas/regla-12.3.6.md) |
 | RMF | regla 3.9.5 | 2 | texto | [regla-3.9.5.md](../../rmf/2026/rmf/reglas/regla-3.9.5.md) |
 | CFF | 32-G | 1 | texto | [art-0032-G.md](../../leyes/2026/CFF/art-0032-G.md) |
+| LCF | 3-B | 1 | texto | [art-0003-B.md](../../leyes/2026/LCF/art-0003-B.md) |
 | LFT | 280 | 1 | texto | [art-0280.md](../../leyes/2026/LFT/art-0280.md) |
 | LFT | 291-S | 1 | texto | [art-0291-S.md](../../leyes/2026/LFT/art-0291-S.md) |
 | LISR | 136 | 1 | texto | [art-0136.md](../../leyes/2026/LISR/art-0136.md) |

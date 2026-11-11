@@ -4,7 +4,7 @@ Defraudación fiscal, contrabando, querella y declaratoria de perjuicio.
 
 Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de perjuicio.
 
-139 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+140 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -131,6 +131,7 @@ Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de p
 | RMF | regla 2.14.7 | 5 | encabezado | [regla-2.14.7.md](../../rmf/2026/rmf/reglas/regla-2.14.7.md) |
 | RMF | regla 2.14.8 | 5 | encabezado | [regla-2.14.8.md](../../rmf/2026/rmf/reglas/regla-2.14.8.md) |
 | RMF | regla 2.14.9 | 5 | encabezado | [regla-2.14.9.md](../../rmf/2026/rmf/reglas/regla-2.14.9.md) |
+| LOPDC | 7 | 2 | texto | [art-0007.md](../../leyes/2026/LOPDC/art-0007.md) |
 | RCFF | 56 | 2 | texto | [art-0056.md](../../leyes/2026/RCFF/art-0056.md) |
 | CFF | 166 | 1 | texto | [art-0166.md](../../leyes/2026/CFF/art-0166.md) |
 | LFT | 43 | 1 | texto | [art-0043.md](../../leyes/2026/LFT/art-0043.md) |

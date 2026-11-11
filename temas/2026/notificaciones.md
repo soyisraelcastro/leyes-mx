@@ -4,7 +4,7 @@ Notificación de actos y resoluciones, por buzón tributario, estrados o edictos
 
 Palabras: notificación, notificaciones por buzón tributario, notificación por estrados, notificación por edictos.
 
-157 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+161 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -104,6 +104,7 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | CFF | 53 | 2 | texto | [art-0053.md](../../leyes/2026/CFF/art-0053.md) |
 | CFF | 84-E | 2 | texto | [art-0084-E.md](../../leyes/2026/CFF/art-0084-E.md) |
 | LFT | 871 | 2 | texto | [art-0871.md](../../leyes/2026/LFT/art-0871.md) |
+| LOPDC | 19 | 2 | texto | [art-0019.md](../../leyes/2026/LOPDC/art-0019.md) |
 | RACERF | 179 | 2 | texto | [art-0179.md](../../leyes/2026/RACERF/art-0179.md) |
 | RCFF | 46 | 2 | texto | [art-0046.md](../../leyes/2026/RCFF/art-0046.md) |
 | RCFF | 61 | 2 | texto | [art-0061.md](../../leyes/2026/RCFF/art-0061.md) |
@@ -120,6 +121,8 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | CFF | 41-A | 1 | texto | [art-0041-A.md](../../leyes/2026/CFF/art-0041-A.md) |
 | CFF | 65 | 1 | texto | [art-0065.md](../../leyes/2026/CFF/art-0065.md) |
 | CFF | 78 | 1 | texto | [art-0078.md](../../leyes/2026/CFF/art-0078.md) |
+| LFDC | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
+| LFDC | 23 | 1 | texto | [art-0023.md](../../leyes/2026/LFDC/art-0023.md) |
 | LFT | 291-M | 1 | texto | [art-0291-M.md](../../leyes/2026/LFT/art-0291-M.md) |
 | LFT | 521 | 1 | texto | [art-0521.md](../../leyes/2026/LFT/art-0521.md) |
 | LFT | 610 | 1 | texto | [art-0610.md](../../leyes/2026/LFT/art-0610.md) |
@@ -137,6 +140,7 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | LFT | 978 | 1 | texto | [art-0978.md](../../leyes/2026/LFT/art-0978.md) |
 | LFT | 991 | 1 | texto | [art-0991.md](../../leyes/2026/LFT/art-0991.md) |
 | LIVA | 18-H-quater | 1 | texto | [art-0018-H-quater.md](../../leyes/2026/LIVA/art-0018-H-quater.md) |
+| LOPDC | 25 | 1 | texto | [art-0025.md](../../leyes/2026/LOPDC/art-0025.md) |
 | LSS | 39-D | 1 | texto | [art-0039-D.md](../../leyes/2026/LSS/art-0039-D.md) |
 | RACERF | 127 | 1 | texto | [art-0127.md](../../leyes/2026/RACERF/art-0127.md) |
 | RACERF | 129 | 1 | texto | [art-0129.md](../../leyes/2026/RACERF/art-0129.md) |

@@ -4,7 +4,7 @@ Jornada de trabajo, horas extras, salario mínimo e integración del salario.
 
 Palabras: jornada de trabajo, horas extras, tiempo extraordinario, salario mínimo, jornada máxima, pago del salario.
 
-68 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+70 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -40,6 +40,7 @@ Palabras: jornada de trabajo, horas extras, tiempo extraordinario, salario míni
 | LSS | 28 | 2 | texto | [art-0028.md](../../leyes/2026/LSS/art-0028.md) |
 | RACERF | 65 | 2 | texto | [art-0065.md](../../leyes/2026/RACERF/art-0065.md) |
 | CFF | 138 | 1 | texto | [art-0138.md](../../leyes/2026/CFF/art-0138.md) |
+| LFDC | 22 | 1 | texto | [art-0022.md](../../leyes/2026/LFDC/art-0022.md) |
 | LFT | 1003 | 1 | texto | [art-1003.md](../../leyes/2026/LFT/art-1003.md) |
 | LFT | 101 | 1 | texto | [art-0101.md](../../leyes/2026/LFT/art-0101.md) |
 | LFT | 108 | 1 | texto | [art-0108.md](../../leyes/2026/LFT/art-0108.md) |
@@ -63,6 +64,7 @@ Palabras: jornada de trabajo, horas extras, tiempo extraordinario, salario míni
 | LFT | 83 | 1 | texto | [art-0083.md](../../leyes/2026/LFT/art-0083.md) |
 | LFT | 85 | 1 | texto | [art-0085.md](../../leyes/2026/LFT/art-0085.md) |
 | LFT | 88 | 1 | texto | [art-0088.md](../../leyes/2026/LFT/art-0088.md) |
+| LOPDC | 3 | 1 | texto | [art-0003.md](../../leyes/2026/LOPDC/art-0003.md) |
 | LSS | 104 | 1 | texto | [art-0104.md](../../leyes/2026/LSS/art-0104.md) |
 | LSS | 157 | 1 | texto | [art-0157.md](../../leyes/2026/LSS/art-0157.md) |
 | LSS | 165 | 1 | texto | [art-0165.md](../../leyes/2026/LSS/art-0165.md) |

@@ -1,0 +1,15 @@
+{
+  "sigla": "LOPDC",
+  "nombre_oficial": "Ley Orgánica de la Procuraduría de la Defensa del Contribuyente",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LOPDC.pdf",
+  "ultima_reforma_dof": "2022-05-11",
+  "fecha_descarga": "2026-11-07",
+  "sha256_pdf": "7dc8f2201fdeb8039371254e3b2606c158f4cd480e29ce074a65eb375a19475c",
+  "articulos_extraidos": 28,
+  "ultimo_articulo_numerico": 28,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 3,
+  "advertencias": []
+}

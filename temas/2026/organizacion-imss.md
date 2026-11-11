@@ -4,7 +4,7 @@
 
 Palabras: Consejo Técnico, Asamblea General, reservas financieras, reserva de operación, Dirección General del Instituto, patrimonio del Instituto.
 
-66 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+68 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -29,6 +29,7 @@ Palabras: Consejo Técnico, Asamblea General, reservas financieras, reserva de o
 | LSS | 283 | 3 | texto | [art-0283.md](../../leyes/2026/LSS/art-0283.md) |
 | LSS | 286 | 3 | texto | [art-0286.md](../../leyes/2026/LSS/art-0286.md) |
 | LSS | 76 | 3 | texto | [art-0076.md](../../leyes/2026/LSS/art-0076.md) |
+| LCF | 23 | 2 | texto | [art-0023.md](../../leyes/2026/LCF/art-0023.md) |
 | LISR | 27 | 2 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | LSS | 250-A | 2 | texto | [art-0250-A.md](../../leyes/2026/LSS/art-0250-A.md) |
 | LSS | 257 | 2 | texto | [art-0257.md](../../leyes/2026/LSS/art-0257.md) |
@@ -40,6 +41,7 @@ Palabras: Consejo Técnico, Asamblea General, reservas financieras, reserva de o
 | LSS | 286-A | 2 | texto | [art-0286-A.md](../../leyes/2026/LSS/art-0286-A.md) |
 | LSS | 286-K | 2 | texto | [art-0286-K.md](../../leyes/2026/LSS/art-0286-K.md) |
 | RACERF | 31 | 2 | texto | [art-0031.md](../../leyes/2026/RACERF/art-0031.md) |
+| LCF | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LCF/art-0019.md) |
 | LSS | 109 | 1 | texto | [art-0109.md](../../leyes/2026/LSS/art-0109.md) |
 | LSS | 118 | 1 | texto | [art-0118.md](../../leyes/2026/LSS/art-0118.md) |
 | LSS | 203 | 1 | texto | [art-0203.md](../../leyes/2026/LSS/art-0203.md) |

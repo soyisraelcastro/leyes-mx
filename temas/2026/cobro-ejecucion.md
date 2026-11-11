@@ -4,7 +4,7 @@ Procedimiento administrativo de ejecución, embargo, garantía del interés fisc
 
 Palabras: procedimiento administrativo de ejecución, embargo, garantía del interés fiscal, remate, crédito fiscal, pago en parcialidades, pago diferido, prescripción, caducidad.
 
-310 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+314 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -264,6 +264,7 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | RMF | regla 3.3.1.2 | 3 | texto | [regla-3.3.1.2.md](../../rmf/2026/rmf/reglas/regla-3.3.1.2.md) |
 | CFF | 13 | 2 | texto | [art-0013.md](../../leyes/2026/CFF/art-0013.md) |
 | CFF | 69-A | 2 | texto | [art-0069-A.md](../../leyes/2026/CFF/art-0069-A.md) |
+| LFDC | 22 | 2 | texto | [art-0022.md](../../leyes/2026/LFDC/art-0022.md) |
 | LFT | 114 | 2 | texto | [art-0114.md](../../leyes/2026/LFT/art-0114.md) |
 | LFT | 135 | 2 | texto | [art-0135.md](../../leyes/2026/LFT/art-0135.md) |
 | LFT | 208 | 2 | texto | [art-0208.md](../../leyes/2026/LFT/art-0208.md) |
@@ -286,6 +287,9 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | CFF | 36-bis | 1 | texto | [art-0036-bis.md](../../leyes/2026/CFF/art-0036-bis.md) |
 | CFF | 68 | 1 | texto | [art-0068.md](../../leyes/2026/CFF/art-0068.md) |
 | CFF | 74 | 1 | texto | [art-0074.md](../../leyes/2026/CFF/art-0074.md) |
+| LFDC | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
+| LFDC | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LFDC/art-0018.md) |
+| LFDC | 20 | 1 | texto | [art-0020.md](../../leyes/2026/LFDC/art-0020.md) |
 | LFT | 112 | 1 | texto | [art-0112.md](../../leyes/2026/LFT/art-0112.md) |
 | LFT | 863 | 1 | texto | [art-0863.md](../../leyes/2026/LFT/art-0863.md) |
 | LFT | 924 | 1 | texto | [art-0924.md](../../leyes/2026/LFT/art-0924.md) |

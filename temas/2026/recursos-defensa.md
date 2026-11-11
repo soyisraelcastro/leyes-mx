@@ -4,7 +4,7 @@ Recurso de revocación, juicio de nulidad, amparo, PRODECON y acuerdos conclusiv
 
 Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administrativo, amparo, Tribunal Federal de Justicia Administrativa, PRODECON, Procuraduría de la Defensa del Contribuyente, acuerdo conclusivo, recurso de inconformidad.
 
-78 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+96 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -35,11 +35,15 @@ Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administ
 | CFF | 124-A | 5 | encabezado | [art-0124-A.md](../../leyes/2026/CFF/art-0124-A.md) |
 | CFF | 69-C | 5 | texto | [art-0069-C.md](../../leyes/2026/CFF/art-0069-C.md) |
 | CFF | 69-D | 5 | texto | [art-0069-D.md](../../leyes/2026/CFF/art-0069-D.md) |
+| LCF | 11-A | 5 | texto | [art-0011-A.md](../../leyes/2026/LCF/art-0011-A.md) |
 | CFF | 141 | 4 | texto | [art-0141.md](../../leyes/2026/CFF/art-0141.md) |
 | RMF | regla 3.21.2.2 | 4 | texto | [regla-3.21.2.2.md](../../rmf/2026/rmf/reglas/regla-3.21.2.2.md) |
 | CFF | 130 | 3 | texto | [art-0130.md](../../leyes/2026/CFF/art-0130.md) |
 | CFF | 69-E | 3 | texto | [art-0069-E.md](../../leyes/2026/CFF/art-0069-E.md) |
 | CFF | 69-F | 3 | texto | [art-0069-F.md](../../leyes/2026/CFF/art-0069-F.md) |
+| LOPDC | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LOPDC/art-0002.md) |
+| LOPDC | 5 | 3 | texto | [art-0005.md](../../leyes/2026/LOPDC/art-0005.md) |
+| LOPDC | 9 | 3 | texto | [art-0009.md](../../leyes/2026/LOPDC/art-0009.md) |
 | RMF | regla 2.1.29 | 3 | texto | [regla-2.1.29.md](../../rmf/2026/rmf/reglas/regla-2.1.29.md) |
 | RMF | regla 2.12.8 | 3 | texto | [regla-2.12.8.md](../../rmf/2026/rmf/reglas/regla-2.12.8.md) |
 | RMF | regla 3.21.2.1 | 3 | texto | [regla-3.21.2.1.md](../../rmf/2026/rmf/reglas/regla-3.21.2.1.md) |
@@ -51,6 +55,9 @@ Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administ
 | CFF | 48-A | 2 | texto | [art-0048-A.md](../../leyes/2026/CFF/art-0048-A.md) |
 | CFF | 50 | 2 | texto | [art-0050.md](../../leyes/2026/CFF/art-0050.md) |
 | CFF | 69-G | 2 | texto | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
+| LOPDC | 18 | 2 | texto | [art-0018.md](../../leyes/2026/LOPDC/art-0018.md) |
+| LOPDC | 23 | 2 | texto | [art-0023.md](../../leyes/2026/LOPDC/art-0023.md) |
+| LOPDC | 8 | 2 | texto | [art-0008.md](../../leyes/2026/LOPDC/art-0008.md) |
 | RACERF | 151 | 2 | texto | [art-0151.md](../../leyes/2026/RACERF/art-0151.md) |
 | RMF | regla 2.1.13 | 2 | texto | [regla-2.1.13.md](../../rmf/2026/rmf/reglas/regla-2.1.13.md) |
 | RMF | regla 2.1.39 | 2 | texto | [regla-2.1.39.md](../../rmf/2026/rmf/reglas/regla-2.1.39.md) |
@@ -63,7 +70,18 @@ Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administ
 | CFF | 158 | 1 | texto | [art-0158.md](../../leyes/2026/CFF/art-0158.md) |
 | CFF | 196-B | 1 | texto | [art-0196-B.md](../../leyes/2026/CFF/art-0196-B.md) |
 | CFF | 69-H | 1 | texto | [art-0069-H.md](../../leyes/2026/CFF/art-0069-H.md) |
+| LFDC | 23 | 1 | texto | [art-0023.md](../../leyes/2026/LFDC/art-0023.md) |
+| LFDC | 24 | 1 | texto | [art-0024.md](../../leyes/2026/LFDC/art-0024.md) |
 | LFT | 330-J | 1 | texto | [art-0330-J.md](../../leyes/2026/LFT/art-0330-J.md) |
+| LOPDC | 1 | 1 | texto | [art-0001.md](../../leyes/2026/LOPDC/art-0001.md) |
+| LOPDC | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LOPDC/art-0010.md) |
+| LOPDC | 14 | 1 | texto | [art-0014.md](../../leyes/2026/LOPDC/art-0014.md) |
+| LOPDC | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LOPDC/art-0015.md) |
+| LOPDC | 16 | 1 | texto | [art-0016.md](../../leyes/2026/LOPDC/art-0016.md) |
+| LOPDC | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LOPDC/art-0017.md) |
+| LOPDC | 25 | 1 | texto | [art-0025.md](../../leyes/2026/LOPDC/art-0025.md) |
+| LOPDC | 26 | 1 | texto | [art-0026.md](../../leyes/2026/LOPDC/art-0026.md) |
+| LOPDC | 6 | 1 | texto | [art-0006.md](../../leyes/2026/LOPDC/art-0006.md) |
 | LSS | 255 | 1 | texto | [art-0255.md](../../leyes/2026/LSS/art-0255.md) |
 | LSS | 292 | 1 | texto | [art-0292.md](../../leyes/2026/LSS/art-0292.md) |
 | LSS | 295 | 1 | texto | [art-0295.md](../../leyes/2026/LSS/art-0295.md) |

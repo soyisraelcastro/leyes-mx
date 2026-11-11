@@ -4,7 +4,7 @@ Infracciones fiscales, multas, sanciones y recargos.
 
 Palabras: infracción, multa, sanción, recargos, reducción de multas.
 
-272 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+276 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -174,6 +174,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 997-A | 6 | encabezado, texto | [art-0997-A.md](../../leyes/2026/LFT/art-0997-A.md) |
 | LFT | 998 | 6 | encabezado, texto | [art-0998.md](../../leyes/2026/LFT/art-0998.md) |
 | LFT | 999 | 6 | encabezado, texto | [art-0999.md](../../leyes/2026/LFT/art-0999.md) |
+| LOPDC | 28 | 6 | encabezado | [art-0028.md](../../leyes/2026/LOPDC/art-0028.md) |
 | RCFF | 73 | 6 | encabezado, texto | [art-0073.md](../../leyes/2026/RCFF/art-0073.md) |
 | CFF | 100 | 5 | encabezado | [art-0100.md](../../leyes/2026/CFF/art-0100.md) |
 | CFF | 102 | 5 | encabezado | [art-0102.md](../../leyes/2026/CFF/art-0102.md) |
@@ -214,6 +215,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | CFF | 5 | 2 | texto | [art-0005.md](../../leyes/2026/CFF/art-0005.md) |
 | CFF | 69-A | 2 | texto | [art-0069-A.md](../../leyes/2026/CFF/art-0069-A.md) |
 | CFF | 69-G | 2 | texto | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
+| LFDC | 17 | 2 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
 | LFT | 729 | 2 | texto | [art-0729.md](../../leyes/2026/LFT/art-0729.md) |
 | LFT | 731 | 2 | texto | [art-0731.md](../../leyes/2026/LFT/art-0731.md) |
 | LISR | 113-D | 2 | texto | [art-0113-D.md](../../leyes/2026/LISR/art-0113-D.md) |
@@ -233,6 +235,8 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | CFF | 138 | 1 | texto | [art-0138.md](../../leyes/2026/CFF/art-0138.md) |
 | CFF | 189 | 1 | texto | [art-0189.md](../../leyes/2026/CFF/art-0189.md) |
 | CFF | 69-D | 1 | texto | [art-0069-D.md](../../leyes/2026/CFF/art-0069-D.md) |
+| LCF | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LCF/art-0015.md) |
+| LFDC | 21 | 1 | texto | [art-0021.md](../../leyes/2026/LFDC/art-0021.md) |
 | LFT | 107 | 1 | texto | [art-0107.md](../../leyes/2026/LFT/art-0107.md) |
 | LFT | 302 | 1 | texto | [art-0302.md](../../leyes/2026/LFT/art-0302.md) |
 | LFT | 330 | 1 | texto | [art-0330.md](../../leyes/2026/LFT/art-0330.md) |

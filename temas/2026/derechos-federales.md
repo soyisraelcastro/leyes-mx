@@ -4,7 +4,7 @@ Pago de derechos por servicios del Estado (Ley Federal de Derechos) y aprovecham
 
 Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamientos, derechos federales. Reglas cuyo fundamento cita: LFD.
 
-82 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+85 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -39,6 +39,7 @@ Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamien
 | RMF | regla 7.23 | 5 | texto, fundamento | [regla-7.23.md](../../rmf/2026/rmf/reglas/regla-7.23.md) |
 | RMF | regla 7.6 | 5 | texto, fundamento | [regla-7.6.md](../../rmf/2026/rmf/reglas/regla-7.6.md) |
 | CFF | 21 | 4 | texto | [art-0021.md](../../leyes/2026/CFF/art-0021.md) |
+| LCF | 51 | 4 | texto | [art-0051.md](../../leyes/2026/LCF/art-0051.md) |
 | RMF | regla 2.8.1.9 | 4 | texto, fundamento | [regla-2.8.1.9.md](../../rmf/2026/rmf/reglas/regla-2.8.1.9.md) |
 | RMF | regla 7.12 | 4 | texto, fundamento | [regla-7.12.md](../../rmf/2026/rmf/reglas/regla-7.12.md) |
 | RMF | regla 7.18 | 4 | texto, fundamento | [regla-7.18.md](../../rmf/2026/rmf/reglas/regla-7.18.md) |
@@ -69,6 +70,8 @@ Palabras: Ley Federal de Derechos, pago de derechos, derechos por, aprovechamien
 | CFF | 20 | 2 | texto | [art-0020.md](../../leyes/2026/CFF/art-0020.md) |
 | CFF | 52-A | 2 | texto | [art-0052-A.md](../../leyes/2026/CFF/art-0052-A.md) |
 | CFF | 53-C | 2 | texto | [art-0053-C.md](../../leyes/2026/CFF/art-0053-C.md) |
+| LCF | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LCF/art-0002.md) |
+| LCF | 37 | 2 | texto | [art-0037.md](../../leyes/2026/LCF/art-0037.md) |
 | LIVA | 27 | 2 | texto | [art-0027.md](../../leyes/2026/LIVA/art-0027.md) |
 | LIVA | 3 | 2 | texto | [art-0003.md](../../leyes/2026/LIVA/art-0003.md) |
 | RMF | regla 2.8.1.1 | 2 | texto | [regla-2.8.1.1.md](../../rmf/2026/rmf/reglas/regla-2.8.1.1.md) |

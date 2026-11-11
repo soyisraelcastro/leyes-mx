@@ -4,7 +4,7 @@ Hidrocarburos, petrolíferos, gasolina y diésel, controles volumétricos y la L
 
 Palabras: hidrocarburo, petrolífero, petróleo, gasolina, diésel, biodiésel, turbosina, gas natural, gas licuado de petróleo, combustible, controles volumétricos, asignatario, estaciones de servicio, ingresos petroleros, contrato para la exploración y extracción. Reglas cuyo fundamento cita: LISH, LSH.
 
-102 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+106 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -43,6 +43,7 @@ Palabras: hidrocarburo, petrolífero, petróleo, gasolina, diésel, biodiésel, 
 | RMF | regla 5.1.5 | 16 | encabezado, texto | [regla-5.1.5.md](../../rmf/2026/rmf/reglas/regla-5.1.5.md) |
 | RMF | regla 10.7 | 15 | encabezado, texto, fundamento | [regla-10.7.md](../../rmf/2026/rmf/reglas/regla-10.7.md) |
 | CFF | 81 | 14 | texto | [art-0081.md](../../leyes/2026/CFF/art-0081.md) |
+| LCF | 4-B | 14 | texto | [art-0004-B.md](../../leyes/2026/LCF/art-0004-B.md) |
 | RMF | regla 10.10 | 14 | encabezado, texto, fundamento | [regla-10.10.md](../../rmf/2026/rmf/reglas/regla-10.10.md) |
 | RMF | regla 5.1.6 | 14 | encabezado, texto | [regla-5.1.6.md](../../rmf/2026/rmf/reglas/regla-5.1.6.md) |
 | RMF | regla 9.1.4 | 13 | encabezado, texto | [regla-9.1.4.md](../../rmf/2026/rmf/reglas/regla-9.1.4.md) |
@@ -82,6 +83,7 @@ Palabras: hidrocarburo, petrolífero, petróleo, gasolina, diésel, biodiésel, 
 | RMF | regla 3.3.1.13 | 8 | encabezado, texto | [regla-3.3.1.13.md](../../rmf/2026/rmf/reglas/regla-3.3.1.13.md) |
 | RMF | regla 3.3.1.41 | 8 | encabezado, texto | [regla-3.3.1.41.md](../../rmf/2026/rmf/reglas/regla-3.3.1.41.md) |
 | RMF | regla 3.3.1.42 | 8 | encabezado, texto | [regla-3.3.1.42.md](../../rmf/2026/rmf/reglas/regla-3.3.1.42.md) |
+| LCF | 4-A | 7 | texto | [art-0004-A.md](../../leyes/2026/LCF/art-0004-A.md) |
 | RMF | regla 10.21 | 7 | encabezado, texto | [regla-10.21.md](../../rmf/2026/rmf/reglas/regla-10.21.md) |
 | RMF | regla 10.28 | 7 | encabezado, texto | [regla-10.28.md](../../rmf/2026/rmf/reglas/regla-10.28.md) |
 | RMF | regla 3.21.2.1 | 7 | texto, fundamento | [regla-3.21.2.1.md](../../rmf/2026/rmf/reglas/regla-3.21.2.1.md) |
@@ -91,6 +93,8 @@ Palabras: hidrocarburo, petrolífero, petróleo, gasolina, diésel, biodiésel, 
 | RMF | regla 2.7.1.34 | 6 | texto | [regla-2.7.1.34.md](../../rmf/2026/rmf/reglas/regla-2.7.1.34.md) |
 | RMF | regla 2.7.1.35 | 6 | texto | [regla-2.7.1.35.md](../../rmf/2026/rmf/reglas/regla-2.7.1.35.md) |
 | RMF | regla 5.1.11 | 6 | encabezado, texto | [regla-5.1.11.md](../../rmf/2026/rmf/reglas/regla-5.1.11.md) |
+| LCF | 2 | 5 | texto | [art-0002.md](../../leyes/2026/LCF/art-0002.md) |
+| LCF | 2-A | 3 | texto | [art-0002-A.md](../../leyes/2026/LCF/art-0002-A.md) |
 | LISR | 27 | 3 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | RMF | regla 2.19.15 | 3 | fundamento | [regla-2.19.15.md](../../rmf/2026/rmf/reglas/regla-2.19.15.md) |
 | RMF | regla 2.3.13 | 3 | texto | [regla-2.3.13.md](../../rmf/2026/rmf/reglas/regla-2.3.13.md) |

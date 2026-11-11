@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from leyes_mx.ids import normalizar_id, nombre_archivo, id_desde_archivo, clave_orden  # noqa: E402
-from leyes_mx.extraer import encabezado_articulo  # noqa: E402
+from leyes_mx.extraer import encabezado_articulo, fecha_ultima_reforma, trocear_transitorios  # noqa: E402
 
 
 class TestIds(unittest.TestCase):
@@ -43,6 +43,27 @@ class TestIds(unittest.TestCase):
                       "Artículo 10.- A los" if False else "Artículo reformado DOF 01-01-2020",
                       "Artículo 15 A de esta Ley", "Artículo 28 A partir de", "Artículo 5 Aquí se"]:
             self.assertIsNone(encabezado_articulo(linea), linea)
+
+    def test_fecha_ultima_reforma(self):
+        casos = {"LEY DE COORDINACIÓN FISCAL\n   CÁMARA DE DIPUTADOS   Última Reforma DOF 03-01-2024": "2024-01-03",
+                 "REGLAMENTO DEL CÓDIGO FISCAL\n   CÁMARA DE DIPUTADOS   Nuevo Reglamento DOF 02-04-2014": "2014-04-02",
+                 # LFDC: sin reformas, el encabezado dice "Nueva Ley"
+                 "LEY FEDERAL DE LOS DERECHOS DEL CONTRIBUYENTE\n   CÁMARA DE DIPUTADOS   Nueva Ley DOF 23-06-2005": "2005-06-23"}
+        for texto, esperado in casos.items():
+            self.assertEqual(fecha_ultima_reforma(texto), esperado, texto)
+        # "Nueva Ley publicada en el Diario Oficial..." no trae fecha DOF en el mismo renglón
+        self.assertIsNone(fecha_ultima_reforma("Nueva Ley publicada en el Diario Oficial de la Federación el 23 de junio de 2005"))
+
+    def test_decreto_con_titulo_largo(self):
+        # el decreto de paridad de género (DOF 11-05-2022) ocupa más de 12 renglones antes de su fecha
+        titulo = ["DECRETO por el que se reforman y adicionan diversas disposiciones de la Ley Federal"] + \
+                 [f"de la Ley {i}," for i in range(20)] + ["en materia de paridad de género.",
+                                                         "      Publicado en el Diario Oficial de la Federación el 11 de mayo de 2022"]
+        lineas = ["TRANSITORIOS", "Primero.- Entra en vigor."] + titulo + ["Transitorios", "Primero. El presente Decreto entrará en vigor."]
+        bloques = trocear_transitorios(lineas)
+        self.assertEqual(len(bloques), 2)
+        self.assertTrue(bloques[1][0].startswith("DECRETO por el que se reforman y adicionan"))
+        self.assertTrue(bloques[1][0].endswith("11 de mayo de 2022"))
 
 
 if __name__ == "__main__":

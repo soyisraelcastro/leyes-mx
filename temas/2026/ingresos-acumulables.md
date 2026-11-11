@@ -4,7 +4,7 @@ Qué ingresos se acumulan, cuándo y cómo.
 
 Palabras: ingresos acumulables, ingreso acumulable, acumulación de ingresos, de los ingresos.
 
-288 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+292 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -249,6 +249,7 @@ Palabras: ingresos acumulables, ingreso acumulable, acumulación de ingresos, de
 | RMF | regla 11.9.9 | 4 | texto | [regla-11.9.9.md](../../rmf/2026/rmf/reglas/regla-11.9.9.md) |
 | RMF | regla 3.20.2 | 4 | texto | [regla-3.20.2.md](../../rmf/2026/rmf/reglas/regla-3.20.2.md) |
 | RMF | regla 3.21.2.8 | 4 | texto | [regla-3.21.2.8.md](../../rmf/2026/rmf/reglas/regla-3.21.2.8.md) |
+| LCF | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LCF/art-0002.md) |
 | LISR | 142 | 3 | texto | [art-0142.md](../../leyes/2026/LISR/art-0142.md) |
 | LISR | 153 | 3 | texto | [art-0153.md](../../leyes/2026/LISR/art-0153.md) |
 | LISR | 178 | 3 | texto | [art-0178.md](../../leyes/2026/LISR/art-0178.md) |
@@ -264,6 +265,9 @@ Palabras: ingresos acumulables, ingreso acumulable, acumulación de ingresos, de
 | RMF | regla 3.13.22 | 2 | texto | [regla-3.13.22.md](../../rmf/2026/rmf/reglas/regla-3.13.22.md) |
 | RMF | regla 3.17.2 | 2 | texto | [regla-3.17.2.md](../../rmf/2026/rmf/reglas/regla-3.17.2.md) |
 | CFF | 3 | 1 | texto | [art-0003.md](../../leyes/2026/CFF/art-0003.md) |
+| LCF | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LCF/art-0010.md) |
+| LCF | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LCF/art-0015.md) |
+| LCF | 22 | 1 | texto | [art-0022.md](../../leyes/2026/LCF/art-0022.md) |
 | LISR | 141 | 1 | texto | [art-0141.md](../../leyes/2026/LISR/art-0141.md) |
 | LISR | 15 | 1 | texto | [art-0015.md](../../leyes/2026/LISR/art-0015.md) |
 | LISR | 165 | 1 | texto | [art-0165.md](../../leyes/2026/LISR/art-0165.md) |

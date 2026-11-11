@@ -4,7 +4,7 @@ Traslado y acreditamiento del impuesto al valor agregado, tasa del 0% y exportac
 
 Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasladado, acreditable.
 
-142 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+143 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -124,6 +124,7 @@ Palabras: impuesto al valor agregado, acreditamiento, tasa del 0, impuesto trasl
 | LIVA | 4-A | 1 | texto | [art-0004-A.md](../../leyes/2026/LIVA/art-0004-A.md) |
 | LIVA | 5-D | 1 | texto | [art-0005-D.md](../../leyes/2026/LIVA/art-0005-D.md) |
 | LIVA | 8 | 1 | texto | [art-0008.md](../../leyes/2026/LIVA/art-0008.md) |
+| LOPDC | 20 | 1 | texto | [art-0020.md](../../leyes/2026/LOPDC/art-0020.md) |
 | RACERF | 72 | 1 | texto | [art-0072.md](../../leyes/2026/RACERF/art-0072.md) |
 | RACERF | 86 | 1 | texto | [art-0086.md](../../leyes/2026/RACERF/art-0086.md) |
 | RCFF | 36 | 1 | texto | [art-0036.md](../../leyes/2026/RCFF/art-0036.md) |
