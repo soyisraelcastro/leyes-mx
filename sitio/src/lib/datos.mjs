@@ -62,3 +62,15 @@ export function tarifa(id, n = 4) {
     .map((l) => l.split("|").slice(1, -1).map((c) => c.trim()));
   return { anio, apartado: campo("apartado"), dof: campo("publicado_dof"), filas };
 }
+
+// Subsidio para el empleo: parámetros y UMA leídos de decretos/<año>/spe/_meta.json (nada se escribe a mano en el sitio).
+export function subsidioEmpleo() {
+  const base = path.join(RAIZ, "decretos");
+  if (!fs.existsSync(base)) return null;
+  const anios = fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && fs.existsSync(path.join(base, n, "spe", "_meta.json"))).sort();
+  if (!anios.length) return null;
+  const anio = anios[anios.length - 1];
+  const m = JSON.parse(fs.readFileSync(path.join(base, anio, "spe", "_meta.json"), "utf8"));
+  return { anio, parametros: m.parametros_2026, uma: m.uma, derivado: m.calculo_derivado, noVerificado: m.no_verificado || [],
+    documentos: (m.documentos || []).filter((d) => d.tipo === "decreto" || d.tipo === "modificacion").map((d) => ({ id: d.id, dof: d.publicado_dof, url: d.fuente_url, estatus: d.estatus })) };
+}
