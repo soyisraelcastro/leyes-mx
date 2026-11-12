@@ -19,7 +19,7 @@ test("los comandos de la landing coinciden con lo implementado", { skip: !hay &&
   const copiables = [...html.matchAll(/data-copiar="([^"]*)"/g)].map((m) => decodificar(m[1]));
   assert.ok(copiables.length >= 10, "debe haber bloques copiables");
   const ayuda = correr(["--ayuda"]).stdout;
-  const comandosValidos = new Set(["instalar", "actualizar", "revertir", "desinstalar", "estado", "doctor", "servir", "obtener", "buscar", "listar", "reforma"]);
+  const comandosValidos = new Set(["instalar", "actualizar", "revertir", "desinstalar", "estado", "doctor", "servir", "obtener", "buscar", "listar", "reforma", "subsidio"]);
   const nombresAyuda = [...ayuda.matchAll(/^ {2}(\w+)/gm)].map((m) => m[1]);
   for (const c of comandosValidos) assert.ok(nombresAyuda.includes(c), `la ayuda no documenta ${c}`);
 
@@ -58,7 +58,7 @@ test("la landing no usa github.io, ni llamadas a terceros, ni raya larga", { ski
   const html = leerSitio();
   assert.ok(!html.includes("github.io"));
   assert.ok(!html.includes("\u2014") && !html.includes("\u00ab"));
-  const externos = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]).filter((u) => !u.startsWith("https://github.com/soyisraelcastro/leyes-mx") && !u.startsWith("https://todoconta.com"));
+  const externos = [...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]).filter((u) => !u.startsWith("https://github.com/soyisraelcastro/leyes-mx") && !u.startsWith("https://todoconta.com") && !u.startsWith("https://dof.gob.mx/"));  // el DOF es la fuente oficial que cita la página del SPE
   assert.deepEqual(externos.filter((u) => !u.includes("example.com") && !u.startsWith("https://leyes.todoconta.com")), []);
   void spawnSync;
 });
