@@ -105,6 +105,8 @@ export const HERRAMIENTAS = [
   ["estado_reforma", "estado de un proyecto de reforma; nunca lo presenta como ley vigente"],
   ["listar_leyes", "ordenamientos y años disponibles"],
   ["obtener_transitorios", "artículos transitorios de una ley"],
+  ["obtener_regla", "regla de la Resolución Miscelánea Fiscal 2026 (texto original del DOF, sin resoluciones de modificación)"],
+  ["temas", "índice por materia: qué artículos y reglas de todos los ordenamientos tocan un tema"],
 ];
 
 export const ENLACES = { REPO, TODOCONTA, ABACUS, COMANDO };
