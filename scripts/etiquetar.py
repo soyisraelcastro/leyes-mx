@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from leyes_mx import store, temas  # noqa: E402
+from leyes_mx import temas, versiones  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
 
@@ -22,7 +22,7 @@ def main():
     ap.add_argument("--anio", type=int)
     ap.add_argument("--resumen", action="store_true", help="solo imprime el resumen, sin escribir")
     a = ap.parse_args()
-    anios = [a.anio] if a.anio else store._anios(RAIZ)
+    anios = [a.anio] if a.anio else versiones.anios(RAIZ)
     for anio in anios:
         salida = temas.construir(RAIZ, anio) if a.resumen else temas.escribir(RAIZ, anio)
         idx = json.loads(salida[f"temas/{anio}/_indice.json"])

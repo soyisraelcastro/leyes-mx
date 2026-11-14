@@ -22,6 +22,7 @@ from leyes_mx import rmf_validar  # noqa: E402
 from leyes_mx import spe as spe_mod  # noqa: E402
 from leyes_mx import temas as temas_mod  # noqa: E402
 from leyes_mx import glosario as glosario_mod  # noqa: E402
+from leyes_mx import versiones, diferenciar  # noqa: E402
 from leyes_mx.ids import id_desde_archivo, clave_orden, partes_id, nombre_archivo, PALABRAS  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -39,9 +40,15 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
     for k in ("sigla", "nombre_oficial", "fuente_url", "ultima_reforma_dof", "fecha_descarga", "sha256_pdf", "articulos_extraidos"):
         if not meta.get(k):
             errores.append(f"_meta.json sin {k}")
-    for f in ("_indice.md", "transitorios.md"):
-        if not (dirley / f).exists():
-            errores.append(f"falta {f}")
+    capa = meta.get("hereda_de") is not None  # una capa posterior guarda solo lo que cambia; ver docs/criterio-anios.md
+    vista = versiones.vista(dirley.parents[2], sigla, anio) if capa else None
+    if capa:
+        if not (dirley / "_indice.md").exists() and meta.get("articulos_modificados"):
+            errores.append("falta _indice.md (la capa tiene artículos modificados)")
+    else:
+        for f in ("_indice.md", "transitorios.md"):
+            if not (dirley / f).exists():
+                errores.append(f"falta {f}")
     datos_t, _carp = tablas_mod.cargar(sigla, anio)
     for t in (datos_t or {}).get("tablas", []):
         if not t.get("solo_imagen"):
@@ -87,6 +94,10 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
         if RE_ART_EN_CUERPO.search(texto):
             sospechosos.append(f"{id_} contiene un encabezado 'Artículo N.' dentro del cuerpo (posible absorcion)")
         ids.append(id_)
+    propios = list(ids)
+    if capa:
+        errores.extend(_validar_capa(dirley.parents[2], sigla, anio, meta, vista, propios))
+        ids = vista.ids()  # la secuencia y el conteo se verifican sobre la vista completa (capas heredadas incluidas)
     # secuencia
     vistos = set()
     for i, id_ in enumerate(ids):
@@ -146,6 +157,60 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
             "ultima_reforma_dof": meta.get("ultima_reforma_dof")}
 
 
+def _validar_capa(raiz, sigla, anio, meta, vista, propios):
+    """Reglas de una capa que hereda: hereda_de existe y es anterior; vigente_desde válido y posterior al de la capa heredada;
+    articulos_modificados coincide con los archivos; cada artículo difiere del heredado salvo los nuevos; un nuevo no choca con uno heredado."""
+    errores = []
+    hereda = meta.get("hereda_de")
+    if not isinstance(hereda, int) or isinstance(hereda, bool):
+        return ["_meta.json: hereda_de debe ser un año (entero)"]
+    if hereda >= anio:
+        errores.append(f"_meta.json: hereda_de {hereda} no es anterior a {anio}")
+    padre = versiones.capa(raiz, sigla, hereda) if hereda < anio else None
+    if padre is None:
+        errores.append(f"_meta.json: hereda_de {hereda} pero no existe leyes/{hereda}/{sigla}")
+    desde = meta.get("vigente_desde")
+    if not diferenciar.fecha_valida(desde):
+        errores.append(f"_meta.json: vigente_desde {desde!r} no es una fecha ISO válida")
+    elif padre is not None:
+        previo = padre.vigente_desde or f"{hereda}-01-01"  # la base no trae marca: su inicio es el de cobertura
+        if desde <= previo:
+            errores.append(f"_meta.json: vigente_desde {desde} no es posterior al de la capa heredada ({previo})")
+    if "vigente_hasta" in meta:
+        errores.append("_meta.json: vigente_hasta no se guarda; se deriva del vigente_desde de la capa siguiente")
+    if meta.get("fuente") is not None and not isinstance(meta["fuente"], dict):
+        errores.append("_meta.json: fuente debe ser un objeto (decreto, nota, fecha_dof)")
+    modificados = meta.get("articulos_modificados")
+    if not isinstance(modificados, list):
+        return errores + ["_meta.json: falta articulos_modificados (lista)"]
+    if len(set(modificados)) != len(modificados):
+        errores.append("_meta.json: articulos_modificados tiene repetidos")
+    if set(modificados) != set(propios):
+        sobran = sorted(set(modificados) - set(propios), key=clave_orden)
+        faltan = sorted(set(propios) - set(modificados), key=clave_orden)
+        errores.append(f"_meta.json: articulos_modificados no coincide con los archivos de la capa (sin archivo: {sobran}; sin declarar: {faltan})")
+    if padre is None:
+        return errores
+    heredada = versiones.vista(raiz, sigla, hereda)
+    previos = {id_desde_archivo(n): p for n, p in heredada.archivos().items()}
+    nuevos = meta.get("articulos_nuevos") or []
+    for i in nuevos:
+        if i not in modificados:
+            errores.append(f"_meta.json: articulos_nuevos incluye {i}, que no está en articulos_modificados")
+        if i in previos:
+            errores.append(f"art. {i}: se declara nuevo pero ya existe en la capa heredada ({hereda})")
+    for i in propios:
+        propio = vista.dir / nombre_archivo(i)
+        if i in previos:
+            if i in nuevos:
+                continue
+            if diferenciar.cuerpo_normalizado(propio) == diferenciar.cuerpo_normalizado(previos[i]):
+                errores.append(f"art. {i}: idéntico al heredado de {hereda}; una capa solo guarda lo que cambia")
+        elif i not in nuevos:
+            errores.append(f"art. {i}: no existe en la capa heredada ({hereda}) y no está declarado en articulos_nuevos")
+    return errores
+
+
 def _contar_crudo(crudo, extraer):
     """Cuenta encabezados de articulo con una regex DISTINTA y mas simple que la del extractor, sobre el texto SIN -layout.
     Linea que empieza con 'Articulo <numero>' seguida, a lo mas 14 caracteres despues, de un punto, o de un guion tras el numero."""
@@ -190,9 +255,10 @@ def main():
     for anio in store._anios(RAIZ):
         if a.anio and anio != a.anio:
             continue
-        for d in sorted((RAIZ / "leyes" / str(anio)).iterdir()):
-            if d.is_dir() and (not a.ley or d.name.upper() == a.ley.upper()):
-                r = validar_ley(d, anio, esperado.get(d.name.upper()), a.pdf)
+        for sigla in versiones.siglas(RAIZ, anio):
+            if not a.ley or sigla.upper() == a.ley.upper():
+                d = versiones.capa(RAIZ, sigla, anio).dir
+                r = validar_ley(d, anio, esperado.get(sigla.upper()), a.pdf)
                 r["anio"] = anio
                 informes.append(r)
     perr = validar_proyectos()

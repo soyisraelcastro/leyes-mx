@@ -7,7 +7,7 @@ por los artículos 96 y 152 de la LISR deben existir.
 import json
 from pathlib import Path
 
-from . import anexos, store, tablas as tablas_mod
+from . import anexos, store, tablas as tablas_mod, versiones
 
 CAMPOS_FM = ("documento", "apartado", "id", "titulo", "aplicable_a", "vigencia_anio", "publicado_dof", "fecha_firma",
              "fuente_url", "fecha_descarga", "sha256_fuente", "estatus")
@@ -101,14 +101,14 @@ def _referencias_lisr(raiz):
     if not {"96", "152"} <= cubiertos:
         errores.append("fuentes.json LISR: los arts. 96 y 152 deben llevar la advertencia con rutas al Anexo 8")
     for anio in store._anios(raiz):
-        d = raiz / "leyes" / str(anio) / "LISR"
-        if not d.is_dir() or not anexos.carpeta(anio, raiz).is_dir():
+        v = versiones.vista(raiz, "LISR", anio)
+        if v is None or not anexos.carpeta(anio, raiz).is_dir():
             continue
         for art in ("0096", "0152"):
-            f = d / f"art-{art}.md"
-            if not f.exists() or "ADVERTENCIA" not in f.read_text(encoding="utf-8"):
+            f = v.archivo(f"art-{art}.md")
+            if f is None or "ADVERTENCIA" not in f.read_text(encoding="utf-8"):
                 errores.append(f"leyes/{anio}/LISR/art-{art}.md: falta el aviso visible del Anexo 8")
-        meta = json.loads((d / "_meta.json").read_text(encoding="utf-8"))
+        meta = v.meta
         rutas_meta = {r for a in meta.get("advertencias", []) for r in a.get("rutas", [])}
         if not (anexos.RUTA_MENSUAL in rutas_meta and anexos.RUTA_ANUAL in rutas_meta):
             errores.append(f"leyes/{anio}/LISR/_meta.json: las advertencias no citan las rutas de la tarifa mensual y anual del Anexo 8")

@@ -21,7 +21,7 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-from . import store
+from . import store, versiones
 from .ids import clave_orden
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -90,15 +90,14 @@ def documentos(raiz, anio):
     """Todo lo etiquetable del año: artículos de leyes/ y reglas de rmf/. Cada uno: dict con ley, id, tipo, encabezado, texto, citas."""
     raiz = Path(raiz)
     docs = []
-    base = raiz / "leyes" / str(anio)
-    if base.is_dir():
-        for d in sorted(p for p in base.iterdir() if p.is_dir()):
-            for f in sorted(d.glob("art-*.md")):
-                fm, cuerpo = store.parse_front_matter(f.read_text(encoding="utf-8"))
-                if fm.get("estatus") == "derogado":
-                    continue
-                docs.append({"ley": d.name, "id": str(fm["articulo"]), "tipo": "articulo", "archivo": f"leyes/{anio}/{d.name}/{f.name}",
-                             "encabezado": fm.get("ubicacion", ""), "texto": store._texto_articulo(cuerpo), "citas": []})
+    for sigla in versiones.siglas(raiz, anio):  # cada ley por su vista: lo heredado de una capa anterior también se etiqueta
+        v = versiones.vista(raiz, sigla, anio)
+        for f in v.archivos().values():
+            fm, cuerpo = store.parse_front_matter(f.read_text(encoding="utf-8"))
+            if fm.get("estatus") == "derogado":
+                continue
+            docs.append({"ley": sigla, "id": str(fm["articulo"]), "tipo": "articulo", "archivo": f.relative_to(raiz).as_posix(),
+                         "encabezado": fm.get("ubicacion", ""), "texto": store._texto_articulo(cuerpo), "citas": []})
     rb = raiz / "rmf" / str(anio)
     if rb.is_dir():
         for meta in sorted(rb.glob("*/_meta.json")):
@@ -163,8 +162,8 @@ def sha256_bytes(b):
 def fuentes(raiz, anio):
     """sha256 del PDF de cada ordenamiento presente: si cambia uno, o se agrega otro, el índice queda desactualizado."""
     raiz, res = Path(raiz), {}
-    for m in sorted((raiz / "leyes" / str(anio)).glob("*/_meta.json")):
-        res[m.parent.name] = json.loads(m.read_text(encoding="utf-8")).get("sha256_pdf")
+    for sigla in versiones.siglas(raiz, anio):
+        res[sigla] = versiones.capa(raiz, sigla, anio).meta.get("sha256_pdf")
     for m in sorted((raiz / "rmf" / str(anio)).glob("*/_meta.json")):
         meta = json.loads(m.read_text(encoding="utf-8"))
         if "reglas_extraidas" in meta:
