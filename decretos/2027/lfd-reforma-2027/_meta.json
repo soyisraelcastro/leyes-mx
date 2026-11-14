@@ -1,0 +1,27 @@
+{
+  "documento": "DECRETO por el que se reforman, adicionan y derogan diversas disposiciones de la Ley Federal de Derechos",
+  "ordenamiento": "Ley Federal de Derechos (reforma 2027)",
+  "sigla": "LFD",
+  "tipo": "reforma",
+  "estatus": "publicado_dof_no_vigente",
+  "es_ley_vigente": false,
+  "publicado_dof": "2026-11-13",
+  "edicion": "matutina",
+  "nota_dof": "5803759",
+  "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5803759&fecha=13/11/2026",
+  "fecha_descarga": "2026-11-13",
+  "sha256_html": "b01c1dc4959c02cea2730a27626dfec2e48fa6e4a49dd6bd69f1b2fd8998cace",
+  "archivo": "decreto.md",
+  "entrada_en_vigor": {
+    "fecha": "2027-01-01",
+    "cita": "Primero. El presente Decreto entrará en vigor a partir del 1 de enero de 2027.",
+    "excepciones": []
+  },
+  "aviso": "Texto informativo copiado del DOF; no sustituye al DOF. La fuente oficial prevalece. Publicado el 2026-11-13 y NO vigente: entra en vigor el 2027-01-01. Hasta esa fecha no es ley vigente y no está en leyes/.",
+  "verificacion_integridad": {
+    "articulos_ley": "51 artículos de la Ley Federal de Derechos con encabezado propio en el Artículo Único; todos los artículos que lista el encabezado del decreto (reforman, adicionan, derogan) están en el cuerpo y viceversa",
+    "transitorios": 3
+  },
+  "anexos_no_incluidos": "El decreto no trae anexos como archivo ni imágenes. Las tablas de cuotas del cuerpo se conservan como tablas de Markdown.",
+  "nota_conversion": "HTML del DOF (UTF-8) convertido a Markdown sin estilos; texto íntegro, tablas del cuerpo como tablas de Markdown, negritas de los encabezados conservadas. No se resume ni se corrige nada."
+}

@@ -34,7 +34,8 @@ export function reforma() {
   const anios = fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && fs.existsSync(path.join(base, n, "estado.json"))).sort();
   if (!anios.length) return null;
   const e = leer(path.join("proyectos", anios[anios.length - 1], "estado.json"));
-  return { anio: e.anio, actualizado: e.actualizado, resumen: e.resumen, esLey: e.es_ley_vigente, enVigor: e.entrada_en_vigor_prevista,
+  const pub = (e.hitos || []).find((h) => h.hito === "publicado_dof" && h.confirmado && h.fecha);
+  return { anio: e.anio, actualizado: e.actualizado, resumen: e.resumen, esLey: e.es_ley_vigente, enVigor: e.entrada_en_vigor_prevista, publicadoDof: pub ? pub.fecha : null,
     hitos: (e.hitos || []).map((h) => ({ fecha: h.fecha, hito: h.hito, nivel: h.nivel, confirmado: h.confirmado, detalle: h.detalle })) };
 }
 
