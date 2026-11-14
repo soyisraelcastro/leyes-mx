@@ -75,7 +75,7 @@ const pasos = [
                 {ref && !ref.esLey ? (
                   <>
                     <span class="bdg warn">Proyecto, no es ley vigente</span>
-                    <p>Al {fecha(ref.actualizado)}, el Paquete Económico {ref.anio} no está publicado en el DOF. Sigue en trámite en el Congreso.</p>
+                    <p>{ref.publicadoDof ? `Al ${fecha(ref.actualizado)}, el Paquete Económico ${ref.anio} ya se publicó en el DOF, pero entra en vigor el 1 de enero de ${ref.anio}: todavía no es ley vigente.` : `Al ${fecha(ref.actualizado)}, el Paquete Económico ${ref.anio} no está publicado en el DOF. Sigue en trámite en el Congreso.`}</p>
                     <p>Para responderte uso la ley con vigencia {lisr.anio}.</p>
                   </>
                 ) : (

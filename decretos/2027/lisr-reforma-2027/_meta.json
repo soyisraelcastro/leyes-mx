@@ -1,0 +1,27 @@
+{
+  "documento": "DECRETO por el que se reforman, adicionan y derogan diversas disposiciones de la Ley del Impuesto sobre la Renta y se expiden disposiciones de vigencia transitoria",
+  "ordenamiento": "Ley del Impuesto sobre la Renta (reforma 2027)",
+  "sigla": "LISR",
+  "tipo": "reforma",
+  "estatus": "publicado_dof_no_vigente",
+  "es_ley_vigente": false,
+  "publicado_dof": "2026-11-13",
+  "edicion": "matutina",
+  "nota_dof": "5803758",
+  "fuente_url": "https://dof.gob.mx/nota_detalle.php?codigo=5803758&fecha=13/11/2026",
+  "fecha_descarga": "2026-11-13",
+  "sha256_html": "3156ff9c5b634472f0dc7188b99c98cebba8924cdeea56cafbfc087290e3dfa6",
+  "archivo": "decreto.md",
+  "entrada_en_vigor": {
+    "fecha": "2027-01-01",
+    "cita": "Transitorio. Único. El presente Decreto entrará en vigor el 1 de enero de 2027.",
+    "excepciones": []
+  },
+  "aviso": "Texto informativo copiado del DOF; no sustituye al DOF. La fuente oficial prevalece. Publicado el 2026-11-13 y NO vigente: entra en vigor el 2027-01-01. Hasta esa fecha no es ley vigente y no está en leyes/.",
+  "verificacion_integridad": {
+    "articulos_ley": "35 artículos de la LISR en el Artículo Primero (13 reformados, 10 adicionados, 14 derogados según el encabezado; 59 a 71 derogados)",
+    "transitorios": "Artículos Segundo y Tercero (vigencia transitoria) y Transitorio Único"
+  },
+  "anexos_no_incluidos": "NO incluido: dos tablas del artículo 27, fracción III (porcentajes de deducción de inversiones 2027 a 2030) vienen en el DOF como imagen PNG (/imagenes_diarios/2026/11/13/MAT/presrep_2_Cimg_7186.png y presrep_2_Cimg_18906.png). En el Markdown aparecen marcadas como IMAGEN NO INCLUIDA. Se deben leer en el DOF.",
+  "nota_conversion": "HTML del DOF (UTF-8) convertido a Markdown sin estilos; texto íntegro, tablas del cuerpo como tablas de Markdown, negritas de los encabezados conservadas. No se resume ni se corrige nada."
+}

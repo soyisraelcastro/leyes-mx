@@ -90,7 +90,7 @@ export const PAGINAS = [
     "/docs/leyes": "lista de ordenamientos con año de vigencia, número de artículos y fecha de última reforma en el DOF",
     "/docs/tarifas": "tarifas de ISR de los artículos 96 y 152 de la LISR y del Anexo 8 de la RMF",
     "/docs/subsidio-empleo": "subsidio para el empleo 2026: decretos del DOF, tope de ingresos, porcentaje de la UMA y valores de la UMA",
-    "/docs/reforma-2027": "estado de la reforma fiscal 2027 (proyecto, no ley vigente) y sus fechas",
+    "/docs/reforma-2027": "estado de la reforma fiscal 2027 (publicada en el DOF, no vigente antes de su entrada en vigor) y sus fechas",
     "/docs/aviso": "fuente de los textos y límites de uso",
     "/docs/contribuir": "repositorio, origen de los datos y reglas para programadores",
   }[r.href] ?? r.nombre })),
@@ -118,4 +118,5 @@ export const HITOS = {
   senado_lif_lfd: "Ley de Ingresos y Ley Federal de Derechos aprobadas por el Senado",
   camara_vota_cambios_senado: "La Cámara vota los cambios del Senado",
   publicado_dof: "Publicación en el DOF",
+  verificacion_otros_decretos_dof: "Otros decretos del paquete (Ley Aduanera, Economía Digital, Catastral y Registral, Presupuesto): no verificado",
 };
