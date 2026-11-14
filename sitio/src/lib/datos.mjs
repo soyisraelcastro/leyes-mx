@@ -1,7 +1,8 @@
-// Lee, en tiempo de build, lo que hay en el repo: leyes/<año>/<SIGLA>/_meta.json, fuentes.json y proyectos/<año>/estado.json.
+// Lee, en tiempo de build, lo que hay en el repo: leyes/<año>/<SIGLA>/_meta.json (por versiones.js), fuentes.json y proyectos/<año>/estado.json.
 // Nada se escribe a mano en la página. Requiere que el build vea la raíz del repo (carpeta superior a sitio/).
 import fs from "node:fs";
 import path from "node:path";
+import * as versiones from "../../../npm/src/versiones.js";  // único punto que resuelve leyes/<año>/<SIGLA> (capas que heredan)
 
 const RAIZ = path.resolve(process.cwd(), "..");
 
@@ -13,13 +14,10 @@ function leer(rel) {
 
 export function leyes() {
   const fuentes = leer("fuentes.json").leyes;
-  const base = path.join(RAIZ, "leyes");
   const res = [];
-  for (const anio of fs.readdirSync(base).filter((n) => /^\d+$/.test(n)).sort()) {
-    for (const sigla of fs.readdirSync(path.join(base, anio)).sort()) {
-      const m = path.join("leyes", anio, sigla, "_meta.json");
-      if (!fs.existsSync(path.join(RAIZ, m))) continue;
-      const meta = leer(m);
+  for (const anio of versiones.anios(RAIZ)) {
+    for (const sigla of versiones.siglas(RAIZ, anio)) {
+      const meta = versiones.capa(RAIZ, sigla, anio).meta;
       const f = fuentes.find((x) => x.sigla === meta.sigla);
       res.push({ sigla: meta.sigla, nombre: meta.nombre_oficial, tipo: f?.tipo ?? meta.tipo, anio: meta.vigencia_anio, reforma: meta.ultima_reforma_dof,
         articulos: meta.articulos_extraidos, descarga: meta.fecha_descarga, advertencias: (meta.advertencias || []).length });

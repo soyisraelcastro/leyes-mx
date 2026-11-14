@@ -10,7 +10,7 @@ npm/                         paquete npm "leyes-mx" (solo código, ESM, Node >= 
   src/                       ids, almacén, índice de búsqueda, glosario, servidor MCP, datos, clientes, skill, CLI
   skills/leyes-mx/SKILL.md   la skill (viaja en el paquete)
   test/                      pruebas (node --test); consultas.json: preguntas reales y artículos esperados
-scripts/empaquetar_datos.py  construye leyes-mx-datos.tar.gz + manifest.json (determinista)
+scripts/empaquetar_datos.py  construye leyes-mx-datos.tar.gz + manifest.json (determinista; materializa las capas, --sin-materializar para no hacerlo)
 .github/workflows/publicar-datos.yml   publica el Release de datos
 sitio/                       landing en Astro (Vercel)
 ```
@@ -38,7 +38,7 @@ En el equipo del usuario:
 
 Activación atómica: se verifica el sha256 del tarball, se extrae a `datos/.tmp-*`, se verifica cada archivo contra `INTEGRIDAD.json`, se renombra la carpeta y al final se reescribe `actual` (archivo temporal + rename). Si algo falla no queda nada activo ni a medias. Se usa un archivo `actual` en lugar de un symlink para que funcione igual en Windows. Solo se conservan la versión actual y la anterior.
 
-Varios años: el servidor lee `leyes/<año>/` de todos los años presentes. Por defecto usa el más reciente que no sea posterior al año en curso (o el de `--anio`). Cuando exista `leyes/2027/`, el servidor lo usará solo a partir de 2027 y `anio=2026` seguirá disponible.
+Varios años: el servidor lee `leyes/<año>/` de todos los años presentes (si un año es una capa, resuelve la herencia; el Release materializa por omisión cada año completo, ver [criterio-anios.md](criterio-anios.md)). Por defecto usa el más reciente que no sea posterior al año en curso (o el de `--anio`). Cuando exista `leyes/2027/`, el servidor lo usará solo a partir de 2027 y `anio=2026` seguirá disponible.
 
 Modo "desde este repo", sin Release: `LEYES_MX_DATOS=/ruta/al/repo npx leyes-mx doctor`. Para probar una actualización local: `python3 scripts/empaquetar_datos.py --salida /tmp/pub --version 2026.12.01` y `LEYES_MX_MANIFEST=/tmp/pub/manifest.json npx leyes-mx actualizar`.
 

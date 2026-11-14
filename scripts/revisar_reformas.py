@@ -25,7 +25,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from leyes_mx import anexos, extraer, pipeline  # noqa: E402
+from leyes_mx import anexos, diferenciar, extraer, pipeline, versiones  # noqa: E402
 
 RAIZ = pipeline.RAIZ
 
@@ -65,11 +65,11 @@ def revisar(args):
     try:
         for ley in leyes:
             sigla = ley["sigla"].upper()
-            meta_p = RAIZ / "leyes" / str(anio) / sigla / "_meta.json"
-            if not meta_p.exists():
+            capa = versiones.capa(RAIZ, sigla, anio)
+            if capa is None:
                 informe.append({"sigla": sigla, "estado": "sin_datos_previos", "detalle": f"no existe leyes/{anio}/{sigla}"})
                 continue
-            meta = json.loads(meta_p.read_text(encoding="utf-8"))
+            meta = capa.meta
             pdf = tmp / f"{sigla}.pdf"
             try:
                 if args.offline:
@@ -101,10 +101,16 @@ def revisar(args):
                         errores.append(f"{sigla}: la regeneración no pasa la validación")
                     else:
                         destino = RAIZ / "leyes" / str(anio) / sigla
-                        ag, qu, ca = diff_arbol(destino, out / str(anio) / sigla)
-                        fila.update({"agregados": ag, "quitados": qu, "cambiados": ca})
-                        shutil.rmtree(destino)
-                        shutil.copytree(out / str(anio) / sigla, destino)
+                        if capa.hereda_de is not None:
+                            # año con capas: se reescribe solo el delta contra lo heredado, conservando hereda_de, vigente_desde y fuente
+                            res = diferenciar.escribir_capa(RAIZ, sigla, anio, out / str(anio) / sigla, vigente_desde=capa.vigente_desde,
+                                                            hereda_de=capa.hereda_de, fuente=meta.get("fuente"))
+                            fila.update({"agregados": res["nuevos"], "quitados": [], "cambiados": res["modificados"]})
+                        else:
+                            ag, qu, ca = diff_arbol(destino, out / str(anio) / sigla)
+                            fila.update({"agregados": ag, "quitados": qu, "cambiados": ca})
+                            shutil.rmtree(destino)
+                            shutil.copytree(out / str(anio) / sigla, destino)
                         (RAIZ / "fuentes" / str(anio)).mkdir(parents=True, exist_ok=True)
                         shutil.copy(pdf, RAIZ / "fuentes" / str(anio) / f"{sigla}.pdf")
                         fila["aplicado"] = True
@@ -202,7 +208,7 @@ def main():
         if cambios:
             print("leyes-mx: " + "; ".join(f.get("detalle_corto") or f"{f['sigla']} {f['estado']} ({f.get('fecha_guardada')} -> {f.get('fecha_nueva')})" for f in cambios))
             if any(f.get("promover_2027") for f in cambios):
-                print("Reforma publicada en una ley vigilada: promover proyectos/2027 a leyes/2027 (docs/publicar-reforma.md)")
+                print("Reforma publicada en una ley vigilada: generar la capa 2027 con scripts/diferenciar.py (docs/publicar-reforma.md)")
         elif not errores:
             print(f"leyes-mx: sin cambios ({len(informe)} leyes revisadas, año {anio})")
     if errores:

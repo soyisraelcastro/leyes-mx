@@ -10,6 +10,10 @@ Código en `leyes_mx/extraer.py` y `leyes_mx/pipeline.py`; scripts en `scripts/`
 6. **Escritura**: un `.md` por artículo con front matter, `_indice.md`, `_meta.json`, `transitorios.md` (separado por decreto de reforma, cada uno con su fecha de publicación).
 7. **Validación**: `scripts/validar.py`. Ver README.
 
+## Año nuevo: capas, no copias
+
+`scripts/extraer.py` escribe una ley **completa** (la base, `leyes/2026/`). Un año posterior no se extrae ni se copia completo: `scripts/diferenciar.py` corre este mismo pipeline sobre el PDF nuevo en un directorio temporal, compara cada artículo contra el texto heredado y escribe en `leyes/<año>/<SIGLA>/` solo los que difieren (más `_meta.json` con `hereda_de`, `vigente_desde`, `articulos_modificados`). Reemplaza a `scripts/copiar_anio.py`, que quedó obsoleto: duplicaba ~18 MB por año y, al reescribir `vigencia_anio` en cada archivo, ni git deduplicaba. Modelo en [criterio-anios.md](criterio-anios.md); procedimiento en [publicar-reforma.md](publicar-reforma.md).
+
 ## Controles independientes
 
 - `scripts/validar.py --pdf`: cuenta encabezados con una regex distinta y más simple, sobre el texto sin `-layout`.

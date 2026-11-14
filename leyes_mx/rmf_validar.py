@@ -5,7 +5,7 @@ import subprocess
 from collections import defaultdict
 from pathlib import Path
 
-from . import store
+from . import store, versiones
 from .ids import nombre_archivo
 
 REQ = ["ley", "nombre_ley", "vigencia_anio", "publicacion_dof", "fuente_url", "fecha_descarga", "regla", "titulo",
@@ -67,12 +67,12 @@ def validar(raiz, usar_pdf=False):
                 errores.append(f"{etiqueta}/{p.name}: texto vacío o demasiado corto")
             # el fundamento citado debe existir en la base (solo para las leyes que ya están en ella)
             for sigla, arts in fm["referencias_leyes"].items():
-                dley = raiz / "leyes" / str(fm["vigencia_anio"]) / sigla
-                if not dley.is_dir():
+                vley = versiones.vista(raiz, sigla, fm["vigencia_anio"])
+                if vley is None:
                     continue
                 for a in arts:
                     try:
-                        if not (dley / nombre_archivo(a)).exists():
+                        if vley.archivo(nombre_archivo(a)) is None:
                             avisos.append(f"{etiqueta}/{p.name}: cita {sigla} {a}, que no existe en la base")
                     except Exception:
                         avisos.append(f"{etiqueta}/{p.name}: cita {sigla} {a}, con identificador no interpretable")
