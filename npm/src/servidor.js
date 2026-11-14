@@ -61,7 +61,7 @@ export function crearServidor(almacen = null) {
     try { f = a.obtenerArticulo(ley, articulo, { anio: anio ?? null }); } catch (e) { return error(e.message); }
     if (!f) {
       const sig = a.siglasDisponibles(anio ?? a.anioPorDefecto(ley) ?? a.anioPorDefecto());
-      const conocida = a.anios().some((y) => a.dirLey(`${a.raiz}/leyes/${y}`, ley));
+      const conocida = a.anios().some((y) => a.tieneLey(ley, y));
       return texto(noEncontrado(`${String(ley).toUpperCase()} art. ${articulo} (año ${anio ?? a.anioPorDefecto(ley) ?? "sin datos"})`,
         conocida ? "El ordenamiento existe pero ese artículo no." : `El ordenamiento no existe en la base. Disponibles: ${sig.join(", ")}.`),
         { structuredContent: { encontrado: false, ley: String(ley).toUpperCase(), articulo } });

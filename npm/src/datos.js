@@ -7,7 +7,9 @@ import { fileURLToPath } from "node:url";
 import { leerTar } from "./tar.js";
 import { MANIFEST_URL_DEFECTO, archivoActual, archivoAnterior, carpetaBase, carpetaDatos, versionActual, versionAnterior } from "./rutas.js";
 
-export const ESQUEMA_SOPORTADO = 1;
+// 2: paquete con capas sin materializar (leyes/<año>/ solo con lo que cambia); este cliente resuelve la herencia (versiones.js). Un paquete
+// materializado (por omisión) sigue en esquema 1: lo leen también los clientes anteriores a las capas.
+export const ESQUEMA_SOPORTADO = 2;
 export const sha256 = (b) => crypto.createHash("sha256").update(b).digest("hex");
 
 export const urlManifest = () => process.env.LEYES_MX_MANIFEST || MANIFEST_URL_DEFECTO;
