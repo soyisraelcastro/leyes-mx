@@ -129,7 +129,7 @@
       "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf",
       "ultimo_articulo_esperado": 34,
       "cruce_encabezados_ajenos": 2,
-      "nota": "Ley anual: solo rige en el ejercicio fiscal 2026. La de 2027 tendrá su propia carpeta (otra sigla o año) y NO se copia con copiar_anio.py. cruce_encabezados_ajenos: 2 renglones de la tabla del art. 1 (\"Artículo 2o., fracción I, inciso D).\" y \"Artículo 2o.-A.\", conceptos del IEPS) que el cruce sin -layout cuenta como encabezados."
+      "nota": "Ley anual: solo rige en el ejercicio fiscal 2026. La de 2027 tendrá su propia carpeta (otra sigla o año) y NO hereda de la de 2026 (una capa sin hereda_de es completa; ver docs/criterio-anios.md). cruce_encabezados_ajenos: 2 renglones de la tabla del art. 1 (\"Artículo 2o., fracción I, inciso D).\" y \"Artículo 2o.-A.\", conceptos del IEPS) que el cruce sin -layout cuenta como encabezados."
     },
     {
       "sigla": "RLISR",
