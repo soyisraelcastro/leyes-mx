@@ -13,6 +13,7 @@ on:
       - "temas/**"
       - "temas.json"
       - "scripts/empaquetar_datos.py"
+      - "leyes_mx/**"
   workflow_dispatch:
     inputs:
       forzar:

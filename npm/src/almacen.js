@@ -4,6 +4,7 @@ import path from "node:path";
 import { normalizarId, nombreArchivo, idDesdeArchivo, compararIds } from "./ids.js";
 import { leerConfig, resolverDatos } from "./rutas.js";
 import { Glosario } from "./glosario.js";
+import * as versiones from "./versiones.js";
 
 export const AVISO_PROYECTO = "PROYECTO: este texto NO es ley vigente. Solo lo será si y cuando se publique en el DOF, " +
   "y a partir de la fecha que indique el decreto.";
@@ -65,9 +66,16 @@ export class Almacen {
   }
 
   anios() {
-    const base = path.join(this.raiz, "leyes");
-    if (!esDir(base)) return [];
-    return fs.readdirSync(base).filter((n) => /^\d+$/.test(n) && esDir(path.join(base, n))).map(Number).sort((a, b) => a - b);
+    return versiones.anios(this.raiz);
+  }
+
+  /** Vista de una ley en un año (capas que heredan resueltas; ver versiones.js) o null si ese año no tiene la ley. Único acceso a leyes/<año>/<SIGLA>. */
+  vista(sigla, anio) {
+    return versiones.vista(this.raiz, sigla, anio);
+  }
+
+  tieneLey(sigla, anio) {
+    return versiones.tiene(this.raiz, sigla, anio);
   }
 
   anioProyectos() {
@@ -85,7 +93,7 @@ export class Almacen {
   /** Año de vigencia más reciente con datos y no posterior al año en curso; config.json puede fijarlo. */
   anioPorDefecto(sigla = null, hoy = new Date()) {
     const fijo = leerConfig().anio;
-    const cands = this.anios().filter((a) => !sigla || this.dirLey(path.join(this.raiz, "leyes", String(a)), sigla));
+    const cands = this.anios().filter((a) => !sigla || this.tieneLey(sigla, a));
     if (!cands.length) return null;
     if (fijo && cands.includes(Number(fijo))) return Number(fijo);
     const pasados = cands.filter((a) => a <= hoy.getFullYear());
@@ -97,18 +105,15 @@ export class Almacen {
   }
 
   siglasDisponibles(anio) {
-    const base = path.join(this.raiz, "leyes", String(anio));
-    if (!esDir(base)) return [];
-    return fs.readdirSync(base).filter((n) => fs.existsSync(path.join(base, n, "_meta.json"))).sort();
+    return versiones.siglas(this.raiz, anio);
   }
 
   listarLeyes({ incluirProyectos = false } = {}) {
     const res = [];
     for (const a of this.anios()) {
-      const base = path.join(this.raiz, "leyes", String(a));
-      for (const n of fs.readdirSync(base).sort()) {
-        const meta = this.leerMeta(path.join(base, n));
-        if (meta) res.push({ sigla: meta.sigla, nombre: meta.nombre_oficial, tipo: meta.tipo, anio_vigencia: a, ultima_reforma_dof: meta.ultima_reforma_dof,
+      for (const n of this.siglasDisponibles(a)) {
+        const meta = versiones.capa(this.raiz, n, a).meta;
+        res.push({ sigla: meta.sigla, nombre: meta.nombre_oficial, tipo: meta.tipo, anio_vigencia: a, ultima_reforma_dof: meta.ultima_reforma_dof,
           articulos: meta.articulos_extraidos, estatus: "vigente", fecha_descarga: meta.fecha_descarga });
       }
     }
@@ -309,8 +314,8 @@ export class Almacen {
       try {
         if (x.tipo === "regla") x.titulo = this.obtenerRegla(x.id, { anio: info.anio, sigla: x.ley })?.titulo ?? null;
         else {
-          const d = this.dirLey(path.join(this.raiz, "leyes", String(info.anio)), x.ley);
-          const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(path.join(d, nombreArchivo(normalizarId(x.id))), "utf8"));
+          const v = this.vista(x.ley, info.anio);
+          const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(v.archivo(nombreArchivo(normalizarId(x.id))), "utf8"));
           const ub = String(fm.ubicacion ?? "").split(" > ").pop();
           x.titulo = (ub ? `${ub}. ` : "") + textoArticulo(cuerpo).replace(/^#[^\n]*\n+/, "").replace(/\s+/g, " ").slice(0, 90);
         }
@@ -335,8 +340,7 @@ export class Almacen {
     return d;
   }
 
-  advertencias(dirLey, id) {
-    const meta = this.leerMeta(dirLey);
+  advertencias(meta, id) {
     if (!meta) return [];
     return (meta.advertencias || []).filter((a) => !a.articulos?.length || a.articulos.includes(id)).map((a) => a.texto);
   }
@@ -347,16 +351,14 @@ export class Almacen {
     if (!id) throw new Error(`articulo no reconocido: ${JSON.stringify(articulo)}`);
     const a = anio || this.anioPorDefecto(ley);
     if (a !== null) {
-      const d = this.dirLey(path.join(this.raiz, "leyes", String(a)), ley);
-      if (d) {
-        const f = path.join(d, nombreArchivo(id));
-        if (fs.existsSync(f)) {
-          const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(f, "utf8"));
-          const ficha = this.ficha(fm, textoArticulo(cuerpo), f);
-          ficha.notas_reforma = notas(cuerpo);
-          ficha.advertencias = this.advertencias(d, id);
-          return ficha;
-        }
+      const v = this.vista(ley, a);
+      const f = v?.archivo(nombreArchivo(id));
+      if (f) {
+        const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(f, "utf8"));
+        const ficha = this.ficha(v.ajustar(fm, f), textoArticulo(cuerpo), f);
+        ficha.notas_reforma = notas(cuerpo);
+        ficha.advertencias = this.advertencias(v.meta, id);
+        return ficha;
       }
     }
     if (incluirProyectos) {
@@ -375,22 +377,32 @@ export class Almacen {
   obtenerTransitorios(ley, anio = null) {
     const a = anio || this.anioPorDefecto(ley);
     if (a === null) return null;
-    const d = this.dirLey(path.join(this.raiz, "leyes", String(a)), ley);
-    if (!d) return null;
-    const f = path.join(d, "transitorios.md");
-    if (!fs.existsSync(f)) return null;
+    const v = this.vista(ley, a);
+    if (!v) return null;
+    const f = v.archivo("transitorios.md");  // la capa más reciente que lo traiga (una capa sin cambios en los transitorios hereda el anterior)
+    if (!f) return null;
     const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(f, "utf8"));
-    return { ley: fm.ley ?? null, nombre_ley: fm.nombre_ley ?? null, anio_vigencia: fm.vigencia_anio ?? null, ultima_reforma_dof: fm.ultima_reforma_dof ?? null,
-      estatus: fm.estatus ?? null, fuente_url: fm.fuente_url ?? null, fecha_descarga: fm.fecha_descarga ?? null, texto: strip(cuerpo),
-      advertencias: this.advertencias(d, null) , ruta: path.relative(this.raiz, f).split(path.sep).join("/") };
+    const fmv = v.ajustar(fm, f);
+    return { ley: fmv.ley ?? null, nombre_ley: fmv.nombre_ley ?? null, anio_vigencia: fmv.vigencia_anio ?? null, ultima_reforma_dof: fmv.ultima_reforma_dof ?? null,
+      estatus: fmv.estatus ?? null, fuente_url: fm.fuente_url ?? null, fecha_descarga: fm.fecha_descarga ?? null, texto: strip(cuerpo),
+      advertencias: this.advertencias(v.meta, null), ruta: path.relative(this.raiz, f).split(path.sep).join("/") };
   }
 
-  /** Recorre todos los artículos: callback({fm, cuerpo, texto, ruta, proyecto}). */
+  /** Recorre todos los artículos: callback({fm, cuerpo, texto, ruta, proyecto}). Las leyes se recorren por su vista de cada año
+   *  (lo heredado de una capa anterior aparece en cada año que lo hereda, con el año de vigencia de esa vista). */
   *recorrer({ proyectos = false } = {}) {
-    const bases = [path.join(this.raiz, "leyes")];
-    if (proyectos) bases.push(path.join(this.raiz, "proyectos"));
-    for (const base of bases) {
-      if (!esDir(base)) continue;
+    for (const anio of this.anios()) {
+      for (const sig of this.siglasDisponibles(anio)) {
+        const v = this.vista(sig, anio);
+        for (const f of v.nombres()) {
+          const ruta = v.archivo(f);
+          const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(ruta, "utf8"));
+          yield { fm: v.ajustar(fm, ruta), cuerpo, texto: textoArticulo(cuerpo), ruta };
+        }
+      }
+    }
+    const base = path.join(this.raiz, "proyectos");
+    if (proyectos && esDir(base)) {
       for (const anio of fs.readdirSync(base).sort()) {
         const da = path.join(base, anio);
         if (!/^\d+$/.test(anio) || !esDir(da)) continue;

@@ -74,7 +74,7 @@ Implementadas en `npm/` (Node, sin Python), con la misma lógica de ids y los mi
 ## Versionado por año
 
 - El año es parte de la dirección del recurso: `leyes/2026/LISR/art-0028.md`. Una API lo expondría como `/v1/leyes/{año}/{sigla}/{articulo}`.
-- `leyes/<año>/` se congela al publicarse la reforma del año siguiente; se corrige solo un error de extracción.
+- `leyes/2026/` es la base completa y no se toca al llegar un año nuevo; se corrige solo un error de extracción. Un año posterior es una capa que guarda solo los artículos que cambian y hereda el resto (`hereda_de`, `vigente_desde`); la resuelve un único punto (`leyes_mx/versiones.py`, `npm/src/versiones.js`). Ver [criterio-anios.md](criterio-anios.md).
 - El estado de la reforma es un recurso aparte (`/v1/reformas/{año}`), no se mezcla con los artículos.
 - Cada respuesta debe poder reconstruirse con (`ley`, `articulo`, `anio_vigencia`, `sha256_fuente`).
 

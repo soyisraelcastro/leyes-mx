@@ -59,7 +59,7 @@ Año de vigencia 2026 (texto vigente al 2026-11-02, descargado ese día):
 | LIEPS | Ley del Impuesto Especial sobre Producción y Servicios | 69 | 44 | 25 | 2025-11-07 |
 | LIF | Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026 | 34 | 34 | 0 | 2025-11-07 (nueva ley, en vigor desde 2026-01-01) |
 
-LFDC, LCF y LOPDC se descargaron el 2026-11-07; LIEPS y LIF el 2026-11-11. La LIF es una ley anual: solo rige en 2026 y la de 2027 tendrá su propia carpeta (no se copia con `copiar_anio.py`). El artículo 26-LL de la LIEPS (derogado) no tiene archivo propio, lleva su línea al final del 26-L. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática; se transcribieron a LaTeX (`$...$` y `$$...$$`) para que las lean los asistentes, y esos artículos llevan una advertencia: ante la duda prevalece el PDF oficial.
+LFDC, LCF y LOPDC se descargaron el 2026-11-07; LIEPS y LIF el 2026-11-11. La LIF es una ley anual: solo rige en 2026 y la de 2027 tendrá su propia carpeta y no hereda de la de 2026 (ver [docs/criterio-anios.md](docs/criterio-anios.md)). El artículo 26-LL de la LIEPS (derogado) no tiene archivo propio, lleva su línea al final del 26-L. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática; se transcribieron a LaTeX (`$...$` y `$$...$$`) para que las lean los asistentes, y esos artículos llevan una advertencia: ante la duda prevalece el PDF oficial.
 
 Además `proyectos/2027/`: seguimiento de la reforma fiscal 2027 (**no es ley vigente**).
 
@@ -70,6 +70,7 @@ leyes/<año>/<SIGLA>/art-0028.md          un archivo por artículo (art-0113-E.m
 leyes/<año>/<SIGLA>/transitorios.md      transitorios, separados por decreto de reforma
 leyes/<año>/<SIGLA>/_indice.md           lista de artículos
 leyes/<año>/<SIGLA>/_meta.json           sigla, nombre oficial, URL, última reforma DOF, fecha de descarga, sha256 del PDF, conteo
+                                         (un año posterior a 2026 es una capa: solo los artículos que cambian y hereda_de, vigente_desde, articulos_modificados)
 proyectos/<año>/                         proyectos de reforma (estatus "proyecto"), línea de tiempo y documentos
 fuentes.json                             lista de leyes configuradas
 leyes_mx/  scripts/  docs/               biblioteca, CLI y scripts, documentación
@@ -77,7 +78,7 @@ npm/                                     paquete npm "leyes-mx" (instalador y se
 sitio/                                   landing en Astro
 ```
 
-`<año>` es el **año de vigencia** del texto, no la fecha de descarga. Lo de 2026 queda congelado cuando se publique lo de 2027 (ver [docs/criterio-anios.md](docs/criterio-anios.md)). Convención de nombres: [docs/convencion-nombres.md](docs/convencion-nombres.md).
+`<año>` es el **año de vigencia** del texto, no la fecha de descarga. `leyes/2026/` es la base y no se toca: lo de 2027 será una capa que guarda solo los artículos que cambian y hereda el resto, sin duplicar la ley (se genera con `scripts/diferenciar.py`, que reemplaza a `copiar_anio.py`; ver [docs/criterio-anios.md](docs/criterio-anios.md)). Convención de nombres: [docs/convencion-nombres.md](docs/convencion-nombres.md).
 
 Cada artículo trae front matter YAML:
 
@@ -177,7 +178,7 @@ Funciona igual con un agente que ejecuta comandos (Claude Code, Codex), con un R
 - `proyectos/` contiene propuestas con `estatus: "proyecto"` y `estado_proyecto` (iniciativa, aprobado_camara, aprobado_senado, publicado_dof), con una nota visible de que no es ley.
 - El buscador **excluye los proyectos por defecto**; con `--incluir-proyectos` los incluye marcados.
 - **La reforma fiscal 2027 no es ley hasta que se publique en el DOF.** Estado al 2026-11-02 y fuentes en [proyectos/2027/README.md](proyectos/2027/README.md). La reforma de la jornada laboral de 40 horas, en cambio, ya está publicada (DOF 2026-05-01) y es gradual; los artículos afectados de la LFT traen una advertencia.
-- Cuando algo se publique en el DOF, [docs/publicar-reforma.md](docs/publicar-reforma.md) describe cómo promoverlo a `leyes/<año>/`.
+- Cuando algo se publique en el DOF, [docs/publicar-reforma.md](docs/publicar-reforma.md) describe cómo promoverlo como una capa de `leyes/<año>/` (solo lo que cambia).
 
 ## Cómo se actualiza
 

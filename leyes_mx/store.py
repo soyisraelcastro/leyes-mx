@@ -14,6 +14,7 @@ import unicodedata
 from datetime import date
 from pathlib import Path
 
+from . import versiones
 from .ids import normalizar_id, id_desde_archivo, nombre_archivo, clave_orden
 
 RAIZ = Path(os.environ.get("LEYES_MX_RAIZ") or Path(__file__).resolve().parent.parent)
@@ -49,10 +50,7 @@ def parse_front_matter(texto):
 
 
 def _anios(raiz=None):
-    base = Path(raiz or RAIZ) / "leyes"
-    if not base.is_dir():
-        return []
-    return sorted(int(p.name) for p in base.iterdir() if p.is_dir() and p.name.isdigit())
+    return versiones.anios(raiz or RAIZ)
 
 
 def _sigla_dir(base, sigla):
@@ -68,7 +66,7 @@ def anio_por_defecto(sigla=None, hoy=None, raiz=None):
     raiz = Path(raiz or RAIZ)
     cands = []
     for a in _anios(raiz):
-        if sigla is None or _sigla_dir(raiz / "leyes" / str(a), sigla):
+        if sigla is None or versiones.tiene(raiz, sigla, a):
             cands.append(a)
     if not cands:
         return None
@@ -90,7 +88,9 @@ def _texto_articulo(cuerpo, sin_titulo=False):
     return t
 
 
-def _ficha(fm, cuerpo, ruta, raiz):
+def _ficha(fm, cuerpo, ruta, raiz, vista=None):
+    if vista is not None:
+        fm = vista.ajustar(fm, ruta)
     d = {
         "ley": fm.get("ley"), "nombre_ley": fm.get("nombre_ley"), "articulo": fm.get("articulo"),
         "anio_vigencia": fm.get("vigencia_anio"), "ultima_reforma_dof": fm.get("ultima_reforma_dof"),
@@ -110,13 +110,11 @@ def listar_leyes(raiz=None, incluir_proyectos=False):
     raiz = Path(raiz or RAIZ)
     res = []
     for a in _anios(raiz):
-        for d in sorted((raiz / "leyes" / str(a)).iterdir()):
-            m = d / "_meta.json"
-            if m.exists():
-                meta = json.loads(m.read_text(encoding="utf-8"))
-                res.append({"sigla": meta["sigla"], "nombre": meta["nombre_oficial"], "anio_vigencia": a,
-                            "ultima_reforma_dof": meta["ultima_reforma_dof"], "articulos": meta["articulos_extraidos"],
-                            "estatus": "vigente", "fecha_descarga": meta["fecha_descarga"]})
+        for sig in versiones.siglas(raiz, a):
+            meta = versiones.capa(raiz, sig, a).meta
+            res.append({"sigla": meta["sigla"], "nombre": meta["nombre_oficial"], "anio_vigencia": a,
+                        "ultima_reforma_dof": meta["ultima_reforma_dof"], "articulos": meta["articulos_extraidos"],
+                        "estatus": "vigente", "fecha_descarga": meta["fecha_descarga"]})
     if incluir_proyectos:
         p = raiz / "proyectos"
         if p.is_dir():
@@ -150,17 +148,15 @@ def obtener_articulo(ley, articulo, anio=None, incluir_proyectos=False, raiz=Non
         raise ValueError(f"articulo no reconocido: {articulo!r}")
     anio = anio or anio_por_defecto(ley, raiz=raiz)
     if anio is not None:
-        base = raiz / "leyes" / str(anio)
-        if base.is_dir():
-            d = _sigla_dir(base, ley)
-            if d:
-                f = d / nombre_archivo(id_)
-                if f.exists():
-                    fm, cuerpo = _leer(f)
-                    ficha = _ficha(fm, _texto_articulo(cuerpo), f, raiz)
-                    ficha["notas_reforma"] = _notas(cuerpo)
-                    ficha["advertencias"] = _advertencias(d, id_)
-                    return ficha
+        v = versiones.vista(raiz, ley, anio)
+        if v:
+            f = v.articulo(id_)
+            if f:
+                fm, cuerpo = _leer(f)
+                ficha = _ficha(fm, _texto_articulo(cuerpo), f, raiz, v)
+                ficha["notas_reforma"] = _notas(cuerpo)
+                ficha["advertencias"] = _advertencias(v.meta, id_)
+                return ficha
     if incluir_proyectos:
         pdir = raiz / "proyectos"
         if pdir.is_dir():
@@ -173,11 +169,7 @@ def obtener_articulo(ley, articulo, anio=None, incluir_proyectos=False, raiz=Non
     return None
 
 
-def _advertencias(dirley, id_):
-    try:
-        meta = json.loads((dirley / "_meta.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return []
+def _advertencias(meta, id_):
     return [a["texto"] for a in meta.get("advertencias", []) if not a.get("articulos") or id_ in a["articulos"]]
 
 
@@ -199,10 +191,10 @@ def _firma_arbol(raiz):
     for sub in ("leyes", "proyectos"):
         base = raiz / sub
         if base.is_dir():
-            for p in base.rglob("art-*.md"):
+            for p in list(base.rglob("art-*.md")) + (list(base.rglob("_meta.json")) if sub == "leyes" else []):
                 n += 1
                 m = max(m, int(p.stat().st_mtime))
-    return f"v2:{n}:{m}"
+    return f"v3:{n}:{m}"
 
 
 def construir_indice(raiz=None, forzar=False):
@@ -227,20 +219,30 @@ def construir_indice(raiz=None, forzar=False):
     con.execute("create table art(id integer primary key, ley, articulo, anio int, estatus, ultima_reforma, ruta, texto)")
     con.execute("create virtual table fts using fts5(texto, articulo, content='', tokenize='unicode61 remove_diacritics 2')")
     i = 0
-    for sub in ("leyes", "proyectos"):
-        base = raiz / sub
-        if not base.is_dir():
-            continue
+
+    def agregar(p, v=None):
+        nonlocal i
+        fm, cuerpo = _leer(p)
+        if v is not None:
+            fm = v.ajustar(fm, p)
+        texto = re.sub(r"^> \*\*PROYECTO[^\n]*\n+", "", _texto_articulo(cuerpo), flags=re.M)
+        texto = re.sub(r"^# Art[^\n]*\n+", "", texto).strip()
+        i += 1
+        con.execute("insert into art values (?,?,?,?,?,?,?,?)",
+                    (i, fm.get("ley"), fm.get("articulo"), fm.get("vigencia_anio"), fm.get("estatus"),
+                     fm.get("ultima_reforma_dof"), str(p.relative_to(raiz)), texto))
+        con.execute("insert into fts(rowid, texto, articulo) values (?,?,?)",
+                    (i, texto, f"{fm.get('ley')} {fm.get('articulo')}"))
+
+    for a in versiones.anios(raiz):  # leyes: cada ley en cada año se indexa por su vista (capas heredadas incluidas)
+        for sig in versiones.siglas(raiz, a):
+            v = versiones.vista(raiz, sig, a)
+            for p in v.archivos().values():
+                agregar(p, v)
+    base = raiz / "proyectos"
+    if base.is_dir():
         for p in sorted(base.rglob("art-*.md")):
-            fm, cuerpo = _leer(p)
-            texto = re.sub(r"^> \*\*PROYECTO[^\n]*\n+", "", _texto_articulo(cuerpo), flags=re.M)
-            texto = re.sub(r"^# Art[^\n]*\n+", "", texto).strip()
-            i += 1
-            con.execute("insert into art values (?,?,?,?,?,?,?,?)",
-                        (i, fm.get("ley"), fm.get("articulo"), fm.get("vigencia_anio"), fm.get("estatus"),
-                         fm.get("ultima_reforma_dof"), str(p.relative_to(raiz)), texto))
-            con.execute("insert into fts(rowid, texto, articulo) values (?,?,?)",
-                        (i, texto, f"{fm.get('ley')} {fm.get('articulo')}"))
+            agregar(p)
     con.execute("insert into meta values ('firma', ?)", (firma,))
     con.commit()
     con.close()

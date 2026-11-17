@@ -25,7 +25,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from leyes_mx import anexos, extraer, pipeline  # noqa: E402
+from leyes_mx import anexos, diferenciar, extraer, pipeline, versiones  # noqa: E402
 
 RAIZ = pipeline.RAIZ
 
@@ -65,11 +65,11 @@ def revisar(args):
     try:
         for ley in leyes:
             sigla = ley["sigla"].upper()
-            meta_p = RAIZ / "leyes" / str(anio) / sigla / "_meta.json"
-            if not meta_p.exists():
+            capa = versiones.capa(RAIZ, sigla, anio)
+            if capa is None:
                 informe.append({"sigla": sigla, "estado": "sin_datos_previos", "detalle": f"no existe leyes/{anio}/{sigla}"})
                 continue
-            meta = json.loads(meta_p.read_text(encoding="utf-8"))
+            meta = capa.meta
             pdf = tmp / f"{sigla}.pdf"
             try:
                 if args.offline:
@@ -90,7 +90,14 @@ def revisar(args):
                 fila["estado"] = "pdf_distinto_misma_fecha"
             if fila["estado"] != "sin_cambios" and sigla in vigiladas and fila["estado"] == "reforma_nueva":
                 fila["promover_2027"] = True
-            if fila["estado"] != "sin_cambios" and args.aplicar and not args.dry_run:
+            heredan = [c.anio for c in versiones.capas(RAIZ, sigla) if c.hereda_de == anio]
+            if fila["estado"] != "sin_cambios" and args.aplicar and not args.dry_run and capa.hereda_de is None and heredan:
+                # reescribir la base rompería la herencia: las capas posteriores guardan solo deltas contra el texto actual de esta
+                fila["estado"] = "base_con_capas"
+                fila["detalle_corto"] = f"{sigla}: leyes/{anio} es la base de la(s) capa(s) {heredan}; no se reescribe"
+                errores.append(f"{sigla}: no se aplica; leyes/{anio}/{sigla} es la base de las capas {heredan} (reescribirla cambiaría lo que heredan). "
+                               "Corregir a mano o regenerar esas capas con scripts/diferenciar.py")
+            elif fila["estado"] != "sin_cambios" and args.aplicar and not args.dry_run:
                 out = tmp / "arbol"
                 try:
                     r = pipeline.construir(ley, pdf, anio, destino_raiz=out, fecha_descarga=date.today().isoformat())
@@ -100,11 +107,8 @@ def revisar(args):
                         fila["errores"] = rep["errores"][:10]
                         errores.append(f"{sigla}: la regeneración no pasa la validación")
                     else:
-                        destino = RAIZ / "leyes" / str(anio) / sigla
-                        ag, qu, ca = diff_arbol(destino, out / str(anio) / sigla)
-                        fila.update({"agregados": ag, "quitados": qu, "cambiados": ca})
-                        shutil.rmtree(destino)
-                        shutil.copytree(out / str(anio) / sigla, destino)
+                        # capa que hereda: delta; capa completa posterior: completa con su vigente_desde; base: copia entera (si nada la hereda)
+                        fila.update(diferenciar.regenerar(RAIZ, sigla, anio, out / str(anio) / sigla))
                         (RAIZ / "fuentes" / str(anio)).mkdir(parents=True, exist_ok=True)
                         shutil.copy(pdf, RAIZ / "fuentes" / str(anio) / f"{sigla}.pdf")
                         fila["aplicado"] = True
@@ -202,7 +206,7 @@ def main():
         if cambios:
             print("leyes-mx: " + "; ".join(f.get("detalle_corto") or f"{f['sigla']} {f['estado']} ({f.get('fecha_guardada')} -> {f.get('fecha_nueva')})" for f in cambios))
             if any(f.get("promover_2027") for f in cambios):
-                print("Reforma publicada en una ley vigilada: promover proyectos/2027 a leyes/2027 (docs/publicar-reforma.md)")
+                print("Reforma publicada en una ley vigilada: generar la capa 2027 con scripts/diferenciar.py (docs/publicar-reforma.md)")
         elif not errores:
             print(f"leyes-mx: sin cambios ({len(informe)} leyes revisadas, año {anio})")
     if errores:
