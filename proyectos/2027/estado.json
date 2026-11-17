@@ -1,10 +1,10 @@
 {
   "anio": 2027,
-  "actualizado": "2026-11-11",
-  "resumen": "El Paquete Económico 2027 NO está publicado en el DOF al 2026-11-11 (no se encontró publicación; el DOF no se pudo consultar directamente). La reforma a la LISR ya cumplió su trámite en el Congreso: la Cámara de Diputados aceptó el 3-nov-2026 el cambio del Senado al artículo 78-E (349 a favor y 92 en contra, según el Canal del Congreso) y la turnó al Ejecutivo para sus efectos constitucionales. La Ley de Ingresos 2027 y la Ley Federal de Derechos pasaron el Senado (por prensa) y fueron enviadas al Ejecutivo. Falta la publicación en el DOF. Nada de esto es ley vigente hasta su publicación.",
+  "actualizado": "2026-11-13",
+  "resumen": "El DOF publicó el 2026-11-13 (edición matutina) tres decretos del Paquete Económico 2027: la Ley de Ingresos de la Federación para 2027 (nota 5803757), la reforma a la Ley del Impuesto sobre la Renta con disposiciones de vigencia transitoria (nota 5803758) y la reforma a la Ley Federal de Derechos (nota 5803759). Los tres entran en vigor el 2027-01-01 (LIF: el artículo 25, fracción XIX, el 2027-07-01). NADA de esto es ley vigente antes del 2027-01-01: hasta esa fecha rige el texto de 2026 y leyes/ no cambia. Los decretos íntegros, tal como salieron en el DOF, están en decretos/2027/ como fuente oficial; los archivos por artículo de proyectos/2027/LISR/ son el texto de la iniciativa, no el publicado. No se encontró en las ediciones del DOF del 12 al 14 de noviembre la Ley Aduanera, la Ley de Economía Digital para Pagos Digitales y Electrónicos, la Ley General Catastral y Registral ni el Presupuesto de Egresos: no verificado (no es lo mismo que no publicado; ver el hito de verificación).",
   "es_ley_vigente": false,
-  "estado_proyecto_lisr": "aprobado_senado",
-  "entrada_en_vigor_prevista": "2027-01-01 (transitorio de la iniciativa; sujeto a publicación en el DOF, que debe ocurrir antes)",
+  "estado_proyecto_lisr": "publicado_dof_no_vigente",
+  "entrada_en_vigor_prevista": "2027-01-01 (transitorio de cada decreto publicado en el DOF el 2026-11-13; LIF 2027: artículo 25, fracción XIX, el 2027-07-01). No es ley vigente antes de esa fecha.",
   "hitos": [
     {
       "hito": "iniciativa",
@@ -43,7 +43,7 @@
       "fecha": "2026-10-27",
       "confirmado": false,
       "nivel": "prensa",
-      "detalle": "El Senado aprobó la Ley de Ingresos 2027 y la Ley Federal de Derechos sin cambios y las envió al Ejecutivo (votos reportados 79-34 o 74-33; un medio da el 31-oct). No se verificó en fuente oficial del Senado.",
+      "detalle": "El Senado aprobó la Ley de Ingresos 2027 y la Ley Federal de Derechos sin cambios y las envió al Ejecutivo (votos reportados 79-34 o 74-33; un medio da el 31-oct). No se verificó en fuente oficial del Senado. Corroborado por el texto publicado en el DOF: los decretos de la LIF y de la LFD llevan la fecha del Congreso \"Ciudad de México, a 27 de octubre de 2026\" y la firma de los presidentes de ambas cámaras. Los votos siguen siendo dato de prensa.",
       "fuente": "https://www.poresto.com/mexico/2026/10/27/senado-aprueba-ley-ingresos-ley-federal-derechos-ejercicio-fiscal.html"
     },
     {
@@ -51,16 +51,29 @@
       "fecha": "2026-11-03",
       "confirmado": true,
       "nivel": "oficial",
-      "detalle": "La Cámara de Diputados aceptó las modificaciones del Senado al artículo 78-E de la LISR en los términos del dictamen: 349 votos a favor y 92 en contra (el boletín dice \"34 9\", error de captura evidente; la prensa da 349-92). El proyecto se turnó al Ejecutivo para sus efectos constitucionales. Fuente: boletín del Canal del Congreso (órgano de la Cámara). No se localizó el acta de votación en la Gaceta; la Gaceta del 3-nov no se pudo abrir (403) desde este equipo.",
+      "detalle": "La Cámara de Diputados aceptó las modificaciones del Senado al artículo 78-E de la LISR en los términos del dictamen: 349 votos a favor y 92 en contra (el boletín dice \"34 9\", error de captura evidente; la prensa da 349-92). El proyecto se turnó al Ejecutivo para sus efectos constitucionales. Fuente: boletín del Canal del Congreso (órgano de la Cámara). No se localizó el acta de votación en la Gaceta; la Gaceta del 3-nov no se pudo abrir (403) desde este equipo. Corroborado por el DOF: el decreto de la LISR publicado lleva la fecha del Congreso \"Ciudad de México, a 03 de noviembre de 2026\".",
       "fuente": "https://www.canaldelcongreso.gob.mx/noticias/10346"
     },
     {
       "hito": "publicado_dof",
-      "fecha": null,
+      "fecha": "2026-11-13",
+      "confirmado": true,
+      "nivel": "oficial",
+      "detalle": "El DOF (edición matutina del 2026-11-13) publicó tres decretos del Paquete Económico 2027, promulgados por la Presidenta el 2026-11-10: (1) Decreto por el que se expide la Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2027, nota 5803757 (Primero transitorio: entra en vigor el 1 de enero de 2027, salvo el artículo 25, fracción XIX, el 1 de julio de 2027); (2) Decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley del Impuesto sobre la Renta y se expiden disposiciones de vigencia transitoria, nota 5803758 (transitorio único: entra en vigor el 1 de enero de 2027); (3) Decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley Federal de Derechos, nota 5803759 (Primero transitorio: entra en vigor el 1 de enero de 2027). Estatus: publicado en el DOF, NO vigente hasta el 2027-01-01. Texto íntegro en decretos/2027/lif-2027, lisr-reforma-2027 y lfd-reforma-2027. Del decreto de la LISR no se incluyen dos tablas del artículo 27 (fracción III) que el DOF publica como imagen. Pendiente el procedimiento de docs/publicar-reforma.md (texto consolidado de la Cámara de Diputados, no verificado si ya lo refleja); mientras tanto leyes/ no se toca.",
+      "fuente": "https://dof.gob.mx/index.php?year=2026&month=11&day=13&edicion=MAT",
+      "fuentes_notas": [
+        "https://dof.gob.mx/nota_detalle.php?codigo=5803757&fecha=13/11/2026",
+        "https://dof.gob.mx/nota_detalle.php?codigo=5803758&fecha=13/11/2026",
+        "https://dof.gob.mx/nota_detalle.php?codigo=5803759&fecha=13/11/2026"
+      ]
+    },
+    {
+      "hito": "verificacion_otros_decretos_dof",
+      "fecha": "2026-11-13",
       "confirmado": false,
-      "nivel": "no_publicado",
-      "detalle": "No se encontró publicación en el DOF de ninguno de los decretos del Paquete Económico 2027 al 2026-11-11 (búsquedas en prensa y despachos; la consulta directa al DOF no fue posible por un error de certificado TLS desde este equipo). Verificar en dof.gob.mx. Una nota de prensa proyecta diciembre para la publicación y para la Resolución Miscelánea 2027; es proyección, no fecha confirmada.",
-      "fuente": "https://www.dof.gob.mx"
+      "nivel": "no_verificado",
+      "detalle": "Revisión del índice del DOF: matutina y vespertina del 12 y del 13, matutina y vespertina del 14 de noviembre de 2026, y la edición extraordinaria de esos tres días. Matutina del 13 (17 notas): solo los tres decretos del paquete, ningún otro (el resto son decretos de ocupación temporal, acuerdos, avisos, circulares y avisos de tipo de cambio). Vespertina del 13: Código Penal Federal y Ley General de Turismo, y acuerdos de estímulos fiscales a combustibles; nada del paquete. Matutina del 12: nada del paquete. Vespertina del 12 y ediciones del 14: el índice no lista notas. Extraordinarias de los tres días: el DOF redirige a su página de error (no existe la edición). NO se encontraron en esas ediciones la Ley Aduanera, la Ley de Economía Digital para Pagos Digitales y Electrónicos, la Ley General Catastral y Registral ni el Presupuesto de Egresos de la Federación 2027 (iniciativa del 2026-09-08). Eso es NO VERIFICADO, no \"no publicado\": la revisión se limita a esos días y a los títulos del índice, no hay constancia en este repositorio de que el Congreso las haya aprobado, y pueden publicarse en otra fecha.",
+      "fuente": "https://dof.gob.mx/index.php?year=2026&month=11&day=13&edicion=MAT"
     }
   ],
   "laboral": {
@@ -73,7 +86,7 @@
   "articulos_proyecto": {
     "LISR": {
       "estado_proyecto": "iniciativa",
-      "nota": "Los archivos por artículo en proyectos/2027/LISR/ son el texto de la INICIATIVA. La minuta vigente en el trámite es un PDF escaneado y no se trocea; ver README."
+      "nota": "Los archivos por artículo en proyectos/2027/LISR/ son el texto de la INICIATIVA, no el del decreto publicado el 2026-11-13. El texto oficial publicado está en decretos/2027/lisr-reforma-2027/decreto.md. Pendiente: promover a leyes/2027 siguiendo docs/publicar-reforma.md cuando la Cámara actualice su PDF."
     }
   },
   "documentos": "proyectos/2027/documentos.json",
@@ -81,5 +94,37 @@
     "LISR",
     "LIVA",
     "CFF"
-  ]
+  ],
+  "no_verificado": [
+    "Ley Aduanera (iniciativa 2026-09-08, anexo F): no apareció en el DOF del 12 al 14 de noviembre de 2026; no verificado si el Congreso la aprobó ni si se publicó en otra fecha.",
+    "Ley de Economía Digital para Pagos Digitales y Electrónicos (anexo G): igual.",
+    "Ley General Catastral y Registral (anexo H): igual.",
+    "Presupuesto de Egresos de la Federación 2027 (anexo B): igual."
+  ],
+  "decretos_publicados": {
+    "carpeta": "decretos/2027",
+    "decretos": [
+      {
+        "id": "lif-2027",
+        "nota_dof": "5803757",
+        "ordenamiento": "Ley de Ingresos de la Federación 2027",
+        "tipo": "expide",
+        "entrada_en_vigor": "2027-01-01"
+      },
+      {
+        "id": "lisr-reforma-2027",
+        "nota_dof": "5803758",
+        "ordenamiento": "Ley del Impuesto sobre la Renta",
+        "tipo": "reforma",
+        "entrada_en_vigor": "2027-01-01"
+      },
+      {
+        "id": "lfd-reforma-2027",
+        "nota_dof": "5803759",
+        "ordenamiento": "Ley Federal de Derechos",
+        "tipo": "reforma",
+        "entrada_en_vigor": "2027-01-01"
+      }
+    ]
+  }
 }

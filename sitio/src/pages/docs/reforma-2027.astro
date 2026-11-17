@@ -3,10 +3,14 @@ import Docs from "../../layouts/Docs.astro";
 import { reforma } from "../../lib/datos.mjs";
 const ref = reforma();
 ---
-<Docs titulo="Reforma 2027" descripcion="Estado de la reforma fiscal 2027: en trámite, no es ley vigente hasta su publicación en el Diario Oficial de la Federación.">
+<Docs titulo="Reforma 2027" descripcion="Estado de la reforma fiscal 2027: publicada en el Diario Oficial de la Federación pero no vigente antes de su fecha de entrada en vigor; si aún no se publica, en trámite.">
   {ref ? (<>
-    <h1>Reforma {ref.anio}: en trámite, no es ley</h1>
-    <p class="aviso"><strong>Un proyecto no es ley hasta que se publica en el Diario Oficial de la Federación.</strong> Los textos de la reforma {ref.anio} están en una carpeta aparte, el asistente no los usa salvo que se pidan, y siempre salen marcados como proyecto.</p>
+    <h1>{ref.publicadoDof ? `Reforma ${ref.anio}: publicada en el DOF, no vigente todavía` : `Reforma ${ref.anio}: en trámite, no es ley`}</h1>
+    {ref.publicadoDof ? (
+      <p class="aviso"><strong>Publicada no es vigente.</strong> El Diario Oficial de la Federación publicó el {ref.publicadoDof} los decretos de la Ley de Ingresos, de la Ley del Impuesto sobre la Renta y de la Ley Federal de Derechos {ref.anio}. Entran en vigor el 1 de enero de {ref.anio}: antes de esa fecha no son ley vigente y el asistente sigue citando el texto vigente. Los textos de la reforma {ref.anio} están en una carpeta aparte y siempre salen marcados como no vigentes.</p>
+    ) : (
+      <p class="aviso"><strong>Un proyecto no es ley hasta que se publica en el Diario Oficial de la Federación.</strong> Los textos de la reforma {ref.anio} están en una carpeta aparte, el asistente no los usa salvo que se pidan, y siempre salen marcados como proyecto.</p>
+    )}
     <p>Estado al {ref.actualizado}: {ref.resumen}</p>
     <div class="tabla-envoltura">
       <table>
