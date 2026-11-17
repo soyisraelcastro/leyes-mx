@@ -7,7 +7,7 @@ export const GET: APIRoute = ({ site }) => {
   const u = (p: string) => new URL(p, site).toString();
   const { lista, total, anios, anexo, ref } = cifras();
   const raw = ENLACES.REPO.replace("https://github.com/", "https://raw.githubusercontent.com/") + "/main";
-  const anio = anios[anios.length - 1];
+  const base = anios[0];  // los ejemplos de URL usan la base (completa): un año posterior solo trae los artículos que cambian
   const doc = `# leyes-mx: las leyes fiscales y laborales de México en tu asistente de IA
 
 > ${RESUMEN}
@@ -65,9 +65,9 @@ Detalle: ${u("/docs/reforma-2027")}
 ## Cómo leer un artículo directamente
 
 Cada artículo es un archivo Markdown con encabezado (ley, vigencia, última reforma DOF, fuente, sha256, estatus):
-${raw}/leyes/${anio}/<SIGLA>/art-<número con 4 dígitos>[-letra][-bis].md
-Ejemplos: ${raw}/leyes/${anio}/LISR/art-0028.md · ${raw}/leyes/${anio}/CFF/art-0017-A.md · ${raw}/leyes/${anio}/CFF/art-0020-bis.md
-Índice de cada ley: ${raw}/leyes/${anio}/<SIGLA>/_indice.md
+${raw}/leyes/${base}/<SIGLA>/art-<número con 4 dígitos>[-letra][-bis].md
+Ejemplos: ${raw}/leyes/${base}/LISR/art-0028.md · ${raw}/leyes/${base}/CFF/art-0017-A.md · ${raw}/leyes/${base}/CFF/art-0020-bis.md
+Índice de cada ley: ${raw}/leyes/${base}/<SIGLA>/_indice.md
 Ojo con los años posteriores a la base (${anios[0]} es la base, completa): la carpeta de un año posterior guarda solo los artículos que cambian y hereda el resto. Si un artículo no está en leyes/<año>/<SIGLA>/ (la URL da 404), léelo en la carpeta del año del que hereda: el campo "hereda_de" de leyes/<año>/<SIGLA>/_meta.json dice cuál es (y así hasta la base). El campo "ruta" de las respuestas del servidor MCP ya trae la ruta del archivo real. El _indice.md de cada año enlaza cada artículo a su archivo real.
 
 ## Cómo usarlo dentro de Abacus

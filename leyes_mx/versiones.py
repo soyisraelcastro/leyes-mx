@@ -65,7 +65,8 @@ def _hijos(base):
     hit = _CACHE_LISTA.get(base)
     if hit and hit[0] == firma:
         return hit[1]
-    res = sorted(p for p in base.iterdir() if p.is_dir())
+    # las carpetas ocultas (".SIGLA.nueva-PID" de diferenciar, ".previo-PID") son temporales: nunca son leyes ni años
+    res = sorted(p for p in base.iterdir() if p.is_dir() and not p.name.startswith("."))
     _CACHE_LISTA[base] = (firma, res)
     return res
 
@@ -105,6 +106,11 @@ def _dir_sigla(base, sigla):
 def siglas(raiz, anio):
     """Nombres de carpeta de las leyes con capa en ese año (con _meta.json legible, la misma condición que capa()), en orden alfabético."""
     return sorted(p.name for p in _hijos(Path(raiz) / "leyes" / str(anio)) if _meta(p) is not None)
+
+
+def siglas_sin_meta(raiz, anio):
+    """Carpetas (no ocultas) de ese año sin _meta.json: una ley que desaparecería en silencio de todos los recorridos."""
+    return sorted(p.name for p in _hijos(Path(raiz) / "leyes" / str(anio)) if not (p / "_meta.json").exists())
 
 
 def siglas_invalidas(raiz, anio):

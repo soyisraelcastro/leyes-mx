@@ -112,6 +112,8 @@ def materializar_capa(raiz, anio, sigla):
 def resumen_leyes(raiz):
     leyes = []
     for meta in sorted((raiz / "leyes").glob("*/*/_meta.json")):
+        if meta.parent.name.startswith(".") or meta.parent.parent.name.startswith("."):  # temporales de diferenciar
+            continue
         m = json.loads(meta.read_text(encoding="utf-8"))
         leyes.append({
             "sigla": m["sigla"], "nombre": m["nombre_oficial"], "tipo": m.get("tipo"),

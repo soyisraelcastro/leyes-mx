@@ -107,17 +107,8 @@ def revisar(args):
                         fila["errores"] = rep["errores"][:10]
                         errores.append(f"{sigla}: la regeneración no pasa la validación")
                     else:
-                        destino = RAIZ / "leyes" / str(anio) / sigla
-                        if capa.hereda_de is not None:
-                            # año con capas: se reescribe solo el delta contra lo heredado, conservando hereda_de, vigente_desde y fuente
-                            res = diferenciar.escribir_capa(RAIZ, sigla, anio, out / str(anio) / sigla, vigente_desde=capa.vigente_desde,
-                                                            hereda_de=capa.hereda_de, fuente=meta.get("fuente"))
-                            fila.update({"agregados": res["nuevos"], "quitados": [], "cambiados": res["modificados"]})
-                        else:
-                            ag, qu, ca = diff_arbol(destino, out / str(anio) / sigla)
-                            fila.update({"agregados": ag, "quitados": qu, "cambiados": ca})
-                            shutil.rmtree(destino)
-                            shutil.copytree(out / str(anio) / sigla, destino)
+                        # capa que hereda: delta; capa completa posterior: completa con su vigente_desde; base: copia entera (si nada la hereda)
+                        fila.update(diferenciar.regenerar(RAIZ, sigla, anio, out / str(anio) / sigla))
                         (RAIZ / "fuentes" / str(anio)).mkdir(parents=True, exist_ok=True)
                         shutil.copy(pdf, RAIZ / "fuentes" / str(anio) / f"{sigla}.pdf")
                         fila["aplicado"] = True

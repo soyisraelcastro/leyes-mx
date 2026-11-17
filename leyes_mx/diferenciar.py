@@ -134,14 +134,18 @@ def escribir_capa(raiz, sigla, anio, completo, *, vigente_desde, hereda_de=None,
         if dry_run:
             return resumen
         tmp = _temporal(raiz, anio, sigla)
-        shutil.rmtree(tmp)
-        shutil.copytree(completo, tmp)
-        meta = dict(meta_nuevo)
-        meta["vigente_desde"] = vigente_desde
-        if fuente:
-            meta["fuente"] = fuente
-        (tmp / "_meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        _publicar(tmp, dest)
+        try:
+            shutil.rmtree(tmp)
+            shutil.copytree(completo, tmp)
+            meta = dict(meta_nuevo)
+            meta["vigente_desde"] = vigente_desde
+            if fuente:
+                meta["fuente"] = fuente
+            (tmp / "_meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            _publicar(tmp, dest)
+        except BaseException:
+            shutil.rmtree(tmp, ignore_errors=True)
+            raise
         return resumen
 
     hereda_de = int(hereda_de) if hereda_de is not None else _hereda_por_omision(raiz, sigla, anio)
@@ -196,6 +200,40 @@ def escribir_capa(raiz, sigla, anio, completo, *, vigente_desde, hereda_de=None,
             # los enlaces relativos se calculan contra el destino final, que está a la misma profundidad que la carpeta temporal
             (tmp / "_indice.md").write_text(_reescribir_indice(idx, base, propios, dest), encoding="utf-8")
         _publicar(tmp, dest)
+    except BaseException:
+        shutil.rmtree(tmp, ignore_errors=True)
+        raise
+    return resumen
+
+
+def regenerar(raiz, sigla, anio, completo):
+    """Reescribe la capa ya existente de ese año con el texto completo `completo`, conservando vigente_desde y fuente.
+    Capa que hereda: solo el delta. Capa completa posterior a la base (p. ej. la LIF 2027): completa, con su vigente_desde.
+    Base (el año más antiguo): se reemplaza entera, y solo si ninguna capa la hereda. Devuelve {agregados, quitados, cambiados}."""
+    raiz, sigla, anio = Path(raiz), sigla.upper(), int(anio)
+    c = versiones.capa(raiz, sigla, anio)
+    if c is None:
+        raise ValueError(f"no existe leyes/{anio}/{sigla}")
+    if c.hereda_de is not None:
+        r = escribir_capa(raiz, sigla, anio, completo, vigente_desde=c.vigente_desde, hereda_de=c.hereda_de, fuente=c.meta.get("fuente"))
+        return {"agregados": r["nuevos"], "quitados": [], "cambiados": r["modificados"]}
+    if anio != min(x.anio for x in versiones.capas(raiz, sigla)):
+        if not fecha_valida(c.vigente_desde):
+            raise ValueError(f"{sigla}: la capa completa {anio} no trae vigente_desde válido; no se puede regenerar sin perderlo")
+        escribir_capa(raiz, sigla, anio, completo, vigente_desde=c.vigente_desde, fuente=c.meta.get("fuente"), completa=True)
+        return {"agregados": [], "quitados": [], "cambiados": []}
+    heredan = [x.anio for x in versiones.capas(raiz, sigla) if x.hereda_de == anio]
+    if heredan:
+        raise ValueError(f"{sigla}: leyes/{anio} es la base de las capas {heredan}; reescribirla cambiaría lo que heredan")
+    viejos = {p.name: p for p in c.dir.glob("art-*.md")}
+    nuevos = {p.name: p for p in Path(completo).glob("art-*.md")}
+    resumen = {"agregados": sorted(set(nuevos) - set(viejos)), "quitados": sorted(set(viejos) - set(nuevos)),
+               "cambiados": sorted(n for n in set(viejos) & set(nuevos) if not iguales_a(viejos[n], nuevos[n]))}
+    tmp = _temporal(raiz, anio, sigla)
+    try:
+        shutil.rmtree(tmp)
+        shutil.copytree(completo, tmp)
+        _publicar(tmp, c.dir)
     except BaseException:
         shutil.rmtree(tmp, ignore_errors=True)
         raise

@@ -192,6 +192,98 @@ class TestRobustez(Base):
         self.assertIn("art-0009.md", versiones.vista(self.raiz, "XLEY", 2027).archivos())
 
 
+class TestSegundaRevision(Base):
+    def test_carpetas_ocultas_no_son_leyes(self):
+        self.capa_y()
+        oculta = self.raiz / "leyes" / "2027" / ".XLEY.nueva-123"
+        oculta.mkdir()
+        (oculta / "_meta.json").write_text(json.dumps({"sigla": "XLEY", "vigencia_anio": 2027, "nombre_oficial": "x", "ultima_reforma_dof": "x",
+                                                      "articulos_extraidos": 1, "fecha_descarga": "x", "sha256_pdf": "x"}), encoding="utf-8")
+        (self.raiz / "leyes" / ".2099").mkdir()
+        self.assertEqual(versiones.siglas(self.raiz, 2027), ["YLEY"])
+        self.assertEqual(versiones.siglas_sin_meta(self.raiz, 2027), [])
+        self.assertEqual(versiones.anios(self.raiz), [2026, 2027])
+        self.assertEqual([x["sigla"] for x in store.listar_leyes(raiz=self.raiz) if x["anio_vigencia"] == 2027], ["YLEY"])
+        self.assertEqual(sorted({d["ley"] for d in temas.documentos(self.raiz, 2027)}), ["YLEY"])
+        self.assertEqual([l["sigla"] for l in empaquetar.resumen_leyes(self.raiz) if l["anio_vigencia"] == 2027], ["YLEY"])
+        m = empaquetar.construir(self.raiz, self.tmp / "oculta", "2027.01.05", "2027-01-05")
+        self.assertEqual([l["sigla"] for l in m["leyes"] if l["anio_vigencia"] == 2027], ["YLEY"])
+        self.assertFalse(any("nueva-123" in n for n in self.contenido_tar(self.tmp / "oculta")))
+
+    def contenido_tar(self, salida):
+        with tarfile.open(salida / "leyes-mx-datos.tar.gz") as t:
+            return t.getnames()
+
+    def test_carpeta_de_ley_sin_meta_es_error_de_validacion(self):
+        from unittest import mock
+        import io, contextlib
+        d = self.raiz / "leyes" / "2027" / "SINMETA"
+        d.mkdir(parents=True)
+        (d / "art-0001.md").write_text("x", encoding="utf-8")
+        self.assertEqual(versiones.siglas_sin_meta(self.raiz, 2027), ["SINMETA"])
+        (self.raiz / "fuentes.json").write_text(json.dumps({"leyes": []}), encoding="utf-8")
+        vacio = lambda *a, **k: ([], [])  # noqa: E731
+        buf = io.StringIO()
+        with mock.patch.object(validar, "RAIZ", self.raiz), mock.patch.object(validar.anexos_validar, "validar", vacio), \
+                mock.patch.object(validar.glosario_mod, "validar", vacio), mock.patch.object(validar.rmf_validar, "validar", vacio), \
+                mock.patch.object(validar.temas_mod, "validar", vacio), mock.patch.object(validar.spe_mod, "validar", vacio), \
+                mock.patch.object(sys, "argv", ["validar.py", "--json"]), contextlib.redirect_stdout(buf):
+            codigo = validar.main()
+        self.assertEqual(codigo, 1)
+        self.assertTrue(any("falta _meta.json" in e for r in json.loads(buf.getvalue())["leyes"] for e in r["errores"]))
+
+    def test_capa_completa_posterior_exige_vigente_desde(self):
+        diferenciar.escribir_capa(self.raiz, "YLEY", 2027, self.dy, vigente_desde="2027-01-01", completa=True)
+        self.assertEqual(validar.validar_ley(self.ruta(2027, "YLEY"), 2027, None, False)["errores"], [])
+        p = self.ruta(2027, "YLEY") / "_meta.json"
+        m = json.loads(p.read_text(encoding="utf-8"))
+        del m["vigente_desde"]
+        p.write_text(json.dumps(m), encoding="utf-8")
+        e = validar.validar_ley(self.ruta(2027, "YLEY"), 2027, None, False)["errores"]
+        self.assertTrue(any("debe traer vigente_desde" in x for x in e))
+        m["vigente_desde"] = "2026-01-01"
+        p.write_text(json.dumps(m), encoding="utf-8")
+        self.assertTrue(any("no es posterior" in x for x in validar.validar_ley(self.ruta(2027, "YLEY"), 2027, None, False)["errores"]))
+        self.assertEqual(validar.validar_ley(self.ruta(2026, "YLEY"), 2026, None, False)["errores"], [])  # la base no lo necesita
+
+    def test_regenerar_conserva_vigente_desde_y_fuente(self):
+        diferenciar.escribir_capa(self.raiz, "YLEY", 2027, self.dy, vigente_desde="2027-03-01", fuente=FUENTE, completa=True)
+        (self.dy / "art-0002.md").write_text((self.dy / "art-0002.md").read_text(encoding="utf-8") + "\nPárrafo nuevo.\n", encoding="utf-8")
+        diferenciar.regenerar(self.raiz, "YLEY", 2027, self.dy)
+        m = json.loads((self.ruta(2027, "YLEY") / "_meta.json").read_text(encoding="utf-8"))
+        self.assertEqual((m["vigente_desde"], m["fuente"], m.get("hereda_de")), ("2027-03-01", FUENTE, None))
+        self.assertIn("Párrafo nuevo", (self.ruta(2027, "YLEY") / "art-0002.md").read_text(encoding="utf-8"))
+
+    def test_regenerar_capa_que_hereda_y_base_protegida(self):
+        self.capa_x()
+        r = diferenciar.regenerar(self.raiz, "XLEY", 2027, self.dx)
+        self.assertEqual(r["agregados"], ["4-G"])
+        m = json.loads((self.ruta(2027) / "_meta.json").read_text(encoding="utf-8"))
+        self.assertEqual((m["hereda_de"], m["vigente_desde"], m["fuente"]), (2026, "2027-01-01", FUENTE))
+        with self.assertRaisesRegex(ValueError, "es la base de las capas"):
+            diferenciar.regenerar(self.raiz, "XLEY", 2026, self.dx)
+        self.assertIn("Texto viejo", (self.ruta(2026) / "art-0003.md").read_text(encoding="utf-8"))
+
+    def test_regenerar_base_sin_capas(self):
+        r = diferenciar.regenerar(self.raiz, "YLEY", 2026, self.dy)
+        self.assertEqual(r, {"agregados": [], "quitados": [], "cambiados": []})
+
+    def test_capa_completa_limpia_el_temporal_si_falla(self):
+        import shutil
+        original = shutil.copytree
+
+        def falla(*a, **k):
+            raise OSError("disco lleno")
+        shutil.copytree = falla
+        try:
+            with self.assertRaises(OSError):
+                diferenciar.escribir_capa(self.raiz, "YLEY", 2027, self.dy, vigente_desde="2027-01-01", completa=True)
+        finally:
+            shutil.copytree = original
+        antes = [p.name for p in (self.raiz / "leyes" / "2027").iterdir()] if (self.raiz / "leyes" / "2027").exists() else []
+        self.assertEqual(antes, [])
+
+
 class TestVista(Base):
     def setUp(self):
         super().setUp()

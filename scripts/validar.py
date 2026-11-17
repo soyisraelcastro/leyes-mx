@@ -54,6 +54,7 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
         for f in ("_indice.md", "transitorios.md"):
             if not (dirley / f).exists():
                 errores.append(f"falta {f}")
+        errores.extend(_validar_completa_posterior(dirley, sigla, anio, meta))
     datos_t, _carp = tablas_mod.cargar(sigla, anio)
     for t in (datos_t or {}).get("tablas", []):
         if not t.get("solo_imagen"):
@@ -162,6 +163,21 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
             "ultima_reforma_dof": meta.get("ultima_reforma_dof")}
 
 
+def _validar_completa_posterior(dirley, sigla, anio, meta):
+    """Una capa completa (sin hereda_de) de un año posterior a la base (p. ej. la LIF 2027) debe traer vigente_desde válido y posterior al de la capa anterior."""
+    if dirley.parent.parent.name != "leyes":  # un árbol temporal de extracción no está en leyes/
+        return []
+    raiz = dirley.parents[2]
+    previas = [c for c in versiones.capas(raiz, sigla) if c.anio < anio]
+    if not previas:
+        return []  # es la base
+    desde = meta.get("vigente_desde")
+    if not diferenciar.fecha_valida(desde):
+        return [f"_meta.json: una capa completa posterior a la base ({previas[-1].anio}) debe traer vigente_desde (fecha ISO); trae {desde!r}"]
+    previo = previas[-1].vigente_desde or f"{previas[-1].anio}-01-01"
+    return [f"_meta.json: vigente_desde {desde} no es posterior al de la capa anterior ({previo})"] if desde <= previo else []
+
+
 def _validar_capa(raiz, sigla, anio, meta, vista, propios):
     """Reglas de una capa que hereda: hereda_de existe y es anterior; vigente_desde válido y posterior al de la capa heredada;
     articulos_modificados coincide con los archivos; cada artículo difiere del heredado salvo los nuevos; un nuevo no choca con uno heredado."""
@@ -260,6 +276,9 @@ def main():
     for anio in store._anios(RAIZ):
         if a.anio and anio != a.anio:
             continue
+        for sigla in versiones.siglas_sin_meta(RAIZ, anio):  # carpeta de ley sin _meta.json: antes validar_ley la reportaba; no debe desaparecer
+            if not a.ley or sigla.upper() == a.ley.upper():
+                informes.append({"sigla": sigla, "anio": anio, "errores": [f"falta _meta.json (leyes/{anio}/{sigla})"], "avisos": [], "n": 0})
         for sigla in versiones.siglas_invalidas(RAIZ, anio):  # un _meta.json que no se puede leer no debe tumbar al resto
             if not a.ley or sigla.upper() == a.ley.upper():
                 informes.append({"sigla": sigla, "anio": anio, "errores": [f"leyes/{anio}/{sigla}/_meta.json inválido (ilegible, JSON roto o no es un objeto)"],
