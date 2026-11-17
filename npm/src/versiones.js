@@ -11,7 +11,10 @@ import { idDesdeArchivo } from "./ids.js";
 
 const esDir = (p) => { try { return fs.statSync(p).isDirectory(); } catch { return false; } };
 const esArchivo = (p) => { try { return fs.statSync(p).isFile(); } catch { return false; } };
-const leerMeta = (dir) => { try { return JSON.parse(fs.readFileSync(path.join(dir, "_meta.json"), "utf8")); } catch { return null; } };
+// _meta.json como objeto, o null si falta, no se puede leer, no es JSON válido o no es un objeto.
+const leerMeta = (dir) => {
+  try { const m = JSON.parse(fs.readFileSync(path.join(dir, "_meta.json"), "utf8")); return m && typeof m === "object" && !Array.isArray(m) ? m : null; } catch { return null; }
+};
 
 /** Años (carpetas numéricas) de leyes/. */
 export function anios(raiz) {
@@ -26,11 +29,11 @@ function dirSigla(base, sigla) {
   return n ? path.join(base, n) : null;
 }
 
-/** Carpetas de las leyes con capa (tienen _meta.json) en ese año, en orden alfabético. */
+/** Carpetas de las leyes con capa en ese año (con _meta.json legible, la misma condición que capa()), en orden alfabético. */
 export function siglas(raiz, anio) {
   const base = path.join(raiz, "leyes", String(anio));
   if (!esDir(base)) return [];
-  return fs.readdirSync(base).filter((n) => esArchivo(path.join(base, n, "_meta.json"))).sort();
+  return fs.readdirSync(base).filter((n) => !n.startsWith(".") && leerMeta(path.join(base, n)) !== null).sort();
 }
 
 /** La capa de una ley en un año ({anio, dir, meta, heredeDe, vigenteDesde, clave}) o null si ese año no la tiene. */

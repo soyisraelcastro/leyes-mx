@@ -30,11 +30,11 @@ python3 scripts/diferenciar.py LISR CFF LIVA LFT RLISR RLIVA RCFF ... --anio 202
 python3 scripts/diferenciar.py ...  (lo mismo, sin --dry-run)
 ```
 
-Por cada ley el script descarga el PDF, extrae el texto completo a un directorio **temporal**, compara cada artículo contra el texto heredado (cuerpo normalizado: espacios; no el front matter) y escribe en `leyes/2027/<SIGLA>/` solo los que difieren, más `_meta.json` (`hereda_de`, `vigente_desde`, `articulos_modificados`, `articulos_nuevos`, `fuente`), el `_indice.md` completo y, si cambiaron, `transitorios.md`. Una ley que no cambió queda solo con `_meta.json`. Reemplaza a `scripts/copiar_anio.py` (obsoleto).
+Por cada ley el script descarga el PDF, extrae el texto completo a un directorio **temporal**, compara cada artículo contra el texto heredado (cuerpo normalizado: espacios; no el front matter) y escribe en `leyes/2027/<SIGLA>/` solo los que difieren, más `_meta.json` (`hereda_de`, `vigente_desde`, `articulos_modificados`, `articulos_nuevos`, `fuente`), el `_indice.md` completo y, si cambiaron, `transitorios.md`. Una ley que no cambió queda solo con `_meta.json`. Las leyes anuales (`"anual": true` en `fuentes.json`, la LIF) se escriben completas y sin herencia; `--completa SIGLA` fuerza lo mismo para otra ley. Reemplaza a `scripts/copiar_anio.py` (obsoleto).
 
 Revisar el resumen: los artículos que lista deben ser los que dice el decreto. Si el script dice que un artículo del año anterior ya no está en el texto nuevo, se detiene (una derogación aparece en el PDF como "Se deroga", no como ausencia): revisar el extractor.
 
-Cambiar `anio_vigencia_actual` en `fuentes.json` solo cuando corresponda (1 de enero del año nuevo, o la fecha de entrada en vigor). Una reforma de vigencia inmediata a mitad de año se reescribe con `scripts/revisar_reformas.py --aplicar` (reescribe el delta de la capa del año); una reforma con fecha posterior dentro del mismo año cabe como otra capa con `vigente_desde` de esa fecha (ver criterio-anios.md).
+Cambiar `anio_vigencia_actual` en `fuentes.json` solo cuando corresponda (1 de enero del año nuevo, o la fecha de entrada en vigor). Una reforma de vigencia inmediata a mitad de año se reescribe con `scripts/revisar_reformas.py --aplicar` (reescribe el delta de la capa del año). Si el año a reescribir es la base y ya existen capas que la heredan, el script se niega (reescribirla cambiaría lo que heredan). Dos capas en el mismo año (una reforma con fecha posterior dentro del año) NO están soportadas hoy: queda como extensión futura (ver criterio-anios.md).
 
 ## 3. Etiquetar y validar
 

@@ -167,3 +167,26 @@ test("paquete sin materializar: lleva las capas, sube a esquema 2 y este cliente
   fs.writeFileSync(path.join(tmp, "futuro.json"), JSON.stringify({ ...manifest, esquema: 3 }));
   await assert.rejects(leerManifest(path.join(tmp, "futuro.json")), /esquema 3/);
 });
+
+test("un _meta.json ilegible no tumba el listado ni la vista", () => {
+  const copia = path.join(tmp, "roto");
+  fs.cpSync(raiz, copia, { recursive: true });
+  fs.mkdirSync(path.join(copia, "leyes", "2027", "ZLEY"));
+  fs.writeFileSync(path.join(copia, "leyes", "2027", "ZLEY", "_meta.json"), "{no es json");
+  fs.mkdirSync(path.join(copia, "leyes", "2027", "WLEY"));
+  fs.writeFileSync(path.join(copia, "leyes", "2027", "WLEY", "_meta.json"), "[1]");
+  const a = new Almacen(copia);
+  assert.deepEqual(a.siglasDisponibles(2027), ["XLEY", "YLEY"]);
+  assert.equal(a.vista("ZLEY", 2027), null);
+  assert.deepEqual(a.listarLeyes().filter((x) => x.anio_vigencia === 2027).map((x) => x.sigla), ["XLEY", "YLEY"]);
+});
+
+test("el paquete materializado no conserva hereda_de y se marca como materializado", () => {
+  const { dir } = empaquetar(path.join(tmp, "mat2"));
+  const m = JSON.parse(fs.readFileSync(path.join(dir, "leyes", "2027", "XLEY", "_meta.json"), "utf8"));
+  assert.equal(m.materializado, true);
+  assert.equal(m.hereda_de, undefined);
+  assert.equal(m.articulos_modificados, undefined);
+  assert.equal(m.capa_original.hereda_de, 2026);
+  assert.ok(!fs.readFileSync(path.join(dir, "leyes", "2027", "XLEY", "_indice.md"), "utf8").includes("../"));
+});

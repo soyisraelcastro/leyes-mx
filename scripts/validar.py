@@ -36,7 +36,12 @@ def validar_ley(dirley, anio, esperado, usar_pdf):
     meta_p = dirley / "_meta.json"
     if not meta_p.exists():
         return {"sigla": sigla, "errores": ["falta _meta.json"], "avisos": [], "n": 0}
-    meta = json.loads(meta_p.read_text(encoding="utf-8"))
+    try:
+        meta = json.loads(meta_p.read_text(encoding="utf-8"))
+        if not isinstance(meta, dict):
+            raise ValueError("no es un objeto JSON")
+    except ValueError as e:
+        return {"sigla": sigla, "errores": [f"_meta.json inválido: {e}"], "avisos": [], "n": 0}
     for k in ("sigla", "nombre_oficial", "fuente_url", "ultima_reforma_dof", "fecha_descarga", "sha256_pdf", "articulos_extraidos"):
         if not meta.get(k):
             errores.append(f"_meta.json sin {k}")
@@ -204,7 +209,7 @@ def _validar_capa(raiz, sigla, anio, meta, vista, propios):
         if i in previos:
             if i in nuevos:
                 continue
-            if diferenciar.cuerpo_normalizado(propio) == diferenciar.cuerpo_normalizado(previos[i]):
+            if diferenciar.iguales_a(propio, previos[i]):
                 errores.append(f"art. {i}: idéntico al heredado de {hereda}; una capa solo guarda lo que cambia")
         elif i not in nuevos:
             errores.append(f"art. {i}: no existe en la capa heredada ({hereda}) y no está declarado en articulos_nuevos")
@@ -255,6 +260,10 @@ def main():
     for anio in store._anios(RAIZ):
         if a.anio and anio != a.anio:
             continue
+        for sigla in versiones.siglas_invalidas(RAIZ, anio):  # un _meta.json que no se puede leer no debe tumbar al resto
+            if not a.ley or sigla.upper() == a.ley.upper():
+                informes.append({"sigla": sigla, "anio": anio, "errores": [f"leyes/{anio}/{sigla}/_meta.json inválido (ilegible, JSON roto o no es un objeto)"],
+                                 "avisos": [], "n": 0})
         for sigla in versiones.siglas(RAIZ, anio):
             if not a.ley or sigla.upper() == a.ley.upper():
                 d = versiones.capa(RAIZ, sigla, anio).dir

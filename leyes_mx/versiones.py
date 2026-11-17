@@ -18,11 +18,56 @@ from .ids import clave_orden, id_desde_archivo
 BASE_DESDE = ""  # la base no tiene vigente_desde: su inicio es el "inicio de cobertura", y ordena antes que cualquier fecha
 
 
-def _meta(ruta):
+# Caché por proceso, validada con stat (mtime_ns y tamaño del _meta.json; mtime_ns de las carpetas): una llamada repetida cuesta
+# unos stat en lugar de listar carpetas y parsear JSON de toda la cadena. limpiar_cache() la vacía (pruebas).
+_CACHE_META = {}
+_CACHE_LISTA = {}
+
+
+def limpiar_cache():
+    _CACHE_META.clear()
+    _CACHE_LISTA.clear()
+
+
+def _firma(p):
     try:
-        return json.loads((Path(ruta) / "_meta.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+        st = Path(p).stat()
+        return (st.st_mtime_ns, st.st_size)
+    except OSError:
         return None
+
+
+def _meta(ruta):
+    """_meta.json de una carpeta como dict, o None si falta, no se puede leer, no es JSON válido o no es un objeto."""
+    f = Path(ruta) / "_meta.json"
+    firma = _firma(f)
+    if firma is None:
+        return None
+    hit = _CACHE_META.get(f)
+    if hit and hit[0] == firma:
+        return hit[1]
+    try:
+        m = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        m = None
+    if not isinstance(m, dict):
+        m = None
+    _CACHE_META[f] = (firma, m)
+    return m
+
+
+def _hijos(base):
+    """Subcarpetas de `base` (cacheadas mientras no cambie la carpeta)."""
+    base = Path(base)
+    firma = _firma(base)
+    if firma is None:
+        return []
+    hit = _CACHE_LISTA.get(base)
+    if hit and hit[0] == firma:
+        return hit[1]
+    res = sorted(p for p in base.iterdir() if p.is_dir())
+    _CACHE_LISTA[base] = (firma, res)
+    return res
 
 
 class Capa:
@@ -47,27 +92,24 @@ class Capa:
 
 def anios(raiz):
     """Años (carpetas numéricas) de leyes/."""
-    base = Path(raiz) / "leyes"
-    if not base.is_dir():
-        return []
-    return sorted(int(p.name) for p in base.iterdir() if p.is_dir() and p.name.isdigit())
+    return sorted(int(p.name) for p in _hijos(Path(raiz) / "leyes") if p.name.isdigit())
 
 
 def _dir_sigla(base, sigla):
-    if not base.is_dir():
-        return None
-    for p in base.iterdir():
-        if p.is_dir() and p.name.upper() == str(sigla).upper():
+    for p in _hijos(base):
+        if p.name.upper() == str(sigla).upper():
             return p
     return None
 
 
 def siglas(raiz, anio):
-    """Nombres de carpeta de las leyes con capa (tienen _meta.json) en ese año, en orden alfabético."""
-    base = Path(raiz) / "leyes" / str(anio)
-    if not base.is_dir():
-        return []
-    return sorted(p.name for p in base.iterdir() if p.is_dir() and (p / "_meta.json").exists())
+    """Nombres de carpeta de las leyes con capa en ese año (con _meta.json legible, la misma condición que capa()), en orden alfabético."""
+    return sorted(p.name for p in _hijos(Path(raiz) / "leyes" / str(anio)) if _meta(p) is not None)
+
+
+def siglas_invalidas(raiz, anio):
+    """Carpetas de ese año que traen _meta.json pero no se puede leer (ilegible, JSON inválido o no es un objeto)."""
+    return sorted(p.name for p in _hijos(Path(raiz) / "leyes" / str(anio)) if (p / "_meta.json").exists() and _meta(p) is None)
 
 
 def capa(raiz, sigla, anio):
@@ -103,6 +145,7 @@ class Vista:
 
     def __init__(self, sigla, anio, cadena_):
         self.sigla, self.anio, self.cadena = sigla, int(anio), cadena_
+        self._archivos = None
 
     @property
     def meta(self):
@@ -127,12 +170,18 @@ class Vista:
 
     def archivos(self):
         """{nombre: ruta} de todos los artículos de la vista (la capa más reciente gana), ordenado por nombre."""
+        clave = tuple((str(c.dir), _firma(c.dir)) for c in self.cadena)
+        hit = self._archivos
+        if hit and hit[0] == clave:
+            return dict(hit[1])
         res = {}
         for c in reversed(self.cadena):  # de la base a la capa nueva: la nueva sobrescribe
             for p in c.dir.glob("art-*.md"):
                 if id_desde_archivo(p.name):
                     res[p.name] = p
-        return dict(sorted(res.items()))
+        res = dict(sorted(res.items()))
+        self._archivos = (clave, res)
+        return dict(res)
 
     def ids(self):
         """Ids de los artículos de la vista en el orden de la ley (no el del nombre de archivo, donde art-0004-F.md precede a art-0004.md)."""

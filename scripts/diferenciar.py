@@ -5,6 +5,7 @@ Descarga (si hace falta) el PDF de la Cámara, extrae el texto completo a un dir
 contra el texto heredado (cuerpo sin front matter, espacios normalizados) y escribe los que difieren (modificados,
 nuevos y derogados), más _meta.json (hereda_de, vigente_desde, articulos_modificados, fuente), _indice.md completo y,
 si cambiaron, transitorios.md. Una ley sin cambios queda como una capa solo con _meta.json (deja constancia de que se revisó).
+Las leyes anuales ("anual": true en fuentes.json, p. ej. la LIF) y las que se pidan con --completa se escriben completas, sin herencia.
 Reemplaza a scripts/copiar_anio.py. Modelo: docs/criterio-anios.md; procedimiento: docs/publicar-reforma.md.
 
 Uso:
@@ -28,6 +29,8 @@ def main():
     ap.add_argument("--anio", type=int, required=True)
     ap.add_argument("--vigente-desde", help="fecha ISO desde la que rige la capa (por omisión, AAAA-01-01 del año)")
     ap.add_argument("--hereda-de", type=int, help="año de la capa que se hereda (por omisión, la anterior más reciente)")
+    ap.add_argument("--completa", action="append", default=[], metavar="SIGLA",
+                    help="escribe esa ley COMPLETA, sin hereda_de (repetible). Las leyes con \"anual\": true en fuentes.json (la LIF) nunca heredan")
     ap.add_argument("--decreto", help="decreto del DOF que origina la capa, p. ej. 'DOF 2026-12-31'")
     ap.add_argument("--nota", help="nota breve sobre la fuente")
     ap.add_argument("--fecha-dof", help="fecha de publicación en el DOF (AAAA-MM-DD)")
@@ -50,10 +53,14 @@ def main():
             print(f"{sigla}: AVISO falta tablas/{a.anio}/{sigla}/ (existe la del año anterior): los artículos con tablas transcritas saldrán como modificados "
                   "mientras no se copie esa carpeta (o se transcriban las tablas nuevas)")
         try:
-            r = diferenciar.generar(ley, pdf, a.anio, vigente_desde=desde, hereda_de=a.hereda_de, fuente=fuente or None, dry_run=a.dry_run)
+            completa = sigla in [s.upper() for s in a.completa] or bool(ley.get("anual"))
+            r = diferenciar.generar(ley, pdf, a.anio, vigente_desde=desde, hereda_de=a.hereda_de, fuente=fuente or None, dry_run=a.dry_run, completa=completa)
         except ValueError as e:
             print(f"{sigla}: ERROR {e}")
             codigo = 1
+            continue
+        if r.get("completa"):
+            print(f"{sigla}: ley completa sin herencia, {r['total']} artículos{' [dry-run]' if a.dry_run else ''}")
             continue
         print(f"{sigla}: hereda de {r['hereda_de']}, {len(r['modificados'])} modificados, {len(r['nuevos'])} nuevos "
               f"({len(r['derogados'])} derogados), {r['sin_cambios']} sin cambios{', transitorios distintos' if r['transitorios'] else ''}"

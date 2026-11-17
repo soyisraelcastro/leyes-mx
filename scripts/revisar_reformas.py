@@ -90,7 +90,14 @@ def revisar(args):
                 fila["estado"] = "pdf_distinto_misma_fecha"
             if fila["estado"] != "sin_cambios" and sigla in vigiladas and fila["estado"] == "reforma_nueva":
                 fila["promover_2027"] = True
-            if fila["estado"] != "sin_cambios" and args.aplicar and not args.dry_run:
+            heredan = [c.anio for c in versiones.capas(RAIZ, sigla) if c.hereda_de == anio]
+            if fila["estado"] != "sin_cambios" and args.aplicar and not args.dry_run and capa.hereda_de is None and heredan:
+                # reescribir la base rompería la herencia: las capas posteriores guardan solo deltas contra el texto actual de esta
+                fila["estado"] = "base_con_capas"
+                fila["detalle_corto"] = f"{sigla}: leyes/{anio} es la base de la(s) capa(s) {heredan}; no se reescribe"
+                errores.append(f"{sigla}: no se aplica; leyes/{anio}/{sigla} es la base de las capas {heredan} (reescribirla cambiaría lo que heredan). "
+                               "Corregir a mano o regenerar esas capas con scripts/diferenciar.py")
+            elif fila["estado"] != "sin_cambios" and args.aplicar and not args.dry_run:
                 out = tmp / "arbol"
                 try:
                     r = pipeline.construir(ley, pdf, anio, destino_raiz=out, fecha_descarga=date.today().isoformat())

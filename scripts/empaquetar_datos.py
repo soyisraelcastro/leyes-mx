@@ -45,7 +45,7 @@ def archivos_a_empaquetar(raiz):
             if not p.is_file() or p.name == ".DS_Store":
                 continue
             rel = p.relative_to(raiz)
-            if p.suffix.lower() == ".pdf" or "documentos" in rel.parts:
+            if p.suffix.lower() == ".pdf" or "documentos" in rel.parts or any(x.startswith(".") for x in rel.parts):  # ocultos: .DS_Store, temporales de diferenciar
                 continue
             res.append(rel.as_posix())
     for suelto in ("fuentes.json", "glosario.json", "temas.json"):
@@ -69,11 +69,12 @@ def _reescribir_heredado(datos, anio, meta):
     y heredado_de_anio con el año de la capa de origen (equivale a lo que dejaba copiar_anio.py con copiado_de_anio)."""
     t = datos.decode("utf-8")
     origen = re.search(r"^vigencia_anio: (\d+)$", t, flags=re.M)
-    t = re.sub(r"^vigencia_anio: \d+$", f"vigencia_anio: {anio}", t, count=1, flags=re.M)
+    t = re.sub(r"^vigencia_anio: \d+$", lambda m: f"vigencia_anio: {anio}", t, count=1, flags=re.M)
     if meta.get("ultima_reforma_dof"):
-        t = re.sub(r"^ultima_reforma_dof: .*$", "ultima_reforma_dof: " + json.dumps(meta["ultima_reforma_dof"], ensure_ascii=False), t, count=1, flags=re.M)
+        nueva = "ultima_reforma_dof: " + json.dumps(meta["ultima_reforma_dof"], ensure_ascii=False)
+        t = re.sub(r"^ultima_reforma_dof: .*$", lambda m: nueva, t, count=1, flags=re.M)
     if origen:
-        t = re.sub(r"^(vigencia_anio: .*)$", rf"\1\nheredado_de_anio: {origen.group(1)}", t, count=1, flags=re.M)
+        t = re.sub(r"^(vigencia_anio: .*)$", lambda m: f"{m.group(1)}\nheredado_de_anio: {origen.group(1)}", t, count=1, flags=re.M)
     return t.encode("utf-8")
 
 
@@ -96,9 +97,14 @@ def materializar_capa(raiz, anio, sigla):
         res[f"{base}/transitorios.md"] = _reescribir_heredado(p.read_bytes(), anio, v.meta) if v.heredado(p) else p.read_bytes()
     p = v.archivo("_indice.md")
     if p is not None:
-        res[f"{base}/_indice.md"] = p.read_bytes()
+        # en el paquete el año está completo: los enlaces a la capa heredada (../../2026/LEY/art-0001.md) pasan a ser locales
+        idx = re.sub(r"\]\((?:\.\./)+[^)]*?/((?:art-[^)/]+|transitorios)\.md)\)", lambda m: f"]({m.group(1)})", p.read_text(encoding="utf-8"))
+        res[f"{base}/_indice.md"] = idx.encode("utf-8")
     meta = dict(v.meta)
-    meta["materializada"] = True
+    # el árbol materializado es completo: un _meta.json que siguiera diciendo hereda_de/articulos_modificados engañaría a quien lo lea
+    capa = {k: meta.pop(k) for k in ("hereda_de", "articulos_modificados", "articulos_nuevos") if k in meta}
+    meta["materializado"] = True
+    meta["capa_original"] = capa
     res[f"{base}/_meta.json"] = (json.dumps(meta, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     return res
 

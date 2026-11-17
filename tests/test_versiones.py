@@ -113,6 +113,85 @@ class TestEscribirCapa(Base):
         self.assertNotIn("Nuevo transitorio", versiones.vista(self.raiz, "XLEY", 2026).archivo("transitorios.md").read_text(encoding="utf-8"))
 
 
+class TestRobustez(Base):
+    def test_front_matter_distinto_cuenta_como_cambio(self):
+        # solo cambia el estatus (el cuerpo es igual): antes quedaba "sin cambios"
+        p = self.dx / "art-0002.md"
+        p.write_text(p.read_text(encoding="utf-8").replace('estatus: "vigente"', 'estatus: "derogado"'), encoding="utf-8")
+        q = self.dx / "art-0001.md"
+        q.write_text(q.read_text(encoding="utf-8").replace('articulo: "1"\n', 'articulo: "1"\nubicacion: "TITULO I"\n'), encoding="utf-8")
+        r = self.capa_x()
+        self.assertIn("2", r["modificados"])
+        self.assertIn("1", r["modificados"])
+        # lo que cambia en cada descarga no cuenta
+        self.assertNotIn("4-F", r["modificados"])
+
+    def test_campos_de_descarga_no_cuentan(self):
+        r = self.capa_x()
+        self.assertEqual(r["sin_cambios"], 3)
+
+    def test_capa_completa_sin_herencia(self):
+        r = diferenciar.escribir_capa(self.raiz, "XLEY", 2027, self.dx, vigente_desde="2027-01-01", completa=True)
+        self.assertTrue(r["completa"])
+        m = json.loads((self.ruta(2027) / "_meta.json").read_text(encoding="utf-8"))
+        self.assertNotIn("hereda_de", m)
+        self.assertEqual(len(list(self.ruta(2027).glob("art-*.md"))), 6)
+        self.assertEqual(versiones.cadena(self.raiz, "XLEY", 2027)[0].hereda_de, None)
+        self.assertEqual(len(versiones.cadena(self.raiz, "XLEY", 2027)), 1)
+        self.assertEqual(validar.validar_ley(self.ruta(2027), 2027, None, False)["errores"], [])
+        with self.assertRaises(ValueError):
+            diferenciar.escribir_capa(self.raiz, "XLEY", 2027, self.dx, vigente_desde="2027-01-01", completa=True, hereda_de=2026)
+
+    def test_ley_anual_no_puede_pedir_hereda_de(self):
+        with self.assertRaisesRegex(ValueError, "anual"):
+            diferenciar.generar({"sigla": "LIF", "anual": True}, "no-importa.pdf", 2027, raiz=self.raiz, vigente_desde="2027-01-01", hereda_de=2026)
+
+    def test_escritura_atomica(self):
+        self.capa_x()
+        antes = {p.name: p.read_bytes() for p in self.ruta(2027).iterdir()}
+        import shutil
+        original = shutil.copy2
+        llamadas = []
+
+        def falla(*a, **k):
+            llamadas.append(a)
+            if len(llamadas) == 2:
+                raise OSError("disco lleno")
+            return original(*a, **k)
+        shutil.copy2 = falla
+        try:
+            with self.assertRaises(OSError):
+                self.capa_x()
+        finally:
+            shutil.copy2 = original
+        self.assertEqual(antes, {p.name: p.read_bytes() for p in self.ruta(2027).iterdir()})
+        self.assertEqual([p.name for p in (self.raiz / "leyes" / "2027").iterdir()], ["XLEY"])  # sin temporales
+
+    def test_meta_ilegible_no_tumba_nada(self):
+        self.capa_y()
+        malo = self.raiz / "leyes" / "2027" / "ZLEY"
+        malo.mkdir()
+        (malo / "_meta.json").write_text("{no es json", encoding="utf-8")
+        (self.raiz / "leyes" / "2027" / "WLEY").mkdir()
+        (self.raiz / "leyes" / "2027" / "WLEY" / "_meta.json").write_text("[1, 2]", encoding="utf-8")
+        self.assertEqual(versiones.siglas(self.raiz, 2027), ["YLEY"])
+        self.assertEqual(versiones.siglas_invalidas(self.raiz, 2027), ["WLEY", "ZLEY"])
+        self.assertIsNone(versiones.vista(self.raiz, "ZLEY", 2027))
+        self.assertEqual([x["sigla"] for x in store.listar_leyes(raiz=self.raiz) if x["anio_vigencia"] == 2027], ["YLEY"])
+        self.assertTrue(any("inválido" in e for e in validar.validar_ley(malo, 2027, None, False)["errores"]))
+
+    def test_cache_se_invalida_al_cambiar_el_meta(self):
+        self.capa_x()
+        self.assertEqual(versiones.vista(self.raiz, "XLEY", 2027).meta["ultima_reforma_dof"], "2026-12-31")
+        p = self.ruta(2027) / "_meta.json"
+        m = json.loads(p.read_text(encoding="utf-8"))
+        m["ultima_reforma_dof"] = "2027-02-02"
+        p.write_text(json.dumps(m), encoding="utf-8")
+        self.assertEqual(versiones.vista(self.raiz, "XLEY", 2027).meta["ultima_reforma_dof"], "2027-02-02")
+        (self.ruta(2027) / "art-0009.md").write_text("x", encoding="utf-8")
+        self.assertIn("art-0009.md", versiones.vista(self.raiz, "XLEY", 2027).archivos())
+
+
 class TestVista(Base):
     def setUp(self):
         super().setUp()
@@ -321,7 +400,14 @@ class TestEmpaquetado(Base):
         self.assertNotIn(b"heredado_de_anio", c["leyes/2027/XLEY/art-0003.md"])  # lo que está en la capa va tal cual
         self.assertEqual(c["leyes/2027/XLEY/art-0003.md"], (self.ruta(2027) / "art-0003.md").read_bytes())
         meta = json.loads(c["leyes/2027/XLEY/_meta.json"])
-        self.assertTrue(meta["materializada"])
+        self.assertTrue(meta["materializado"])
+        self.assertNotIn("hereda_de", meta)
+        self.assertNotIn("articulos_modificados", meta)
+        self.assertEqual(meta["capa_original"]["hereda_de"], 2026)
+        indice = c["leyes/2027/XLEY/_indice.md"].decode()
+        self.assertNotIn("../", indice)
+        self.assertIn("[art-0001.md](art-0001.md)", indice)
+        self.assertIn("[Transitorios](transitorios.md)", indice)
         self.assertEqual(meta["articulos_extraidos"], 6)
         self.assertEqual(sorted(n.split("/")[-1] for n in c if n.startswith("leyes/2027/YLEY/")),
                          ["_indice.md", "_meta.json", "art-0001.md", "art-0002.md", "transitorios.md"])
