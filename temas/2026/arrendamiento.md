@@ -4,7 +4,7 @@ Ingresos por arrendamiento y por el uso o goce temporal de bienes.
 
 Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 
-137 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+143 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -82,6 +82,8 @@ Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 | CFF | 15 | 3 | texto | [art-0015.md](../../leyes/2026/CFF/art-0015.md) |
 | CFF | 32-D | 3 | texto | [art-0032-D.md](../../leyes/2026/CFF/art-0032-D.md) |
 | LIF | 25 | 3 | texto | [art-0025.md](../../leyes/2026/LIF/art-0025.md) |
+| LINFONAVIT | 42 | 3 | texto | [art-0042.md](../../leyes/2026/LINFONAVIT/art-0042.md) |
+| LINFONAVIT | 51-ter | 3 | texto | [art-0051-ter.md](../../leyes/2026/LINFONAVIT/art-0051-ter.md) |
 | LISR | 158 | 3 | texto | [art-0158.md](../../leyes/2026/LISR/art-0158.md) |
 | LISR | 188 | 3 | texto | [art-0188.md](../../leyes/2026/LISR/art-0188.md) |
 | LISR | 38 | 3 | texto | [art-0038.md](../../leyes/2026/LISR/art-0038.md) |
@@ -95,6 +97,9 @@ Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 | LFT | 963 | 2 | texto | [art-0963.md](../../leyes/2026/LFT/art-0963.md) |
 | LIF | 20 | 2 | texto | [art-0020.md](../../leyes/2026/LIF/art-0020.md) |
 | LIF | 28 | 2 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
+| LINFONAVIT | 3 | 2 | texto | [art-0003.md](../../leyes/2026/LINFONAVIT/art-0003.md) |
+| LINFONAVIT | 41 | 2 | texto | [art-0041.md](../../leyes/2026/LINFONAVIT/art-0041.md) |
+| LINFONAVIT | 51-quater | 2 | texto | [art-0051-quater.md](../../leyes/2026/LINFONAVIT/art-0051-quater.md) |
 | LISR | 113-G | 2 | texto | [art-0113-G.md](../../leyes/2026/LISR/art-0113-G.md) |
 | LISR | 147 | 2 | texto | [art-0147.md](../../leyes/2026/LISR/art-0147.md) |
 | LISR | 2 | 2 | texto | [art-0002.md](../../leyes/2026/LISR/art-0002.md) |
@@ -127,6 +132,7 @@ Palabras: arrendamiento, uso o goce temporal, arrendador, arrendatario.
 | LFT | 150 | 1 | texto | [art-0150.md](../../leyes/2026/LFT/art-0150.md) |
 | LFT | 151 | 1 | texto | [art-0151.md](../../leyes/2026/LFT/art-0151.md) |
 | LFT | 97 | 1 | texto | [art-0097.md](../../leyes/2026/LFT/art-0097.md) |
+| LINFONAVIT | 64 | 1 | texto | [art-0064.md](../../leyes/2026/LINFONAVIT/art-0064.md) |
 | LISR | 113-J | 1 | texto | [art-0113-J.md](../../leyes/2026/LISR/art-0113-J.md) |
 | LISR | 175 | 1 | texto | [art-0175.md](../../leyes/2026/LISR/art-0175.md) |
 | LISR | 40 | 1 | texto | [art-0040.md](../../leyes/2026/LISR/art-0040.md) |

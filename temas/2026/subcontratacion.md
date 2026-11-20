@@ -4,7 +4,7 @@ Servicios u obras especializadas, registro REPSE y subcontratación.
 
 Palabras: subcontratación, servicios especializados, obras especializadas, REPSE, registro de prestadoras de servicios especializados.
 
-13 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+14 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -15,6 +15,7 @@ Palabras: subcontratación, servicios especializados, obras especializadas, REPS
 | CFF | 108 | 3 | texto | [art-0108.md](../../leyes/2026/CFF/art-0108.md) |
 | LFT | 1004-C | 3 | texto | [art-1004-C.md](../../leyes/2026/LFT/art-1004-C.md) |
 | LFT | 13 | 3 | texto | [art-0013.md](../../leyes/2026/LFT/art-0013.md) |
+| LINFONAVIT | 29-bis | 2 | texto | [art-0029-bis.md](../../leyes/2026/LINFONAVIT/art-0029-bis.md) |
 | LISR | 27 | 2 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | LIVA | 5 | 2 | texto | [art-0005.md](../../leyes/2026/LIVA/art-0005.md) |
 | LFT | 12 | 1 | texto | [art-0012.md](../../leyes/2026/LFT/art-0012.md) |

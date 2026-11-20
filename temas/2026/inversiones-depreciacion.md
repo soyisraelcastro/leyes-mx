@@ -4,7 +4,7 @@ Deducción de inversiones, activos fijos, depreciación y amortización.
 
 Palabras: deducción de inversiones, activo fijo, depreciación, amortización, monto original de la inversión, porcientos máximos autorizados.
 
-51 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+66 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -17,10 +17,23 @@ Palabras: deducción de inversiones, activo fijo, depreciación, amortización, 
 | RMF | regla 11.16.4 | 9 | encabezado, texto | [regla-11.16.4.md](../../rmf/2026/rmf/reglas/regla-11.16.4.md) |
 | RMF | regla 11.17.3 | 9 | encabezado, texto | [regla-11.17.3.md](../../rmf/2026/rmf/reglas/regla-11.17.3.md) |
 | RMF | regla 2.19.16 | 9 | texto | [regla-2.19.16.md](../../rmf/2026/rmf/reglas/regla-2.19.16.md) |
+| RIPAED | 51 | 7 | encabezado, texto | [art-0051.md](../../leyes/2026/RIPAED/art-0051.md) |
 | RMF | regla 3.3.2.1 | 7 | encabezado, texto | [regla-3.3.2.1.md](../../rmf/2026/rmf/reglas/regla-3.3.2.1.md) |
 | RMF | regla 7.26 | 7 | encabezado, texto | [regla-7.26.md](../../rmf/2026/rmf/reglas/regla-7.26.md) |
+| RIPAED | 47 | 6 | encabezado, texto | [art-0047.md](../../leyes/2026/RIPAED/art-0047.md) |
+| RIPAED | 50 | 6 | encabezado, texto | [art-0050.md](../../leyes/2026/RIPAED/art-0050.md) |
+| RIPAED | 52 | 6 | encabezado, texto | [art-0052.md](../../leyes/2026/RIPAED/art-0052.md) |
 | RLISR | 74 | 6 | texto | [art-0074.md](../../leyes/2026/RLISR/art-0074.md) |
 | RMF | regla 3.10.2.2 | 6 | encabezado, texto | [regla-3.10.2.2.md](../../rmf/2026/rmf/reglas/regla-3.10.2.2.md) |
+| RIPAED | 42 | 5 | encabezado | [art-0042.md](../../leyes/2026/RIPAED/art-0042.md) |
+| RIPAED | 43 | 5 | encabezado | [art-0043.md](../../leyes/2026/RIPAED/art-0043.md) |
+| RIPAED | 44 | 5 | encabezado | [art-0044.md](../../leyes/2026/RIPAED/art-0044.md) |
+| RIPAED | 45 | 5 | encabezado | [art-0045.md](../../leyes/2026/RIPAED/art-0045.md) |
+| RIPAED | 46 | 5 | encabezado | [art-0046.md](../../leyes/2026/RIPAED/art-0046.md) |
+| RIPAED | 48 | 5 | encabezado | [art-0048.md](../../leyes/2026/RIPAED/art-0048.md) |
+| RIPAED | 49 | 5 | encabezado | [art-0049.md](../../leyes/2026/RIPAED/art-0049.md) |
+| RIPAED | 53 | 5 | encabezado | [art-0053.md](../../leyes/2026/RIPAED/art-0053.md) |
+| RIPAED | 54 | 5 | encabezado | [art-0054.md](../../leyes/2026/RIPAED/art-0054.md) |
 | RLISR | 11 | 5 | texto | [art-0011.md](../../leyes/2026/RLISR/art-0011.md) |
 | LISR | 209 | 4 | texto | [art-0209.md](../../leyes/2026/LISR/art-0209.md) |
 | LISR | 31 | 4 | texto | [art-0031.md](../../leyes/2026/LISR/art-0031.md) |
@@ -50,6 +63,7 @@ Palabras: deducción de inversiones, activo fijo, depreciación, amortización, 
 | RMF | regla 2.8.1.13 | 2 | texto | [regla-2.8.1.13.md](../../rmf/2026/rmf/reglas/regla-2.8.1.13.md) |
 | CFF | 167 | 1 | texto | [art-0167.md](../../leyes/2026/CFF/art-0167.md) |
 | CFF | 36-bis | 1 | texto | [art-0036-bis.md](../../leyes/2026/CFF/art-0036-bis.md) |
+| LINFONAVIT | 44 | 1 | texto | [art-0044.md](../../leyes/2026/LINFONAVIT/art-0044.md) |
 | LISR | 51 | 1 | texto | [art-0051.md](../../leyes/2026/LISR/art-0051.md) |
 | RLISR | 21 | 1 | texto | [art-0021.md](../../leyes/2026/RLISR/art-0021.md) |
 | RLISR | 22 | 1 | texto | [art-0022.md](../../leyes/2026/RLISR/art-0022.md) |
@@ -57,5 +71,6 @@ Palabras: deducción de inversiones, activo fijo, depreciación, amortización, 
 | RLISR | 73 | 1 | texto | [art-0073.md](../../leyes/2026/RLISR/art-0073.md) |
 | RLISR | 75 | 1 | texto | [art-0075.md](../../leyes/2026/RLISR/art-0075.md) |
 | RLIVA | 39 | 1 | texto | [art-0039.md](../../leyes/2026/RLIVA/art-0039.md) |
+| RLSAR | 56 | 1 | texto | [art-0056.md](../../leyes/2026/RLSAR/art-0056.md) |
 | RMF | regla 3.13.15 | 1 | texto | [regla-3.13.15.md](../../rmf/2026/rmf/reglas/regla-3.13.15.md) |
 | RMF | regla 3.3.1.39 | 1 | texto | [regla-3.3.1.39.md](../../rmf/2026/rmf/reglas/regla-3.3.1.39.md) |

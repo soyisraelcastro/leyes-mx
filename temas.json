@@ -228,13 +228,15 @@
   {
    "id": "dictamen",
    "nombre": "Dictamen fiscal y contador público",
-   "descripcion": "Dictamen de estados financieros, de enajenación de acciones y contador público inscrito.",
+   "descripcion": "Dictamen de estados financieros, de enajenación de acciones, dictamen ante el INFONAVIT y contador público inscrito o autorizado.",
    "palabras": [
     "dictamen fiscal",
     "dictamen de estados financieros",
     "contador público inscrito",
     "contador público registrado",
-    "dictamen de enajenación de acciones"
+    "dictamen de enajenación de acciones",
+    "contador público autorizado",
+    "aviso de dictamen"
    ],
    "umbral": 1
   },
@@ -718,6 +720,29 @@
    "umbral": 3
   },
   {
+   "id": "ahorro-retiro",
+   "nombre": "Sistemas de ahorro para el retiro (SAR, AFORE y CONSAR)",
+   "descripcion": "Administradoras de fondos para el retiro, sociedades de inversión, cuentas individuales, aportaciones voluntarias, comisiones, traspasos y supervisión de la CONSAR.",
+   "palabras": [
+    "sistemas de ahorro para el retiro",
+    "administradoras de fondos para el retiro",
+    "administradoras",
+    "sociedades de inversión especializadas de fondos para el retiro",
+    "sociedades de inversión",
+    "Comisión Nacional del Sistema de Ahorro para el Retiro",
+    "cuentas individuales",
+    "aportaciones voluntarias",
+    "aportaciones complementarias de retiro",
+    "fondos de previsión social",
+    "empresas operadoras",
+    "Base de Datos Nacional SAR",
+    "traspaso de cuentas individuales",
+    "trabajadores no afiliados",
+    "intervención administrativa",
+    "subcuenta de retiro"
+   ]
+  },
+  {
    "id": "enfermedad-maternidad",
    "nombre": "Enfermedades, maternidad y prestaciones en especie",
    "descripcion": "Seguro de enfermedades y maternidad, subsidios por incapacidad y prestaciones en especie.",
@@ -741,7 +766,7 @@
   {
    "id": "vivienda-infonavit",
    "nombre": "Vivienda e INFONAVIT",
-   "descripcion": "Aportaciones de vivienda, crédito y subcuenta de vivienda.",
+   "descripcion": "Aportaciones de vivienda (5% del salario), descuentos para amortizar créditos, crédito y subcuenta de vivienda.",
    "palabras": [
     "INFONAVIT",
     "crédito para vivienda",
@@ -749,7 +774,16 @@
     "aportaciones patronales",
     "subcuenta de vivienda",
     "habitaciones para los trabajadores",
-    "casas habitación"
+    "casas habitación",
+    "Fondo Nacional de la Vivienda",
+    "salario base de aportación",
+    "trabajador acreditado",
+    "trabajadores acreditados",
+    "entidades receptoras",
+    "cédula de determinación",
+    "amortización del crédito",
+    "crédito de vivienda",
+    "créditos de vivienda"
    ],
    "umbral": 3
   },
@@ -864,6 +898,22 @@
     "Dirección General del Instituto",
     "patrimonio del Instituto"
    ]
+  },
+  {
+   "id": "organizacion-infonavit",
+   "nombre": "Organización del INFONAVIT",
+   "descripcion": "Órganos del Instituto del Fondo Nacional de la Vivienda para los Trabajadores (Asamblea General, Consejo de Administración, Comisión de Vigilancia, Comité de Auditoría, Comisión de Inconformidades), su patrimonio y su fiscalización.",
+   "palabras": [
+    "Instituto del Fondo Nacional de la Vivienda para los Trabajadores",
+    "Comisión de Vigilancia",
+    "Comité de Auditoría",
+    "Comisión de Inconformidades",
+    "Comité de Transparencia",
+    "Directores Sectoriales",
+    "Consejo de Administración",
+    "Fondo Nacional de la Vivienda"
+   ],
+   "umbral": 3
   },
   {
    "id": "contribuyentes-obligaciones",

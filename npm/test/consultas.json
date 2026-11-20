@@ -164,6 +164,36 @@
       "pregunta": "deducción de gasolina",
       "esperados": [{ "ley": "LISR", "articulo": "27", "top": 5 }],
       "por_que": "LISR 27 fr. III: requisitos de pago para \"la adquisición de combustibles para vehículos marítimos, aéreos y terrestres\"."
+    },
+    {
+      "pregunta": "aportaciones infonavit",
+      "esperados": [
+        { "ley": "LINFONAVIT", "articulo": "29", "top": 3 },
+        { "ley": "RIPAED", "articulo": "23", "top": 5 }
+      ],
+      "por_que": "LINFONAVIT 29 fr. II: \"Determinar el monto de las aportaciones del cinco por ciento sobre el salario de los trabajadores a su servicio\"; RIPAED 23: \"el cinco por ciento del Salario Base de Aportación de sus Trabajadores\"."
+    },
+    {
+      "pregunta": "cuando se paga el infonavit",
+      "esperados": [
+        { "ley": "LINFONAVIT", "articulo": "35", "top": 5 }
+      ],
+      "por_que": "LINFONAVIT 35: \"El pago de las aportaciones y descuentos señalados en el artículo 29, será por mensualidades vencidas\"."
+    },
+    {
+      "pregunta": "descuento credito infonavit",
+      "esperados": [
+        { "ley": "LINFONAVIT", "articulo": "29", "top": 5 },
+        { "ley": "RIPAED", "articulo": "43", "top": 5 }
+      ],
+      "por_que": "LINFONAVIT 29 fr. III: \"Hacer los descuentos a sus trabajadores en sus salarios\"; RIPAED 43: \"Los Patrones enterarán el importe de los Descuentos por mensualidades vencidas\"."
+    },
+    {
+      "pregunta": "comisiones de las afore",
+      "esperados": [
+        { "ley": "LSAR", "articulo": "37", "top": 5 }
+      ],
+      "por_que": "LSAR 37: \"Las administradoras sólo podrán cobrar a los trabajadores con cuenta individual las comisiones\"."
     }
   ]
 }

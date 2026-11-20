@@ -4,7 +4,7 @@ Autorizaciones de endeudamiento, empréstitos, déficit de la banca de desarroll
 
 Palabras: crédito público, endeudamiento, empréstito, empréstitos, deuda pública, déficit por intermediación financiera, infraestructura productiva de largo plazo, banca de desarrollo.
 
-106 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+127 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -18,13 +18,17 @@ Palabras: crédito público, endeudamiento, empréstito, empréstitos, deuda pú
 | CFF | 92 | 6 | texto | [art-0092.md](../../leyes/2026/CFF/art-0092.md) |
 | LIEPS | 19 | 6 | texto | [art-0019.md](../../leyes/2026/LIEPS/art-0019.md) |
 | LIF | 29 | 6 | texto | [art-0029.md](../../leyes/2026/LIF/art-0029.md) |
+| LSAR | 108-bis | 6 | texto | [art-0108-bis.md](../../leyes/2026/LSAR/art-0108-bis.md) |
 | LCF | 50 | 5 | texto | [art-0050.md](../../leyes/2026/LCF/art-0050.md) |
+| LINFONAVIT | 66 | 5 | texto | [art-0066.md](../../leyes/2026/LINFONAVIT/art-0066.md) |
+| LSAR | 61 | 5 | texto | [art-0061.md](../../leyes/2026/LSAR/art-0061.md) |
 | CFF | 32-B | 4 | texto | [art-0032-B.md](../../leyes/2026/CFF/art-0032-B.md) |
 | LCF | 11-A | 4 | texto | [art-0011-A.md](../../leyes/2026/LCF/art-0011-A.md) |
 | LCF | 20 | 4 | texto | [art-0020.md](../../leyes/2026/LCF/art-0020.md) |
 | LCF | 4-A | 4 | texto | [art-0004-A.md](../../leyes/2026/LCF/art-0004-A.md) |
 | LFT | 121 | 4 | texto | [art-0121.md](../../leyes/2026/LFT/art-0121.md) |
 | LIEPS | 2 | 4 | texto | [art-0002.md](../../leyes/2026/LIEPS/art-0002.md) |
+| LSAR | 7 | 4 | texto | [art-0007.md](../../leyes/2026/LSAR/art-0007.md) |
 | CFF | 69 | 3 | texto | [art-0069.md](../../leyes/2026/CFF/art-0069.md) |
 | LCF | 11 | 3 | texto | [art-0011.md](../../leyes/2026/LCF/art-0011.md) |
 | LCF | 17 | 3 | texto | [art-0017.md](../../leyes/2026/LCF/art-0017.md) |
@@ -37,6 +41,8 @@ Palabras: crédito público, endeudamiento, empréstito, empréstitos, deuda pú
 | LIF | 26 | 3 | texto | [art-0026.md](../../leyes/2026/LIF/art-0026.md) |
 | LIF | 28 | 3 | texto | [art-0028.md](../../leyes/2026/LIF/art-0028.md) |
 | LIF | 5 | 3 | texto | [art-0005.md](../../leyes/2026/LIF/art-0005.md) |
+| LINFONAVIT | 30 | 3 | texto | [art-0030.md](../../leyes/2026/LINFONAVIT/art-0030.md) |
+| LSAR | 12 | 3 | texto | [art-0012.md](../../leyes/2026/LSAR/art-0012.md) |
 | CFF | 20 | 2 | texto | [art-0020.md](../../leyes/2026/CFF/art-0020.md) |
 | CFF | 33 | 2 | texto | [art-0033.md](../../leyes/2026/CFF/art-0033.md) |
 | CFF | 33-B | 2 | texto | [art-0033-B.md](../../leyes/2026/CFF/art-0033-B.md) |
@@ -58,6 +64,7 @@ Palabras: crédito público, endeudamiento, empréstito, empréstitos, deuda pú
 | LIF | 22 | 2 | texto | [art-0022.md](../../leyes/2026/LIF/art-0022.md) |
 | LIF | 30 | 2 | texto | [art-0030.md](../../leyes/2026/LIF/art-0030.md) |
 | LIF | 8 | 2 | texto | [art-0008.md](../../leyes/2026/LIF/art-0008.md) |
+| LINFONAVIT | 42 | 2 | texto | [art-0042.md](../../leyes/2026/LINFONAVIT/art-0042.md) |
 | LISR | 166 | 2 | texto | [art-0166.md](../../leyes/2026/LISR/art-0166.md) |
 | LISR | 56 | 2 | texto | [art-0056.md](../../leyes/2026/LISR/art-0056.md) |
 | LIVA | 25 | 2 | texto | [art-0025.md](../../leyes/2026/LIVA/art-0025.md) |
@@ -96,10 +103,24 @@ Palabras: crédito público, endeudamiento, empréstito, empréstitos, deuda pú
 | LIF | 12 | 1 | texto | [art-0012.md](../../leyes/2026/LIF/art-0012.md) |
 | LIF | 7 | 1 | texto | [art-0007.md](../../leyes/2026/LIF/art-0007.md) |
 | LIF | 9 | 1 | texto | [art-0009.md](../../leyes/2026/LIF/art-0009.md) |
+| LINFONAVIT | 51-bis-1 | 1 | texto | [art-0051-bis-1.md](../../leyes/2026/LINFONAVIT/art-0051-bis-1.md) |
 | LISR | 128 | 1 | texto | [art-0128.md](../../leyes/2026/LISR/art-0128.md) |
 | LISR | 49 | 1 | texto | [art-0049.md](../../leyes/2026/LISR/art-0049.md) |
 | LOPDC | 2 | 1 | texto | [art-0002.md](../../leyes/2026/LOPDC/art-0002.md) |
 | LOPDC | 7 | 1 | texto | [art-0007.md](../../leyes/2026/LOPDC/art-0007.md) |
+| LSAR | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LSAR/art-0010.md) |
+| LSAR | 101 | 1 | texto | [art-0101.md](../../leyes/2026/LSAR/art-0101.md) |
+| LSAR | 108 | 1 | texto | [art-0108.md](../../leyes/2026/LSAR/art-0108.md) |
+| LSAR | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LSAR/art-0019.md) |
+| LSAR | 2 | 1 | texto | [art-0002.md](../../leyes/2026/LSAR/art-0002.md) |
+| LSAR | 4 | 1 | texto | [art-0004.md](../../leyes/2026/LSAR/art-0004.md) |
+| LSAR | 40 | 1 | texto | [art-0040.md](../../leyes/2026/LSAR/art-0040.md) |
+| LSAR | 45 | 1 | texto | [art-0045.md](../../leyes/2026/LSAR/art-0045.md) |
+| LSAR | 46 | 1 | texto | [art-0046.md](../../leyes/2026/LSAR/art-0046.md) |
+| LSAR | 60 | 1 | texto | [art-0060.md](../../leyes/2026/LSAR/art-0060.md) |
+| LSAR | 75 | 1 | texto | [art-0075.md](../../leyes/2026/LSAR/art-0075.md) |
+| LSAR | 81 | 1 | texto | [art-0081.md](../../leyes/2026/LSAR/art-0081.md) |
+| LSAR | 92 | 1 | texto | [art-0092.md](../../leyes/2026/LSAR/art-0092.md) |
 | LSS | 108 | 1 | texto | [art-0108.md](../../leyes/2026/LSS/art-0108.md) |
 | LSS | 172 | 1 | texto | [art-0172.md](../../leyes/2026/LSS/art-0172.md) |
 | LSS | 172-A | 1 | texto | [art-0172-A.md](../../leyes/2026/LSS/art-0172-A.md) |

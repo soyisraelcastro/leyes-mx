@@ -123,6 +123,6 @@ test("el glosario viaja en el paquete de datos y se actualiza con `actualizar`, 
     assert.doesNotMatch(r.stdout, /Se amplió/);
     assert.equal(r.status, 1, "sin glosario esa palabra no existe en la ley");
     r = correr(["doctor"], env2);
-    assert.match(r.stdout, /glosario de sinónimos: 41 entradas \(versión 2026-11-03\)/);
+    assert.match(r.stdout, new RegExp(`glosario de sinónimos: ${nuevo.entradas.length} entradas \\(versión 2026-11-03\\)`));
   } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
 });

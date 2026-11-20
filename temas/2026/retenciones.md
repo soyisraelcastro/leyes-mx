@@ -4,7 +4,7 @@ Obligación de retener y enterar contribuciones y constancias de retenciones.
 
 Palabras: retención, retenciones, retenedor, constancia de retenciones.
 
-197 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+211 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -15,6 +15,7 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | RMF | regla 2.7.6.4 | 14 | encabezado, texto | [regla-2.7.6.4.md](../../rmf/2026/rmf/reglas/regla-2.7.6.4.md) |
 | RMF | regla 2.7.5.7 | 13 | encabezado, texto | [regla-2.7.5.7.md](../../rmf/2026/rmf/reglas/regla-2.7.5.7.md) |
 | LISR | 96 | 12 | texto | [art-0096.md](../../leyes/2026/LISR/art-0096.md) |
+| RIPAED | 44 | 12 | encabezado, texto | [art-0044.md](../../leyes/2026/RIPAED/art-0044.md) |
 | RMF | regla 3.2.15 | 12 | encabezado, texto | [regla-3.2.15.md](../../rmf/2026/rmf/reglas/regla-3.2.15.md) |
 | RMF | regla 3.16.6 | 11 | encabezado, texto | [regla-3.16.6.md](../../rmf/2026/rmf/reglas/regla-3.16.6.md) |
 | LISR | 5 | 10 | texto | [art-0005.md](../../leyes/2026/LISR/art-0005.md) |
@@ -54,6 +55,7 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | RMF | regla 9.1.21 | 8 | encabezado, texto | [regla-9.1.21.md](../../rmf/2026/rmf/reglas/regla-9.1.21.md) |
 | CFF | 6 | 7 | texto | [art-0006.md](../../leyes/2026/CFF/art-0006.md) |
 | LISR | 145 | 7 | texto | [art-0145.md](../../leyes/2026/LISR/art-0145.md) |
+| RIPAED | 47 | 7 | encabezado, texto | [art-0047.md](../../leyes/2026/RIPAED/art-0047.md) |
 | RMF | regla 12.2.1 | 7 | encabezado, texto | [regla-12.2.1.md](../../rmf/2026/rmf/reglas/regla-12.2.1.md) |
 | RMF | regla 12.2.5 | 7 | encabezado, texto | [regla-12.2.5.md](../../rmf/2026/rmf/reglas/regla-12.2.5.md) |
 | RMF | regla 12.3.10 | 7 | encabezado, texto | [regla-12.3.10.md](../../rmf/2026/rmf/reglas/regla-12.3.10.md) |
@@ -74,6 +76,8 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | RMF | regla 3.21.3.2 | 7 | encabezado | [regla-3.21.3.2.md](../../rmf/2026/rmf/reglas/regla-3.21.3.2.md) |
 | RMF | regla 3.5.3 | 7 | encabezado | [regla-3.5.3.md](../../rmf/2026/rmf/reglas/regla-3.5.3.md) |
 | RMF | regla 3.5.5 | 7 | encabezado | [regla-3.5.5.md](../../rmf/2026/rmf/reglas/regla-3.5.5.md) |
+| RIPAED | 46 | 6 | encabezado, texto | [art-0046.md](../../leyes/2026/RIPAED/art-0046.md) |
+| RIPAED | 48 | 6 | encabezado, texto | [art-0048.md](../../leyes/2026/RIPAED/art-0048.md) |
 | RMF | regla 12.1.7 | 6 | encabezado | [regla-12.1.7.md](../../rmf/2026/rmf/reglas/regla-12.1.7.md) |
 | RMF | regla 12.2.10 | 6 | encabezado, texto | [regla-12.2.10.md](../../rmf/2026/rmf/reglas/regla-12.2.10.md) |
 | RMF | regla 12.3.14 | 6 | encabezado | [regla-12.3.14.md](../../rmf/2026/rmf/reglas/regla-12.3.14.md) |
@@ -91,6 +95,15 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | LISR | 116 | 5 | texto | [art-0116.md](../../leyes/2026/LISR/art-0116.md) |
 | LISR | 27 | 5 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | LISR | 87 | 5 | texto | [art-0087.md](../../leyes/2026/LISR/art-0087.md) |
+| RIPAED | 42 | 5 | encabezado | [art-0042.md](../../leyes/2026/RIPAED/art-0042.md) |
+| RIPAED | 43 | 5 | encabezado | [art-0043.md](../../leyes/2026/RIPAED/art-0043.md) |
+| RIPAED | 45 | 5 | encabezado | [art-0045.md](../../leyes/2026/RIPAED/art-0045.md) |
+| RIPAED | 49 | 5 | encabezado | [art-0049.md](../../leyes/2026/RIPAED/art-0049.md) |
+| RIPAED | 50 | 5 | encabezado | [art-0050.md](../../leyes/2026/RIPAED/art-0050.md) |
+| RIPAED | 51 | 5 | encabezado | [art-0051.md](../../leyes/2026/RIPAED/art-0051.md) |
+| RIPAED | 52 | 5 | encabezado | [art-0052.md](../../leyes/2026/RIPAED/art-0052.md) |
+| RIPAED | 53 | 5 | encabezado | [art-0053.md](../../leyes/2026/RIPAED/art-0053.md) |
+| RIPAED | 54 | 5 | encabezado | [art-0054.md](../../leyes/2026/RIPAED/art-0054.md) |
 | RMF | regla 2.7.1.20 | 5 | texto | [regla-2.7.1.20.md](../../rmf/2026/rmf/reglas/regla-2.7.1.20.md) |
 | RMF | regla 2.7.5.2 | 5 | encabezado | [regla-2.7.5.2.md](../../rmf/2026/rmf/reglas/regla-2.7.5.2.md) |
 | RMF | regla 2.7.5.3 | 5 | encabezado | [regla-2.7.5.3.md](../../rmf/2026/rmf/reglas/regla-2.7.5.3.md) |
@@ -168,6 +181,7 @@ Palabras: retención, retenciones, retenedor, constancia de retenciones.
 | RCFF | 25 | 1 | texto | [art-0025.md](../../leyes/2026/RCFF/art-0025.md) |
 | RCFF | 36 | 1 | texto | [art-0036.md](../../leyes/2026/RCFF/art-0036.md) |
 | RCFF | 46 | 1 | texto | [art-0046.md](../../leyes/2026/RCFF/art-0046.md) |
+| RIPAED | 1 | 1 | texto | [art-0001.md](../../leyes/2026/RIPAED/art-0001.md) |
 | RLISR | 122 | 1 | texto | [art-0122.md](../../leyes/2026/RLISR/art-0122.md) |
 | RLISR | 168 | 1 | texto | [art-0168.md](../../leyes/2026/RLISR/art-0168.md) |
 | RLISR | 169 | 1 | texto | [art-0169.md](../../leyes/2026/RLISR/art-0169.md) |

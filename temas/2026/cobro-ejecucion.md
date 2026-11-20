@@ -4,7 +4,7 @@ Procedimiento administrativo de ejecución, embargo, garantía del interés fisc
 
 Palabras: procedimiento administrativo de ejecución, embargo, garantía del interés fiscal, remate, crédito fiscal, pago en parcialidades, pago diferido, prescripción, caducidad.
 
-316 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+319 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -242,6 +242,7 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | CFF | 128 | 4 | texto | [art-0128.md](../../leyes/2026/CFF/art-0128.md) |
 | CFF | 41 | 4 | texto | [art-0041.md](../../leyes/2026/CFF/art-0041.md) |
 | LFT | 861 | 4 | texto | [art-0861.md](../../leyes/2026/LFT/art-0861.md) |
+| LINFONAVIT | 30 | 4 | texto | [art-0030.md](../../leyes/2026/LINFONAVIT/art-0030.md) |
 | LISR | 202 | 4 | texto | [art-0202.md](../../leyes/2026/LISR/art-0202.md) |
 | RLISR | 204 | 4 | texto | [art-0204.md](../../leyes/2026/RLISR/art-0204.md) |
 | RMF | regla 2.11.3 | 4 | texto | [regla-2.11.3.md](../../rmf/2026/rmf/reglas/regla-2.11.3.md) |
@@ -298,6 +299,7 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | LFT | 979 | 1 | texto | [art-0979.md](../../leyes/2026/LFT/art-0979.md) |
 | LFT | 981 | 1 | texto | [art-0981.md](../../leyes/2026/LFT/art-0981.md) |
 | LIEPS | 26 | 1 | texto | [art-0026.md](../../leyes/2026/LIEPS/art-0026.md) |
+| LINFONAVIT | 67 | 1 | texto | [art-0067.md](../../leyes/2026/LINFONAVIT/art-0067.md) |
 | LISR | 102 | 1 | texto | [art-0102.md](../../leyes/2026/LISR/art-0102.md) |
 | LISR | 130 | 1 | texto | [art-0130.md](../../leyes/2026/LISR/art-0130.md) |
 | LSS | 15-B | 1 | texto | [art-0015-B.md](../../leyes/2026/LSS/art-0015-B.md) |
@@ -319,6 +321,7 @@ Palabras: procedimiento administrativo de ejecución, embargo, garantía del int
 | RLISR | 169 | 1 | texto | [art-0169.md](../../leyes/2026/RLISR/art-0169.md) |
 | RLISR | 187 | 1 | texto | [art-0187.md](../../leyes/2026/RLISR/art-0187.md) |
 | RLISR | 34 | 1 | texto | [art-0034.md](../../leyes/2026/RLISR/art-0034.md) |
+| RLSAR | 157 | 1 | texto | [art-0157.md](../../leyes/2026/RLSAR/art-0157.md) |
 | RMF | regla 11.9.6 | 1 | texto | [regla-11.9.6.md](../../rmf/2026/rmf/reglas/regla-11.9.6.md) |
 | RMF | regla 2.1.49 | 1 | texto | [regla-2.1.49.md](../../rmf/2026/rmf/reglas/regla-2.1.49.md) |
 | RMF | regla 2.9.10 | 1 | texto | [regla-2.9.10.md](../../rmf/2026/rmf/reglas/regla-2.9.10.md) |

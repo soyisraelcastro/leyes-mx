@@ -4,7 +4,7 @@ Defraudación fiscal, contrabando, querella y declaratoria de perjuicio.
 
 Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de perjuicio.
 
-140 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+154 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -36,6 +36,7 @@ Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de p
 | CFF | 110 | 11 | encabezado | [art-0110.md](../../leyes/2026/CFF/art-0110.md) |
 | CFF | 111 | 11 | encabezado | [art-0111.md](../../leyes/2026/CFF/art-0111.md) |
 | CFF | 93 | 11 | encabezado, texto | [art-0093.md](../../leyes/2026/CFF/art-0093.md) |
+| LSAR | 107-bis | 11 | encabezado, texto | [art-0107-bis.md](../../leyes/2026/LSAR/art-0107-bis.md) |
 | LSS | 307 | 11 | encabezado, texto | [art-0307.md](../../leyes/2026/LSS/art-0307.md) |
 | LSS | 308 | 11 | encabezado, texto | [art-0308.md](../../leyes/2026/LSS/art-0308.md) |
 | LSS | 310 | 11 | encabezado, texto | [art-0310.md](../../leyes/2026/LSS/art-0310.md) |
@@ -52,9 +53,12 @@ Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de p
 | LSS | 314 | 10 | encabezado | [art-0314.md](../../leyes/2026/LSS/art-0314.md) |
 | LSS | 315 | 10 | encabezado | [art-0315.md](../../leyes/2026/LSS/art-0315.md) |
 | CFF | 70-A | 7 | encabezado | [art-0070-A.md](../../leyes/2026/CFF/art-0070-A.md) |
+| LSAR | 108 | 7 | encabezado, texto | [art-0108.md](../../leyes/2026/LSAR/art-0108.md) |
 | RMF | regla 2.14.6 | 7 | encabezado | [regla-2.14.6.md](../../rmf/2026/rmf/reglas/regla-2.14.6.md) |
 | CFF | 84 | 6 | encabezado | [art-0084.md](../../leyes/2026/CFF/art-0084.md) |
 | CFF | 91-A | 6 | encabezado, texto | [art-0091-A.md](../../leyes/2026/CFF/art-0091-A.md) |
+| LSAR | 107 | 6 | encabezado, texto | [art-0107.md](../../leyes/2026/LSAR/art-0107.md) |
+| LSAR | 108-bis | 6 | encabezado | [art-0108-bis.md](../../leyes/2026/LSAR/art-0108-bis.md) |
 | CFF | 70 | 5 | encabezado | [art-0070.md](../../leyes/2026/CFF/art-0070.md) |
 | CFF | 71 | 5 | encabezado | [art-0071.md](../../leyes/2026/CFF/art-0071.md) |
 | CFF | 72 | 5 | encabezado | [art-0072.md](../../leyes/2026/CFF/art-0072.md) |
@@ -110,6 +114,11 @@ Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de p
 | CFF | 90-A | 5 | encabezado | [art-0090-A.md](../../leyes/2026/CFF/art-0090-A.md) |
 | CFF | 91 | 5 | encabezado | [art-0091.md](../../leyes/2026/CFF/art-0091.md) |
 | CFF | 91-B | 5 | encabezado | [art-0091-B.md](../../leyes/2026/CFF/art-0091-B.md) |
+| LSAR | 103 | 5 | encabezado | [art-0103.md](../../leyes/2026/LSAR/art-0103.md) |
+| LSAR | 104 | 5 | encabezado | [art-0104.md](../../leyes/2026/LSAR/art-0104.md) |
+| LSAR | 105 | 5 | encabezado | [art-0105.md](../../leyes/2026/LSAR/art-0105.md) |
+| LSAR | 106 | 5 | encabezado | [art-0106.md](../../leyes/2026/LSAR/art-0106.md) |
+| LSAR | 107-bis-1 | 5 | encabezado | [art-0107-bis-1.md](../../leyes/2026/LSAR/art-0107-bis-1.md) |
 | LSS | 303 | 5 | encabezado | [art-0303.md](../../leyes/2026/LSS/art-0303.md) |
 | LSS | 303-A | 5 | encabezado | [art-0303-A.md](../../leyes/2026/LSS/art-0303-A.md) |
 | LSS | 304 | 5 | encabezado | [art-0304.md](../../leyes/2026/LSS/art-0304.md) |
@@ -131,6 +140,7 @@ Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de p
 | RMF | regla 2.14.7 | 5 | encabezado | [regla-2.14.7.md](../../rmf/2026/rmf/reglas/regla-2.14.7.md) |
 | RMF | regla 2.14.8 | 5 | encabezado | [regla-2.14.8.md](../../rmf/2026/rmf/reglas/regla-2.14.8.md) |
 | RMF | regla 2.14.9 | 5 | encabezado | [regla-2.14.9.md](../../rmf/2026/rmf/reglas/regla-2.14.9.md) |
+| LINFONAVIT | 57 | 2 | texto | [art-0057.md](../../leyes/2026/LINFONAVIT/art-0057.md) |
 | LOPDC | 7 | 2 | texto | [art-0007.md](../../leyes/2026/LOPDC/art-0007.md) |
 | RCFF | 56 | 2 | texto | [art-0056.md](../../leyes/2026/RCFF/art-0056.md) |
 | CFF | 166 | 1 | texto | [art-0166.md](../../leyes/2026/CFF/art-0166.md) |
@@ -146,5 +156,9 @@ Palabras: defraudación fiscal, contrabando, querella, delito, declaratoria de p
 | LFT | 860 | 1 | texto | [art-0860.md](../../leyes/2026/LFT/art-0860.md) |
 | LFT | 899-F | 1 | texto | [art-0899-F.md](../../leyes/2026/LFT/art-0899-F.md) |
 | LFT | 907 | 1 | texto | [art-0907.md](../../leyes/2026/LFT/art-0907.md) |
+| LINFONAVIT | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LINFONAVIT/art-0019.md) |
+| LINFONAVIT | 25-bis | 1 | texto | [art-0025-bis.md](../../leyes/2026/LINFONAVIT/art-0025-bis.md) |
 | LSS | 123 | 1 | texto | [art-0123.md](../../leyes/2026/LSS/art-0123.md) |
 | LSS | 46 | 1 | texto | [art-0046.md](../../leyes/2026/LSS/art-0046.md) |
+| RLSAR | 100 | 1 | texto | [art-0100.md](../../leyes/2026/RLSAR/art-0100.md) |
+| RLSAR | 3 | 1 | texto | [art-0003.md](../../leyes/2026/RLSAR/art-0003.md) |

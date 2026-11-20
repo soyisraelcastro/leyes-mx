@@ -1,6 +1,6 @@
 {
   "esquema": 1,
-  "version": "2026-11-02",
+  "version": "2026-11-19",
   "entradas": [
     {
       "id": "actualizacion",
@@ -445,6 +445,39 @@
         { "ley": "LISR", "articulo": "78", "evidencia": "cuenta de capital de aportación" }
       ],
       "nota": "CUFIN y CUCA no aparecen como siglas: son la cuenta de utilidad fiscal neta (LISR 77) y la cuenta de capital de aportación (LISR 78)."
+    },
+    {
+      "id": "aportaciones-infonavit",
+      "disparadores": ["aportacion + infonavit", "cuota + infonavit", "pago + infonavit", "paga + infonavit", "5% + infonavit"],
+      "sustituir": ["infonavit"],
+      "agregar": ["aportaciones del cinco por ciento", "Fondo Nacional de la Vivienda", "Salario Base de Aportación", "mensualidades vencidas"],
+      "articulos": [
+        { "ley": "LINFONAVIT", "articulo": "29", "evidencia": "Determinar el monto de las aportaciones del cinco por ciento sobre el salario de los trabajadores a su servicio" },
+        { "ley": "LINFONAVIT", "articulo": "35", "evidencia": "El pago de las aportaciones y descuentos señalados en el artículo 29, será por mensualidades vencidas" },
+        { "ley": "RIPAED", "articulo": "23", "evidencia": "el cinco por ciento del Salario Base de Aportación de sus Trabajadores" }
+      ],
+      "nota": "La Ley del INFONAVIT casi no usa la palabra \"INFONAVIT\": dice \"el Instituto\" y \"aportaciones\". La aportación patronal del 5% está en la LINFONAVIT 29 fr. II (base y tope salarial conforme a la LSS) y en el RIPAED 23; el plazo de pago en la LINFONAVIT 35 y el RIPAED 23."
+    },
+    {
+      "id": "descuentos-infonavit",
+      "disparadores": ["descuento + infonavit", "credito + infonavit", "retencion + infonavit", "amortizacion + infonavit"],
+      "sustituir": ["infonavit"],
+      "agregar": ["Hacer los descuentos a sus trabajadores en sus salarios", "entero de descuentos", "Trabajador Acreditado", "Aviso de Retención de Descuentos"],
+      "articulos": [
+        { "ley": "LINFONAVIT", "articulo": "29", "evidencia": "Hacer los descuentos a sus trabajadores en sus salarios" },
+        { "ley": "RIPAED", "articulo": "43", "evidencia": "Los Patrones enterarán el importe de los Descuentos por mensualidades vencidas" }
+      ],
+      "nota": "El descuento por crédito INFONAVIT lo retiene el patrón del salario (LINFONAVIT 29 fr. III) y lo entera en los plazos del RIPAED 43; el reglamento lo llama \"Descuento\" y al trabajador con crédito \"Trabajador Acreditado\"."
+    },
+    {
+      "id": "afore",
+      "disparadores": ["afore"],
+      "sustituir": ["afore", "afores"],
+      "agregar": ["administradoras de fondos para el retiro", "administradoras", "cuentas individuales"],
+      "articulos": [
+        { "ley": "LSAR", "articulo": "18", "evidencia": "Las administradoras son entidades financieras que se dedican de manera habitual y profesional a administrar las cuentas individuales" }
+      ],
+      "nota": "La LSAR y su reglamento no dicen \"AFORE\": dicen \"administradoras\" (administradoras de fondos para el retiro, LSAR 18)."
     }
   ]
 }

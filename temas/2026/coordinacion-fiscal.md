@@ -4,7 +4,7 @@ Sistema Nacional de Coordinación Fiscal, participaciones de entidades y municip
 
 Palabras: Sistema Nacional de Coordinación Fiscal, coordinación fiscal, participaciones federales, participaciones en ingresos federales, participaciones de la entidad, participaciones que correspondan, participaciones a los municipios, participaciones a que se refiere esta Ley, recaudación federal participable, Fondo General de Participaciones, Fondo de Fomento Municipal, Fondo de Compensación, Fondo de Fiscalización y Recaudación, Fondo de Extracción de Hidrocarburos, colaboración administrativa, convenios de coordinación, funcionarios fiscales, entidades adheridas, Junta de Coordinación Fiscal, Instituto para el Desarrollo Técnico de las Haciendas Públicas, haciendas públicas.
 
-63 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+64 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -63,6 +63,7 @@ Palabras: Sistema Nacional de Coordinación Fiscal, coordinación fiscal, partic
 | LCF | 39 | 1 | texto | [art-0039.md](../../leyes/2026/LCF/art-0039.md) |
 | LCF | 42 | 1 | texto | [art-0042.md](../../leyes/2026/LCF/art-0042.md) |
 | LCF | 8 | 1 | texto | [art-0008.md](../../leyes/2026/LCF/art-0008.md) |
+| LINFONAVIT | 69 | 1 | texto | [art-0069.md](../../leyes/2026/LINFONAVIT/art-0069.md) |
 | LSS | 233 | 1 | texto | [art-0233.md](../../leyes/2026/LSS/art-0233.md) |
 | RMF | regla 2.13.8 | 1 | texto | [regla-2.13.8.md](../../rmf/2026/rmf/reglas/regla-2.13.8.md) |
 | RMF | regla 2.8.1.9 | 1 | texto | [regla-2.8.1.9.md](../../rmf/2026/rmf/reglas/regla-2.8.1.9.md) |

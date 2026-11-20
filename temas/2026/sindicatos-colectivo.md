@@ -4,7 +4,7 @@ Contrato colectivo, sindicatos, huelga y reglamento interior de trabajo.
 
 Palabras: contrato colectivo de trabajo, sindicato, huelga, contrato ley, reglamento interior de trabajo, negociación colectiva.
 
-194 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+197 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -153,6 +153,8 @@ Palabras: contrato colectivo de trabajo, sindicato, huelga, contrato ley, reglam
 | LFT | 897-G | 2 | texto | [art-0897-G.md](../../leyes/2026/LFT/art-0897-G.md) |
 | LFT | 902 | 2 | texto | [art-0902.md](../../leyes/2026/LFT/art-0902.md) |
 | LSS | 304-A | 2 | texto | [art-0304-A.md](../../leyes/2026/LSS/art-0304-A.md) |
+| RIPAED | 10 | 2 | texto | [art-0010.md](../../leyes/2026/RIPAED/art-0010.md) |
+| RIPAED | 51 | 2 | texto | [art-0051.md](../../leyes/2026/RIPAED/art-0051.md) |
 | RMF | regla 2.1.27 | 2 | texto | [regla-2.1.27.md](../../rmf/2026/rmf/reglas/regla-2.1.27.md) |
 | LFT | 1001 | 1 | texto | [art-1001.md](../../leyes/2026/LFT/art-1001.md) |
 | LFT | 1003 | 1 | texto | [art-1003.md](../../leyes/2026/LFT/art-1003.md) |
@@ -200,5 +202,6 @@ Palabras: contrato colectivo de trabajo, sindicato, huelga, contrato ley, reglam
 | LSS | 256 | 1 | texto | [art-0256.md](../../leyes/2026/LSS/art-0256.md) |
 | LSS | 268-A | 1 | texto | [art-0268-A.md](../../leyes/2026/LSS/art-0268-A.md) |
 | RACERF | 56 | 1 | texto | [art-0056.md](../../leyes/2026/RACERF/art-0056.md) |
+| RIPAED | 35 | 1 | texto | [art-0035.md](../../leyes/2026/RIPAED/art-0035.md) |
 | RLISR | 277 | 1 | texto | [art-0277.md](../../leyes/2026/RLISR/art-0277.md) |
 | RMF | regla 2.8.1.1 | 1 | texto | [regla-2.8.1.1.md](../../rmf/2026/rmf/reglas/regla-2.8.1.1.md) |

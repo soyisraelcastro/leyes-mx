@@ -4,7 +4,7 @@ Recurso de revocación, juicio de nulidad, amparo, PRODECON y acuerdos conclusiv
 
 Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administrativo, amparo, Tribunal Federal de Justicia Administrativa, PRODECON, Procuraduría de la Defensa del Contribuyente, acuerdo conclusivo, recurso de inconformidad.
 
-96 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+101 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -44,6 +44,7 @@ Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administ
 | LOPDC | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LOPDC/art-0002.md) |
 | LOPDC | 5 | 3 | texto | [art-0005.md](../../leyes/2026/LOPDC/art-0005.md) |
 | LOPDC | 9 | 3 | texto | [art-0009.md](../../leyes/2026/LOPDC/art-0009.md) |
+| LSAR | 102 | 3 | texto | [art-0102.md](../../leyes/2026/LSAR/art-0102.md) |
 | RMF | regla 2.1.29 | 3 | texto | [regla-2.1.29.md](../../rmf/2026/rmf/reglas/regla-2.1.29.md) |
 | RMF | regla 2.12.8 | 3 | texto | [regla-2.12.8.md](../../rmf/2026/rmf/reglas/regla-2.12.8.md) |
 | RMF | regla 3.21.2.1 | 3 | texto | [regla-3.21.2.1.md](../../rmf/2026/rmf/reglas/regla-3.21.2.1.md) |
@@ -55,9 +56,12 @@ Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administ
 | CFF | 48-A | 2 | texto | [art-0048-A.md](../../leyes/2026/CFF/art-0048-A.md) |
 | CFF | 50 | 2 | texto | [art-0050.md](../../leyes/2026/CFF/art-0050.md) |
 | CFF | 69-G | 2 | texto | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
+| LINFONAVIT | 52 | 2 | texto | [art-0052.md](../../leyes/2026/LINFONAVIT/art-0052.md) |
+| LINFONAVIT | 54 | 2 | texto | [art-0054.md](../../leyes/2026/LINFONAVIT/art-0054.md) |
 | LOPDC | 18 | 2 | texto | [art-0018.md](../../leyes/2026/LOPDC/art-0018.md) |
 | LOPDC | 23 | 2 | texto | [art-0023.md](../../leyes/2026/LOPDC/art-0023.md) |
 | LOPDC | 8 | 2 | texto | [art-0008.md](../../leyes/2026/LOPDC/art-0008.md) |
+| LSAR | 12 | 2 | texto | [art-0012.md](../../leyes/2026/LSAR/art-0012.md) |
 | RACERF | 151 | 2 | texto | [art-0151.md](../../leyes/2026/RACERF/art-0151.md) |
 | RMF | regla 2.1.13 | 2 | texto | [regla-2.1.13.md](../../rmf/2026/rmf/reglas/regla-2.1.13.md) |
 | RMF | regla 2.1.39 | 2 | texto | [regla-2.1.39.md](../../rmf/2026/rmf/reglas/regla-2.1.39.md) |
@@ -73,6 +77,7 @@ Palabras: recurso de revocación, juicio de nulidad, juicio contencioso administ
 | LFDC | 23 | 1 | texto | [art-0023.md](../../leyes/2026/LFDC/art-0023.md) |
 | LFDC | 24 | 1 | texto | [art-0024.md](../../leyes/2026/LFDC/art-0024.md) |
 | LFT | 330-J | 1 | texto | [art-0330-J.md](../../leyes/2026/LFT/art-0330-J.md) |
+| LINFONAVIT | 53 | 1 | texto | [art-0053.md](../../leyes/2026/LINFONAVIT/art-0053.md) |
 | LOPDC | 1 | 1 | texto | [art-0001.md](../../leyes/2026/LOPDC/art-0001.md) |
 | LOPDC | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LOPDC/art-0010.md) |
 | LOPDC | 14 | 1 | texto | [art-0014.md](../../leyes/2026/LOPDC/art-0014.md) |

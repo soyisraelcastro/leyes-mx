@@ -4,7 +4,7 @@ Regímenes especiales: personas trabajadoras del hogar, del campo y de plataform
 
 Palabras: trabajadores domésticos, personas trabajadoras del hogar, personas trabajadoras de plataformas digitales, trabajadores del campo, trabajadores eventuales, teletrabajo, trabajos especiales, tripulaciones aeronáuticas, trabajadores de los buques, trabajo a domicilio, deportistas profesionales, actores y músicos, trabajadores de confianza, trabajadores de las minas, seguridad social en el campo.
 
-293 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+294 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -301,3 +301,4 @@ Palabras: trabajadores domésticos, personas trabajadoras del hogar, personas tr
 | RACERF | 52 | 1 | texto | [art-0052.md](../../leyes/2026/RACERF/art-0052.md) |
 | RACERF | 67 | 1 | texto | [art-0067.md](../../leyes/2026/RACERF/art-0067.md) |
 | RACERF | 76 | 1 | texto | [art-0076.md](../../leyes/2026/RACERF/art-0076.md) |
+| RIPAED | 37 | 1 | texto | [art-0037.md](../../leyes/2026/RIPAED/art-0037.md) |

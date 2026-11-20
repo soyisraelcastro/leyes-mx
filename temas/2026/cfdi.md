@@ -4,7 +4,7 @@ Expedición, requisitos, cancelación y complementos de los CFDI.
 
 Palabras: comprobante fiscal digital por internet, CFDI, factura electrónica, proveedor de certificación, complemento carta porte, carta porte, complemento de pago, comprobante fiscal, sello digital, cancelación de los comprobantes.
 
-294 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+296 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -189,9 +189,11 @@ Palabras: comprobante fiscal digital por internet, CFDI, factura electrónica, p
 | LISR | 145 | 3 | texto | [art-0145.md](../../leyes/2026/LISR/art-0145.md) |
 | LISR | 151 | 3 | texto | [art-0151.md](../../leyes/2026/LISR/art-0151.md) |
 | LIVA | 32 | 3 | texto | [art-0032.md](../../leyes/2026/LIVA/art-0032.md) |
+| RIPAED | 87 | 3 | texto | [art-0087.md](../../leyes/2026/RIPAED/art-0087.md) |
 | RLISR | 189 | 3 | texto | [art-0189.md](../../leyes/2026/RLISR/art-0189.md) |
 | RLISR | 235 | 3 | texto | [art-0235.md](../../leyes/2026/RLISR/art-0235.md) |
 | RLISR | 245 | 3 | texto | [art-0245.md](../../leyes/2026/RLISR/art-0245.md) |
+| RLSAR | 123 | 3 | texto | [art-0123.md](../../leyes/2026/RLSAR/art-0123.md) |
 | RMF | regla 10.24 | 3 | texto | [regla-10.24.md](../../rmf/2026/rmf/reglas/regla-10.24.md) |
 | RMF | regla 10.4 | 3 | texto | [regla-10.4.md](../../rmf/2026/rmf/reglas/regla-10.4.md) |
 | RMF | regla 2.4.12 | 3 | texto | [regla-2.4.12.md](../../rmf/2026/rmf/reglas/regla-2.4.12.md) |

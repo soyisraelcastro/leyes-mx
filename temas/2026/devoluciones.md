@@ -4,7 +4,7 @@ Saldos a favor, devolución de contribuciones y compensación.
 
 Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 
-156 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+162 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -75,6 +75,7 @@ Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 | RMF | regla 12.3.17 | 5 | texto | [regla-12.3.17.md](../../rmf/2026/rmf/reglas/regla-12.3.17.md) |
 | RMF | regla 2.8.1.8 | 5 | texto | [regla-2.8.1.8.md](../../rmf/2026/rmf/reglas/regla-2.8.1.8.md) |
 | RMF | regla 3.5.3 | 5 | texto | [regla-3.5.3.md](../../rmf/2026/rmf/reglas/regla-3.5.3.md) |
+| LINFONAVIT | 37 | 4 | texto | [art-0037.md](../../leyes/2026/LINFONAVIT/art-0037.md) |
 | RLISR | 179 | 4 | texto | [art-0179.md](../../leyes/2026/RLISR/art-0179.md) |
 | RMF | regla 2.11.3 | 4 | texto | [regla-2.11.3.md](../../rmf/2026/rmf/reglas/regla-2.11.3.md) |
 | CFF | 17-A | 3 | texto | [art-0017-A.md](../../leyes/2026/CFF/art-0017-A.md) |
@@ -102,13 +103,16 @@ Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 | LFT | 984 | 2 | texto | [art-0984.md](../../leyes/2026/LFT/art-0984.md) |
 | LIEPS | 18 | 2 | texto | [art-0018.md](../../leyes/2026/LIEPS/art-0018.md) |
 | LIEPS | 5-B | 2 | texto | [art-0005-B.md](../../leyes/2026/LIEPS/art-0005-B.md) |
+| LINFONAVIT | 30 | 2 | texto | [art-0030.md](../../leyes/2026/LINFONAVIT/art-0030.md) |
 | LISR | 14 | 2 | texto | [art-0014.md](../../leyes/2026/LISR/art-0014.md) |
 | LISR | 208 | 2 | texto | [art-0208.md](../../leyes/2026/LISR/art-0208.md) |
 | LISR | 25 | 2 | texto | [art-0025.md](../../leyes/2026/LISR/art-0025.md) |
 | LIVA | 8 | 2 | texto | [art-0008.md](../../leyes/2026/LIVA/art-0008.md) |
+| LSAR | 81-bis | 2 | texto | [art-0081-bis.md](../../leyes/2026/LSAR/art-0081-bis.md) |
 | LSS | 253 | 2 | texto | [art-0253.md](../../leyes/2026/LSS/art-0253.md) |
 | RACERF | 132 | 2 | texto | [art-0132.md](../../leyes/2026/RACERF/art-0132.md) |
 | RCFF | 33 | 2 | texto | [art-0033.md](../../leyes/2026/RCFF/art-0033.md) |
+| RIPAED | 41 | 2 | texto | [art-0041.md](../../leyes/2026/RIPAED/art-0041.md) |
 | RLISR | 180 | 2 | texto | [art-0180.md](../../leyes/2026/RLISR/art-0180.md) |
 | RLIVA | 13 | 2 | texto | [art-0013.md](../../leyes/2026/RLIVA/art-0013.md) |
 | RLIVA | 23 | 2 | texto | [art-0023.md](../../leyes/2026/RLIVA/art-0023.md) |
@@ -140,7 +144,9 @@ Palabras: devolución, compensación, saldo a favor, pago de lo indebido.
 | LFT | 899-A | 1 | texto | [art-0899-A.md](../../leyes/2026/LFT/art-0899-A.md) |
 | LFT | 97 | 1 | texto | [art-0097.md](../../leyes/2026/LFT/art-0097.md) |
 | LIF | 9 | 1 | texto | [art-0009.md](../../leyes/2026/LIF/art-0009.md) |
+| LINFONAVIT | 67 | 1 | texto | [art-0067.md](../../leyes/2026/LINFONAVIT/art-0067.md) |
 | LIVA | 30 | 1 | texto | [art-0030.md](../../leyes/2026/LIVA/art-0030.md) |
+| LSAR | 100-A | 1 | texto | [art-0100-A.md](../../leyes/2026/LSAR/art-0100-A.md) |
 | LSS | 108 | 1 | texto | [art-0108.md](../../leyes/2026/LSS/art-0108.md) |
 | LSS | 286-G | 1 | texto | [art-0286-G.md](../../leyes/2026/LSS/art-0286-G.md) |
 | LSS | 286-I | 1 | texto | [art-0286-I.md](../../leyes/2026/LSS/art-0286-I.md) |
