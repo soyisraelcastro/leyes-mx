@@ -91,12 +91,12 @@ def separar_notas(lineas):
         indent = len(l) - len(l.lstrip())
         if RE_NOTA.match(s) and (indent >= 25 or s[:5] in ("Multa", "Canti", "Compi", "Actua") or True):
             # una linea que EMPIEZA como nota y trae fecha DOF
-            if re.match(r"^Art[íi]culo\s+\d", s):  # encabezado de articulo, no nota
+            if re.match(r"^(?:Art[íi]culo|ART[ÍI]CULO)\s+\d", s):  # encabezado de articulo, no nota
                 limpias.append(l); prev_nota = False; continue
             notas.append((len(limpias), s)); prev_nota = True
             continue
         m = RE_NOTA_EN_LINEA.match(l) or RE_NOTA_CORTA_EN_LINEA.match(l)
-        if m and not re.match(r"^\s*Art[íi]culo\s+\d", l):
+        if m and not re.match(r"^\s*(?:Art[íi]culo|ART[ÍI]CULO)\s+\d", l):
             limpias.append(m.group(1)); notas.append((len(limpias), m.group(2).strip())); prev_nota = False
             continue
         if prev_nota and indent >= 40 and RE_NOTA_CONT.match(s):
@@ -111,8 +111,8 @@ def separar_notas(lineas):
 
 _WORDS = "|".join(PALABRAS + ["qu[áa]ter"])
 RE_ART = re.compile(
-    r"^(?P<ind>\s*)Art[íi]culo\s+(?P<num>\d+)\s?(?P<ord>[oº°])?"
-    r"(?P<suf>(?:\.?-[A-ZÑ](?![a-záéíóúñ])|\s{1,2}[A-ZÑ](?=[.\-]\s)|\.?\s{0,4}-?\s{0,4}(?i:" + _WORDS + r")\b)*)"
+    r"^(?P<ind>\s*)(?:Art[íi]culo|ART[ÍI]CULO)\s+(?P<num>\d+)\s?(?P<ord>[oº°])?"
+    r"(?P<suf>(?:\.?-[A-ZÑ](?![a-záéíóúñ])|\s{1,2}[A-ZÑ](?=\.-?\s|-\s)|\.?\s{0,4}-?\s{0,4}(?i:" + _WORDS + r")\b(?:\s\d{1,2}(?=[.\-]))?)*)"
     r"(?:\.(?P<term>-?)|(?P<term2>-))(?=\s|$)"
 )
 

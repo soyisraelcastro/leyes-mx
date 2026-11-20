@@ -4,7 +4,7 @@ Determinación y pago de cuotas, salario base de cotización, prima media y capi
 
 Palabras: cuotas obrero patronales, cuota obrero patronal, salario base de cotización, cuotas patronales, capital constitutivo, cuota diaria patronal, cuotas obreras, determinación de cuotas, prima media, bases de cotización, salario de cotización.
 
-93 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+95 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -63,6 +63,8 @@ Palabras: cuotas obrero patronales, cuota obrero patronal, salario base de cotiz
 | RACERF | 166 | 2 | texto | [art-0166.md](../../leyes/2026/RACERF/art-0166.md) |
 | RACERF | 24 | 2 | texto | [art-0024.md](../../leyes/2026/RACERF/art-0024.md) |
 | LFT | 291-F | 1 | texto | [art-0291-F.md](../../leyes/2026/LFT/art-0291-F.md) |
+| LSAR | 18-bis | 1 | texto | [art-0018-bis.md](../../leyes/2026/LSAR/art-0018-bis.md) |
+| LSAR | 75 | 1 | texto | [art-0075.md](../../leyes/2026/LSAR/art-0075.md) |
 | LSS | 107 | 1 | texto | [art-0107.md](../../leyes/2026/LSS/art-0107.md) |
 | LSS | 147 | 1 | texto | [art-0147.md](../../leyes/2026/LSS/art-0147.md) |
 | LSS | 148 | 1 | texto | [art-0148.md](../../leyes/2026/LSS/art-0148.md) |

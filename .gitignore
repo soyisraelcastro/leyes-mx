@@ -6,3 +6,4 @@ __pycache__/
 fuentes/*/*.pdf
 proyectos/*/documentos/*.pdf
 .claude/
+fuentes/*/*/*.html

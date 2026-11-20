@@ -4,22 +4,30 @@
 
 Palabras: Consejo Técnico, Asamblea General, reservas financieras, reserva de operación, Dirección General del Instituto, patrimonio del Instituto.
 
-68 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+93 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
 | LSS | 263 | 13 | encabezado, texto | [art-0263.md](../../leyes/2026/LSS/art-0263.md) |
+| LINFONAVIT | 16 | 9 | texto | [art-0016.md](../../leyes/2026/LINFONAVIT/art-0016.md) |
 | LSS | 264 | 8 | encabezado, texto | [art-0264.md](../../leyes/2026/LSS/art-0264.md) |
 | LSS | 258 | 6 | encabezado, texto | [art-0258.md](../../leyes/2026/LSS/art-0258.md) |
 | LSS | 259 | 6 | encabezado, texto | [art-0259.md](../../leyes/2026/LSS/art-0259.md) |
 | LSS | 260 | 6 | encabezado, texto | [art-0260.md](../../leyes/2026/LSS/art-0260.md) |
 | LSS | 261 | 6 | encabezado, texto | [art-0261.md](../../leyes/2026/LSS/art-0261.md) |
 | LSS | 262 | 6 | encabezado, texto | [art-0262.md](../../leyes/2026/LSS/art-0262.md) |
+| LINFONAVIT | 18 | 5 | texto | [art-0018.md](../../leyes/2026/LINFONAVIT/art-0018.md) |
 | LSS | 266 | 5 | texto | [art-0266.md](../../leyes/2026/LSS/art-0266.md) |
 | RLISR | 30 | 5 | texto | [art-0030.md](../../leyes/2026/RLISR/art-0030.md) |
 | RLIVA | 20 | 5 | texto | [art-0020.md](../../leyes/2026/RLIVA/art-0020.md) |
+| LINFONAVIT | 23 | 4 | texto | [art-0023.md](../../leyes/2026/LINFONAVIT/art-0023.md) |
+| LINFONAVIT | 42 | 4 | texto | [art-0042.md](../../leyes/2026/LINFONAVIT/art-0042.md) |
 | LSS | 268 | 4 | texto | [art-0268.md](../../leyes/2026/LSS/art-0268.md) |
 | LSS | 286-B | 4 | texto | [art-0286-B.md](../../leyes/2026/LSS/art-0286-B.md) |
+| LINFONAVIT | 12 | 3 | texto | [art-0012.md](../../leyes/2026/LINFONAVIT/art-0012.md) |
+| LINFONAVIT | 17 | 3 | texto | [art-0017.md](../../leyes/2026/LINFONAVIT/art-0017.md) |
+| LINFONAVIT | 18-bis | 3 | texto | [art-0018-bis.md](../../leyes/2026/LINFONAVIT/art-0018-bis.md) |
+| LINFONAVIT | 66 | 3 | texto | [art-0066.md](../../leyes/2026/LINFONAVIT/art-0066.md) |
 | LSS | 237-A | 3 | texto | [art-0237-A.md](../../leyes/2026/LSS/art-0237-A.md) |
 | LSS | 253 | 3 | texto | [art-0253.md](../../leyes/2026/LSS/art-0253.md) |
 | LSS | 274 | 3 | texto | [art-0274.md](../../leyes/2026/LSS/art-0274.md) |
@@ -30,6 +38,11 @@ Palabras: Consejo Técnico, Asamblea General, reservas financieras, reserva de o
 | LSS | 286 | 3 | texto | [art-0286.md](../../leyes/2026/LSS/art-0286.md) |
 | LSS | 76 | 3 | texto | [art-0076.md](../../leyes/2026/LSS/art-0076.md) |
 | LCF | 23 | 2 | texto | [art-0023.md](../../leyes/2026/LCF/art-0023.md) |
+| LINFONAVIT | 13 | 2 | texto | [art-0013.md](../../leyes/2026/LINFONAVIT/art-0013.md) |
+| LINFONAVIT | 18-bis-1 | 2 | texto | [art-0018-bis-1.md](../../leyes/2026/LINFONAVIT/art-0018-bis-1.md) |
+| LINFONAVIT | 19-bis | 2 | texto | [art-0019-bis.md](../../leyes/2026/LINFONAVIT/art-0019-bis.md) |
+| LINFONAVIT | 41-bis | 2 | texto | [art-0041-bis.md](../../leyes/2026/LINFONAVIT/art-0041-bis.md) |
+| LINFONAVIT | 7 | 2 | texto | [art-0007.md](../../leyes/2026/LINFONAVIT/art-0007.md) |
 | LISR | 27 | 2 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | LSS | 250-A | 2 | texto | [art-0250-A.md](../../leyes/2026/LSS/art-0250-A.md) |
 | LSS | 257 | 2 | texto | [art-0257.md](../../leyes/2026/LSS/art-0257.md) |
@@ -42,6 +55,18 @@ Palabras: Consejo Técnico, Asamblea General, reservas financieras, reserva de o
 | LSS | 286-K | 2 | texto | [art-0286-K.md](../../leyes/2026/LSS/art-0286-K.md) |
 | RACERF | 31 | 2 | texto | [art-0031.md](../../leyes/2026/RACERF/art-0031.md) |
 | LCF | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LCF/art-0019.md) |
+| LINFONAVIT | 11 | 1 | texto | [art-0011.md](../../leyes/2026/LINFONAVIT/art-0011.md) |
+| LINFONAVIT | 19-bis-1 | 1 | texto | [art-0019-bis-1.md](../../leyes/2026/LINFONAVIT/art-0019-bis-1.md) |
+| LINFONAVIT | 21 | 1 | texto | [art-0021.md](../../leyes/2026/LINFONAVIT/art-0021.md) |
+| LINFONAVIT | 25-bis | 1 | texto | [art-0025-bis.md](../../leyes/2026/LINFONAVIT/art-0025-bis.md) |
+| LINFONAVIT | 25-bis-1 | 1 | texto | [art-0025-bis-1.md](../../leyes/2026/LINFONAVIT/art-0025-bis-1.md) |
+| LINFONAVIT | 26 | 1 | texto | [art-0026.md](../../leyes/2026/LINFONAVIT/art-0026.md) |
+| LINFONAVIT | 28 | 1 | texto | [art-0028.md](../../leyes/2026/LINFONAVIT/art-0028.md) |
+| LINFONAVIT | 5 | 1 | texto | [art-0005.md](../../leyes/2026/LINFONAVIT/art-0005.md) |
+| LINFONAVIT | 6 | 1 | texto | [art-0006.md](../../leyes/2026/LINFONAVIT/art-0006.md) |
+| LINFONAVIT | 66-bis | 1 | texto | [art-0066-bis.md](../../leyes/2026/LINFONAVIT/art-0066-bis.md) |
+| LINFONAVIT | 8 | 1 | texto | [art-0008.md](../../leyes/2026/LINFONAVIT/art-0008.md) |
+| LINFONAVIT | 9 | 1 | texto | [art-0009.md](../../leyes/2026/LINFONAVIT/art-0009.md) |
 | LSS | 109 | 1 | texto | [art-0109.md](../../leyes/2026/LSS/art-0109.md) |
 | LSS | 118 | 1 | texto | [art-0118.md](../../leyes/2026/LSS/art-0118.md) |
 | LSS | 203 | 1 | texto | [art-0203.md](../../leyes/2026/LSS/art-0203.md) |

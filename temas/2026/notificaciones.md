@@ -4,7 +4,7 @@ Notificación de actos y resoluciones, por buzón tributario, estrados o edictos
 
 Palabras: notificación, notificaciones por buzón tributario, notificación por estrados, notificación por edictos.
 
-161 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+180 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -21,9 +21,11 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | CFF | 137 | 9 | encabezado, texto | [art-0137.md](../../leyes/2026/CFF/art-0137.md) |
 | LFT | 48-bis | 9 | texto | [art-0048-bis.md](../../leyes/2026/LFT/art-0048-bis.md) |
 | LFT | 744-bis | 9 | encabezado, texto | [art-0744-bis.md](../../leyes/2026/LFT/art-0744-bis.md) |
+| RLSAR | 122 | 9 | encabezado, texto | [art-0122.md](../../leyes/2026/RLSAR/art-0122.md) |
 | RMF | regla 2.12.8 | 9 | encabezado, texto | [regla-2.12.8.md](../../rmf/2026/rmf/reglas/regla-2.12.8.md) |
 | LFT | 740 | 8 | encabezado, texto | [art-0740.md](../../leyes/2026/LFT/art-0740.md) |
 | LFT | 747 | 8 | encabezado, texto | [art-0747.md](../../leyes/2026/LFT/art-0747.md) |
+| RLSAR | 121 | 8 | encabezado, texto | [art-0121.md](../../leyes/2026/RLSAR/art-0121.md) |
 | CFF | 139 | 7 | encabezado, texto | [art-0139.md](../../leyes/2026/CFF/art-0139.md) |
 | CFF | 140 | 7 | encabezado, texto | [art-0140.md](../../leyes/2026/CFF/art-0140.md) |
 | CFF | 144 | 7 | encabezado | [art-0144.md](../../leyes/2026/CFF/art-0144.md) |
@@ -33,6 +35,7 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | LFT | 744 | 7 | encabezado, texto | [art-0744.md](../../leyes/2026/LFT/art-0744.md) |
 | LFT | 751 | 7 | encabezado, texto | [art-0751.md](../../leyes/2026/LFT/art-0751.md) |
 | RACERF | 151 | 7 | encabezado | [art-0151.md](../../leyes/2026/RACERF/art-0151.md) |
+| RLSAR | 119 | 7 | encabezado, texto | [art-0119.md](../../leyes/2026/RLSAR/art-0119.md) |
 | RMF | regla 2.2.16 | 7 | encabezado, texto | [regla-2.2.16.md](../../rmf/2026/rmf/reglas/regla-2.2.16.md) |
 | CFF | 138 | 6 | encabezado, texto | [art-0138.md](../../leyes/2026/CFF/art-0138.md) |
 | CFF | 141 | 6 | encabezado | [art-0141.md](../../leyes/2026/CFF/art-0141.md) |
@@ -48,12 +51,15 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | LFT | 752 | 6 | encabezado, texto | [art-0752.md](../../leyes/2026/LFT/art-0752.md) |
 | LSS | 40 | 6 | texto | [art-0040.md](../../leyes/2026/LSS/art-0040.md) |
 | RACERF | 150 | 6 | encabezado, texto | [art-0150.md](../../leyes/2026/RACERF/art-0150.md) |
+| RLSAR | 118 | 6 | encabezado, texto | [art-0118.md](../../leyes/2026/RLSAR/art-0118.md) |
+| RLSAR | 120 | 6 | encabezado, texto | [art-0120.md](../../leyes/2026/RLSAR/art-0120.md) |
 | RMF | regla 2.13.17 | 6 | encabezado, texto | [regla-2.13.17.md](../../rmf/2026/rmf/reglas/regla-2.13.17.md) |
 | CFF | 141-A | 5 | encabezado | [art-0141-A.md](../../leyes/2026/CFF/art-0141-A.md) |
 | CFF | 142 | 5 | encabezado | [art-0142.md](../../leyes/2026/CFF/art-0142.md) |
 | CFF | 49-bis | 5 | texto | [art-0049-bis.md](../../leyes/2026/CFF/art-0049-bis.md) |
 | CFF | 53-B | 5 | texto | [art-0053-B.md](../../leyes/2026/CFF/art-0053-B.md) |
 | LIVA | 18-H-ter | 5 | texto | [art-0018-H-ter.md](../../leyes/2026/LIVA/art-0018-H-ter.md) |
+| LSAR | 111 | 5 | texto | [art-0111.md](../../leyes/2026/LSAR/art-0111.md) |
 | RCFF | 77 | 5 | encabezado | [art-0077.md](../../leyes/2026/RCFF/art-0077.md) |
 | RCFF | 78 | 5 | encabezado | [art-0078.md](../../leyes/2026/RCFF/art-0078.md) |
 | RCFF | 79 | 5 | encabezado | [art-0079.md](../../leyes/2026/RCFF/art-0079.md) |
@@ -69,6 +75,12 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | RCFF | 89 | 5 | encabezado | [art-0089.md](../../leyes/2026/RCFF/art-0089.md) |
 | RCFF | 90 | 5 | encabezado | [art-0090.md](../../leyes/2026/RCFF/art-0090.md) |
 | RCFF | 91 | 5 | encabezado | [art-0091.md](../../leyes/2026/RCFF/art-0091.md) |
+| RLSAR | 114 | 5 | encabezado | [art-0114.md](../../leyes/2026/RLSAR/art-0114.md) |
+| RLSAR | 115 | 5 | encabezado | [art-0115.md](../../leyes/2026/RLSAR/art-0115.md) |
+| RLSAR | 116 | 5 | encabezado | [art-0116.md](../../leyes/2026/RLSAR/art-0116.md) |
+| RLSAR | 117 | 5 | encabezado | [art-0117.md](../../leyes/2026/RLSAR/art-0117.md) |
+| RLSAR | 123 | 5 | encabezado | [art-0123.md](../../leyes/2026/RLSAR/art-0123.md) |
+| RLSAR | 130 | 5 | texto | [art-0130.md](../../leyes/2026/RLSAR/art-0130.md) |
 | RMF | regla 2.12.1 | 5 | encabezado | [regla-2.12.1.md](../../rmf/2026/rmf/reglas/regla-2.12.1.md) |
 | RMF | regla 2.12.10 | 5 | encabezado | [regla-2.12.10.md](../../rmf/2026/rmf/reglas/regla-2.12.10.md) |
 | RMF | regla 2.12.11 | 5 | encabezado | [regla-2.12.11.md](../../rmf/2026/rmf/reglas/regla-2.12.11.md) |
@@ -91,6 +103,8 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | CFF | 32-C | 3 | texto | [art-0032-C.md](../../leyes/2026/CFF/art-0032-C.md) |
 | LFT | 684-C | 3 | texto | [art-0684-C.md](../../leyes/2026/LFT/art-0684-C.md) |
 | LFT | 684-D | 3 | texto | [art-0684-D.md](../../leyes/2026/LFT/art-0684-D.md) |
+| LSAR | 61 | 3 | texto | [art-0061.md](../../leyes/2026/LSAR/art-0061.md) |
+| LSAR | 99 | 3 | texto | [art-0099.md](../../leyes/2026/LSAR/art-0099.md) |
 | LSS | 286-M | 3 | texto | [art-0286-M.md](../../leyes/2026/LSS/art-0286-M.md) |
 | RCFF | 69 | 3 | texto | [art-0069.md](../../leyes/2026/RCFF/art-0069.md) |
 | RMF | regla 10.8 | 3 | texto | [regla-10.8.md](../../rmf/2026/rmf/reglas/regla-10.8.md) |
@@ -139,8 +153,11 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | LFT | 975 | 1 | texto | [art-0975.md](../../leyes/2026/LFT/art-0975.md) |
 | LFT | 978 | 1 | texto | [art-0978.md](../../leyes/2026/LFT/art-0978.md) |
 | LFT | 991 | 1 | texto | [art-0991.md](../../leyes/2026/LFT/art-0991.md) |
+| LINFONAVIT | 29-ter | 1 | texto | [art-0029-ter.md](../../leyes/2026/LINFONAVIT/art-0029-ter.md) |
 | LIVA | 18-H-quater | 1 | texto | [art-0018-H-quater.md](../../leyes/2026/LIVA/art-0018-H-quater.md) |
 | LOPDC | 25 | 1 | texto | [art-0025.md](../../leyes/2026/LOPDC/art-0025.md) |
+| LSAR | 101 | 1 | texto | [art-0101.md](../../leyes/2026/LSAR/art-0101.md) |
+| LSAR | 37-B | 1 | texto | [art-0037-B.md](../../leyes/2026/LSAR/art-0037-B.md) |
 | LSS | 39-D | 1 | texto | [art-0039-D.md](../../leyes/2026/LSS/art-0039-D.md) |
 | RACERF | 127 | 1 | texto | [art-0127.md](../../leyes/2026/RACERF/art-0127.md) |
 | RACERF | 129 | 1 | texto | [art-0129.md](../../leyes/2026/RACERF/art-0129.md) |
@@ -160,6 +177,8 @@ Palabras: notificación, notificaciones por buzón tributario, notificación por
 | RCFF | 71 | 1 | texto | [art-0071.md](../../leyes/2026/RCFF/art-0071.md) |
 | RCFF | 9 | 1 | texto | [art-0009.md](../../leyes/2026/RCFF/art-0009.md) |
 | RCFF | 92 | 1 | texto | [art-0092.md](../../leyes/2026/RCFF/art-0092.md) |
+| RIPAED | 86 | 1 | texto | [art-0086.md](../../leyes/2026/RIPAED/art-0086.md) |
+| RLSAR | 105 | 1 | texto | [art-0105.md](../../leyes/2026/RLSAR/art-0105.md) |
 | RMF | regla 11.14.2 | 1 | texto | [regla-11.14.2.md](../../rmf/2026/rmf/reglas/regla-11.14.2.md) |
 | RMF | regla 2.10.8 | 1 | texto | [regla-2.10.8.md](../../rmf/2026/rmf/reglas/regla-2.10.8.md) |
 | RMF | regla 2.2.9 | 1 | texto | [regla-2.2.9.md](../../rmf/2026/rmf/reglas/regla-2.2.9.md) |

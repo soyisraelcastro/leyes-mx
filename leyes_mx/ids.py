@@ -3,7 +3,8 @@
 Convencion canonica (ver docs/convencion-nombres.md):
   numero base sin ceros en el id ("28", "113-E", "28-bis", "32-B-bis")
   archivo: art-<numero a 4 digitos>[-<sufijo>...].md  -> art-0028.md, art-0113-E.md, art-0028-bis.md
-  letras en MAYUSCULA (A..Z y Ñ, que en el nombre de archivo se escribe NN); palabras multiplicativas en minuscula sin acento (bis, ter, quater...).
+  letras en MAYUSCULA (A..Z y Ñ, que en el nombre de archivo se escribe NN); palabras multiplicativas en minuscula sin acento (bis, ter, quater...);
+  un numero tras la palabra ("18 Bis 1" de la Ley del INFONAVIT) es otro sufijo: "18-bis-1", art-0018-bis-1.md.
 """
 import re
 
@@ -38,6 +39,8 @@ def normalizar_id(texto):
             partes.append(p)
         elif re.fullmatch(r"[A-Za-zÑñ]", t):
             partes.append(t.upper())
+        elif re.fullmatch(r"[1-9]\d?", t) and partes and partes[-1] in PALABRAS:
+            partes.append(t)  # "18 Bis 1" (Ley del INFONAVIT, LSAR): ordinal tras la palabra
         else:
             return None
     return "-".join([str(num)] + partes)
@@ -55,7 +58,7 @@ def nombre_archivo(id_):
 
 
 def id_desde_archivo(nombre):
-    m = re.fullmatch(r"art-(\d{4})((?:-[A-Za-z]+)*)\.md", nombre)
+    m = re.fullmatch(r"art-(\d{4})((?:-[A-Za-z]+|-[1-9]\d?)*)\.md", nombre)
     if not m:
         return None
     return normalizar_id(str(int(m.group(1))) + m.group(2).replace("-NN", "-Ñ"))
@@ -67,6 +70,8 @@ def clave_orden(id_):
     for p in partes:
         if p in PALABRAS:
             k.append((1, PALABRAS.index(p)))
+        elif p.isdigit():
+            k.append((2, int(p)))  # 18-bis < 18-bis-1 < 18-bis-2 < 18-ter
         else:
             k.append((0, ord("N") + 0.5 if p == "Ñ" else ord(p)))
     return (num, k)

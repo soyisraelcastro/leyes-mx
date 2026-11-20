@@ -4,7 +4,7 @@ Seguro de invalidez y vida: pensiones por invalidez, viudez, orfandad y ascendie
 
 Palabras: invalidez, seguro de invalidez y vida, viudez, orfandad, ascendientes.
 
-82 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+83 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -57,6 +57,7 @@ Palabras: invalidez, seguro de invalidez y vida, viudez, orfandad, ascendientes.
 | LSS | 5-A | 4 | texto | [art-0005-A.md](../../leyes/2026/LSS/art-0005-A.md) |
 | RLISR | 142 | 4 | texto | [art-0142.md](../../leyes/2026/RLISR/art-0142.md) |
 | RLISR | 304 | 4 | texto | [art-0304.md](../../leyes/2026/RLISR/art-0304.md) |
+| LINFONAVIT | 51 | 3 | texto | [art-0051.md](../../leyes/2026/LINFONAVIT/art-0051.md) |
 | LISR | 151 | 3 | texto | [art-0151.md](../../leyes/2026/LISR/art-0151.md) |
 | LSS | 69 | 3 | texto | [art-0069.md](../../leyes/2026/LSS/art-0069.md) |
 | LSS | 159 | 2 | texto | [art-0159.md](../../leyes/2026/LSS/art-0159.md) |

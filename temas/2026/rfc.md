@@ -4,7 +4,7 @@ Registro Federal de Contribuyentes, avisos, domicilio fiscal y constancia de sit
 
 Palabras: Registro Federal de Contribuyentes, inscripción en el RFC, constancia de situación fiscal, domicilio fiscal, cédula de identificación fiscal, clave en el RFC, suspensión de actividades, aviso de cambio de domicilio, actividades económicas y obligaciones.
 
-248 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+249 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -221,6 +221,7 @@ Palabras: Registro Federal de Contribuyentes, inscripción en el RFC, constancia
 | RACERF | 178 | 1 | texto | [art-0178.md](../../leyes/2026/RACERF/art-0178.md) |
 | RCFF | 45 | 1 | texto | [art-0045.md](../../leyes/2026/RCFF/art-0045.md) |
 | RCFF | 99 | 1 | texto | [art-0099.md](../../leyes/2026/RCFF/art-0099.md) |
+| RIPAED | 36 | 1 | texto | [art-0036.md](../../leyes/2026/RIPAED/art-0036.md) |
 | RLISR | 140 | 1 | texto | [art-0140.md](../../leyes/2026/RLISR/art-0140.md) |
 | RLISR | 230 | 1 | texto | [art-0230.md](../../leyes/2026/RLISR/art-0230.md) |
 | RLISR | 234 | 1 | texto | [art-0234.md](../../leyes/2026/RLISR/art-0234.md) |

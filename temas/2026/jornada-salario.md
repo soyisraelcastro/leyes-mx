@@ -4,7 +4,7 @@ Jornada de trabajo, horas extras, salario mínimo e integración del salario.
 
 Palabras: jornada de trabajo, horas extras, tiempo extraordinario, salario mínimo, jornada máxima, pago del salario.
 
-70 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+74 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -35,10 +35,13 @@ Palabras: jornada de trabajo, horas extras, tiempo extraordinario, salario míni
 | LFT | 280-bis | 3 | texto | [art-0280-bis.md](../../leyes/2026/LFT/art-0280-bis.md) |
 | LSS | 27 | 3 | texto | [art-0027.md](../../leyes/2026/LSS/art-0027.md) |
 | LSS | 304-B | 3 | texto | [art-0304-B.md](../../leyes/2026/LSS/art-0304-B.md) |
+| RIPAED | 32 | 3 | texto | [art-0032.md](../../leyes/2026/RIPAED/art-0032.md) |
 | LSS | 103 | 2 | texto | [art-0103.md](../../leyes/2026/LSS/art-0103.md) |
 | LSS | 141 | 2 | texto | [art-0141.md](../../leyes/2026/LSS/art-0141.md) |
 | LSS | 28 | 2 | texto | [art-0028.md](../../leyes/2026/LSS/art-0028.md) |
 | RACERF | 65 | 2 | texto | [art-0065.md](../../leyes/2026/RACERF/art-0065.md) |
+| RIPAED | 13 | 2 | texto | [art-0013.md](../../leyes/2026/RIPAED/art-0013.md) |
+| RIPAED | 47 | 2 | texto | [art-0047.md](../../leyes/2026/RIPAED/art-0047.md) |
 | CFF | 138 | 1 | texto | [art-0138.md](../../leyes/2026/CFF/art-0138.md) |
 | LFDC | 22 | 1 | texto | [art-0022.md](../../leyes/2026/LFDC/art-0022.md) |
 | LFT | 1003 | 1 | texto | [art-1003.md](../../leyes/2026/LFT/art-1003.md) |
@@ -74,6 +77,7 @@ Palabras: jornada de trabajo, horas extras, tiempo extraordinario, salario míni
 | LSS | 36 | 1 | texto | [art-0036.md](../../leyes/2026/LSS/art-0036.md) |
 | RACERF | 145 | 1 | texto | [art-0145.md](../../leyes/2026/RACERF/art-0145.md) |
 | RACERF | 49 | 1 | texto | [art-0049.md](../../leyes/2026/RACERF/art-0049.md) |
+| RIPAED | 25 | 1 | texto | [art-0025.md](../../leyes/2026/RIPAED/art-0025.md) |
 | RLISR | 151 | 1 | texto | [art-0151.md](../../leyes/2026/RLISR/art-0151.md) |
 | RLISR | 171 | 1 | texto | [art-0171.md](../../leyes/2026/RLISR/art-0171.md) |
 | RLISR | 173 | 1 | texto | [art-0173.md](../../leyes/2026/RLISR/art-0173.md) |

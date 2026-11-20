@@ -4,7 +4,7 @@ Derecho procesal del trabajo: conciliación, tribunales laborales, demanda, audi
 
 Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribunales laborales, Centro Federal de Conciliación y Registro Laboral, demanda, laudo, de las pruebas, audiencia, Junta de Conciliación y Arbitraje, actuaciones, procedimiento ordinario.
 
-366 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+369 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -312,6 +312,7 @@ Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribuna
 | LFT | 684-H | 3 | texto | [art-0684-H.md](../../leyes/2026/LFT/art-0684-H.md) |
 | LFT | 684-I | 3 | texto | [art-0684-I.md](../../leyes/2026/LFT/art-0684-I.md) |
 | LFT | 684-S | 3 | texto | [art-0684-S.md](../../leyes/2026/LFT/art-0684-S.md) |
+| LSAR | 61 | 3 | texto | [art-0061.md](../../leyes/2026/LSAR/art-0061.md) |
 | LFT | 371-bis | 2 | texto | [art-0371-bis.md](../../leyes/2026/LFT/art-0371-bis.md) |
 | LFT | 399-ter | 2 | texto | [art-0399-ter.md](../../leyes/2026/LFT/art-0399-ter.md) |
 | LFT | 416 | 2 | texto | [art-0416.md](../../leyes/2026/LFT/art-0416.md) |
@@ -326,6 +327,7 @@ Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribuna
 | LFT | 978 | 2 | texto | [art-0978.md](../../leyes/2026/LFT/art-0978.md) |
 | LFT | 987 | 2 | texto | [art-0987.md](../../leyes/2026/LFT/art-0987.md) |
 | LOPDC | 15 | 2 | texto | [art-0015.md](../../leyes/2026/LOPDC/art-0015.md) |
+| RIPAED | 35 | 2 | texto | [art-0035.md](../../leyes/2026/RIPAED/art-0035.md) |
 | CFF | 136 | 1 | texto | [art-0136.md](../../leyes/2026/CFF/art-0136.md) |
 | CFF | 149 | 1 | texto | [art-0149.md](../../leyes/2026/CFF/art-0149.md) |
 | CFF | 72 | 1 | texto | [art-0072.md](../../leyes/2026/CFF/art-0072.md) |
@@ -362,6 +364,7 @@ Palabras: derecho procesal del trabajo, conciliación, tribunal laboral, tribuna
 | LFT | 684-Q | 1 | texto | [art-0684-Q.md](../../leyes/2026/LFT/art-0684-Q.md) |
 | LFT | 684-R | 1 | texto | [art-0684-R.md](../../leyes/2026/LFT/art-0684-R.md) |
 | LFT | 684-T | 1 | texto | [art-0684-T.md](../../leyes/2026/LFT/art-0684-T.md) |
+| LINFONAVIT | 46 | 1 | texto | [art-0046.md](../../leyes/2026/LINFONAVIT/art-0046.md) |
 | LOPDC | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LOPDC/art-0017.md) |
 | LOPDC | 23 | 1 | texto | [art-0023.md](../../leyes/2026/LOPDC/art-0023.md) |
 | LSS | 172 | 1 | texto | [art-0172.md](../../leyes/2026/LSS/art-0172.md) |

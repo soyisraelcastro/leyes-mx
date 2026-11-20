@@ -4,17 +4,21 @@ Contabilidad electrónica, libros, catálogo de cuentas y balanza de comprobaci�
 
 Palabras: contabilidad electrónica, registros contables, libros de contabilidad, balanza de comprobación, catálogo de cuentas, sistema de registro contable, contabilidad.
 
-102 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+121 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
 | RMF | regla 2.8.1.5 | 29 | encabezado, texto | [regla-2.8.1.5.md](../../rmf/2026/rmf/reglas/regla-2.8.1.5.md) |
 | RMF | regla 2.8.1.6 | 20 | encabezado, texto | [regla-2.8.1.6.md](../../rmf/2026/rmf/reglas/regla-2.8.1.6.md) |
 | RMF | regla 2.8.1.16 | 14 | encabezado, texto | [regla-2.8.1.16.md](../../rmf/2026/rmf/reglas/regla-2.8.1.16.md) |
+| RLSAR | 106 | 12 | encabezado, texto | [art-0106.md](../../leyes/2026/RLSAR/art-0106.md) |
 | RMF | regla 2.8.1.1 | 12 | encabezado, texto | [regla-2.8.1.1.md](../../rmf/2026/rmf/reglas/regla-2.8.1.1.md) |
 | RMF | regla 2.8.1.2 | 12 | encabezado, texto | [regla-2.8.1.2.md](../../rmf/2026/rmf/reglas/regla-2.8.1.2.md) |
 | RMF | regla 2.8.1.8 | 12 | encabezado | [regla-2.8.1.8.md](../../rmf/2026/rmf/reglas/regla-2.8.1.8.md) |
 | RCFF | 33 | 11 | encabezado, texto | [art-0033.md](../../leyes/2026/RCFF/art-0033.md) |
+| RLSAR | 107 | 10 | encabezado | [art-0107.md](../../leyes/2026/RLSAR/art-0107.md) |
+| RLSAR | 108 | 10 | encabezado | [art-0108.md](../../leyes/2026/RLSAR/art-0108.md) |
+| LSAR | 85 | 9 | encabezado, texto | [art-0085.md](../../leyes/2026/LSAR/art-0085.md) |
 | CFF | 30 | 8 | texto | [art-0030.md](../../leyes/2026/CFF/art-0030.md) |
 | CFF | 59 | 8 | texto | [art-0059.md](../../leyes/2026/CFF/art-0059.md) |
 | RCFF | 34 | 8 | encabezado, texto | [art-0034.md](../../leyes/2026/RCFF/art-0034.md) |
@@ -24,6 +28,8 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | RMF | regla 2.8.1.13 | 7 | encabezado, texto | [regla-2.8.1.13.md](../../rmf/2026/rmf/reglas/regla-2.8.1.13.md) |
 | CFF | 28 | 6 | texto | [art-0028.md](../../leyes/2026/CFF/art-0028.md) |
 | CFF | 45 | 6 | texto | [art-0045.md](../../leyes/2026/CFF/art-0045.md) |
+| LSAR | 84 | 6 | encabezado, texto | [art-0084.md](../../leyes/2026/LSAR/art-0084.md) |
+| LSAR | 88 | 6 | encabezado, texto | [art-0088.md](../../leyes/2026/LSAR/art-0088.md) |
 | RMF | regla 2.8.1.14 | 6 | encabezado, texto | [regla-2.8.1.14.md](../../rmf/2026/rmf/reglas/regla-2.8.1.14.md) |
 | RMF | regla 2.8.1.17 | 6 | encabezado, texto | [regla-2.8.1.17.md](../../rmf/2026/rmf/reglas/regla-2.8.1.17.md) |
 | RMF | regla 2.8.1.19 | 6 | encabezado | [regla-2.8.1.19.md](../../rmf/2026/rmf/reglas/regla-2.8.1.19.md) |
@@ -33,6 +39,13 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | RMF | regla 2.8.1.7 | 6 | encabezado, texto | [regla-2.8.1.7.md](../../rmf/2026/rmf/reglas/regla-2.8.1.7.md) |
 | CFF | 46 | 5 | texto | [art-0046.md](../../leyes/2026/CFF/art-0046.md) |
 | CFF | 83 | 5 | texto | [art-0083.md](../../leyes/2026/CFF/art-0083.md) |
+| LSAR | 86 | 5 | encabezado | [art-0086.md](../../leyes/2026/LSAR/art-0086.md) |
+| LSAR | 87 | 5 | encabezado | [art-0087.md](../../leyes/2026/LSAR/art-0087.md) |
+| RLSAR | 109 | 5 | encabezado | [art-0109.md](../../leyes/2026/RLSAR/art-0109.md) |
+| RLSAR | 110 | 5 | encabezado | [art-0110.md](../../leyes/2026/RLSAR/art-0110.md) |
+| RLSAR | 111 | 5 | encabezado | [art-0111.md](../../leyes/2026/RLSAR/art-0111.md) |
+| RLSAR | 112 | 5 | encabezado | [art-0112.md](../../leyes/2026/RLSAR/art-0112.md) |
+| RLSAR | 113 | 5 | encabezado | [art-0113.md](../../leyes/2026/RLSAR/art-0113.md) |
 | RMF | regla 2.8.1.10 | 5 | encabezado | [regla-2.8.1.10.md](../../rmf/2026/rmf/reglas/regla-2.8.1.10.md) |
 | RMF | regla 2.8.1.11 | 5 | encabezado | [regla-2.8.1.11.md](../../rmf/2026/rmf/reglas/regla-2.8.1.11.md) |
 | RMF | regla 2.8.1.12 | 5 | encabezado | [regla-2.8.1.12.md](../../rmf/2026/rmf/reglas/regla-2.8.1.12.md) |
@@ -58,6 +71,7 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | RMF | regla 2.8.5.3 | 5 | encabezado | [regla-2.8.5.3.md](../../rmf/2026/rmf/reglas/regla-2.8.5.3.md) |
 | CFF | 48-A | 4 | texto | [art-0048-A.md](../../leyes/2026/CFF/art-0048-A.md) |
 | LISR | 177 | 4 | texto | [art-0177.md](../../leyes/2026/LISR/art-0177.md) |
+| LSAR | 100 | 4 | texto | [art-0100.md](../../leyes/2026/LSAR/art-0100.md) |
 | CFF | 30-A | 3 | texto | [art-0030-A.md](../../leyes/2026/CFF/art-0030-A.md) |
 | CFF | 42 | 3 | texto | [art-0042.md](../../leyes/2026/CFF/art-0042.md) |
 | CFF | 48 | 3 | texto | [art-0048.md](../../leyes/2026/CFF/art-0048.md) |
@@ -84,6 +98,9 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | CFF | 53 | 1 | texto | [art-0053.md](../../leyes/2026/CFF/art-0053.md) |
 | CFF | 89 | 1 | texto | [art-0089.md](../../leyes/2026/CFF/art-0089.md) |
 | LIF | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LIF/art-0018.md) |
+| LSAR | 105 | 1 | texto | [art-0105.md](../../leyes/2026/LSAR/art-0105.md) |
+| LSAR | 91 | 1 | texto | [art-0091.md](../../leyes/2026/LSAR/art-0091.md) |
+| LSAR | 94 | 1 | texto | [art-0094.md](../../leyes/2026/LSAR/art-0094.md) |
 | LSS | 109 | 1 | texto | [art-0109.md](../../leyes/2026/LSS/art-0109.md) |
 | LSS | 175 | 1 | texto | [art-0175.md](../../leyes/2026/LSS/art-0175.md) |
 | LSS | 188 | 1 | texto | [art-0188.md](../../leyes/2026/LSS/art-0188.md) |
@@ -93,6 +110,8 @@ Palabras: contabilidad electrónica, registros contables, libros de contabilidad
 | LSS | 250 | 1 | texto | [art-0250.md](../../leyes/2026/LSS/art-0250.md) |
 | LSS | 254 | 1 | texto | [art-0254.md](../../leyes/2026/LSS/art-0254.md) |
 | RACERF | 168 | 1 | texto | [art-0168.md](../../leyes/2026/RACERF/art-0168.md) |
+| RIPAED | 74 | 1 | texto | [art-0074.md](../../leyes/2026/RIPAED/art-0074.md) |
+| RIPAED | 83 | 1 | texto | [art-0083.md](../../leyes/2026/RIPAED/art-0083.md) |
 | RLISR | 107 | 1 | texto | [art-0107.md](../../leyes/2026/RLISR/art-0107.md) |
 | RLISR | 115 | 1 | texto | [art-0115.md](../../leyes/2026/RLISR/art-0115.md) |
 | RLISR | 12 | 1 | texto | [art-0012.md](../../leyes/2026/RLISR/art-0012.md) |

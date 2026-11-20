@@ -4,7 +4,7 @@ Infracciones fiscales, multas, sanciones y recargos.
 
 Palabras: infracción, multa, sanción, recargos, reducción de multas.
 
-279 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+317 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -15,6 +15,8 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | RMF | regla 2.14.1 | 27 | encabezado, texto | [regla-2.14.1.md](../../rmf/2026/rmf/reglas/regla-2.14.1.md) |
 | CFF | 82 | 26 | encabezado, texto | [art-0082.md](../../leyes/2026/CFF/art-0082.md) |
 | LSS | 304-B | 26 | encabezado, texto | [art-0304-B.md](../../leyes/2026/LSS/art-0304-B.md) |
+| LSAR | 100 | 25 | encabezado, texto | [art-0100.md](../../leyes/2026/LSAR/art-0100.md) |
+| LSAR | 99 | 25 | encabezado, texto | [art-0099.md](../../leyes/2026/LSAR/art-0099.md) |
 | LSS | 304-D | 25 | encabezado, texto | [art-0304-D.md](../../leyes/2026/LSS/art-0304-D.md) |
 | RMF | regla 2.14.3 | 24 | encabezado, texto | [regla-2.14.3.md](../../rmf/2026/rmf/reglas/regla-2.14.3.md) |
 | LSS | 304-A | 22 | encabezado | [art-0304-A.md](../../leyes/2026/LSS/art-0304-A.md) |
@@ -96,6 +98,8 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | CFF | 86-I | 11 | encabezado, texto | [art-0086-I.md](../../leyes/2026/CFF/art-0086-I.md) |
 | CFF | 87 | 11 | encabezado, texto | [art-0087.md](../../leyes/2026/CFF/art-0087.md) |
 | CFF | 91-B | 11 | encabezado, texto | [art-0091-B.md](../../leyes/2026/CFF/art-0091-B.md) |
+| LSAR | 101 | 11 | encabezado, texto | [art-0101.md](../../leyes/2026/LSAR/art-0101.md) |
+| LSAR | 102 | 11 | encabezado, texto | [art-0102.md](../../leyes/2026/LSAR/art-0102.md) |
 | LSS | 306 | 11 | encabezado, texto | [art-0306.md](../../leyes/2026/LSS/art-0306.md) |
 | LSS | 311 | 11 | encabezado, texto | [art-0311.md](../../leyes/2026/LSS/art-0311.md) |
 | LSS | 313 | 11 | encabezado, texto | [art-0313.md](../../leyes/2026/LSS/art-0313.md) |
@@ -123,6 +127,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LSS | 319 | 10 | encabezado | [art-0319.md](../../leyes/2026/LSS/art-0319.md) |
 | RACERF | 192 | 10 | encabezado | [art-0192.md](../../leyes/2026/RACERF/art-0192.md) |
 | RACERF | 193 | 10 | encabezado | [art-0193.md](../../leyes/2026/RACERF/art-0193.md) |
+| RLSAR | 155 | 10 | texto | [art-0155.md](../../leyes/2026/RLSAR/art-0155.md) |
 | RMF | regla 2.7.5.5 | 10 | encabezado, texto | [regla-2.7.5.5.md](../../rmf/2026/rmf/reglas/regla-2.7.5.5.md) |
 | RMF | regla 9.2.2 | 10 | texto | [regla-9.2.2.md](../../rmf/2026/rmf/reglas/regla-9.2.2.md) |
 | RCFF | 74 | 9 | encabezado, texto | [art-0074.md](../../leyes/2026/RCFF/art-0074.md) |
@@ -131,6 +136,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | CFF | 112 | 8 | encabezado, texto | [art-0112.md](../../leyes/2026/CFF/art-0112.md) |
 | LFT | 1004 | 8 | encabezado, texto | [art-1004.md](../../leyes/2026/LFT/art-1004.md) |
 | LIF | 19 | 8 | texto | [art-0019.md](../../leyes/2026/LIF/art-0019.md) |
+| LSAR | 100-B | 8 | encabezado, texto | [art-0100-B.md](../../leyes/2026/LSAR/art-0100-B.md) |
 | RMF | regla 2.1.20 | 8 | encabezado, texto | [regla-2.1.20.md](../../rmf/2026/rmf/reglas/regla-2.1.20.md) |
 | RMF | regla 3.1.23 | 8 | encabezado, texto | [regla-3.1.23.md](../../rmf/2026/rmf/reglas/regla-3.1.23.md) |
 | CFF | 113-bis | 7 | encabezado | [art-0113-bis.md](../../leyes/2026/CFF/art-0113-bis.md) |
@@ -139,6 +145,8 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 1005 | 7 | encabezado, texto | [art-1005.md](../../leyes/2026/LFT/art-1005.md) |
 | LFT | 1006 | 7 | encabezado, texto | [art-1006.md](../../leyes/2026/LFT/art-1006.md) |
 | LFT | 997-B | 7 | encabezado, texto | [art-0997-B.md](../../leyes/2026/LFT/art-0997-B.md) |
+| LINFONAVIT | 55 | 7 | texto | [art-0055.md](../../leyes/2026/LINFONAVIT/art-0055.md) |
+| LSAR | 100-bis | 7 | encabezado | [art-0100-bis.md](../../leyes/2026/LSAR/art-0100-bis.md) |
 | LSS | 251 | 7 | texto | [art-0251.md](../../leyes/2026/LSS/art-0251.md) |
 | RACERF | 176 | 7 | encabezado | [art-0176.md](../../leyes/2026/RACERF/art-0176.md) |
 | RCFF | 75 | 7 | encabezado, texto | [art-0075.md](../../leyes/2026/RCFF/art-0075.md) |
@@ -177,6 +185,9 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 999 | 6 | encabezado, texto | [art-0999.md](../../leyes/2026/LFT/art-0999.md) |
 | LIF | 11 | 6 | texto | [art-0011.md](../../leyes/2026/LIF/art-0011.md) |
 | LOPDC | 28 | 6 | encabezado | [art-0028.md](../../leyes/2026/LOPDC/art-0028.md) |
+| LSAR | 100-A | 6 | encabezado, texto | [art-0100-A.md](../../leyes/2026/LSAR/art-0100-A.md) |
+| LSAR | 100-quater | 6 | encabezado, texto | [art-0100-quater.md](../../leyes/2026/LSAR/art-0100-quater.md) |
+| LSAR | 100-ter | 6 | encabezado, texto | [art-0100-ter.md](../../leyes/2026/LSAR/art-0100-ter.md) |
 | RCFF | 73 | 6 | encabezado, texto | [art-0073.md](../../leyes/2026/RCFF/art-0073.md) |
 | CFF | 100 | 5 | encabezado | [art-0100.md](../../leyes/2026/CFF/art-0100.md) |
 | CFF | 102 | 5 | encabezado | [art-0102.md](../../leyes/2026/CFF/art-0102.md) |
@@ -194,6 +205,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | RCFF | 56 | 5 | encabezado | [art-0056.md](../../leyes/2026/RCFF/art-0056.md) |
 | RCFF | 76 | 5 | encabezado | [art-0076.md](../../leyes/2026/RCFF/art-0076.md) |
 | CFF | 67 | 4 | texto | [art-0067.md](../../leyes/2026/CFF/art-0067.md) |
+| LSAR | 52 | 4 | texto | [art-0052.md](../../leyes/2026/LSAR/art-0052.md) |
 | RACERF | 1 | 4 | texto | [art-0001.md](../../leyes/2026/RACERF/art-0001.md) |
 | RACERF | 151 | 4 | texto | [art-0151.md](../../leyes/2026/RACERF/art-0151.md) |
 | RCFF | 46 | 4 | texto | [art-0046.md](../../leyes/2026/RCFF/art-0046.md) |
@@ -208,9 +220,12 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 48-bis | 3 | texto | [art-0048-bis.md](../../leyes/2026/LFT/art-0048-bis.md) |
 | LFT | 549 | 3 | texto | [art-0549.md](../../leyes/2026/LFT/art-0549.md) |
 | LIEPS | 20 | 3 | texto | [art-0020.md](../../leyes/2026/LIEPS/art-0020.md) |
+| LINFONAVIT | 5 | 3 | texto | [art-0005.md](../../leyes/2026/LINFONAVIT/art-0005.md) |
 | LISR | 30 | 3 | texto | [art-0030.md](../../leyes/2026/LISR/art-0030.md) |
+| LSAR | 111 | 3 | texto | [art-0111.md](../../leyes/2026/LSAR/art-0111.md) |
 | LSS | 40-C | 3 | texto | [art-0040-C.md](../../leyes/2026/LSS/art-0040-C.md) |
 | RACERF | 127 | 3 | texto | [art-0127.md](../../leyes/2026/RACERF/art-0127.md) |
+| RIPAED | 39 | 3 | texto | [art-0039.md](../../leyes/2026/RIPAED/art-0039.md) |
 | RMF | regla 2.11.1 | 3 | texto | [regla-2.11.1.md](../../rmf/2026/rmf/reglas/regla-2.11.1.md) |
 | RMF | regla 2.11.6 | 3 | texto | [regla-2.11.6.md](../../rmf/2026/rmf/reglas/regla-2.11.6.md) |
 | RMF | regla 2.8.3.3 | 3 | texto | [regla-2.8.3.3.md](../../rmf/2026/rmf/reglas/regla-2.8.3.3.md) |
@@ -221,6 +236,7 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFDC | 17 | 2 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
 | LFT | 729 | 2 | texto | [art-0729.md](../../leyes/2026/LFT/art-0729.md) |
 | LFT | 731 | 2 | texto | [art-0731.md](../../leyes/2026/LFT/art-0731.md) |
+| LINFONAVIT | 33 | 2 | texto | [art-0033.md](../../leyes/2026/LINFONAVIT/art-0033.md) |
 | LISR | 113-D | 2 | texto | [art-0113-D.md](../../leyes/2026/LISR/art-0113-D.md) |
 | LSS | 287 | 2 | texto | [art-0287.md](../../leyes/2026/LSS/art-0287.md) |
 | LSS | 40 | 2 | texto | [art-0040.md](../../leyes/2026/LSS/art-0040.md) |
@@ -230,6 +246,8 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | RCFF | 15 | 2 | texto | [art-0015.md](../../leyes/2026/RCFF/art-0015.md) |
 | RCFF | 16 | 2 | texto | [art-0016.md](../../leyes/2026/RCFF/art-0016.md) |
 | RCFF | 65 | 2 | texto | [art-0065.md](../../leyes/2026/RCFF/art-0065.md) |
+| RIPAED | 1 | 2 | texto | [art-0001.md](../../leyes/2026/RIPAED/art-0001.md) |
+| RIPAED | 19 | 2 | texto | [art-0019.md](../../leyes/2026/RIPAED/art-0019.md) |
 | RLISR | 33 | 2 | texto | [art-0033.md](../../leyes/2026/RLISR/art-0033.md) |
 | RMF | regla 2.9.13 | 2 | texto | [regla-2.9.13.md](../../rmf/2026/rmf/reglas/regla-2.9.13.md) |
 | RMF | regla 5.2.44 | 2 | texto | [regla-5.2.44.md](../../rmf/2026/rmf/reglas/regla-5.2.44.md) |
@@ -255,7 +273,21 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | LFT | 897 | 1 | texto | [art-0897.md](../../leyes/2026/LFT/art-0897.md) |
 | LFT | 897-G | 1 | texto | [art-0897-G.md](../../leyes/2026/LFT/art-0897-G.md) |
 | LFT | 963 | 1 | texto | [art-0963.md](../../leyes/2026/LFT/art-0963.md) |
+| LINFONAVIT | 32 | 1 | texto | [art-0032.md](../../leyes/2026/LINFONAVIT/art-0032.md) |
+| LINFONAVIT | 56 | 1 | texto | [art-0056.md](../../leyes/2026/LINFONAVIT/art-0056.md) |
 | LISR | 113-I | 1 | texto | [art-0113-I.md](../../leyes/2026/LISR/art-0113-I.md) |
+| LSAR | 103 | 1 | texto | [art-0103.md](../../leyes/2026/LSAR/art-0103.md) |
+| LSAR | 104 | 1 | texto | [art-0104.md](../../leyes/2026/LSAR/art-0104.md) |
+| LSAR | 105 | 1 | texto | [art-0105.md](../../leyes/2026/LSAR/art-0105.md) |
+| LSAR | 106 | 1 | texto | [art-0106.md](../../leyes/2026/LSAR/art-0106.md) |
+| LSAR | 107-bis-1 | 1 | texto | [art-0107-bis-1.md](../../leyes/2026/LSAR/art-0107-bis-1.md) |
+| LSAR | 108 | 1 | texto | [art-0108.md](../../leyes/2026/LSAR/art-0108.md) |
+| LSAR | 34 | 1 | texto | [art-0034.md](../../leyes/2026/LSAR/art-0034.md) |
+| LSAR | 37-B | 1 | texto | [art-0037-B.md](../../leyes/2026/LSAR/art-0037-B.md) |
+| LSAR | 68 | 1 | texto | [art-0068.md](../../leyes/2026/LSAR/art-0068.md) |
+| LSAR | 87 | 1 | texto | [art-0087.md](../../leyes/2026/LSAR/art-0087.md) |
+| LSAR | 95 | 1 | texto | [art-0095.md](../../leyes/2026/LSAR/art-0095.md) |
+| LSAR | 96 | 1 | texto | [art-0096.md](../../leyes/2026/LSAR/art-0096.md) |
 | LSS | 18 | 1 | texto | [art-0018.md](../../leyes/2026/LSS/art-0018.md) |
 | LSS | 185 | 1 | texto | [art-0185.md](../../leyes/2026/LSS/art-0185.md) |
 | LSS | 224 | 1 | texto | [art-0224.md](../../leyes/2026/LSS/art-0224.md) |
@@ -275,10 +307,16 @@ Palabras: infracción, multa, sanción, recargos, reducción de multas.
 | RACERF | 149 | 1 | texto | [art-0149.md](../../leyes/2026/RACERF/art-0149.md) |
 | RCFF | 110 | 1 | texto | [art-0110.md](../../leyes/2026/RCFF/art-0110.md) |
 | RCFF | 92 | 1 | texto | [art-0092.md](../../leyes/2026/RCFF/art-0092.md) |
+| RIPAED | 36 | 1 | texto | [art-0036.md](../../leyes/2026/RIPAED/art-0036.md) |
+| RIPAED | 52 | 1 | texto | [art-0052.md](../../leyes/2026/RIPAED/art-0052.md) |
+| RIPAED | 65 | 1 | texto | [art-0065.md](../../leyes/2026/RIPAED/art-0065.md) |
+| RIPAED | 70 | 1 | texto | [art-0070.md](../../leyes/2026/RIPAED/art-0070.md) |
 | RLISR | 280 | 1 | texto | [art-0280.md](../../leyes/2026/RLISR/art-0280.md) |
 | RLISR | 54 | 1 | texto | [art-0054.md](../../leyes/2026/RLISR/art-0054.md) |
 | RLIVA | 22-A | 1 | texto | [art-0022-A.md](../../leyes/2026/RLIVA/art-0022-A.md) |
 | RLIVA | 53 | 1 | texto | [art-0053.md](../../leyes/2026/RLIVA/art-0053.md) |
+| RLSAR | 137 | 1 | texto | [art-0137.md](../../leyes/2026/RLSAR/art-0137.md) |
+| RLSAR | 56 | 1 | texto | [art-0056.md](../../leyes/2026/RLSAR/art-0056.md) |
 | RMF | regla 1.5 | 1 | texto | [regla-1.5.md](../../rmf/2026/rmf/reglas/regla-1.5.md) |
 | RMF | regla 11.9.12 | 1 | texto | [regla-11.9.12.md](../../rmf/2026/rmf/reglas/regla-11.9.12.md) |
 | RMF | regla 11.9.21 | 1 | texto | [regla-11.9.21.md](../../rmf/2026/rmf/reglas/regla-11.9.21.md) |

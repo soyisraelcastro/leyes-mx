@@ -1,0 +1,15 @@
+{
+  "sigla": "LINFONAVIT",
+  "nombre_oficial": "Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIFNVT.pdf",
+  "ultima_reforma_dof": "2025-02-21",
+  "fecha_descarga": "2026-11-19",
+  "sha256_pdf": "9ee6e5ef336dee5700726bd3c570d24f91fc458136e298ae2e3806bd12217912",
+  "articulos_extraidos": 95,
+  "ultimo_articulo_numerico": 71,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 27,
+  "advertencias": []
+}

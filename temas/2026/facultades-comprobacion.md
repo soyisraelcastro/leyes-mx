@@ -4,7 +4,7 @@ Visitas domiciliarias, revisiones de gabinete y electrónicas, y el procedimient
 
 Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinete, revisión electrónica, orden de visita, acta final, oficio de observaciones, resolución determinante, determinación presuntiva, auditoría, facultades de las autoridades fiscales.
 
-191 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+222 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -45,6 +45,7 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 76 | 7 | texto | [art-0076.md](../../leyes/2026/CFF/art-0076.md) |
 | LCF | 49 | 7 | texto | [art-0049.md](../../leyes/2026/LCF/art-0049.md) |
 | LFDC | 17 | 7 | texto | [art-0017.md](../../leyes/2026/LFDC/art-0017.md) |
+| LINFONAVIT | 16 | 7 | texto | [art-0016.md](../../leyes/2026/LINFONAVIT/art-0016.md) |
 | RMF | regla 9.2.12 | 7 | encabezado, texto | [regla-9.2.12.md](../../rmf/2026/rmf/reglas/regla-9.2.12.md) |
 | CFF | 34 | 6 | encabezado | [art-0034.md](../../leyes/2026/CFF/art-0034.md) |
 | CFF | 41 | 6 | encabezado | [art-0041.md](../../leyes/2026/CFF/art-0041.md) |
@@ -61,6 +62,7 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 69 | 6 | encabezado | [art-0069.md](../../leyes/2026/CFF/art-0069.md) |
 | CFF | 69-B | 6 | encabezado | [art-0069-B.md](../../leyes/2026/CFF/art-0069-B.md) |
 | CFF | 69-B-bis | 6 | encabezado | [art-0069-B-bis.md](../../leyes/2026/CFF/art-0069-B-bis.md) |
+| LINFONAVIT | 18-bis | 6 | texto | [art-0018-bis.md](../../leyes/2026/LINFONAVIT/art-0018-bis.md) |
 | RCFF | 50 | 6 | encabezado, texto | [art-0050.md](../../leyes/2026/RCFF/art-0050.md) |
 | RCFF | 51 | 6 | encabezado, texto | [art-0051.md](../../leyes/2026/RCFF/art-0051.md) |
 | RCFF | 55 | 6 | encabezado | [art-0055.md](../../leyes/2026/RCFF/art-0055.md) |
@@ -100,6 +102,7 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | CFF | 69-F | 5 | encabezado | [art-0069-F.md](../../leyes/2026/CFF/art-0069-F.md) |
 | CFF | 69-G | 5 | encabezado | [art-0069-G.md](../../leyes/2026/CFF/art-0069-G.md) |
 | CFF | 69-H | 5 | encabezado | [art-0069-H.md](../../leyes/2026/CFF/art-0069-H.md) |
+| LINFONAVIT | 66-bis | 5 | texto | [art-0066-bis.md](../../leyes/2026/LINFONAVIT/art-0066-bis.md) |
 | RCFF | 46 | 5 | encabezado | [art-0046.md](../../leyes/2026/RCFF/art-0046.md) |
 | RCFF | 47 | 5 | encabezado | [art-0047.md](../../leyes/2026/RCFF/art-0047.md) |
 | RCFF | 48 | 5 | encabezado | [art-0048.md](../../leyes/2026/RCFF/art-0048.md) |
@@ -139,23 +142,39 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | RMF | regla 2.9.5 | 5 | encabezado | [regla-2.9.5.md](../../rmf/2026/rmf/reglas/regla-2.9.5.md) |
 | RMF | regla 2.9.6 | 5 | encabezado | [regla-2.9.6.md](../../rmf/2026/rmf/reglas/regla-2.9.6.md) |
 | RMF | regla 2.9.7 | 5 | encabezado | [regla-2.9.7.md](../../rmf/2026/rmf/reglas/regla-2.9.7.md) |
+| RLSAR | 131 | 4 | texto | [art-0131.md](../../leyes/2026/RLSAR/art-0131.md) |
+| RLSAR | 140-bis | 4 | texto | [art-0140-bis.md](../../leyes/2026/RLSAR/art-0140-bis.md) |
 | CFF | 110 | 3 | texto | [art-0110.md](../../leyes/2026/CFF/art-0110.md) |
 | CFF | 27 | 3 | texto | [art-0027.md](../../leyes/2026/CFF/art-0027.md) |
 | CFF | 30 | 3 | texto | [art-0030.md](../../leyes/2026/CFF/art-0030.md) |
 | CFF | 5-A | 3 | texto | [art-0005-A.md](../../leyes/2026/CFF/art-0005-A.md) |
 | CFF | 70-A | 3 | texto | [art-0070-A.md](../../leyes/2026/CFF/art-0070-A.md) |
 | LFDC | 2 | 3 | texto | [art-0002.md](../../leyes/2026/LFDC/art-0002.md) |
+| LINFONAVIT | 18 | 3 | texto | [art-0018.md](../../leyes/2026/LINFONAVIT/art-0018.md) |
+| LINFONAVIT | 19 | 3 | texto | [art-0019.md](../../leyes/2026/LINFONAVIT/art-0019.md) |
+| LINFONAVIT | 19-bis | 3 | texto | [art-0019-bis.md](../../leyes/2026/LINFONAVIT/art-0019-bis.md) |
+| LINFONAVIT | 30 | 3 | texto | [art-0030.md](../../leyes/2026/LINFONAVIT/art-0030.md) |
+| LINFONAVIT | 66 | 3 | texto | [art-0066.md](../../leyes/2026/LINFONAVIT/art-0066.md) |
+| RIPAED | 61 | 3 | texto | [art-0061.md](../../leyes/2026/RIPAED/art-0061.md) |
 | RMF | regla 2.10.18 | 3 | texto | [regla-2.10.18.md](../../rmf/2026/rmf/reglas/regla-2.10.18.md) |
 | RMF | regla 2.14.15 | 3 | texto | [regla-2.14.15.md](../../rmf/2026/rmf/reglas/regla-2.14.15.md) |
 | CFF | 83 | 2 | texto | [art-0083.md](../../leyes/2026/CFF/art-0083.md) |
+| LINFONAVIT | 10 | 2 | texto | [art-0010.md](../../leyes/2026/LINFONAVIT/art-0010.md) |
+| LINFONAVIT | 18-bis-1 | 2 | texto | [art-0018-bis-1.md](../../leyes/2026/LINFONAVIT/art-0018-bis-1.md) |
+| LINFONAVIT | 6 | 2 | texto | [art-0006.md](../../leyes/2026/LINFONAVIT/art-0006.md) |
 | LISR | 177 | 2 | texto | [art-0177.md](../../leyes/2026/LISR/art-0177.md) |
 | LISR | 76 | 2 | texto | [art-0076.md](../../leyes/2026/LISR/art-0076.md) |
 | LOPDC | 14 | 2 | texto | [art-0014.md](../../leyes/2026/LOPDC/art-0014.md) |
+| LSAR | 92 | 2 | texto | [art-0092.md](../../leyes/2026/LSAR/art-0092.md) |
 | LSS | 251 | 2 | texto | [art-0251.md](../../leyes/2026/LSS/art-0251.md) |
 | LSS | 304-A | 2 | texto | [art-0304-A.md](../../leyes/2026/LSS/art-0304-A.md) |
 | RACERF | 164 | 2 | texto | [art-0164.md](../../leyes/2026/RACERF/art-0164.md) |
 | RACERF | 168 | 2 | texto | [art-0168.md](../../leyes/2026/RACERF/art-0168.md) |
 | RACERF | 173 | 2 | texto | [art-0173.md](../../leyes/2026/RACERF/art-0173.md) |
+| RIPAED | 60 | 2 | texto | [art-0060.md](../../leyes/2026/RIPAED/art-0060.md) |
+| RIPAED | 69 | 2 | texto | [art-0069.md](../../leyes/2026/RIPAED/art-0069.md) |
+| RIPAED | 74 | 2 | texto | [art-0074.md](../../leyes/2026/RIPAED/art-0074.md) |
+| RIPAED | 79 | 2 | texto | [art-0079.md](../../leyes/2026/RIPAED/art-0079.md) |
 | RMF | regla 11.10.1 | 2 | texto | [regla-11.10.1.md](../../rmf/2026/rmf/reglas/regla-11.10.1.md) |
 | RMF | regla 11.7.1 | 2 | texto | [regla-11.7.1.md](../../rmf/2026/rmf/reglas/regla-11.7.1.md) |
 | RMF | regla 12.3.12 | 2 | texto | [regla-12.3.12.md](../../rmf/2026/rmf/reglas/regla-12.3.12.md) |
@@ -178,8 +197,10 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | LFDC | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LFDC/art-0019.md) |
 | LIEPS | 22 | 1 | texto | [art-0022.md](../../leyes/2026/LIEPS/art-0022.md) |
 | LIEPS | 23-A | 1 | texto | [art-0023-A.md](../../leyes/2026/LIEPS/art-0023-A.md) |
+| LINFONAVIT | 28 | 1 | texto | [art-0028.md](../../leyes/2026/LINFONAVIT/art-0028.md) |
 | LISR | 113-I | 1 | texto | [art-0113-I.md](../../leyes/2026/LISR/art-0113-I.md) |
 | LIVA | 39 | 1 | texto | [art-0039.md](../../leyes/2026/LIVA/art-0039.md) |
+| LSAR | 100-quater | 1 | texto | [art-0100-quater.md](../../leyes/2026/LSAR/art-0100-quater.md) |
 | LSS | 16 | 1 | texto | [art-0016.md](../../leyes/2026/LSS/art-0016.md) |
 | LSS | 237-D | 1 | texto | [art-0237-D.md](../../leyes/2026/LSS/art-0237-D.md) |
 | LSS | 266 | 1 | texto | [art-0266.md](../../leyes/2026/LSS/art-0266.md) |
@@ -194,6 +215,16 @@ Palabras: facultades de comprobación, visita domiciliaria, revisión de gabinet
 | RCFF | 34 | 1 | texto | [art-0034.md](../../leyes/2026/RCFF/art-0034.md) |
 | RCFF | 35 | 1 | texto | [art-0035.md](../../leyes/2026/RCFF/art-0035.md) |
 | RCFF | 9 | 1 | texto | [art-0009.md](../../leyes/2026/RCFF/art-0009.md) |
+| RIPAED | 25 | 1 | texto | [art-0025.md](../../leyes/2026/RIPAED/art-0025.md) |
+| RIPAED | 38 | 1 | texto | [art-0038.md](../../leyes/2026/RIPAED/art-0038.md) |
+| RIPAED | 39 | 1 | texto | [art-0039.md](../../leyes/2026/RIPAED/art-0039.md) |
+| RIPAED | 53 | 1 | texto | [art-0053.md](../../leyes/2026/RIPAED/art-0053.md) |
+| RIPAED | 62 | 1 | texto | [art-0062.md](../../leyes/2026/RIPAED/art-0062.md) |
+| RIPAED | 76 | 1 | texto | [art-0076.md](../../leyes/2026/RIPAED/art-0076.md) |
+| RIPAED | 78 | 1 | texto | [art-0078.md](../../leyes/2026/RIPAED/art-0078.md) |
+| RIPAED | 83 | 1 | texto | [art-0083.md](../../leyes/2026/RIPAED/art-0083.md) |
+| RLSAR | 126 | 1 | texto | [art-0126.md](../../leyes/2026/RLSAR/art-0126.md) |
+| RLSAR | 130 | 1 | texto | [art-0130.md](../../leyes/2026/RLSAR/art-0130.md) |
 | RMF | regla 3.18.12 | 1 | texto | [regla-3.18.12.md](../../rmf/2026/rmf/reglas/regla-3.18.12.md) |
 | RMF | regla 3.2.27 | 1 | texto | [regla-3.2.27.md](../../rmf/2026/rmf/reglas/regla-3.2.27.md) |
 | RMF | regla 3.9.1.4 | 1 | texto | [regla-3.9.1.4.md](../../rmf/2026/rmf/reglas/regla-3.9.1.4.md) |

@@ -4,7 +4,7 @@ Firma electrónica avanzada, certificados digitales y buzón tributario.
 
 Palabras: e.firma, firma electrónica avanzada, firma electrónica, certificado digital, buzón tributario, certificado de sello digital.
 
-138 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+149 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -44,6 +44,7 @@ Palabras: e.firma, firma electrónica avanzada, firma electrónica, certificado 
 | CFF | 17-K | 4 | texto | [art-0017-K.md](../../leyes/2026/CFF/art-0017-K.md) |
 | CFF | 18 | 4 | texto | [art-0018.md](../../leyes/2026/CFF/art-0018.md) |
 | CFF | 69-B | 4 | texto | [art-0069-B.md](../../leyes/2026/CFF/art-0069-B.md) |
+| LINFONAVIT | 29-quater | 4 | texto | [art-0029-quater.md](../../leyes/2026/LINFONAVIT/art-0029-quater.md) |
 | RMF | regla 2.10.16 | 4 | texto | [regla-2.10.16.md](../../rmf/2026/rmf/reglas/regla-2.10.16.md) |
 | RMF | regla 2.2.1 | 4 | texto | [regla-2.2.1.md](../../rmf/2026/rmf/reglas/regla-2.2.1.md) |
 | RMF | regla 2.4.4 | 4 | texto | [regla-2.4.4.md](../../rmf/2026/rmf/reglas/regla-2.4.4.md) |
@@ -70,6 +71,10 @@ Palabras: e.firma, firma electrónica avanzada, firma electrónica, certificado 
 | CFF | 31 | 2 | texto | [art-0031.md](../../leyes/2026/CFF/art-0031.md) |
 | CFF | 49-bis | 2 | texto | [art-0049-bis.md](../../leyes/2026/CFF/art-0049-bis.md) |
 | LISR | 113-G | 2 | texto | [art-0113-G.md](../../leyes/2026/LISR/art-0113-G.md) |
+| RIPAED | 71 | 2 | texto | [art-0071.md](../../leyes/2026/RIPAED/art-0071.md) |
+| RIPAED | 85 | 2 | texto | [art-0085.md](../../leyes/2026/RIPAED/art-0085.md) |
+| RLSAR | 115 | 2 | texto | [art-0115.md](../../leyes/2026/RLSAR/art-0115.md) |
+| RLSAR | 116 | 2 | texto | [art-0116.md](../../leyes/2026/RLSAR/art-0116.md) |
 | RMF | regla 1.1 | 2 | texto | [regla-1.1.md](../../rmf/2026/rmf/reglas/regla-1.1.md) |
 | RMF | regla 11.6.2 | 2 | texto | [regla-11.6.2.md](../../rmf/2026/rmf/reglas/regla-11.6.2.md) |
 | RMF | regla 11.9.16 | 2 | texto | [regla-11.9.16.md](../../rmf/2026/rmf/reglas/regla-11.9.16.md) |
@@ -111,6 +116,12 @@ Palabras: e.firma, firma electrónica avanzada, firma electrónica, certificado 
 | RCFF | 61 | 1 | texto | [art-0061.md](../../leyes/2026/RCFF/art-0061.md) |
 | RCFF | 69 | 1 | texto | [art-0069.md](../../leyes/2026/RCFF/art-0069.md) |
 | RCFF | 7 | 1 | texto | [art-0007.md](../../leyes/2026/RCFF/art-0007.md) |
+| RIPAED | 68 | 1 | texto | [art-0068.md](../../leyes/2026/RIPAED/art-0068.md) |
+| RIPAED | 87 | 1 | texto | [art-0087.md](../../leyes/2026/RIPAED/art-0087.md) |
+| RLSAR | 114 | 1 | texto | [art-0114.md](../../leyes/2026/RLSAR/art-0114.md) |
+| RLSAR | 117 | 1 | texto | [art-0117.md](../../leyes/2026/RLSAR/art-0117.md) |
+| RLSAR | 118 | 1 | texto | [art-0118.md](../../leyes/2026/RLSAR/art-0118.md) |
+| RLSAR | 123 | 1 | texto | [art-0123.md](../../leyes/2026/RLSAR/art-0123.md) |
 | RMF | regla 11.1.5 | 1 | texto | [regla-11.1.5.md](../../rmf/2026/rmf/reglas/regla-11.1.5.md) |
 | RMF | regla 11.4.4 | 1 | texto | [regla-11.4.4.md](../../rmf/2026/rmf/reglas/regla-11.4.4.md) |
 | RMF | regla 11.6.3 | 1 | texto | [regla-11.6.3.md](../../rmf/2026/rmf/reglas/regla-11.6.3.md) |

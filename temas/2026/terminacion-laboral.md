@@ -4,7 +4,7 @@ Terminación de la relación de trabajo, indemnizaciones, prima de antigüedad y
 
 Palabras: despido, rescisión, terminación de la relación de trabajo, indemnización, prima de antigüedad, finiquito, reinstalación.
 
-98 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+99 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -100,6 +100,7 @@ Palabras: despido, rescisión, terminación de la relación de trabajo, indemniz
 | LFT | 947 | 1 | texto | [art-0947.md](../../leyes/2026/LFT/art-0947.md) |
 | LFT | 991 | 1 | texto | [art-0991.md](../../leyes/2026/LFT/art-0991.md) |
 | LISR | 95 | 1 | texto | [art-0095.md](../../leyes/2026/LISR/art-0095.md) |
+| LSAR | 62 | 1 | texto | [art-0062.md](../../leyes/2026/LSAR/art-0062.md) |
 | LSS | 136 | 1 | texto | [art-0136.md](../../leyes/2026/LSS/art-0136.md) |
 | LSS | 289 | 1 | texto | [art-0289.md](../../leyes/2026/LSS/art-0289.md) |
 | LSS | 300 | 1 | texto | [art-0300.md](../../leyes/2026/LSS/art-0300.md) |

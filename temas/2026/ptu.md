@@ -4,7 +4,7 @@ Reparto de utilidades a los trabajadores y su base de cálculo.
 
 Palabras: participación de los trabajadores en las utilidades, PTU, reparto de utilidades, utilidad repartible.
 
-57 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+58 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -54,6 +54,7 @@ Palabras: participación de los trabajadores en las utilidades, PTU, reparto de 
 | LFT | 523 | 1 | texto | [art-0523.md](../../leyes/2026/LFT/art-0523.md) |
 | LFT | 784 | 1 | texto | [art-0784.md](../../leyes/2026/LFT/art-0784.md) |
 | LFT | 994 | 1 | texto | [art-0994.md](../../leyes/2026/LFT/art-0994.md) |
+| LINFONAVIT | 63 | 1 | texto | [art-0063.md](../../leyes/2026/LINFONAVIT/art-0063.md) |
 | LISR | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LISR/art-0010.md) |
 | LISR | 106 | 1 | texto | [art-0106.md](../../leyes/2026/LISR/art-0106.md) |
 | LISR | 110 | 1 | texto | [art-0110.md](../../leyes/2026/LISR/art-0110.md) |

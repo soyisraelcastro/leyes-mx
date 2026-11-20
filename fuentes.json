@@ -133,6 +133,20 @@
       "nota": "Ley anual: solo rige en el ejercicio fiscal 2026. La de 2027 tendrá su propia carpeta (otra sigla o año) y NO hereda de la de 2026 (una capa sin hereda_de es completa; ver docs/criterio-anios.md). cruce_encabezados_ajenos: 2 renglones de la tabla del art. 1 (\"Artículo 2o., fracción I, inciso D).\" y \"Artículo 2o.-A.\", conceptos del IEPS) que el cruce sin -layout cuenta como encabezados."
     },
     {
+      "sigla": "LINFONAVIT",
+      "nombre": "Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LIFNVT.pdf",
+      "ultimo_articulo_esperado": 71
+    },
+    {
+      "sigla": "LSAR",
+      "nombre": "Ley de los Sistemas de Ahorro para el Retiro",
+      "tipo": "ley",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSAR.pdf",
+      "ultimo_articulo_esperado": 123
+    },
+    {
       "sigla": "RLISR",
       "nombre": "Reglamento de la Ley del Impuesto sobre la Renta",
       "tipo": "reglamento",
@@ -159,6 +173,83 @@
       "tipo": "reglamento",
       "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LSS_MACERF.pdf",
       "ultimo_articulo_esperado": 196
+    },
+    {
+      "sigla": "RLSAR",
+      "nombre": "Reglamento de la Ley de los Sistemas de Ahorro para el Retiro",
+      "tipo": "reglamento",
+      "url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LSAR.pdf",
+      "ultimo_articulo_esperado": 157
+    },
+    {
+      "sigla": "RIPAED",
+      "nombre": "Reglamento de Inscripción, Pago de Aportaciones y Entero de Descuentos al Instituto del Fondo Nacional de la Vivienda para los Trabajadores",
+      "tipo": "reglamento",
+      "url": "https://dof.gob.mx/nota_detalle.php?codigo=5233352&fecha=10/02/2012",
+      "ultimo_articulo_esperado": 87,
+      "consolidacion": {
+        "nota": "La Cámara de Diputados no publica texto vigente compilado de este reglamento: en https://www.diputados.gob.mx/LeyesBiblio/norma/reglamento.htm solo están el original (DOF 10-02-2012, regla/n327.doc) y la reforma (DOF 28-09-2017, regla/n327_28sep17.doc), sin otra reforma posterior. El texto vigente se arma de las dos publicaciones del DOF con leyes_mx/consolidar.py y el mapa consolidacion/RIPAED.json; ningún texto se escribe a mano.",
+        "titulo": "REGLAMENTO DE INSCRIPCIÓN, PAGO DE APORTACIONES Y ENTERO DE DESCUENTOS AL INSTITUTO DEL FONDO NACIONAL DE LA VIVIENDA PARA LOS TRABAJADORES",
+        "nota_texto": "Original DOF 10-02-2012; reforma DOF 28-09-2017.",
+        "original": {
+          "url": "https://dof.gob.mx/nota_detalle.php?codigo=5233352&fecha=10/02/2012",
+          "fecha_dof": "2012-02-10"
+        },
+        "reformas": [
+          {
+            "url": "https://dof.gob.mx/nota_detalle.php?codigo=5499074&fecha=28/09/2017",
+            "fecha_dof": "2017-09-28",
+            "fecha_texto": "28 de septiembre de 2017",
+            "titulo": "por el que se reforman, adicionan y derogan diversas disposiciones del Reglamento de Inscripción, Pago de Aportaciones y Entero de Descuentos al Instituto del Fondo Nacional de la Vivienda para los Trabajadores."
+          }
+        ],
+        "vigilar": {
+          "url": "https://www.diputados.gob.mx/LeyesBiblio/norma/reglamento.htm",
+          "texto": "Inscripción, Pago de Aportaciones y Entero de Descuentos"
+        }
+      },
+      "advertencias": [
+        {
+          "articulos": [
+            "2",
+            "3",
+            "8",
+            "10",
+            "11",
+            "15",
+            "16",
+            "20",
+            "22",
+            "23",
+            "27",
+            "29",
+            "30",
+            "43",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "66",
+            "68",
+            "71",
+            "73",
+            "77",
+            "78",
+            "79",
+            "84",
+            "85",
+            "86",
+            "87"
+          ],
+          "en_archivo": true,
+          "texto": "Texto consolidado por leyes-mx: la Cámara de Diputados no publica texto vigente compilado de este reglamento. Se armó aplicando el decreto de reforma del DOF 28-09-2017 al texto original del DOF 10-02-2012 (las dos publicaciones del DOF, sin texto escrito a mano; leyes_mx/consolidar.py). Si hay duda, prevalecen las publicaciones del DOF: https://dof.gob.mx/nota_detalle.php?codigo=5233352&fecha=10/02/2012 y https://dof.gob.mx/nota_detalle.php?codigo=5499074&fecha=28/09/2017"
+        }
+      ]
     }
   ],
   "rmf": [

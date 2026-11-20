@@ -18,9 +18,11 @@ Uso:
 import argparse
 import importlib.util
 import json
+import re
 import shutil
 import sys
 import tempfile
+import urllib.request
 from datetime import date
 from pathlib import Path
 
@@ -70,6 +72,9 @@ def revisar(args):
                 informe.append({"sigla": sigla, "estado": "sin_datos_previos", "detalle": f"no existe leyes/{anio}/{sigla}"})
                 continue
             meta = capa.meta
+            if ley.get("consolidacion"):  # sin PDF compilado de la Cámara: se compara la lista de reformas de su ficha
+                informe.append(revisar_consolidado(ley, meta, args.offline))
+                continue
             pdf = tmp / f"{sigla}.pdf"
             try:
                 if args.offline:
@@ -157,6 +162,43 @@ def revisar_anexos(args):
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     return filas, errores
+
+
+def fechas_ficha_camara(html, texto):
+    """Fechas (AAAA-MM-DD) del renglón de la lista de normas de la Cámara que contiene `texto` (original y reformas)."""
+    plano = re.sub(r"\s+", " ", html.replace("\n", " "))
+    for fila in re.split(r"<tr", plano, flags=re.I):
+        limpio = re.sub(r"<[^>]+>", " ", fila)
+        if texto in re.sub(r"\s+", " ", limpio):
+            return sorted({f"{a}-{m}-{d}" for d, m, a in re.findall(r"(\d{2})/(\d{2})/(\d{4})", limpio)})
+    return None
+
+
+def revisar_consolidado(ley, meta, offline=False):
+    """Un ordenamiento consolidado desde el DOF (fuentes.json, 'consolidacion') no tiene PDF que comparar: se lee su
+    renglón en la lista de normas de la Cámara y se compara la lista de fechas (original y reformas) con la que se consolidó."""
+    sigla = ley["sigla"].upper()
+    c = ley["consolidacion"]
+    esperadas = sorted({c["original"]["fecha_dof"], *[r["fecha_dof"] for r in c["reformas"]]})
+    fila = {"sigla": sigla, "fecha_guardada": meta["ultima_reforma_dof"], "estado": "sin_cambios"}
+    if offline:
+        fila["detalle"] = "consolidado desde el DOF; sin revisión en modo offline"
+        return fila
+    try:
+        req = urllib.request.Request(c["vigilar"]["url"], headers={"User-Agent": pipeline.UA})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            html = r.read().decode("latin-1")
+    except Exception as ex:  # noqa: BLE001
+        return {"sigla": sigla, "estado": "error", "detalle": f"no se pudo leer {c['vigilar']['url']} ({ex})"}
+    fechas = fechas_ficha_camara(html, c["vigilar"]["texto"])
+    if fechas is None:
+        return {"sigla": sigla, "estado": "error", "detalle": f"no aparece {c['vigilar']['texto']!r} en {c['vigilar']['url']}"}
+    fila["fecha_nueva"] = max(fechas)
+    if fechas != esperadas:
+        fila["estado"] = "reforma_nueva"
+        fila["detalle_corto"] = (f"{sigla}: la Cámara lista {', '.join(fechas)} y se consolidó con {', '.join(esperadas)}; "
+                                 "agregar el decreto a fuentes.json y consolidacion/{sigla}.json (docs/pipeline.md)").replace("{sigla}", sigla)
+    return fila
 
 
 def resumen_md(anio, informe):

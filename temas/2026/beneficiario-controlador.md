@@ -4,7 +4,7 @@ Beneficiario controlador, intercambio de información y cuentas financieras.
 
 Palabras: beneficiario controlador, cuentas financieras, FATCA, intercambio de información, estándar común de reporte.
 
-54 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+58 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -38,15 +38,19 @@ Palabras: beneficiario controlador, cuentas financieras, FATCA, intercambio de i
 | CFF | 9 | 1 | texto | [art-0009.md](../../leyes/2026/CFF/art-0009.md) |
 | LCF | 10-E | 1 | texto | [art-0010-E.md](../../leyes/2026/LCF/art-0010-E.md) |
 | LFT | 836-B | 1 | texto | [art-0836-B.md](../../leyes/2026/LFT/art-0836-B.md) |
+| LINFONAVIT | 29-bis | 1 | texto | [art-0029-bis.md](../../leyes/2026/LINFONAVIT/art-0029-bis.md) |
 | LISR | 176 | 1 | texto | [art-0176.md](../../leyes/2026/LISR/art-0176.md) |
 | LISR | 183 | 1 | texto | [art-0183.md](../../leyes/2026/LISR/art-0183.md) |
 | LISR | 26 | 1 | texto | [art-0026.md](../../leyes/2026/LISR/art-0026.md) |
 | LISR | 28 | 1 | texto | [art-0028.md](../../leyes/2026/LISR/art-0028.md) |
 | LISR | 60 | 1 | texto | [art-0060.md](../../leyes/2026/LISR/art-0060.md) |
 | LISR | 76-A | 1 | texto | [art-0076-A.md](../../leyes/2026/LISR/art-0076-A.md) |
+| LSAR | 100 | 1 | texto | [art-0100.md](../../leyes/2026/LSAR/art-0100.md) |
+| LSAR | 5 | 1 | texto | [art-0005.md](../../leyes/2026/LSAR/art-0005.md) |
 | LSS | 15-A | 1 | texto | [art-0015-A.md](../../leyes/2026/LSS/art-0015-A.md) |
 | RLISR | 272 | 1 | texto | [art-0272.md](../../leyes/2026/RLISR/art-0272.md) |
 | RLISR | 274 | 1 | texto | [art-0274.md](../../leyes/2026/RLISR/art-0274.md) |
+| RLSAR | 109 | 1 | texto | [art-0109.md](../../leyes/2026/RLSAR/art-0109.md) |
 | RMF | regla 11.4.10 | 1 | texto | [regla-11.4.10.md](../../rmf/2026/rmf/reglas/regla-11.4.10.md) |
 | RMF | regla 11.8.2 | 1 | texto | [regla-11.8.2.md](../../rmf/2026/rmf/reglas/regla-11.8.2.md) |
 | RMF | regla 3.1.20 | 1 | texto | [regla-3.1.20.md](../../rmf/2026/rmf/reglas/regla-3.1.20.md) |

@@ -4,7 +4,7 @@ Ingresos por actividades empresariales, honorarios y servicios profesionales.
 
 Palabras: actividades empresariales, servicios profesionales, honorarios, actividad empresarial.
 
-111 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+113 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -97,6 +97,7 @@ Palabras: actividades empresariales, servicios profesionales, honorarios, activi
 | CFF | 90 | 1 | texto | [art-0090.md](../../leyes/2026/CFF/art-0090.md) |
 | LISR | 157 | 1 | texto | [art-0157.md](../../leyes/2026/LISR/art-0157.md) |
 | LIVA | 14 | 1 | texto | [art-0014.md](../../leyes/2026/LIVA/art-0014.md) |
+| LSAR | 17 | 1 | texto | [art-0017.md](../../leyes/2026/LSAR/art-0017.md) |
 | RCFF | 59 | 1 | texto | [art-0059.md](../../leyes/2026/RCFF/art-0059.md) |
 | RLISR | 104 | 1 | texto | [art-0104.md](../../leyes/2026/RLISR/art-0104.md) |
 | RLISR | 129 | 1 | texto | [art-0129.md](../../leyes/2026/RLISR/art-0129.md) |
@@ -105,6 +106,7 @@ Palabras: actividades empresariales, servicios profesionales, honorarios, activi
 | RLISR | 264 | 1 | texto | [art-0264.md](../../leyes/2026/RLISR/art-0264.md) |
 | RLISR | 39 | 1 | texto | [art-0039.md](../../leyes/2026/RLISR/art-0039.md) |
 | RLIVA | 41 | 1 | texto | [art-0041.md](../../leyes/2026/RLIVA/art-0041.md) |
+| RLSAR | 126 | 1 | texto | [art-0126.md](../../leyes/2026/RLSAR/art-0126.md) |
 | RMF | regla 11.1.3 | 1 | texto | [regla-11.1.3.md](../../rmf/2026/rmf/reglas/regla-11.1.3.md) |
 | RMF | regla 12.2.4 | 1 | texto | [regla-12.2.4.md](../../rmf/2026/rmf/reglas/regla-12.2.4.md) |
 | RMF | regla 12.3.15 | 1 | texto | [regla-12.3.15.md](../../rmf/2026/rmf/reglas/regla-12.3.15.md) |

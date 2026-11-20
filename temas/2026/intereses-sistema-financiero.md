@@ -4,7 +4,7 @@ Intereses reales, instituciones del sistema financiero y ajuste por inflación.
 
 Palabras: interés real, intereses reales, sistema financiero, ajuste anual por inflación, instituciones del sistema financiero, instituciones de crédito, instituciones de seguros, almacenes generales de depósito, casas de bolsa.
 
-194 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+213 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -93,6 +93,7 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | LISR | 146 | 4 | texto | [art-0146.md](../../leyes/2026/LISR/art-0146.md) |
 | LISR | 27 | 4 | texto | [art-0027.md](../../leyes/2026/LISR/art-0027.md) |
 | LIVA | 5-C | 4 | texto | [art-0005-C.md](../../leyes/2026/LIVA/art-0005-C.md) |
+| LSAR | 8 | 4 | texto | [art-0008.md](../../leyes/2026/LSAR/art-0008.md) |
 | RLISR | 114 | 4 | texto | [art-0114.md](../../leyes/2026/RLISR/art-0114.md) |
 | RMF | regla 2.1.26 | 4 | texto | [regla-2.1.26.md](../../rmf/2026/rmf/reglas/regla-2.1.26.md) |
 | RMF | regla 2.13.3 | 4 | texto | [regla-2.13.3.md](../../rmf/2026/rmf/reglas/regla-2.13.3.md) |
@@ -108,6 +109,7 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | LISR | 185 | 3 | texto | [art-0185.md](../../leyes/2026/LISR/art-0185.md) |
 | LISR | 207 | 3 | texto | [art-0207.md](../../leyes/2026/LISR/art-0207.md) |
 | LISR | 44 | 3 | texto | [art-0044.md](../../leyes/2026/LISR/art-0044.md) |
+| LSAR | 5 | 3 | texto | [art-0005.md](../../leyes/2026/LSAR/art-0005.md) |
 | RACERF | 196 | 3 | texto | [art-0196.md](../../leyes/2026/RACERF/art-0196.md) |
 | RLISR | 66 | 3 | texto | [art-0066.md](../../leyes/2026/RLISR/art-0066.md) |
 | RMF | regla 2.1.18 | 3 | texto | [regla-2.1.18.md](../../rmf/2026/rmf/reglas/regla-2.1.18.md) |
@@ -129,6 +131,10 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | LISR | 76 | 2 | texto | [art-0076.md](../../leyes/2026/LISR/art-0076.md) |
 | LISR | 8 | 2 | texto | [art-0008.md](../../leyes/2026/LISR/art-0008.md) |
 | LISR | 87 | 2 | texto | [art-0087.md](../../leyes/2026/LISR/art-0087.md) |
+| LSAR | 100 | 2 | texto | [art-0100.md](../../leyes/2026/LSAR/art-0100.md) |
+| LSAR | 48 | 2 | texto | [art-0048.md](../../leyes/2026/LSAR/art-0048.md) |
+| LSAR | 66-bis | 2 | texto | [art-0066-bis.md](../../leyes/2026/LSAR/art-0066-bis.md) |
+| LSAR | 74-bis | 2 | texto | [art-0074-bis.md](../../leyes/2026/LSAR/art-0074-bis.md) |
 | RCFF | 80 | 2 | texto | [art-0080.md](../../leyes/2026/RCFF/art-0080.md) |
 | RLISR | 224 | 2 | texto | [art-0224.md](../../leyes/2026/RLISR/art-0224.md) |
 | RLISR | 226 | 2 | texto | [art-0226.md](../../leyes/2026/RLISR/art-0226.md) |
@@ -143,6 +149,10 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | RLIVA | 18 | 2 | texto | [art-0018.md](../../leyes/2026/RLIVA/art-0018.md) |
 | RLIVA | 58 | 2 | texto | [art-0058.md](../../leyes/2026/RLIVA/art-0058.md) |
 | RLIVA | 63 | 2 | texto | [art-0063.md](../../leyes/2026/RLIVA/art-0063.md) |
+| RLSAR | 16 | 2 | texto | [art-0016.md](../../leyes/2026/RLSAR/art-0016.md) |
+| RLSAR | 19 | 2 | texto | [art-0019.md](../../leyes/2026/RLSAR/art-0019.md) |
+| RLSAR | 2 | 2 | texto | [art-0002.md](../../leyes/2026/RLSAR/art-0002.md) |
+| RLSAR | 63 | 2 | texto | [art-0063.md](../../leyes/2026/RLSAR/art-0063.md) |
 | RMF | regla 11.2.5 | 2 | texto | [regla-11.2.5.md](../../rmf/2026/rmf/reglas/regla-11.2.5.md) |
 | RMF | regla 12.1.7 | 2 | texto | [regla-12.1.7.md](../../rmf/2026/rmf/reglas/regla-12.1.7.md) |
 | RMF | regla 2.10.12 | 2 | texto | [regla-2.10.12.md](../../rmf/2026/rmf/reglas/regla-2.10.12.md) |
@@ -167,9 +177,16 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | CFF | 84-D | 1 | texto | [art-0084-D.md](../../leyes/2026/CFF/art-0084-D.md) |
 | CFF | 84-G | 1 | texto | [art-0084-G.md](../../leyes/2026/CFF/art-0084-G.md) |
 | CFF | 87 | 1 | texto | [art-0087.md](../../leyes/2026/CFF/art-0087.md) |
+| LINFONAVIT | 19 | 1 | texto | [art-0019.md](../../leyes/2026/LINFONAVIT/art-0019.md) |
+| LINFONAVIT | 25-bis | 1 | texto | [art-0025-bis.md](../../leyes/2026/LINFONAVIT/art-0025-bis.md) |
 | LISR | 136 | 1 | texto | [art-0136.md](../../leyes/2026/LISR/art-0136.md) |
 | LISR | 62 | 1 | texto | [art-0062.md](../../leyes/2026/LISR/art-0062.md) |
 | LIVA | 28 | 1 | texto | [art-0028.md](../../leyes/2026/LIVA/art-0028.md) |
+| LSAR | 10 | 1 | texto | [art-0010.md](../../leyes/2026/LSAR/art-0010.md) |
+| LSAR | 104 | 1 | texto | [art-0104.md](../../leyes/2026/LSAR/art-0104.md) |
+| LSAR | 64 | 1 | texto | [art-0064.md](../../leyes/2026/LSAR/art-0064.md) |
+| LSAR | 72 | 1 | texto | [art-0072.md](../../leyes/2026/LSAR/art-0072.md) |
+| LSAR | 89 | 1 | texto | [art-0089.md](../../leyes/2026/LSAR/art-0089.md) |
 | LSS | 229 | 1 | texto | [art-0229.md](../../leyes/2026/LSS/art-0229.md) |
 | LSS | 286-D | 1 | texto | [art-0286-D.md](../../leyes/2026/LSS/art-0286-D.md) |
 | RACERF | 134 | 1 | texto | [art-0134.md](../../leyes/2026/RACERF/art-0134.md) |
@@ -192,6 +209,8 @@ Palabras: interés real, intereses reales, sistema financiero, ajuste anual por 
 | RLISR | 39 | 1 | texto | [art-0039.md](../../leyes/2026/RLISR/art-0039.md) |
 | RLISR | 70 | 1 | texto | [art-0070.md](../../leyes/2026/RLISR/art-0070.md) |
 | RLIVA | 16 | 1 | texto | [art-0016.md](../../leyes/2026/RLIVA/art-0016.md) |
+| RLSAR | 3 | 1 | texto | [art-0003.md](../../leyes/2026/RLSAR/art-0003.md) |
+| RLSAR | 64 | 1 | texto | [art-0064.md](../../leyes/2026/RLSAR/art-0064.md) |
 | RMF | regla 2.3.5 | 1 | texto | [regla-2.3.5.md](../../rmf/2026/rmf/reglas/regla-2.3.5.md) |
 | RMF | regla 2.8.1.7 | 1 | texto | [regla-2.8.1.7.md](../../rmf/2026/rmf/reglas/regla-2.8.1.7.md) |
 | RMF | regla 2.8.1.9 | 1 | texto | [regla-2.8.1.9.md](../../rmf/2026/rmf/reglas/regla-2.8.1.9.md) |

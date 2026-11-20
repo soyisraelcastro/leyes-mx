@@ -4,7 +4,7 @@ Aguinaldo, vacaciones, prima vacacional y descansos.
 
 Palabras: aguinaldo, vacaciones, prima vacacional, prima dominical, descanso obligatorio, días de descanso.
 
-48 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
+49 documentos, de mayor a menor puntaje (encabezado, texto, fundamento).
 
 | Ley | Artículo o regla | Puntaje | Dónde | Archivo |
 |---|---|---|---|---|
@@ -23,6 +23,7 @@ Palabras: aguinaldo, vacaciones, prima vacacional, prima dominical, descanso obl
 | LFT | 71 | 5 | encabezado | [art-0071.md](../../leyes/2026/LFT/art-0071.md) |
 | LFT | 334-bis | 4 | texto | [art-0334-bis.md](../../leyes/2026/LFT/art-0334-bis.md) |
 | RACERF | 55 | 4 | texto | [art-0055.md](../../leyes/2026/RACERF/art-0055.md) |
+| RIPAED | 18 | 4 | texto | [art-0018.md](../../leyes/2026/RIPAED/art-0018.md) |
 | LFT | 199 | 3 | texto | [art-0199.md](../../leyes/2026/LFT/art-0199.md) |
 | LFT | 280 | 3 | texto | [art-0280.md](../../leyes/2026/LFT/art-0280.md) |
 | LFT | 291-F | 3 | texto | [art-0291-F.md](../../leyes/2026/LFT/art-0291-F.md) |

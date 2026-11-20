@@ -11,10 +11,14 @@ class TestIds(unittest.TestCase):
     def test_normalizar(self):
         casos = {"113 E": "113-E", "113-e": "113-E", "28": "28", "28 bis": "28-bis", "28-Bis": "28-bis",
                  "Artículo 1o.-A": "1-A", "32-B Bis": "32-B-bis", "18-H BIS": "18-H-bis", "353-ñ": "353-Ñ",
-                 "82 Quáter": "82-quater", "113E": "113-E"}
+                 "82 Quáter": "82-quater", "113E": "113-E",
+                 # Ley del INFONAVIT y LSAR: "Bis 1" a "Bis 6"; el número solo vale tras una palabra
+                 "18 Bis 1": "18-bis-1", "51-bis-6": "51-bis-6", "107 bis 1": "107-bis-1"}
         for entrada, esperado in casos.items():
             self.assertEqual(normalizar_id(entrada), esperado, entrada)
         self.assertIsNone(normalizar_id("abc"))
+        self.assertIsNone(normalizar_id("18 1"))
+        self.assertIsNone(normalizar_id("18-A-1"))
 
     def test_archivos(self):
         self.assertEqual(nombre_archivo("28"), "art-0028.md")
@@ -22,19 +26,27 @@ class TestIds(unittest.TestCase):
         self.assertEqual(nombre_archivo("28-bis"), "art-0028-bis.md")
         self.assertEqual(nombre_archivo("32-B-bis"), "art-0032-B-bis.md")
         self.assertEqual(nombre_archivo("353-Ñ"), "art-0353-NN.md")
-        for i in ["28", "113-E", "28-bis", "32-B-bis", "353-Ñ"]:
+        self.assertEqual(nombre_archivo("18-bis-1"), "art-0018-bis-1.md")
+        for i in ["28", "113-E", "28-bis", "32-B-bis", "353-Ñ", "18-bis-1", "51-bis-6"]:
             self.assertEqual(id_desde_archivo(nombre_archivo(i)), i)
 
     def test_orden(self):
         ids = ["28-bis", "28", "28-A", "4-B", "4-A"]
         self.assertEqual(sorted(ids, key=clave_orden), ["4-A", "4-B", "28", "28-A", "28-bis"])
+        ids = ["18-ter", "18-bis-2", "18", "18-bis-1", "18-bis", "19"]
+        self.assertEqual(sorted(ids, key=clave_orden), ["18", "18-bis", "18-bis-1", "18-bis-2", "18-ter", "19"])
 
     def test_encabezados(self):
         ok = {"Artículo 1o.- Están": "1", "Artículo 1o.-A.- Están": "1-A", "Artículo 3o. Bis.- Para": "3-bis",
               "Artículo 22 Bis. Queda": "22-bis", "Artículo 113-E. Los": "113-E", "Artículo 890- Se deroga.": "890",
               "Artículo 2o.-C. (Se deroga).": "2-C", "Artículo 1o.-A BIS.- Los": "1-A-bis",
               # LSS: la letra va separada por espacio, sin guion
-              "Artículo 15 A. La contratación": "15-A", "Artículo 5 A. Para los": "5-A", "Artículo 304 D. Los": "304-D"}
+              "Artículo 15 A. La contratación": "15-A", "Artículo 5 A. Para los": "5-A", "Artículo 304 D. Los": "304-D",
+              # LSAR: letra separada por espacio y terminada en ".-"; LINFONAVIT/LSAR: "Bis 1"
+              "Artículo 37 A.- La Comisión": "37-A", "Artículo 100 B.- Independientemente": "100-B",
+              "Artículo 18 Bis 1.- El Comité": "18-bis-1", "Artículo 107 bis 1.- Se sancionará": "107-bis-1",
+              # RLSAR y RIPAED: encabezado en mayúsculas
+              "ARTÍCULO 155. Los Participantes": "155"}
         for linea, esperado in ok.items():
             h = encabezado_articulo(linea)
             self.assertTrue(h, linea)

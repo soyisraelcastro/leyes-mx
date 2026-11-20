@@ -58,8 +58,14 @@ Año de vigencia 2026 (texto vigente al 2026-11-02, descargado ese día):
 | LOPDC | Ley Orgánica de la Procuraduría de la Defensa del Contribuyente | 28 | 28 | 0 | 2022-05-11 |
 | LIEPS | Ley del Impuesto Especial sobre Producción y Servicios | 69 | 44 | 25 | 2025-11-07 |
 | LIF | Ley de Ingresos de la Federación para el Ejercicio Fiscal de 2026 | 34 | 34 | 0 | 2025-11-07 (nueva ley, en vigor desde 2026-01-01) |
+| LINFONAVIT | Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores | 95 | 90 | 5 | 2025-02-21 |
+| RIPAED | Reglamento de Inscripción, Pago de Aportaciones y Entero de Descuentos al INFONAVIT | 87 | 86 | 1 | 2017-09-28 (consolidado desde el DOF, ver abajo) |
+| LSAR | Ley de los Sistemas de Ahorro para el Retiro | 148 | 145 | 3 | 2025-11-14 |
+| RLSAR | Reglamento de la Ley de los Sistemas de Ahorro para el Retiro | 162 | 162 | 0 | 2024-09-27 |
 
 LFDC, LCF y LOPDC se descargaron el 2026-11-07; LIEPS y LIF el 2026-11-11. La LIF es una ley anual: solo rige en 2026 y la de 2027 tendrá su propia carpeta y no hereda de la de 2026 (ver [docs/criterio-anios.md](docs/criterio-anios.md)). El artículo 26-LL de la LIEPS (derogado) no tiene archivo propio, lleva su línea al final del 26-L. Las fórmulas de distribución de la LCF vienen en el PDF como imagen o notación matemática; se transcribieron a LaTeX (`$...$` y `$$...$$`) para que las lean los asistentes, y esos artículos llevan una advertencia: ante la duda prevalece el PDF oficial.
+
+LINFONAVIT, LSAR, RLSAR y RIPAED se descargaron el 2026-11-19 para fundamentar las aportaciones al INFONAVIT (5% del salario, art. 29 de la LINFONAVIT y art. 23 del RIPAED), los descuentos de crédito y las cuotas de retiro, cesantía y vejez junto con la LSS y el RACERF. La Ley del INFONAVIT y la LSAR traen artículos "Bis 1" a "Bis 6" (`18-bis-1`, `51-bis-6`, `107-bis-1`; ver [docs/convencion-nombres.md](docs/convencion-nombres.md)). Las tablas de los transitorios del decreto de 16-12-2020 que la LSAR publica como imagen son las mismas de la LSS (mismo archivo) y reutilizan su transcripción. **El RIPAED no tiene texto vigente compilado en la Cámara** (solo el original del DOF 10-02-2012 y el decreto de reforma del DOF 28-09-2017, por separado): se consolida con las dos publicaciones del DOF, sin escribir texto a mano, y los artículos reformados llevan una advertencia (ver [docs/pipeline.md](docs/pipeline.md)).
 
 Además `proyectos/2027/`: seguimiento de la reforma fiscal 2027 (**no es ley vigente**).
 
@@ -199,7 +205,7 @@ python3 -I tests/test_ids.py
 - Los textos son tan buenos como el PDF de la Cámara y la extracción. Las tablas que el PDF publica como TEXTO se conservan como bloque de texto; las que publica como IMAGEN (hoy solo en la LISR: tarifa mensual del art. 96, tarifa anual del art. 152 y dos tablas de un transitorio) no las ve la extracción, así que se transcriben aparte en `tablas/<año>/<LEY>/tablas.json`, se verifican con aritmética (rangos contiguos y cuota fija recalculada) y conservan la imagen original. `python3 scripts/detectar_imagenes.py` avisa si aparece otra imagen sin cubrir. Las dos tablas del transitorio (deducción de inversiones 2016 y 2017) solo tienen la imagen, sin transcribir.
 - Las tarifas de los arts. 96 y 152 de `leyes/` son las de la ley. Cada año se actualizan por inflación y se publican en el Anexo 8 de la RMF (art. 152, último párrafo). El Anexo 8 de la RMF 2026 sí está en el repo (`rmf/2026/anexo-8/`, ver sección "Anexo 8 de la RMF"): para calcular retenciones o el anual 2026 se usa esa tarifa. Los demás anexos no están; las reglas de la RMF están en `rmf/2026/rmf/` (ver abajo), sin las modificaciones posteriores.
 - La Cámara puede tardar en reflejar una reforma; la fecha "última reforma" es la que imprime su PDF, no una verificación contra el DOF.
-- Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014, RACERF de 2005); verificar si existen versiones posteriores en el DOF. Las reglas de la RMF 2026 están en `rmf/2026/rmf/` en su texto original (sin las resoluciones de modificación) y sus anexos, salvo el Anexo 8, **no** están en la base.
+- Los reglamentos son los que publica la Cámara en su sitio (RLISR con última reforma de 2016, RLIVA de 2014, RCFF de 2014, RACERF de 2005, RLSAR de 2024); verificar si existen versiones posteriores en el DOF. El RIPAED se consolida desde el DOF (original 2012 y reforma 2017) porque la Cámara no publica su texto compilado. Las reglas de la RMF 2026 están en `rmf/2026/rmf/` en su texto original (sin las resoluciones de modificación) y sus anexos, salvo el Anexo 8, **no** están en la base.
 - El artículo 513 de la LFT (tabla de enfermedades) es un archivo de ~360 mil caracteres.
 - Búsqueda léxica (no semántica). El paquete npm la complementa con un glosario de sinónimos contables ([docs/glosario.md](docs/glosario.md)); el motor de Python (`scripts/buscar.py`) no lo usa. Para un artículo conocido usar `obtener`.
 - Los dictámenes y minutas de la reforma 2027 están escaneados; los archivos por artículo de `proyectos/2027/` reflejan la iniciativa, no el texto final del trámite. Detalle en su README.
@@ -210,7 +216,7 @@ Ver [CONTRIBUTING.md](CONTRIBUTING.md). Resumen: el texto legal siempre sale del
 
 ## Hoja de ruta
 
-- Más ordenamientos: Ley del INFONAVIT, LIEPS, Ley de Ingresos, Ley Federal de Derechos y otros (solo configuración en `fuentes.json`).
+- Más ordenamientos: Ley Federal de Derechos, Ley para Determinar el Valor de la UMA, Reglamento para la Imposición de Multas del INFONAVIT y otros (solo configuración en `fuentes.json`).
 - Resolución Miscelánea Fiscal y sus anexos.
 - Jurisprudencia y criterios.
 - API HTTP o servidor MCP hospedado sobre las mismas funciones (habilitaría Claude web y ChatGPT web, que solo conectan servidores remotos; ver [docs/clientes.md](docs/clientes.md)). El servidor MCP local ya existe: ver [docs/npx.md](docs/npx.md).

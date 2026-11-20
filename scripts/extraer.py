@@ -24,6 +24,13 @@ def main():
     anio = a.anio or cfg["anio_vigencia_actual"]
     leyes = [P.config_ley(s, cfg) for s in a.siglas] if a.siglas else cfg["leyes"]
     for ley in leyes:
+        if ley.get("consolidacion"):  # sin texto compilado de la Cámara: se arma desde el DOF (docs/pipeline.md)
+            c = P.texto_consolidado(ley, anio, descargar_fuentes=not a.sin_descargar)
+            for linea in c[3]:
+                print(f"  {linea}")
+            r = P.construir(ley, None, anio, consolidado=c)
+            print(f"{r['sigla']}: {r['n']} articulos (consolidado desde el DOF), ultima reforma {r['ultima_reforma_dof']}, sha256 {r['sha256'][:12]}")
+            continue
         pdf = P.RAIZ / "fuentes" / str(anio) / f"{ley['sigla'].upper()}.pdf"
         if not a.sin_descargar or not pdf.exists():
             print(f"descargando {ley['url']}")
