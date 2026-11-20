@@ -1,0 +1,15 @@
+{
+  "sigla": "RLSAR",
+  "nombre_oficial": "Reglamento de la Ley de los Sistemas de Ahorro para el Retiro",
+  "tipo": "reglamento",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LSAR.pdf",
+  "ultima_reforma_dof": "2024-09-27",
+  "fecha_descarga": "2026-11-19",
+  "sha256_pdf": "685a4669dd8c9f71153676b083ba7a68c88416677fc7b4e6026ab868c5292d3a",
+  "articulos_extraidos": 162,
+  "ultimo_articulo_numerico": 157,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 3,
+  "advertencias": []
+}

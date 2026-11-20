@@ -7,7 +7,7 @@ import { pythonJson, REPO } from "./ayuda.js";
 
 const VARIANTES = ["113 E", "113-e", "113E", "113 e", "28", "028", "28 bis", "28-Bis", "28 BIS", "28-bis", "Artículo 28", "articulo 28-A", "Art. 28 Bis",
   "Art 5", "1o.-A", "1º-A", "1°", "1o", "32-B Bis", "32-B-bis", "32 b bis", "18-H BIS", "353-ñ", "353 Ñ", "82 Quáter", "82 quater", "69 B", "69-b", "  113-E  ", "abc", "", "x28", "28-zz", "28 bis ter", "200 octies", "7-A-ter",
-  "-5", "28.", "Artículo 1o.-A", "113-E-bis"];
+  "-5", "28.", "Artículo 1o.-A", "113-E-bis", "18 Bis 1", "51-bis-6", "107 bis 1", "18 1", "18-A-1"];
 
 test("30+ variantes de ids dan lo mismo que en Python (id y nombre de archivo)", () => {
   const py = pythonJson(
@@ -23,7 +23,7 @@ test("30+ variantes de ids dan lo mismo que en Python (id y nombre de archivo)",
 test("las variantes válidas apuntan al mismo archivo existente que Python", () => {
   const dir = path.join(REPO, "leyes", "2026");
   const casos = [["LISR", "113 E", "art-0113-E.md"], ["LISR", "113-e", "art-0113-E.md"], ["LISR", "113E", "art-0113-E.md"], ["CFF", "69 B", "art-0069-B.md"],
-    ["LISR", "28", "art-0028.md"], ["LISR", "4 A", "art-0004-A.md"]];
+    ["LISR", "28", "art-0028.md"], ["LISR", "4 A", "art-0004-A.md"], ["LINFONAVIT", "18 Bis 1", "art-0018-bis-1.md"], ["LSAR", "37 A", "art-0037-A.md"]];
   for (const [ley, v, esperado] of casos) {
     assert.equal(nombreArchivo(normalizarId(v)), esperado);
     assert.ok(fs.existsSync(path.join(dir, ley, esperado)), `${ley}/${esperado}`);

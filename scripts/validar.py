@@ -235,9 +235,9 @@ def _validar_capa(raiz, sigla, anio, meta, vista, propios):
 def _contar_crudo(crudo, extraer):
     """Cuenta encabezados de articulo con una regex DISTINTA y mas simple que la del extractor, sobre el texto SIN -layout.
     Linea que empieza con 'Articulo <numero>' seguida, a lo mas 14 caracteres despues, de un punto, o de un guion tras el numero."""
-    naive = re.compile(r"^\s*Art[íi]culo\s+\d+[^\n.]{0,14}\.|^\s*Art[íi]culo\s+\d+-\s")
+    naive = re.compile(r"^\s*(?:Art[íi]culo|ART[ÍI]CULO)\s+\d+[^\n.]{0,14}\.|^\s*(?:Art[íi]culo|ART[ÍI]CULO)\s+\d+-\s")  # el RLSAR los trae en mayúsculas
     lineas = [l.strip() for l in crudo.splitlines()]
-    ini = next(i for i, l in enumerate(lineas) if re.match(r"^Art[íi]culo\s+1\s*[oº°]?\s*\.", l))
+    ini = next(i for i, l in enumerate(lineas) if re.match(r"^(?:Art[íi]culo|ART[ÍI]CULO)\s+1\s*[oº°]?\s*\.", l))
     fin = len(lineas)
     for i in range(ini + 1, len(lineas)):
         if extraer.RE_FIN_CUERPO.match(lineas[i]) and not naive.match(lineas[i]):

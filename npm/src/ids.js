@@ -1,5 +1,5 @@
 // Identificadores de artículo. Port fiel de leyes_mx/ids.py (misma convención, mismo comportamiento).
-// "113 E", "113-e", "28 bis", "32-B-bis", la Ñ se escribe NN en el nombre de archivo.
+// "113 E", "113-e", "28 bis", "32-B-bis", "18-bis-1"; la Ñ se escribe NN en el nombre de archivo.
 
 export const PALABRAS = ["bis", "ter", "quater", "quinquies", "sexies", "septies", "octies", "nonies", "decies",
   "quintus", "sextus", "septimus", "octavus", "nonus", "decimus", "undecimus", "duodecimus"];
@@ -27,6 +27,7 @@ export function normalizarId(texto) {
     const p = palabra(t);
     if (p) partes.push(p);
     else if (/^[A-Za-zÑñ]$/.test(t)) partes.push(t.toUpperCase());
+    else if (/^[1-9]\d?$/.test(t) && partes.length && PALABRAS.includes(partes[partes.length - 1])) partes.push(t); // "18 Bis 1"
     else return null;
   }
   return [String(num), ...partes].join("-");
@@ -44,14 +45,16 @@ export function nombreArchivo(id) {
 }
 
 export function idDesdeArchivo(nombre) {
-  const m = /^art-(\d{4})((?:-[A-Za-z]+)*)\.md$/.exec(nombre);
+  const m = /^art-(\d{4})((?:-[A-Za-z]+|-[1-9]\d?)*)\.md$/.exec(nombre);
   if (!m) return null;
   return normalizarId(String(parseInt(m[1], 10)) + m[2].replaceAll("-NN", "-Ñ"));
 }
 
 export function claveOrden(id) {
   const [num, partes] = partesId(id);
-  const k = partes.map((p) => (PALABRAS.includes(p) ? [1, PALABRAS.indexOf(p)] : [0, p === "Ñ" ? "N".charCodeAt(0) + 0.5 : p.charCodeAt(0)]));
+  const k = partes.map((p) => (PALABRAS.includes(p) ? [1, PALABRAS.indexOf(p)]
+    : /^\d+$/.test(p) ? [2, parseInt(p, 10)] // 18-bis < 18-bis-1 < 18-ter
+      : [0, p === "Ñ" ? "N".charCodeAt(0) + 0.5 : p.charCodeAt(0)]));
   return [num, k];
 }
 

@@ -44,6 +44,11 @@ def main():
     codigo = 0
     for ley in leyes:
         sigla = ley["sigla"].upper()
+        if ley.get("consolidacion"):
+            print(f"{sigla}: ERROR se consolida desde el DOF (no hay PDF de la Cámara); agregar el decreto nuevo a "
+                  "'consolidacion.reformas' y a consolidacion/<SIGLA>.json y correr scripts/extraer.py (docs/pipeline.md)")
+            codigo = 1
+            continue
         pdf = P.RAIZ / "fuentes" / str(a.anio) / f"{sigla}.pdf"
         if not a.sin_descargar or not pdf.exists():
             print(f"descargando {ley['url']}")

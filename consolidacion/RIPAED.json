@@ -1,0 +1,26 @@
+{
+  "_comentario": "Mapa de consolidación del RIPAED (ver leyes_mx/consolidar.py y docs/pipeline.md). Solo dice A QUÉ unidad del texto original va cada texto nuevo de un artículo del decreto que trae '...': un entero es el índice (desde 0; 0 = el párrafo que abre con 'ARTÍCULO N.') de la unidad original que sustituye, '+' es una adición en ese punto y '+fin' una adición al final del artículo (el art. 61 adiciona un último párrafo y el decreto no repite las fracciones I a IV). Los '...' no llevan entrada: conservan la unidad que les toca. El texto sale siempre del DOF. Las unidades que el decreto no menciona quedan igual (p. ej. el párrafo 'El plazo...' del art. 77, entre el inciso c) y la fracción II). Los artículos que el decreto da completos (2, 10, 11, 15, 22, 29, 59, 64, 68, 73, 78, 84) y los nuevos (85 a 87) no van aquí.",
+  "mapas": {
+    "2017-09-28": {
+      "3": [4, "+"],
+      "8": [0],
+      "16": [0],
+      "20": [0],
+      "23": [0, 1],
+      "27": ["+"],
+      "30": [2],
+      "43": [0],
+      "56": [0, "+", "+", "+", "+", "+"],
+      "57": [1, 2],
+      "58": [8],
+      "60": [1, 2],
+      "61": ["+fin"],
+      "62": [1],
+      "63": [0],
+      "66": [1, 2],
+      "71": [9],
+      "77": [1, 6],
+      "79": [4]
+    }
+  }
+}

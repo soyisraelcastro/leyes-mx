@@ -15,7 +15,7 @@ for (const ley of fs.readdirSync(path.join(REPO, "leyes", "2026")).sort()) {
   }
 }
 
-test("hay 3316 artículos en leyes/2026", () => assert.equal(todos.length, 3316));
+test("hay 3808 artículos en leyes/2026", () => assert.equal(todos.length, 3808));
 
 test("obtener de Node = texto del archivo, para todos los artículos", () => {
   for (const { ley, id, ruta } of todos) {

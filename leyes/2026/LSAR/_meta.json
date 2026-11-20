@@ -1,0 +1,15 @@
+{
+  "sigla": "LSAR",
+  "nombre_oficial": "Ley de los Sistemas de Ahorro para el Retiro",
+  "tipo": "ley",
+  "fuente_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSAR.pdf",
+  "ultima_reforma_dof": "2025-11-14",
+  "fecha_descarga": "2026-11-19",
+  "sha256_pdf": "02ff746c921b436a1ab6c74e5f1bc429976595b1b0f82cb8c5b50db1004128c1",
+  "articulos_extraidos": 148,
+  "ultimo_articulo_numerico": 123,
+  "vigencia_anio": 2026,
+  "estatus": "vigente",
+  "decretos_con_transitorios": 17,
+  "advertencias": []
+}

@@ -56,14 +56,55 @@ def front_matter(campos):
     return "---\n" + "".join(f"{k}: {_yaml(v)}\n" for k, v in campos.items()) + "---\n"
 
 
-def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=True):
-    """Extrae el PDF y escribe leyes/<anio>/<sigla>/. Devuelve dict con resumen (para validar/reportar)."""
+def descargar_texto(url, destino):
+    """Descarga una página (p. ej. una nota de dof.gob.mx) a destino. Devuelve el texto."""
+    destino = Path(destino)
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        datos = r.read()
+    tmp = destino.with_suffix(".tmp")
+    tmp.write_bytes(datos)
+    tmp.replace(destino)
+    return datos.decode("utf-8")
+
+
+def texto_consolidado(ley, anio, descargar_fuentes=True):
+    """Para una entrada de fuentes.json con 'consolidacion' (sin texto compilado de la Cámara): descarga las
+    publicaciones del DOF a fuentes/<anio>/<SIGLA>/ y arma el texto vigente. Devuelve (texto, sha256, ultima, informe, fuentes)."""
+    from . import consolidar
+    cfg = dict(ley["consolidacion"])
+    cfg.update(consolidar.cargar_mapa(RAIZ, ley["sigla"].upper()))
+    docs = [cfg["original"]] + cfg["reformas"]
+    carpeta = RAIZ / "fuentes" / str(anio) / ley["sigla"].upper()
+    html, filas = {}, []
+    for d in docs:
+        local = carpeta / f"DOF-{d['fecha_dof']}.html"
+        html[d["url"]] = (descargar_texto(d["url"], local) if descargar_fuentes or not local.exists()
+                          else local.read_text(encoding="utf-8"))
+        filas.append({"url": d["url"], "fecha_dof": d["fecha_dof"],
+                      "sha256": hashlib.sha256(html[d["url"]].encode("utf-8")).hexdigest()})
+    texto, informe = consolidar.texto_consolidado(cfg, html)
+    sha = consolidar.sha256_fuentes(html, [d["url"] for d in docs])
+    return texto, sha, max(d["fecha_dof"] for d in docs), informe, filas
+
+
+def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=True, consolidado=None):
+    """Extrae el PDF y escribe leyes/<anio>/<sigla>/. Devuelve dict con resumen (para validar/reportar).
+    consolidado: salida de texto_consolidado() para un ordenamiento sin PDF compilado (entonces pdf no se usa)."""
     sigla = ley["sigla"]
     destino_raiz = Path(destino_raiz or RAIZ / "leyes")
     fecha_descarga = fecha_descarga or date.today().isoformat()
-    texto = extraer.pdf_a_texto(pdf, layout=True)
-    ultima = extraer.fecha_ultima_reforma(texto)
-    sha = sha256_archivo(pdf)
+    if consolidado:
+        texto, sha, ultima, _, fuentes_consolidadas = consolidado
+    else:
+        texto = extraer.pdf_a_texto(pdf, layout=True)
+        ultima = extraer.fecha_ultima_reforma(texto)
+        sha = sha256_archivo(pdf)
+        fuentes_consolidadas = None
+    origen_notas = "generadas al consolidar desde el DOF" if consolidado else "margen del PDF"
+    origen_transitorios = ("Texto tal cual de las publicaciones del DOF" if consolidado
+                           else "Texto tal cual del PDF de la Cámara de Diputados")
     d = extraer.dividir(texto)
     arts = d["articulos"]
 
@@ -99,7 +140,7 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
                          if adv.get("en_archivo") and a.id in adv.get("articulos", []))
         md = front_matter(fm) + f"\n# Artículo {a.id}\n\n{avisos}{cuerpo}\n"
         if a.notas:
-            md += "\n## Notas de reforma (margen del PDF)\n\n" + "\n".join(f"- {n}" for n in a.notas) + "\n"
+            md += f"\n## Notas de reforma ({origen_notas})\n\n" + "\n".join(f"- {n}" for n in a.notas) + "\n"
         nombre = nombre_archivo(a.id)
         resumen["archivos"][a.id] = {"archivo": nombre, "caracteres": len(cuerpo), "estatus": estatus}
         indice.append((a.id, nombre, estatus, cuerpo))
@@ -111,7 +152,7 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
     if escribir:
         t = [front_matter({**comunes, "tipo": "transitorios", "estatus": "vigente", "sha256_fuente": sha}),
              f"\n# Transitorios de {ley['nombre']} ({sigla.upper()})\n\n",
-             "> Texto tal cual del PDF de la Cámara de Diputados: transitorios del decreto original y de los decretos de reforma. "
+             f"> {origen_transitorios}: transitorios del decreto original y de los decretos de reforma. "
              "Muchos transitorios ya agotaron sus efectos; verificar siempre su vigencia.\n"]
         colocadas = set()
         for titulo, lineas in bloques:
@@ -144,6 +185,9 @@ def construir(ley, pdf, anio, destino_raiz=None, fecha_descarga=None, escribir=T
             "decretos_con_transitorios": len(bloques),
             "advertencias": ley.get("advertencias", []),
         }
+        if fuentes_consolidadas:
+            # sha256_pdf es entonces el sha256 de los sha256 de las publicaciones del DOF, en este orden
+            meta["consolidado_desde_dof"] = fuentes_consolidadas
         (dest / "_meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     resumen["destino"] = str(dest)
     return resumen
