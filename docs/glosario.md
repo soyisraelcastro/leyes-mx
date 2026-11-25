@@ -49,7 +49,13 @@ El motor de búsqueda de Python (`scripts/buscar.py`, SQLite FTS5, el que usa Ab
 - `sustituir` (opcional): palabras sueltas de la consulta que se quitan. Para siglas que el texto no usa.
 - `relacionar` (opcional, `true` por omisión): con `false` los artículos no suben en el ranking y solo documentan la entrada. Útil en las siglas (`ISR` no debe subir la LISR 1 en cada consulta).
 - `articulos`: al menos uno. `evidencia` es una frase **literal** del artículo (sin distinguir acentos ni mayúsculas) que justifica la entrada.
+- `agregar_reglas` (opcional): como `agregar`, pero solo al buscar en las reglas de la RMF, que a veces usa otro nombre ("RESICO" no aparece en la RMF; "régimen simplificado de confianza" sí).
+- `reglas` (opcional): reglas de la RMF que suben en su lista, cada una con su `evidencia` literal. Las versiones del paquete anteriores a la búsqueda en la RMF ignoran estos dos campos.
 - `nota`: por qué existe, en una o dos frases, para quien mantiene el glosario y para el modelo que lee la respuesta. Si el dato exacto vive fuera de la base (la tarifa en el Anexo 8, el complemento de pago en la RMF), dilo ahí.
+
+## Búsqueda en las reglas de la RMF
+
+`buscar` usa dos índices. El de leyes no cambió. El de reglas (`IndiceReglas`) va aparte, así que las 1,208 reglas no mueven el ranking de los artículos y salen en su propia lista (hasta 5; con `ley="RMF"`, hasta `limite`). Indexa también el título y la ubicación de la regla, con más peso que el texto, y no exige todas las palabras: pondera por la proporción de la consulta que cubre cada regla. Los casos están en `npm/test/consultas-rmf.json`.
 
 ## Cómo aportar una entrada
 
@@ -63,7 +69,7 @@ El motor de búsqueda de Python (`scripts/buscar.py`, SQLite FTS5, el que usa Ab
 
 - Cifras, tasas o plazos como respuesta: el glosario solo lleva al artículo; el modelo lo lee completo. (Las notas pueden citar el dato que está en el artículo, como "7 % de la utilidad fiscal", porque la evidencia lo respalda.)
 - Términos que la ley ya usa con las mismas palabras: la búsqueda literal ya los encuentra.
-- Reglas de la RMF, criterios del SAT o jurisprudencia: no están en la base; la nota debe decir que son "no verificado".
+- Criterios del SAT o jurisprudencia: no están en la base; la nota debe decir que son "no verificado".
 
 ## Limitaciones conocidas
 

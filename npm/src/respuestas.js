@@ -80,18 +80,34 @@ export function lineasAmpliacion(amp) {
   if (sust.length) l.push(`Se sustituyó ${[...new Set(sust.flatMap((e) => e.sustituye))].map((t) => JSON.stringify(t)).join(", ")} por su nombre en la ley (glosario: ${ids(sust)}).`);
   const rel = [...new Set(amp.entradas.filter((e) => e.relacionar).flatMap((e) => e.articulos.map((a) => `${a.ley} ${a.articulo}`)))];
   if (rel.length) l.push(`Artículos que el glosario relaciona con el tema (marcados [glosario]): ${rel.join(", ")}.`);
+  const relReglas = [...new Set(amp.entradas.filter((e) => e.relacionar).flatMap((e) => (e.reglas || []).map((r) => r.regla)))];
+  if (relReglas.length) l.push(`Reglas de la RMF que el glosario relaciona con el tema: ${relReglas.join(", ")}.`);
+  const enReglas = [...new Set(amp.entradas.flatMap((e) => e.agregadosReglas || []))];
+  if (enReglas.length) l.push(`Al buscar en la RMF se agregó además: ${enReglas.join("; ")}.`);
   for (const e of amp.entradas) l.push(`Nota del glosario (${e.id}): ${e.nota}`);
   l.push("Para buscar solo con tus palabras: glosario=false (CLI: --sin-glosario).");
   return l;
 }
 
-export function respuestaBusqueda(consulta, res, { incluirProyectos, anio, ampliacion = null } = {}) {
+/** Líneas de las reglas de la RMF encontradas, con su aviso. Vacío si no hay. */
+export function lineasReglas(reglas) {
+  if (!reglas?.length) return [];
+  const l = ["Reglas de la RMF (para citar, lee la regla completa con obtener_regla):"];
+  reglas.forEach((r, i) => {
+    l.push(`${i + 1}. ${r.ley} regla ${r.regla} | ${r.titulo ?? ""} | vigencia ${r.anio_vigencia} | DOF ${r.publicacion_dof ?? "sin dato"}${r.estatus === "derogado" ? " [derogada]" : ""}${r.relacionado_por_glosario ? " [glosario]" : ""}`);
+    l.push(`   ${r.fragmento}`);
+  });
+  l.push(`AVISO: ${AVISO_RMF}`);
+  return l;
+}
+
+export function respuestaBusqueda(consulta, res, { incluirProyectos, anio, ampliacion = null, reglas = [] } = {}) {
   const amp = lineasAmpliacion(ampliacion);
-  if (!res.length) {
+  if (!res.length && !reglas.length) {
     return noEncontrado(`resultados para ${JSON.stringify(consulta)}`, "Antes de preguntar al usuario, prueba una vez más: si es un artículo conocido usa obtener_articulo; si no, reformula con los términos de la ley " +
       "(por ejemplo \"accesorios de las contribuciones\" en lugar de \"actualizaciones\") o acota con el parámetro ley.") + (amp.length ? "\n\n" + amp.join("\n") : "");
   }
-  const l = [`${res.length} resultado(s) para ${JSON.stringify(consulta)} (búsqueda por palabras clave, ordenados por relevancia)${incluirProyectos ? "; incluye proyectos" : "; solo ley vigente"}:`];
+  const l = [`${res.length} resultado(s) en leyes y ${reglas.length} regla(s) de la RMF para ${JSON.stringify(consulta)} (búsqueda por palabras clave, ordenados por relevancia)${incluirProyectos ? "; incluye proyectos" : "; solo ley vigente"}:`];
   if (amp.length) l.push("", ...amp);
   l.push("");
   res.forEach((r, i) => {
@@ -99,7 +115,8 @@ export function respuestaBusqueda(consulta, res, { incluirProyectos, anio, ampli
     l.push(`${i + 1}. ${r.ley} art. ${r.articulo} | vigencia ${r.anio_vigencia} | última reforma DOF ${r.ultima_reforma_dof ?? "sin dato"}${marca}${r.relacionado_por_glosario ? " [glosario]" : ""}`);
     l.push(`   ${r.fragmento}`);
   });
-  l.push("", "Son fragmentos. Para citar, pide el artículo completo con obtener_articulo.", AVISO_GENERAL);
+  if (reglas.length) l.push(...(res.length ? [""] : []), ...lineasReglas(reglas));
+  l.push("", "Son fragmentos. Para citar, pide el artículo completo con obtener_articulo o la regla con obtener_regla.", AVISO_GENERAL);
   return l.join("\n");
 }
 

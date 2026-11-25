@@ -226,6 +226,22 @@ export class Almacen {
     return res;
   }
 
+  /** Todas las reglas de todas las resoluciones, para indexarlas: {fm, texto, ruta}. */
+  *recorrerReglas() {
+    for (const anio of this.aniosReglas()) {
+      for (const r of this.resoluciones(anio)) {
+        const dir = path.join(r.dir, "reglas");
+        for (const n of fs.readdirSync(dir).sort()) {
+          if (!/^regla-.*\.md$/.test(n)) continue;
+          const ruta = path.join(dir, n);
+          const [fm, cuerpo] = parseFrontMatter(fs.readFileSync(ruta, "utf8"));
+          yield { fm: { ...fm, ley: fm.ley ?? r.sigla, regla: String(fm.regla ?? n.slice(6, -3)), vigencia_anio: fm.vigencia_anio ?? anio }, ruta,
+            texto: strip(cuerpo.split("\n## Fundamento", 1)[0].replace(/^\s*# Regla[^\n]*\n/, "")) };
+        }
+      }
+    }
+  }
+
   aniosReglas() {
     const base = path.join(this.raiz, "rmf");
     if (!esDir(base)) return [];
@@ -294,6 +310,11 @@ export class Almacen {
     const c = n(clave);
     let m = info.temas.filter((t) => t.id === c || n(t.nombre) === c);
     if (!m.length) m = info.temas.filter((t) => t.id.includes(c) || n(t.nombre).includes(c));
+    // una pregunta más larga que el nombre ("DIOT de RESICO"): los temas cuyo id o alguna de sus palabras aparece completa en ella
+    if (!m.length) {
+      const plano = (x) => ` ${n(x).replace(/[^a-z0-9]+/g, " ").trim()} `;
+      m = info.temas.filter((t) => [t.id, ...t.palabras].some((p) => plano(p).trim().length >= 4 && plano(clave).includes(plano(p))));
+    }
     if (!m.length) return null;
     return m.length === 1 ? { tema: m[0], anio: info.anio } : { ambiguo: m.map((t) => ({ id: t.id, nombre: t.nombre })) };
   }

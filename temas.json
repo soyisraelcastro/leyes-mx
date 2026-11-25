@@ -20,6 +20,17 @@
    ]
   },
   {
+   "id": "diot",
+   "nombre": "Declaración informativa de operaciones con terceros (DIOT)",
+   "descripcion": "Información mensual de operaciones con proveedores para el IVA: quién la presenta, cómo y quién queda relevado.",
+   "palabras": [
+    "DIOT",
+    "declaración informativa de operaciones con terceros",
+    "operaciones con sus proveedores"
+   ],
+   "umbral": 1
+  },
+  {
    "id": "declaraciones",
    "nombre": "Declaraciones y pagos provisionales",
    "descripcion": "Presentación de declaraciones anuales, provisionales, complementarias e informativas.",
@@ -259,7 +270,13 @@
    "descripcion": "Personas físicas y morales en el régimen simplificado de confianza.",
    "palabras": [
     "régimen simplificado de confianza",
-    "RESICO"
+    "RESICO",
+    "Título IV, Capítulo II, Sección IV",
+    "Sección IV, del Capítulo II, Título IV",
+    "Sección IV del Capítulo II del Título IV",
+    "Título VII, Capítulo XII",
+    "Capítulo XII, Título VII",
+    "Capítulo XII del Título VII"
    ],
    "umbral": 1
   },

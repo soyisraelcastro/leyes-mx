@@ -125,6 +125,31 @@ test("buscar: vigente por defecto, proyectos solo si se piden y marcados", async
   assert.match(txt(sin), /NO VERIFICADO/);
 });
 
+test("buscar encuentra reglas de la RMF: el caso reportado (DIOT y RESICO) con las consultas que hizo el asistente", async () => {
+  for (const consulta of ["cual es la regla que releva a las personas fisicas y morales RESICO de presentar las Diot", "RESICO relevados de presentar DIOT información de operaciones con terceros", "DIOT"]) {
+    const r = await c.callTool({ name: "buscar", arguments: { consulta } });
+    assert.ok(r.structuredContent.reglas.slice(0, 3).some((x) => x.regla === "3.13.17"), consulta);
+    assert.match(txt(r), /RMF regla 3\.13\.17/);
+    assert.match(txt(r), /NO tiene aplicadas las resoluciones de modificación/);
+  }
+  const rmf = await c.callTool({ name: "buscar", arguments: { consulta: "DIOT", ley: "rmf", limite: 8 } });
+  assert.deepEqual(rmf.structuredContent.resultados, []);
+  assert.equal(rmf.structuredContent.reglas.length, 8);
+  const liva = await c.callTool({ name: "buscar", arguments: { consulta: "DIOT", ley: "LIVA" } });
+  assert.deepEqual(liva.structuredContent.reglas, []);
+  assert.ok(liva.structuredContent.resultados.some((x) => x.articulo === "32"));
+});
+
+test("temas: una pregunta más larga que el nombre llega al tema, y RESICO muestra la 3.13.17 sin subir el límite", async () => {
+  const d = await c.callTool({ name: "temas", arguments: { tema: "DIOT" } });
+  assert.equal(d.structuredContent.tema, "diot");
+  const largo = await c.callTool({ name: "temas", arguments: { tema: "DIOT declaración informativa de operaciones con terceros" } });
+  assert.match(txt(largo), /diot/);
+  assert.doesNotMatch(txt(largo), /NO VERIFICADO/);
+  const r = await c.callTool({ name: "temas", arguments: { tema: "resico" } });
+  assert.ok(r.structuredContent.documentos.some((x) => x.id === "3.13.17"));
+});
+
 test("buscar con glosario: declara qué se agregó; glosario=false busca solo con las palabras dadas", async () => {
   const q = "fundamento para no deducir actualizaciones";
   const con = await c.callTool({ name: "buscar", arguments: { consulta: q, limite: 10 } });

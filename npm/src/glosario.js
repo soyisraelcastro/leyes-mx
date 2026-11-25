@@ -9,6 +9,8 @@
 //       "agregar": ["accesorios", "recargos"],                         // palabras o frases que se suman a la consulta
 //       "sustituir": ["isr"],                                          // (opcional) palabras de la consulta que se quitan: siglas que el texto no usa
 //       "relacionar": false,                                           // (opcional) false: sus artículos no suben en el ranking, solo documentan
+//       "agregar_reglas": ["DIOT"],                                // (opcional) como agregar, pero solo al buscar en las reglas de la RMF
+//       "reglas": [{ "regla": "3.13.17", "evidencia": "Presentar la DIOT" }],   // (opcional) reglas de la RMF que suben en su lista
 //       "articulos": [{ "ley": "CFF", "articulo": "17-A", "evidencia": "no será deducible ni acreditable" }],
 //       "nota": "por qué la ley dice esto con otras palabras" } ] }
 // Los disparadores se comparan sin acentos y sin distinguir mayúsculas; una palabra de 5 o más letras también coincide
@@ -16,7 +18,7 @@
 // el ranking: documentan (y scripts/validar.py y la prueba de npm verifican contra el texto) por qué existe la entrada.
 import fs from "node:fs";
 import path from "node:path";
-import { tokens } from "./indice.js";
+import { tokens, tokensConsulta } from "./indice.js";
 
 export const ESQUEMA_GLOSARIO = 1;
 export const ARCHIVO_GLOSARIO = "glosario.json";
@@ -41,6 +43,8 @@ export function validarEstructura(d) {
     if (typeof e.nota !== "string" || e.nota.trim().length < 20) p.push(`${n}: falta la nota (por qué existe la entrada)`);
     if (!Array.isArray(e.articulos) || !e.articulos.length) p.push(`${n}: falta articulos (al menos uno con evidencia)`);
     for (const a of e.articulos || []) if (!a?.ley || !a?.articulo || !a?.evidencia) p.push(`${n}: cada artículo lleva ley, articulo y evidencia`);
+    if (e.agregar_reglas !== undefined && (!Array.isArray(e.agregar_reglas) || e.agregar_reglas.some((x) => typeof x !== "string" || !x.trim()))) p.push(`${n}: agregar_reglas debe ser una lista de textos`);
+    if (e.reglas !== undefined && (!Array.isArray(e.reglas) || e.reglas.some((r) => !r?.regla || !r?.evidencia))) p.push(`${n}: cada regla lleva regla y evidencia`);
   });
   return p;
 }
@@ -87,14 +91,16 @@ export class Glosario {
       }
       return false;
     };
-    const entradas = [], agregados = [], terminos = [], quitar = [];
+    const entradas = [], agregados = [], terminos = [], quitar = [], terminosReglas = [];
     const yaEscritos = new Set(q);
     for (const e of this.entradas) {
       if (!e._disparadores.some((d) => d.every(hay))) continue;
       const nuevos = e.agregar.filter((a) => tokens(a).some((t) => !yaEscritos.has(t)));
       const sustituye = (e.sustituir || []).flatMap((x) => tokens(x)).filter((t) => q.includes(t));
       for (const t of sustituye) if (!quitar.includes(t)) quitar.push(t);
-      entradas.push({ id: e.id, nota: e.nota, articulos: e.articulos.map((a) => ({ ley: a.ley, articulo: a.articulo })), relacionar: e.relacionar !== false, agregados: nuevos, sustituye });
+      entradas.push({ id: e.id, nota: e.nota, articulos: e.articulos.map((a) => ({ ley: a.ley, articulo: a.articulo })), relacionar: e.relacionar !== false, agregados: nuevos, sustituye,
+        reglas: (e.reglas || []).map((r) => ({ regla: r.regla })), agregadosReglas: e.agregar_reglas || [] });
+      for (const t of (e.agregar_reglas || []).flatMap((x) => tokensConsulta(x))) if (!terminosReglas.includes(t) && !yaEscritos.has(t)) terminosReglas.push(t);
       for (const a of nuevos) {
         if (agregados.includes(a)) continue;
         agregados.push(a);
@@ -102,6 +108,6 @@ export class Glosario {
       }
     }
     if (terminos.length > MAX_TERMINOS) terminos.length = MAX_TERMINOS;
-    return { terminos, agregados, quitar, entradas };
+    return { terminos, terminosReglas, agregados, quitar, entradas };
   }
 }

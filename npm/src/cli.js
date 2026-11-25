@@ -5,9 +5,9 @@ import path from "node:path";
 import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 import { Almacen, SinDatos, AVISO_GENERAL } from "./almacen.js";
-import { Indice } from "./indice.js";
+import { Indice, IndiceReglas, buscarTodo } from "./indice.js";
 import { Glosario } from "./glosario.js";
-import { citaArticulo, lineasAmpliacion, noEncontrado, respuestaSubsidio, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
+import { citaArticulo, lineasAmpliacion, lineasReglas, noEncontrado, respuestaSubsidio, respuestaTarifa, respuestaTarifas } from "./respuestas.js";
 import { VERSION } from "./version.js";
 import * as clientes from "./clientes.js";
 import * as datos from "./datos.js";
@@ -38,7 +38,7 @@ Consulta directa (sin MCP)
   obtener LEY ARTICULO [--anio N] [--incluir-proyectos] [--json]
   tarifa [ID|APARTADO] [--anio N] [--json]   Tarifas de ISR del Anexo 8 de la RMF (sin argumento: las lista)
   subsidio [DOCUMENTO] [--anio N] [--json]   Subsidio para el empleo (decreto del DOF y UMA); DOCUMENTO: vigente-2026, modificacion-2025-12-31...
-  buscar "texto" [--ley LEY] [--anio N] [--incluir-proyectos] [--limite N] [--sin-glosario] [--json]
+  buscar "texto" [--ley LEY|RMF] [--anio N] [--incluir-proyectos] [--limite N] [--sin-glosario] [--json]
   listar [--incluir-proyectos] [--json]
   reforma [--anio N]     estado de la reforma en trámite (proyecto, no es ley vigente)
 
@@ -444,17 +444,18 @@ async function cmdBuscar({ pos, op }) {
   const a = Almacen.abrir();
   const proy = !!op["incluir-proyectos"];
   const ley = uno(op, "ley") ?? null;
-  const { resultados: r, ampliacion } = new Indice(a, { proyectos: proy }).buscarConDetalle(consulta, { ley, anio: entero(op, "anio") ?? null, incluirProyectos: proy,
-    limite: entero(op, "limite") ?? 10, anioDefecto: a.anioPorDefecto(ley), glosario: op["sin-glosario"] ? null : a.glosario() });
+  const { resultados: r, reglas, ampliacion } = buscarTodo(a, { leyes: () => new Indice(a, { proyectos: proy }), reglas: () => new IndiceReglas(a) }, consulta, { ley,
+    anio: entero(op, "anio") ?? null, incluirProyectos: proy, limite: entero(op, "limite") ?? 10, glosario: op["sin-glosario"] ? null : a.glosario() });
   const amp = lineasAmpliacion(ampliacion);
-  if (op.json) { if (amp.length) err(amp.join("\n")); out(JSON.stringify(r, null, 2)); return r.length ? 0 : 1; }
+  if (op.json) { if (amp.length) err(amp.join("\n")); const todo = [...r, ...reglas]; out(JSON.stringify(todo, null, 2)); return todo.length ? 0 : 1; }
   if (amp.length) { out(amp.join("\n")); out(); }
-  if (!r.length) { out(noEncontrado(`resultados para ${JSON.stringify(consulta)}`)); return 1; }
+  if (!r.length && !reglas.length) { out(noEncontrado(`resultados para ${JSON.stringify(consulta)}`)); return 1; }
   for (const x of r) {
     const marca = (x.estatus !== "vigente" && x.estatus !== "derogado" ? "  [PROYECTO, NO ES LEY VIGENTE]" : x.estatus === "derogado" ? "  [derogado]" : "") + (x.relacionado_por_glosario ? "  [glosario]" : "");
     out(`${x.ley} art. ${x.articulo} | vigencia ${x.anio_vigencia} | última reforma DOF ${x.ultima_reforma_dof}${marca}`);
     out(`   ${x.fragmento}`);
   }
+  if (reglas.length) out((r.length ? "\n" : "") + lineasReglas(reglas).join("\n"));
   return 0;
 }
 

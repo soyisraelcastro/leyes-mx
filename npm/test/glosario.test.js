@@ -31,6 +31,10 @@ test("cada artículo que cita el glosario existe, está vigente y contiene su ev
       else if (!plano(f.texto).includes(plano(a.evidencia))) fallos.push(`${e.id}: la evidencia no está en ${a.ley} ${a.articulo}: ${a.evidencia}`);
     }
   }
+  for (const e of datos.entradas) for (const r of e.reglas || []) {
+    const f = alm.obtenerRegla(r.regla);
+    if (!f || !plano(f.texto).includes(plano(r.evidencia))) fallos.push(`${e.id}: la evidencia no está en la regla ${r.regla}: ${r.evidencia}`);
+  }
   assert.deepEqual(fallos, []);
 });
 

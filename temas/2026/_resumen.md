@@ -1,10 +1,11 @@
 # Temas, vigencia 2026
 
-4707 documentos (artículos y reglas) y 68 temas. Se generan con `scripts/etiquetar.py`; no se editan a mano.
+4707 documentos (artículos y reglas) y 69 temas. Se generan con `scripts/etiquetar.py`; no se editan a mano.
 
 | Tema | Documentos | Qué cubre |
 |---|---|---|
 | [Comprobantes fiscales (CFDI) y facturación](cfdi.md) | 296 | Expedición, requisitos, cancelación y complementos de los CFDI. |
+| [Declaración informativa de operaciones con terceros (DIOT)](diot.md) | 14 | Información mensual de operaciones con proveedores para el IVA: quién la presenta, cómo y quién queda relevado. |
 | [Declaraciones y pagos provisionales](declaraciones.md) | 252 | Presentación de declaraciones anuales, provisionales, complementarias e informativas. |
 | [Devoluciones y compensaciones](devoluciones.md) | 162 | Saldos a favor, devolución de contribuciones y compensación. |
 | [Inscripción y avisos en el RFC](rfc.md) | 249 | Registro Federal de Contribuyentes, avisos, domicilio fiscal y constancia de situación fiscal. |
@@ -21,7 +22,7 @@
 | [Contabilidad y registros contables](contabilidad.md) | 121 | Contabilidad electrónica, libros, catálogo de cuentas y balanza de comprobación. |
 | [Dictamen fiscal y contador público](dictamen.md) | 122 | Dictamen de estados financieros, de enajenación de acciones, dictamen ante el INFONAVIT y contador público inscrito o autorizado. |
 | [Beneficiario controlador y cuentas financieras](beneficiario-controlador.md) | 58 | Beneficiario controlador, intercambio de información y cuentas financieras. |
-| [Régimen Simplificado de Confianza (RESICO)](resico.md) | 56 | Personas físicas y morales en el régimen simplificado de confianza. |
+| [Régimen Simplificado de Confianza (RESICO)](resico.md) | 64 | Personas físicas y morales en el régimen simplificado de confianza. |
 | [Sueldos, salarios y subsidio para el empleo](sueldos-salarios.md) | 65 | Ingresos por servicio personal subordinado, retenciones del ISR a trabajadores, ajuste anual y subsidio. |
 | [Actividades empresariales y servicios profesionales](honorarios-empresarial.md) | 113 | Ingresos por actividades empresariales, honorarios y servicios profesionales. |
 | [Arrendamiento y uso o goce temporal](arrendamiento.md) | 143 | Ingresos por arrendamiento y por el uso o goce temporal de bienes. |

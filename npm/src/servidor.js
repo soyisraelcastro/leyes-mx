@@ -3,7 +3,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import * as z from "zod";
 import { Almacen, SinDatos } from "./almacen.js";
-import { Indice } from "./indice.js";
+import { Indice, IndiceReglas, buscarTodo } from "./indice.js";
 import { noEncontrado, respuestaArticulo, respuestaBusqueda, respuestaEstado, respuestaLeyes, respuestaRegla, respuestaSubsidio, respuestaTarifa, respuestaTarifas, respuestaTema, respuestaTemas, respuestaTransitorios } from "./respuestas.js";
 import { VERSION } from "./version.js";
 
@@ -15,7 +15,7 @@ const INSTRUCCIONES = [
   "Las tarifas de ISR (mensual, anual, por periodos) se obtienen con obtener_tarifa (Anexo 8 de la RMF), nunca de la tabla de los arts. 96 y 152 de la LISR ni de memoria: esas cifras se actualizan cada año.",
   "Respeta las líneas ADVERTENCIA. Un proyecto de reforma (por ejemplo la de 2027) NO es ley vigente hasta su publicación en el DOF: no lo presentes como vigente y, si lo mencionas, dilo y da la fecha de estado_reforma.",
   "Si la herramienta no encuentra lo pedido, dilo con claridad (\"no verificado\") y PREGUNTA al usuario si desea que lo busques en internet. Nunca busques en internet por tu cuenta sin su permiso; si lo autoriza, usa solo fuentes oficiales (DOF, SAT, Cámara de Diputados) y aclara que ese dato no proviene de la base verificada.",
-  "Las reglas de la Resolución Miscelánea Fiscal 2026 se leen con obtener_regla: es el texto original del DOF del 28-12-2025, SIN las resoluciones de modificación de 2026, y la herramienta lo advierte. El subsidio para el empleo (decreto del DOF 01-05-2024 y su reforma del 31-12-2025, con la UMA de 2025 y 2026 que publica el INEGI) se consulta con obtener_subsidio_empleo; no lo calcules de memoria. La base no incluye otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA de otros años ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
+  "Las reglas de la Resolución Miscelánea Fiscal 2026 se encuentran con buscar (salen en su propia lista; ley=\"RMF\" busca solo en ellas) y se leen con obtener_regla: es el texto original del DOF del 28-12-2025, SIN las resoluciones de modificación de 2026, y la herramienta lo advierte. El subsidio para el empleo (decreto del DOF 01-05-2024 y su reforma del 31-12-2025, con la UMA de 2025 y 2026 que publica el INEGI) se consulta con obtener_subsidio_empleo; no lo calcules de memoria. La base no incluye otros anexos de la RMF (salvo el Anexo 8), jurisprudencia, criterios del SAT, el valor de la UMA de otros años ni la jurisprudencia o los criterios del IMSS: de eso no hay dato local.",
 ].join(" ");
 
 /**
@@ -34,6 +34,9 @@ export function crearServidor(almacen = null) {
   const indices = {};
   const obtenerAlmacen = () => (alm ||= Almacen.abrir());
   const indice = (proy) => (indices[proy ? "con" : "sin"] ||= new Indice(obtenerAlmacen(), { proyectos: proy }));
+
+  let indiceReglas = null;
+  const reglasIdx = () => (indiceReglas ||= new IndiceReglas(obtenerAlmacen()));
 
   const server = new McpServer({ name: "leyes-mx", version: VERSION }, { instructions: INSTRUCCIONES });
   const envolver = (fn) => async (args) => {
@@ -74,10 +77,10 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("buscar", {
     title: "Buscar en las leyes",
-    description: "Busca en las leyes fiscales y laborales de México cuando el usuario pregunta por un tema y no da el artículo (ISR, IVA, deducciones, retenciones, CFDI o facturas, aguinaldo, PTU, vacaciones, despido, infracciones, plazos, \"fundamento legal de...\"). Úsala ANTES de responder cualquier consulta fiscal o laboral de México. Es una búsqueda por palabras de la ley (no entiende el sentido): reformula con los términos legales (\"accesorios de las contribuciones\", \"comprobante fiscal digital por Internet\", \"participación de los trabajadores en las utilidades\") o acota con el parámetro ley. Un glosario de sinónimos contables amplía la consulta y la respuesta declara qué agregó y qué artículos relacionó. Devuelve fragmentos: NO cites a partir de ellos; pide el artículo completo con obtener_articulo. Por omisión solo ley vigente; los proyectos de reforma nunca se incluyen salvo que se pida y salen marcados como NO vigentes. Si no hay resultados, el resultado dice NO VERIFICADO: pregunta al usuario si desea buscar en internet, no lo hagas por tu cuenta.",
+    description: "Busca en las leyes fiscales y laborales de México y en las reglas de la RMF 2026 (miscelánea: facilidades, DIOT, RESICO, CFDI, quién queda relevado de una obligación) cuando el usuario pregunta por un tema y no da el artículo (ISR, IVA, deducciones, retenciones, CFDI o facturas, aguinaldo, PTU, vacaciones, despido, infracciones, plazos, \"fundamento legal de...\"). Úsala ANTES de responder cualquier consulta fiscal o laboral de México. Es una búsqueda por palabras de la ley (no entiende el sentido): reformula con los términos legales (\"accesorios de las contribuciones\", \"comprobante fiscal digital por Internet\", \"participación de los trabajadores en las utilidades\") o acota con el parámetro ley. Un glosario de sinónimos contables amplía la consulta y la respuesta declara qué agregó y qué artículos relacionó. Las reglas salen en su propia lista; ley=\"RMF\" busca solo en ellas. Devuelve fragmentos: NO cites a partir de ellos; pide el artículo completo con obtener_articulo o la regla con obtener_regla. Por omisión solo ley vigente; los proyectos de reforma nunca se incluyen salvo que se pida y salen marcados como NO vigentes. Si no hay resultados, el resultado dice NO VERIFICADO: pregunta al usuario si desea buscar en internet, no lo hagas por tu cuenta.",
     inputSchema: {
       consulta: z.string().describe("Palabras clave, por ejemplo \"recargos deducibles\""),
-      ley: z.string().optional().describe(leyDesc),
+      ley: z.string().optional().describe(leyDesc + "; RMF para buscar solo en las reglas de la miscelánea"),
       anio: z.number().int().optional().describe(anioDesc),
       incluir_proyectos: z.boolean().optional().describe("Incluir proyectos de reforma, marcados como NO vigentes (false por omisión)"),
       limite: z.number().int().min(1).max(50).optional().describe("Máximo de resultados (10 por omisión)"),
@@ -87,10 +90,10 @@ export function crearServidor(almacen = null) {
   }, envolver(({ consulta, ley, anio, incluir_proyectos, limite, glosario }) => {
     const a = obtenerAlmacen();
     const proy = !!incluir_proyectos;
-    const { resultados, ampliacion } = indice(proy).buscarConDetalle(consulta, { ley: ley ?? null, anio: anio ?? null, incluirProyectos: proy, limite: limite ?? 10,
-      anioDefecto: a.anioPorDefecto(ley ?? null), glosario: glosario === false ? null : a.glosario() });
-    return texto(respuestaBusqueda(consulta, resultados, { incluirProyectos: proy, ampliacion }), { structuredContent: { resultados, ampliacion: ampliacion
-      ? { agregados: ampliacion.agregados, sustituidos: ampliacion.quitar, entradas: ampliacion.entradas.map((e) => ({ id: e.id, articulos: e.articulos })) } : null } });
+    const { resultados, reglas, ampliacion } = buscarTodo(a, { leyes: () => indice(proy), reglas: reglasIdx }, consulta, { ley: ley ?? null, anio: anio ?? null, incluirProyectos: proy,
+      limite: limite ?? 10, glosario: glosario === false ? null : a.glosario() });
+    return texto(respuestaBusqueda(consulta, resultados, { incluirProyectos: proy, ampliacion, reglas }), { structuredContent: { resultados, reglas, ampliacion: ampliacion
+      ? { agregados: ampliacion.agregados, sustituidos: ampliacion.quitar, entradas: ampliacion.entradas.map((e) => ({ id: e.id, articulos: e.articulos, reglas: e.reglas })) } : null } });
   }));
 
   server.registerTool("listar_leyes", {
@@ -172,7 +175,7 @@ export function crearServidor(almacen = null) {
 
   server.registerTool("obtener_regla", {
     title: "Obtener regla de la Resolución Miscelánea Fiscal",
-    description: "Muestra lo que dice una regla de la RMF 2026 (por ejemplo 2.7.1.1, 3.17.2, 11.1.1) con su título, ubicación, fundamento y las leyes y reglas a las que remite. Úsala cuando el usuario cite una regla de la miscelánea o cuando un artículo o el fundamento de otra regla remita a ella. OJO: es el texto original publicado el 28-12-2025, sin las resoluciones de modificación de 2026; la respuesta lo advierte y debes repetirlo. Para buscar por materia usa temas.",
+    description: "Muestra lo que dice una regla de la RMF 2026 (por ejemplo 2.7.1.1, 3.17.2, 11.1.1) con su título, ubicación, fundamento y las leyes y reglas a las que remite. Úsala cuando el usuario cite una regla de la miscelánea o cuando un artículo o el fundamento de otra regla remita a ella. OJO: es el texto original publicado el 28-12-2025, sin las resoluciones de modificación de 2026; la respuesta lo advierte y debes repetirlo. Si no sabes el número, usa buscar (ley=\"RMF\") o temas.",
     inputSchema: {
       regla: z.string().describe("Número de regla, por ejemplo \"2.7.1.1\" o \"3.17.2\""),
       anio: z.number().int().optional().describe(anioDesc),

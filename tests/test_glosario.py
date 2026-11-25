@@ -20,6 +20,7 @@ class TestGlosario(unittest.TestCase):
         tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp, True)
         (tmp / "leyes").symlink_to(RAIZ / "leyes")
+        (tmp / "rmf").symlink_to(RAIZ / "rmf")
         d = json.loads((RAIZ / "glosario.json").read_text(encoding="utf-8"))
         modificar(d)
         (tmp / "glosario.json").write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
@@ -35,6 +36,13 @@ class TestGlosario(unittest.TestCase):
         def mal(d):
             d["entradas"][0]["articulos"][0]["articulo"] = "9999"
         self.assertTrue(any("no existe" in e for e in self._con_glosario(mal)))
+
+    def test_regla_inexistente_o_sin_su_evidencia_se_rechaza(self):
+        def poner(regla, evidencia):
+            return lambda d: d["entradas"][0].update(reglas=[{"regla": regla, "evidencia": evidencia}])
+        self.assertTrue(any("no existe en rmf" in e for e in self._con_glosario(poner("99.9.9", "x"))))
+        self.assertTrue(any("no aparece en la regla" in e for e in self._con_glosario(poner("3.13.17", "frase que la regla no dice"))))
+        self.assertEqual(self._con_glosario(poner("3.13.17", "presentar la DIOT")), [])
 
     def test_sin_nota_o_con_raya_larga_se_rechaza(self):
         def sin_nota(d):
