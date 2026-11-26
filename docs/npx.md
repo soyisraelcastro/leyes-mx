@@ -86,8 +86,8 @@ Lo hace `.github/workflows/publicar-datos.yml` en cada push a `main` que toque `
 
 1. Revisar y probar: `cd npm && npm ci && npm test` (con el repo completo; la prueba de paridad corre `scripts/buscar.py` 2513 veces, tarda ~35 s) y `npm pack --dry-run` (solo `bin/`, `src/`, README, LICENSE, package.json).
 2. Subir la versión en `npm/package.json` (semver). Cambia el comportamiento del servidor o de los clientes, no los datos.
-3. Hacer merge a `main` y correr el workflow **Publicar npm** (`.github/workflows/publicar-npm.yml`, a mano: `gh workflow run publicar-npm.yml`). Publica con trusted publishing (OIDC), sin token ni código de 2FA; la cuenta de npm sólo tiene llave de seguridad y la CLI no puede usarla para publicar. Requiere, una sola vez, el Trusted Publisher en npmjs.com (paquete `leyes-mx` → Settings → Trusted Publisher → GitHub Actions: `soyisraelcastro/leyes-mx`, workflow `publicar-npm.yml`). El workflow se niega si esa versión ya está publicada.
-4. (Alternativa manual, si la cuenta tiene app de códigos) `npm login` y `cd npm && npm publish --access public --otp=CÓDIGO`.
+3. Hacer merge a `main`, `git pull` y `npm login` (cuenta con acceso al nombre `leyes-mx`).
+4. `cd npm && npm publish --access public`. La cuenta tiene 2FA con llave de seguridad, así que npm imprime un link: se abre, se autoriza con la llave y el comando termina solo ("Your package is being processed"). Puede tardar unos minutos en aparecer en `npm view leyes-mx version`. No se publica desde GitHub Actions: el Trusted Publisher de npmjs.com solo tiene permiso de "stage publish".
 5. Probar desde cero en otra carpeta o equipo: `npx leyes-mx@latest doctor`.
 6. Etiquetar en git (`git tag npm-v0.1.0`) si se quiere llevar el registro.
 
