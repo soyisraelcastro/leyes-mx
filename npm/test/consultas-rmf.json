@@ -1,0 +1,17 @@
+{
+  "descripcion": "Preguntas reales y la regla de la RMF que debe salir entre las primeras N de la lista de reglas de buscar. Las cuatro primeras son del caso reportado el 2026-11-25. `evidencia` es texto literal de la regla.",
+  "casos": [
+    {"pregunta": "cual es la regla que releva a las personas fisicas y morales RESICO de presentar las Diot", "regla": "3.13.17", "top": 1, "evidencia": "Presentar la DIOT a que se refiere el artículo 32, fracción VIII"},
+    {"pregunta": "RESICO relevados de presentar DIOT información de operaciones con terceros", "regla": "3.13.17", "top": 1, "evidencia": "quedarán relevados de cumplir con las siguientes obligaciones"},
+    {"pregunta": "no estarán obligados a presentar la declaración informativa de operaciones con terceros Régimen Simplificado de Confianza", "regla": "3.13.17", "top": 3, "evidencia": "Presentar la DIOT"},
+    {"pregunta": "información de operaciones con terceros DIOT", "regla": "3.13.17", "top": 3, "evidencia": "Presentar la DIOT"},
+    {"pregunta": "quién no presenta contabilidad electrónica RESICO", "regla": "3.13.17", "top": 3, "evidencia": "Enviar la contabilidad electrónica"},
+    {"pregunta": "plazo para presentar la DIOT", "regla": "4.5.1", "top": 3, "evidencia": "durante el mes inmediato posterior"},
+    {"pregunta": "buzón tributario personas sin obligación de habilitar", "regla": "2.2.22", "top": 3, "evidencia": "buzón tributario"},
+    {"pregunta": "devolución de saldo a favor ISR personas físicas", "regla": "2.3.2", "top": 3, "evidencia": "personas físicas"},
+    {"pregunta": "aceptación para cancelar CFDI", "regla": "2.7.1.34", "top": 3, "evidencia": "cancel"},
+    {"pregunta": "factura global público en general", "regla": "2.7.1.21", "top": 3, "evidencia": "público en general"},
+    {"pregunta": "aviso de compensación", "regla": "2.3.10", "top": 3, "evidencia": "compensación"},
+    {"pregunta": "opinión de cumplimiento", "regla": "2.1.36", "top": 3, "evidencia": "opinión del cumplimiento"}
+  ]
+}

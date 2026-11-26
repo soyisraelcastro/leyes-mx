@@ -1,6 +1,6 @@
 {
   "esquema": 1,
-  "version": "2026-11-19",
+  "version": "2026-11-25",
   "entradas": [
     {
       "id": "actualizacion",
@@ -103,6 +103,7 @@
       "disparadores": ["resico", "regimen simplificado de confianza", "simplificado de confianza"],
       "sustituir": ["resico"],
       "agregar": ["optar por pagar el impuesto sobre la renta", "actividades empresariales, profesionales", "uso o goce temporal de bienes"],
+      "agregar_reglas": ["régimen simplificado de confianza"],
       "articulos": [
         { "ley": "LISR", "articulo": "113-E", "evidencia": "podrán optar por pagar el impuesto sobre la renta en los términos establecidos en esta Sección" },
         { "ley": "LISR", "articulo": "113-F", "evidencia": "están obligados a presentar su declaración anual en el mes de abril" },
@@ -110,6 +111,21 @@
         { "ley": "LISR", "articulo": "206", "evidencia": "personas morales residentes en México únicamente constituidas por personas físicas" }
       ],
       "nota": "\"RESICO\" no aparece en el texto de la ley, y la expresión \"Régimen Simplificado de Confianza\" solo está en los títulos de sección, que la búsqueda no indexa. Las personas físicas están en la LISR 113-E a 113-J (Título IV, Capítulo II, Sección IV) y las personas morales en los arts. 206 a 215 (Título VII, Capítulo XII)."
+    },
+    {
+      "id": "diot",
+      "disparadores": ["diot", "declaracion informativa de operaciones con terceros", "operaciones con terceros", "informativa + proveedores", "operaciones con + proveedores"],
+      "agregar": ["operaciones con sus proveedores", "acreditamiento y traslado del impuesto al valor agregado"],
+      "agregar_reglas": ["DIOT"],
+      "articulos": [
+        { "ley": "LIVA", "articulo": "32", "evidencia": "la información correspondiente sobre el pago, retención, acreditamiento y traslado del impuesto al valor agregado en las operaciones con sus proveedores" }
+      ],
+      "reglas": [
+        { "regla": "3.13.17", "evidencia": "Presentar la DIOT a que se refiere el artículo 32, fracción VIII de la Ley del IVA" },
+        { "regla": "4.5.1", "evidencia": "correspondiente a la DIOT, contenida en el Anexo 1" },
+        { "regla": "4.5.2", "evidencia": "podrán no relacionar individualmente a sus proveedores" }
+      ],
+      "nota": "La ley no dice \"DIOT\": la obligación es la LIVA 32 fr. VIII (información mensual de las operaciones con sus proveedores). El plazo y el medio están en la regla 4.5.1 de la RMF, y la 3.13.17 releva de presentarla a las personas físicas y morales del Régimen Simplificado de Confianza."
     },
     {
       "id": "cfdi",

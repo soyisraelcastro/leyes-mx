@@ -25,7 +25,7 @@ Antes de responder cualquier consulta fiscal o laboral de México y antes de cit
 | Herramienta | Para qué |
 |---|---|
 | `obtener_articulo(ley, articulo)` | Texto íntegro de un artículo: la fuente para citar. |
-| `buscar(consulta, ley?)` | Encontrar artículos por tema. Devuelve fragmentos. `glosario=false` busca solo con las palabras dadas. |
+| `buscar(consulta, ley?)` | Encontrar artículos y reglas de la RMF por tema (las reglas salen en su propia lista; `ley="RMF"` busca solo en ellas). Devuelve fragmentos. `glosario=false` busca solo con las palabras dadas. |
 | `obtener_tarifa(tarifa?)` | Tarifas de ISR del Anexo 8 (mensual `B-V`, anual `C-II`, por periodos). Sin argumento, las lista. |
 | `obtener_subsidio_empleo(documento?)` | Subsidio para el empleo 2026: tope de ingresos, porcentaje de la UMA, UMA 2025 y 2026 (INEGI) y el texto de los decretos del DOF. No es tarifa. |
 | `obtener_transitorios(ley)` | Transitorios por decreto de reforma. |

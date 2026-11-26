@@ -49,7 +49,7 @@ export class Indice {
       const id = this.docs.length;
       const toks = tokens(cuerpo + " " + (fm.ley ?? "") + " " + (fm.articulo ?? ""));
       this.docs.push({ ley: fm.ley, articulo: fm.articulo, anio: fm.vigencia_anio, estatus: fm.estatus, reforma: fm.ultima_reforma_dof ?? null,
-        ruta: path.relative(almacen.raiz, ruta).split(path.sep).join("/"), texto: cuerpo, len: toks.length });
+        ruta: path.relative(almacen.raiz, ruta).split(path.sep).join("/"), texto: cuerpo, len: toks.length, ...(fm._texto !== undefined ? { fm } : {}) });
       total += toks.length;
       const clave = claveArticulo(fm.ley, fm.articulo);
       (this.porClave.get(clave) || this.porClave.set(clave, []).get(clave)).push(id);
@@ -183,4 +183,114 @@ export function fragmento(texto, q, ancho = 220, prioritarios = null) {
   for (const w of [...(prioritarios || []), ...tokensConsulta(q)]) { pos = plano.indexOf(w); if (pos >= 0) break; }
   pos = Math.max(0, pos - 60);
   return (pos ? "... " : "") + t.slice(pos, pos + ancho) + (pos + ancho < t.length ? " ..." : "");
+}
+
+/** Palabras de pregunta que tampoco dicen de qué trata una regla (solo se quitan al buscar en reglas). */
+const PREGUNTAS = new Set(["quien", "quienes", "cuando", "donde", "cuanto", "cuantos", "existe", "hay"]);
+
+/** Cuántas veces cuenta cada palabra del título y de la ubicación de una regla: el encabezado dice de qué trata. */
+export const PESO_TITULO = 3;
+export const PESO_UBICACION = 2;
+
+/**
+ * Índice de las reglas de la RMF. Va aparte del de las leyes a propósito: así el ranking de los artículos no cambia, las
+ * reglas no compiten con ellos y una resolución de más de mil reglas no los entierra.
+ * A diferencia del de leyes indexa el encabezado (título y ubicación), donde la RMF nombra el régimen o la materia, y no
+ * exige todas las palabras: pondera cada resultado por la proporción de palabras de la consulta que contiene.
+ */
+export class IndiceReglas extends Indice {
+  constructor(almacen) {
+    super({ raiz: almacen.raiz, *recorrer() {
+      for (const { fm, texto, ruta } of almacen.recorrerReglas()) {
+        // "regla" y "RMF" para que una pregunta que las escriba no pierda cobertura
+        const clave = ["regla RMF miscelánea", ...Array(PESO_TITULO).fill(fm.titulo ?? ""), ...Array(PESO_UBICACION).fill(fm.ubicacion ?? "")].join(" ");
+        yield { fm: { ...fm, articulo: fm.regla, _encabezado: clave, _texto: texto }, texto: `${clave}\n${texto}`, ruta };
+      }
+    } });
+    this.docs.forEach((d) => { d.texto = d.fm._texto; d.titulo = d.fm.titulo ?? null; d.ubicacion = d.fm.ubicacion ?? null; d.publicacion = d.fm.publicacion_dof ?? null; delete d.fm; });
+  }
+
+  /**
+   * Las variantes de una palabra (presenta, presentar, presentación) cuentan como UN término: se suman sus frecuencias y el
+   * IDF sale de cuántas reglas traen alguna. Sumar el puntaje de cada variante inflaría las palabras comunes.
+   */
+  puntosToken(tok, peso, permitido) {
+    const frec = new Map();
+    for (const term of this.expandir(tok)) for (const [d, f] of this.post.get(term)) frec.set(d, (frec.get(d) || 0) + f);
+    const idf = Math.log(1 + (this.docs.length - frec.size + 0.5) / (frec.size + 0.5));
+    const res = new Map();
+    for (const [d, f] of frec) {
+      if (permitido(this.docs[d])) res.set(d, peso * idf * (f * 2.2) / (f + 1.2 * (0.25 + 0.75 * this.docs[d].len / this.promedio)));
+    }
+    return res;
+  }
+
+  /** [{ley, regla, titulo, ubicacion, anio_vigencia, publicacion_dof, estatus, fragmento, ruta, relevancia, relacionado_por_glosario?}] */
+  buscarReglas(consulta, { anio = null, limite = 5, glosario = null, ampliacion = undefined } = {}) {
+    let toks = [...new Set(tokensConsulta(consulta))];
+    const sinPreguntas = toks.filter((t) => !PREGUNTAS.has(t));
+    if (sinPreguntas.length) toks = sinPreguntas;
+    if (!toks.length) return [];
+    const permitido = (d) => ABIERTOS.has(d.estatus) && (anio === null || d.anio === anio);
+    const amp = ampliacion !== undefined ? ampliacion : glosario ? glosario.expandir(consulta) : null;
+    // una sigla que la RMF no usa (RESICO) cuenta como su nombre en la RMF, y todo el nombre cuenta como UNA palabra:
+    // si no, "régimen simplificado de confianza" pesaría el triple que la materia por la que se pregunta
+    const parte = new Map(); // palabra -> fracción de concepto
+    for (const e of amp ? amp.entradas : []) {
+      const ausentes = e.sustituye.filter((t) => !this.expandir(t).length);
+      if (!ausentes.length || !e.agregadosReglas?.length) continue;
+      const nombre = [...new Set(e.agregadosReglas.flatMap((x) => tokensConsulta(x)))].filter((t) => !toks.includes(t));
+      for (const t of nombre) parte.set(t, 1 / nombre.length);
+      toks = [...toks.filter((t) => !ausentes.includes(t)), ...nombre];
+    }
+    // lo que el glosario agrega pensando en las reglas, y además lo de las leyes; nada de eso es obligatorio
+    // (de una entrada con términos propios para la RMF se usan solo esos)
+    const deLeyes = amp ? amp.entradas.filter((e) => !e.agregadosReglas?.length).flatMap((e) => e.agregados.flatMap((x) => tokensConsulta(x))) : [];
+    const agregados = amp ? [...new Set([...(amp.terminosReglas || []), ...deLeyes])].filter((t) => !toks.includes(t)) : [];
+    const puntos = new Map(), cubre = new Map();
+    let buscables = 0;
+    for (const t of toks) {
+      const peso = parte.get(t) ?? 1;
+      const m = this.puntosToken(t, peso, permitido);
+      if (!m.size) continue;
+      buscables += peso;
+      for (const [d, x] of m) { puntos.set(d, (puntos.get(d) || 0) + x); cubre.set(d, (cubre.get(d) || 0) + peso); }
+    }
+    for (const t of agregados) {
+      const peso = amp.terminosReglas?.includes(t) ? PESO_AGREGADO : PESO_AGREGADO / 2;
+      for (const [d, x] of this.puntosToken(t, peso, permitido)) puntos.set(d, (puntos.get(d) || 0) + x);
+    }
+    for (const [d, x] of puntos) puntos.set(d, x * (0.4 + 0.6 * (cubre.get(d) || 0) / (buscables || 1)));
+    const marcados = new Set();
+    const mejor = Math.max(1, ...puntos.values());
+    for (const r of amp ? amp.entradas.filter((e) => e.relacionar).flatMap((e) => e.reglas || []) : []) {
+      for (const d of this.porClave.get(claveArticulo("RMF", r.regla)) || []) {
+        if (!permitido(this.docs[d]) || marcados.has(d)) continue;
+        marcados.add(d);
+        puntos.set(d, (puntos.get(d) || 0) + BONO_REFERENCIA * mejor);
+      }
+    }
+    return [...puntos].sort((a, b) => b[1] - a[1] || a[0] - b[0]).slice(0, limite).map(([d, score]) => {
+      const x = this.docs[d];
+      const o = { ley: x.ley, regla: x.articulo, titulo: x.titulo, ubicacion: x.ubicacion, anio_vigencia: x.anio, publicacion_dof: x.publicacion, estatus: x.estatus,
+        fragmento: fragmento(x.texto, [consulta, ...agregados].join(" "), 220, toks), ruta: x.ruta, relevancia: Math.round(score * 100) / 100 };
+      if (marcados.has(d)) o.relacionado_por_glosario = true;
+      return o;
+    });
+  }
+}
+
+/** Busca en leyes y en reglas. `ley`: sin valor, ambas; "RMF", solo reglas; cualquier otra, solo esa ley. */
+export function buscarTodo(almacen, { leyes, reglas }, consulta, { ley = null, anio = null, incluirProyectos = false, limite = 10, glosario = null } = {}) {
+  const soloRmf = String(ley ?? "").toUpperCase() === "RMF";
+  const r = soloRmf ? { resultados: [], ampliacion: null } : leyes().buscarConDetalle(consulta, { ley, anio, incluirProyectos, limite, anioDefecto: almacen.anioPorDefecto(ley), glosario });
+  let encontradas = [];
+  let ampliacion = r.ampliacion;
+  if (soloRmf || !ley) {
+    const amp = glosario ? glosario.expandir(consulta) : null;
+    if (amp?.entradas.length) ampliacion = amp;
+    const anios = almacen.aniosReglas();
+    if (anios.length) encontradas = reglas().buscarReglas(consulta, { anio: anio ?? Math.max(...anios), limite: soloRmf ? limite : Math.min(limite, 5), ampliacion: amp });
+  }
+  return { resultados: r.resultados, reglas: encontradas, ampliacion };
 }

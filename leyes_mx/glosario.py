@@ -85,6 +85,20 @@ def validar(raiz, anio=None):
                 errores.append(f"{n}: {ley} art. {art} no está vigente")
             elif _plano(evid) not in _plano(ficha["texto"]):
                 errores.append(f"{n}: la evidencia {evid!r} no aparece en {ley} art. {art}")
+        for r in e.get("reglas") or []:
+            num, evid = r.get("regla"), r.get("evidencia")
+            if not (num and evid):
+                errores.append(f"{n}: cada regla lleva regla y evidencia")
+                continue
+            hallada = list((raiz / "rmf" / str(anio)).glob(f"*/reglas/regla-{num}.md"))
+            if not hallada:
+                errores.append(f"{n}: la regla {num} no existe en rmf/{anio}")
+                continue
+            fm, cuerpo = store.parse_front_matter(hallada[0].read_text(encoding="utf-8"))
+            if fm.get("estatus") != "vigente":
+                errores.append(f"{n}: la regla {num} no está vigente")
+            elif _plano(evid) not in _plano(cuerpo):
+                errores.append(f"{n}: la evidencia {evid!r} no aparece en la regla {num}")
     if len(entradas) < 25:
         avisos.append(f"{ARCHIVO}: {len(entradas)} entradas")
     return errores, avisos
