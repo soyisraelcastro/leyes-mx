@@ -14,7 +14,8 @@ permissions:
 
 jobs:
   publicar:
-    runs-on: ubuntu-latest
+    # macOS: las pruebas de instalar/doctor esperan las rutas de Claude Desktop, que en Linux no existen.
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
